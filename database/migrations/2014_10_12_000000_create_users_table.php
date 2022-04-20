@@ -16,6 +16,10 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->enum('role', ['admin', 'mahasiswa'])->default('mahasiswa');
+            $table->string('nim')->unique();
+            $table->foreignId('univ_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string('picture')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
