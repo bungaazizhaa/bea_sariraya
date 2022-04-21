@@ -71,10 +71,11 @@
 
                             <div class="row mb-3" id="inputuniv"
                                 style="display: {{ old('univ_id_manual') == null ? 'none' : 'block' }};">
+
                                 <label for="univ_id_manual"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Masukkan Perguruan Tinggi Anda') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 p-0 mx-0">
                                     <input id="univ_id_manual" type="text"
                                         class="form-control @error('univ_id_manual') is-invalid @enderror"
                                         name="univ_id_manual" value="{{ old('univ_id_manual') }}"

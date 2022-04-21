@@ -9,7 +9,8 @@
 </head>
 
 <body>
-    <h1>Halaman Tahap Administrasi</h1>
+    <h1>Selamat Anda Lolos Beasiswa Batch X</h1>
+    <h2>Berikut adalah Link Grup WA</h2>
 </body>
 
 </html>

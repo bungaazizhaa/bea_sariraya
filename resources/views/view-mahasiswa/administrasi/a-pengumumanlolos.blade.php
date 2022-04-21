@@ -9,7 +9,9 @@
 </head>
 
 <body>
-    <h1>Halaman Tahap Administrasi</h1>
+    <h1>Selamat Anda Lolos Seleksi Administrasi</h1>
+    <h2>Berikut adalah jadwal wawancara anda</h2>
+    {{ $tanggal_wawancara }}
 </body>
 
 </html>

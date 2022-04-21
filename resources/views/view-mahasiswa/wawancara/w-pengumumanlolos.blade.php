@@ -9,7 +9,8 @@
 </head>
 
 <body>
-    <h1>Halaman Tahap Administrasi</h1>
+    <h1>Selamat Anda Lolos Seleksi Wawancara</h1>
+    <h2>Berikut adalah Soal Penugasan Anda</h2>
 </body>
 
 </html>

@@ -9,7 +9,12 @@
 </head>
 
 <body>
-    <h1>Halaman Tahap Administrasi</h1>
+    @include('sweetalert::alert')
+
+    <h1>Halaman Profil</h1>
+    @if (Auth::user()->picture == null)
+        <p>Upload Foto Profil untuk melanjutkan ke Halaman Anda!</p>
+    @endif
 </body>
 
 </html>

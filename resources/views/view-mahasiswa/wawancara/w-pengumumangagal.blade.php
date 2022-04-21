@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Halaman Tahap Administrasi</h1>
+    <h1>Maaf Anda Gagal Tahap Wawancara</h1>
 </body>
 
 </html>
