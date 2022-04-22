@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdministrasiController;
+use Carbon\Carbon;
+use App\Models\Periode;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\WawancaraController;
+use App\Http\Controllers\AdministrasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +20,10 @@ use App\Http\Controllers\WawancaraController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+$getTanggalSekarang = Carbon::now()->format('Y-m-d');
+$getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+$getTanggalMulaiAdministrasi = $getPeriodeAktif->tm_adm;
 
 Route::get('/', [HomeController::class, 'indexLandingPage'])->name('landing');
 
@@ -39,4 +46,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/profil-admin', [HomeController::class, 'indexProfilAdmin'])->name('profil.admin');
 });
 
-Auth::routes();
+
+Route::post('update-data-saya', [UserController::class, 'updateMyUser'])->name('update.myuser'); //Edit Data User dari Profil Akun Sendiri
+
+Route::post('uploadfoto', [UserController::class, 'uploadFoto'])->name('upload.foto'); //Edit Foto User dari Profil Akun Sendiri
+
+if ($getTanggalSekarang >= $getTanggalMulaiAdministrasi) {
+    Auth::routes(['register' => false]);
+} else {
+    Auth::routes();
+}

@@ -56,7 +56,7 @@ class LoginController extends Controller
             return redirect(route('admin'));
         } else {
             $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-            if (isset($getPeriodeAktif)) {
+            if (isset($getPeriodeAktif) && isset(Auth::user()->picture)) {
                 Alert::success('Login Berhasil.', 'Anda Login sebagai ' . Auth::user()->name);
                 if ($getPeriodeAktif->status_adm == null) {
                     return redirect(route('tahap.administrasi'));
@@ -65,6 +65,8 @@ class LoginController extends Controller
                 } elseif ($getPeriodeAktif->status_adm == "Selesai" && $getPeriodeAktif->status_wwn == "Selesai") {
                     return redirect(route('tahap.penugasan'));
                 }
+            } elseif (isset($getPeriodeAktif) && !isset(Auth::user()->picture)) {
+                return redirect(route('home'));
             } else {
                 Alert::toast('Beasiswa Telah Dinyatakan Selesai, Tidak dapat melakukan Login. Saat ini tidak terdapat Program Beasiswa', 'info');
                 Auth::logout();

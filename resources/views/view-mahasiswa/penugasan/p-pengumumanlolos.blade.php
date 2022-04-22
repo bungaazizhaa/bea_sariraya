@@ -11,6 +11,9 @@
 <body>
     <h1>Selamat Anda Lolos Beasiswa Batch X</h1>
     <h2>Berikut adalah Link Grup WA</h2>
+    @auth
+        <a href="{{ url('/home') }}" class="btn-sm text-gray-700 dark:text-gray-500 underline">Kembali ke Home</a>
+    @endauth
 </body>
 
 </html>

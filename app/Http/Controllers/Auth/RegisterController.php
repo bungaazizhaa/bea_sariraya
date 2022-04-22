@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\Univ;
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Redirect;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -61,6 +63,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
             'nim' => ['required', 'string', 'max:255'],
             'univ_id' => ['required'],
+            'univ_id.nama_universitas' => ['unique'],
             'univ_id_manual' => ['required', 'string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -79,20 +82,26 @@ class RegisterController extends Controller
             $getUniv = Univ::where('nama_universitas', '=', $data['univ_id_manual'])->first();
 
             if ($getUniv) {
-                dd("Data Perguruan Tinggi Sudah Ada, Mohon pilih melalui Menu Pilihan.");
+                return User::create([
+                    'name' => $data['name'],
+                    'nim' => $data['nim'],
+                    'univ_id' => $getUniv->id,
+                    'email' => $data['email'],
+                    'password' => Hash::make($data['password']),
+                ]);
             } else {
                 Univ::create([
                     'nama_universitas' => $data['univ_id_manual'],
                 ]);
+                $getUniv = Univ::where('nama_universitas', '=', $data['univ_id_manual'])->first();
+                return User::create([
+                    'name' => $data['name'],
+                    'nim' => $data['nim'],
+                    'univ_id' => $getUniv->id,
+                    'email' => $data['email'],
+                    'password' => Hash::make($data['password']),
+                ]);
             }
-            $getUniv = Univ::where('nama_universitas', '=', $data['univ_id_manual'])->first();
-            return User::create([
-                'name' => $data['name'],
-                'nim' => $data['nim'],
-                'univ_id' => $getUniv->id,
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-            ]);
         } else {
             return User::create([
                 'name' => $data['name'],

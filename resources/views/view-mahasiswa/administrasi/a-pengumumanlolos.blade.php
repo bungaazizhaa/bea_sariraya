@@ -11,7 +11,10 @@
 <body>
     <h1>Selamat Anda Lolos Seleksi Administrasi</h1>
     <h2>Berikut adalah jadwal wawancara anda</h2>
-    {{ $tanggal_wawancara }}
+    {{ \Carbon\Carbon::parse($tanggal_wawancara)->isoFormat('dddd, D MMMM Y - hh:mm:ss') . ' WIB' }}
+    @auth
+        <a href="{{ url('/home') }}" class="btn-sm text-gray-700 dark:text-gray-500 underline">Kembali ke Home</a>
+    @endauth
 </body>
 
 </html>

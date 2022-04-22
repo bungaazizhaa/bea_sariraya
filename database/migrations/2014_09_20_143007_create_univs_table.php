@@ -15,7 +15,7 @@ class CreateUnivsTable extends Migration
     {
         Schema::create('univs', function (Blueprint $table) {
             $table->id();
-            $table->string("nama_universitas");
+            $table->string("nama_universitas")->unique();
             $table->timestamps();
         });
     }
