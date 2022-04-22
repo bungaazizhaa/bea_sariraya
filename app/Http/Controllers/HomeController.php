@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Univ;
+use App\Models\User;
+use App\Models\Periode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -13,7 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //
     }
 
     /**
@@ -23,6 +28,37 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('view-admin.dashboard');
+    }
+
+    public function indexLandingPage()
+    {
+        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        return view('landing-page', compact('getPeriodeAktif', 'getTanggalSekarang'));
+    }
+
+    public function indexProfilAdmin()
+    {
+        return view('profil-admin');
+    }
+
+    public function indexProfilMahasiswa()
+    {
+        return view('profil-mahasiswa');
+    }
+
+    public function indexAdmin()
+    {
+        return view('view-admin.dashboard');
+    }
+
+    public function indexMahasiswa()
+    {
+        $getAllUniv = Univ::all();
+        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        $getUserLoggedIn = Auth::user();
+        return view('view-mahasiswa.home', compact('getUserLoggedIn', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv'));
     }
 }

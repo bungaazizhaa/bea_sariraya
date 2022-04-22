@@ -9,7 +9,10 @@
 </head>
 
 <body>
-    <h1>Halaman Tahap Administrasi</h1>
+    <h1>Maaf Anda Telah Gagal Tahap Administrasi</h1>
+    @auth
+        <a href="{{ url('/home') }}" class="btn-sm text-gray-700 dark:text-gray-500 underline">Kembali ke Home</a>
+    @endauth
 </body>
 
 </html>

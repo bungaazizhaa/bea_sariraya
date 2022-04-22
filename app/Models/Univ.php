@@ -12,4 +12,9 @@ class Univ extends Model
     protected $fillable = [
         'nama_universitas',
     ];
+
+    public function User()
+    {
+        return $this->hasMany(User::class);
+    }
 }
