@@ -408,8 +408,8 @@
 
 <body class="antialiased">
     @include('sweetalert::alert')
-    <div
-        class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+    <div style="flex-direction:column"
+        class="flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         @if (Route::has('login') && !$getPeriodeAktif == null)
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                 @auth
@@ -427,9 +427,16 @@
 
         @if ($getPeriodeAktif == null)
             <h1 class="text-gray-200"> Maaf. Saat ini sedang tidak ada Program Penerimaan Sariraya Co. Ltd</h1>
+            <br>
+            <h1 class="text-gray-200" style="display: block">Laravel v{{ Illuminate\Foundation\Application::VERSION }}
+                (PHP
+                v{{ PHP_VERSION }})</h1>
         @else
             <h1 class="text-gray-200">Selamat Datang di Halaman Utama Beasiswa Sariraya Co. Ltd
                 {{ $getPeriodeAktif->name }}</h1>
+            <br>
+            <h1 class="text-gray-200">Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP
+                v{{ PHP_VERSION }})</h1>
         @endif
     </div>
     </div>
