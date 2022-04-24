@@ -256,7 +256,11 @@
                             <div class="col-md-6">
                                 <select id="univ_id" name="univ_id" class="form-control select" data-live-search="true"
                                     onchange="univLainnya(this);">
-                                    <option value="0" disabled selected>- Pilih -
+                                    <option value="0" disabled selected>--- Pilih ---
+                                    </option>
+                                    <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">--- Isi yang
+                                        Lain
+                                        ---
                                     </option>
                                     @foreach ($getAllUniv as $univ)
                                         <option
@@ -264,9 +268,6 @@
                                             value="{{ $univ->id }}">{{ $univ->nama_universitas }}
                                         </option>
                                     @endforeach
-                                    <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">- Lainnya
-                                        -
-                                    </option>
                                 </select>
                                 @error('univ_id')
                                     <span class="invalid-feedback" role="alert">
