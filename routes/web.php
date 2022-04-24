@@ -42,10 +42,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/profil-admin', [HomeController::class, 'indexProfilAdmin'])->name('profil.admin');
 });
 
-
-
-
-
 $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
 
 if (isset($getPeriodeAktif->ta_adm)) {
