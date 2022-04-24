@@ -21,8 +21,6 @@ use App\Http\Controllers\AdministrasiController;
 |
 */
 
-$getTanggalSekarang = Carbon::now()->format('Y-m-d');
-
 
 Route::get('/', [HomeController::class, 'indexLandingPage'])->name('landing');
 
@@ -45,16 +43,23 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 
-Route::post('update-data-saya', [UserController::class, 'updateMyUser'])->name('update.myuser'); //Edit Data User dari Profil Akun Sendiri
 
-Route::post('uploadfoto', [UserController::class, 'uploadFoto'])->name('upload.foto'); //Edit Foto User dari Profil Akun Sendiri
+
 
 $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-if (isset($getPeriodeAktif)) {
-    $getTanggalMulaiAdministrasi = $getPeriodeAktif;
-    if ($getTanggalSekarang >= $getTanggalMulaiAdministrasi) {
+
+if (isset($getPeriodeAktif->ta_adm)) {
+    $getTanggalAkhirAdministrasi = $getPeriodeAktif->ta_adm;
+    $getTanggalSekarang = Carbon::now()->format('Y-m-d');
+    if ($getTanggalSekarang > $getTanggalAkhirAdministrasi) {
         Auth::routes(['register' => false]);
     } else {
+        Route::post('update-data-saya', [UserController::class, 'updateMyUser'])->name('update.myuser'); //Edit Data User dari Profil Akun Sendiri
+        Route::post('uploadfoto', [UserController::class, 'uploadFoto'])->name('upload.foto'); //Edit Foto User dari Profil Akun Sendiri
         Auth::routes();
     }
+} else {
+    Route::post('update-data-saya', [UserController::class, 'updateMyUser'])->name('update.myuser'); //Edit Data User dari Profil Akun Sendiri
+    Route::post('uploadfoto', [UserController::class, 'uploadFoto'])->name('upload.foto'); //Edit Foto User dari Profil Akun Sendiri
+    Auth::routes();
 }

@@ -36,7 +36,7 @@ class WawancaraTimeRestrictedMiddleware
         } elseif ($getPeriodeAktif->status_wwn == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_png && $statusAdmUser == 'lolos') { //Sesi Sudah Selesai dan Diumumkan
             $statusWwnUser = 'lolos';
             if ($statusWwnUser == 'lolos') {
-                return response(view('view-mahasiswa.wawancara.w-pengumumanlolos', compact('getPeriodeAktif', 'statusWwnUser', 'tanggal_wawancara')));
+                return response(view('view-mahasiswa.wawancara.w-pengumumanlolos', compact('getPeriodeAktif', 'statusWwnUser')));
             } else {
                 return response(view('view-mahasiswa.wawancara.w-pengumumangagal', compact('getPeriodeAktif', 'statusWwnUser')));
             }
