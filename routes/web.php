@@ -22,8 +22,7 @@ use App\Http\Controllers\AdministrasiController;
 */
 
 $getTanggalSekarang = Carbon::now()->format('Y-m-d');
-$getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-$getTanggalMulaiAdministrasi = $getPeriodeAktif->tm_adm;
+
 
 Route::get('/', [HomeController::class, 'indexLandingPage'])->name('landing');
 
@@ -50,8 +49,12 @@ Route::post('update-data-saya', [UserController::class, 'updateMyUser'])->name('
 
 Route::post('uploadfoto', [UserController::class, 'uploadFoto'])->name('upload.foto'); //Edit Foto User dari Profil Akun Sendiri
 
-if ($getTanggalSekarang >= $getTanggalMulaiAdministrasi) {
-    Auth::routes(['register' => false]);
-} else {
-    Auth::routes();
+$getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+if (isset($getPeriodeAktif)) {
+    $getTanggalMulaiAdministrasi = $getPeriodeAktif;
+    if ($getTanggalSekarang >= $getTanggalMulaiAdministrasi) {
+        Auth::routes(['register' => false]);
+    } else {
+        Auth::routes();
+    }
 }

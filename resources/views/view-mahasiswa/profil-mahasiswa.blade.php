@@ -63,18 +63,13 @@
                 </div>
             @endif
         </div>
+
         <!-- Main content -->
         <div class="row">
             <div class="col-md-4">
-                <div class="card rounded-md myshadow">
+                <div class="card rounded-md myshadow mb-3">
                     <div class="card-header text-white bg-dark text-center rounded-top-md">
                         <span class="float-left">Foto</span>
-<<<<<<< Updated upstream:resources/views/view-mahasiswa/home.blade.php
-                        <span><button type="button" class="btn btn-sm btn-secondary float-right" data-toggle="modal"
-                                data-target="#editFotoModal">
-                                Upload Foto
-                            </button></span>
-=======
                         @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
                             <span>
                                 <button type="button" id="tombolEditFoto" class="btn btn-sm btn-secondary float-right"
@@ -83,7 +78,6 @@
                                 </button>
                             </span>
                         @endif
->>>>>>> Stashed changes:resources/views/view-mahasiswa/profil-mahasiswa.blade.php
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body d-flex mx-auto flex-column pt-2 pb-0">
@@ -104,13 +98,6 @@
             <div class="col-md-8">
                 <div class="card rounded-md myshadow">
                     <div class="card-header text-white bg-dark text-center rounded-top-md">
-<<<<<<< Updated upstream:resources/views/view-mahasiswa/home.blade.php
-                        <span class="float-left">Profil Mahasiswa</span>
-                        <span><button type="button" class="btn btn-sm btn-secondary float-right" data-toggle="modal"
-                                data-target="#editProfil">
-                                Edit
-                            </button></span>
-=======
                         <span class="float-left">Data Profil</span>
                         @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
                             <span>
@@ -120,7 +107,6 @@
                                 </button>
                             </span>
                         @endif
->>>>>>> Stashed changes:resources/views/view-mahasiswa/profil-mahasiswa.blade.php
                     </div><!-- /.card-header -->
                     <!-- Table row -->
                     <div class="row m-2">
@@ -182,32 +168,6 @@
         </div>
     </div>
 
-<<<<<<< Updated upstream:resources/views/view-mahasiswa/home.blade.php
-
-    {{-- MODAL UPLOAD FOTO --}}
-    <div class="modal fade" id="editFotoModal" tabindex="-1" role="dialog" aria-labelledby="editFotoModal"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form method="POST" action="{{ route('upload.foto') }}" enctype="multipart/form-data">
-                    @csrf
-
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editFotoModal">Upload File Pas Foto 3x4</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="card-footer rounded-bottom-md">
-                            <img class="img-preview mb-2 d-flex mx-auto" alt="" width="210px" height="280px"
-                                style="max-width: 210px; max-height:280px">
-
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="Foto" name="Foto"
-                                    onchange="previewImage()">
-                                <label class="custom-file-label" for="Foto">Choose file</label>
-=======
     @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
         {{-- MODAL UPLOAD FOTO --}}
         <div class="modal fade" id="editFotoModal" tabindex="-1" role="dialog" aria-labelledby="editFotoModal"
@@ -224,54 +184,24 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="card-footer rounded-bottom-md">
+                            <div class="card-body rounded-bottom-md">
                                 <img class="img-preview mb-2 d-flex mx-auto" alt="" width="210px" height="280px"
                                     style="max-width: 210px; max-height:280px">
-
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="Foto" name="Foto"
                                         onchange="previewImage()" value="{{ old('Foto') }}">
                                     <label class="custom-file-label" for="Foto">Choose file</label>
                                 </div>
->>>>>>> Stashed changes:resources/views/view-mahasiswa/profil-mahasiswa.blade.php
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-
-<<<<<<< Updated upstream:resources/views/view-mahasiswa/home.blade.php
-    {{-- MODAL EDIT PROFIL --}}
-    <div class="modal fade" id="editProfil" tabindex="-1" role="dialog" aria-labelledby="editProfil" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content p-3">
-                <form method="POST" action="{{ route('update.myuser') }}">
-                    @csrf
-                    <div class="modal-header pt-0 mb-3">
-                        <h5 class="modal-title" id="editFotoModal">Formulir Ubah Data Anda</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nama Lengkap') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                name="name" value="{{ old('name', Auth::user()->name) }}" autocomplete="name" autofocus>
-
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-=======
 
         {{-- MODAL EDIT PROFIL --}}
         <div class="modal fade" id="editProfil" tabindex="-1" role="dialog" aria-labelledby="editProfil"
@@ -301,38 +231,24 @@
                                     </span>
                                 @enderror
                             </div>
->>>>>>> Stashed changes:resources/views/view-mahasiswa/profil-mahasiswa.blade.php
                         </div>
-                    </div>
 
-                    <div class="row mb-3">
-                        <label for="nim" class="col-md-4 col-form-label text-md-end">{{ __('NIM') }}</label>
 
-                        <div class="col-md-6">
-                            <input id="nim" type="text" class="form-control @error('nim') is-invalid @enderror" name="nim"
-                                value="{{ old('nim', Auth::user()->nim) }}" autocomplete="nim" autofocus>
+                        <div class="row mb-3">
+                            <label for="nim" class="col-md-4 col-form-label text-md-end">{{ __('NIM') }}</label>
 
-                            @error('nim')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <div class="col-md-6">
+                                <input id="nim" type="text" class="form-control @error('nim') is-invalid @enderror"
+                                    name="nim" value="{{ old('nim', Auth::user()->nim) }}" autocomplete="nim" autofocus>
+
+                                @error('nim')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
 
-<<<<<<< Updated upstream:resources/views/view-mahasiswa/home.blade.php
-                    <div class="row mb-3">
-                        <label for="univ_id"
-                            class="col-md-4 col-form-label text-md-end">{{ __('Asal Perguruan Tinggi') }}</label>
-
-                        <div class="col-md-6">
-                            <select id="univ_id" name="univ_id" class="form-control" onchange="univLainnya(this);">
-                                <option value="0" disabled selected>- Pilih -
-                                </option>
-                                @foreach ($getAllUniv as $univ)
-                                    <option {{ old('univ_id', Auth::user()->univ_id) == $univ->id ? 'selected' : '' }}
-                                        value="{{ $univ->id }}">{{ $univ->nama_universitas }}
-=======
                         <div class="row mb-3">
                             <label for="univ_id"
                                 class="col-md-4 col-form-label text-md-end">{{ __('Asal Perguruan Tinggi') }}</label>
@@ -350,76 +266,77 @@
                                     @endforeach
                                     <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">- Lainnya
                                         -
->>>>>>> Stashed changes:resources/views/view-mahasiswa/profil-mahasiswa.blade.php
                                     </option>
-                                @endforeach
-                                <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">- Lainnya
-                                    -
-                                </option>
-                            </select>
-                            @error('univ_id')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div id="inputuniv" style="display: {{ old('univ_id_manual') == null ? 'none' : 'block' }};">
-                        <div class="row mb-3">
-
-                            <label for="univ_id_manual"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Masukkan Perguruan Tinggi') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="univ_id_manual" type="text"
-                                    class="form-control @error('univ_id_manual') is-invalid @enderror" name="univ_id_manual"
-                                    value="{{ old('univ_id_manual') }}" autocomplete="univ_id_manual" autofocus>
-
-                                @error('univ_id_manual')
+                                    <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">- Lainnya
+                                        -
+                                    </option>
+                                </select>
+                                @error('univ_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row mb-3">
-                        <label for="password"
-                            class="col-md-4 col-form-label text-md-end">{{ __('Password Baru (Opsional)') }}</label>
+                        <div id="inputuniv" style="display: {{ old('univ_id_manual') == null ? 'none' : 'block' }};">
+                            <div class="row mb-3">
 
-                        <div class="col-md-6">
-                            <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password"
-                                autocomplete="new-password" placeholder="Isi untuk mengubah password.">
+                                <label for="univ_id_manual"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Masukkan Perguruan Tinggi') }}</label>
 
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                                <div class="col-md-6">
+                                    <input id="univ_id_manual" type="text"
+                                        class="form-control @error('univ_id_manual') is-invalid @enderror"
+                                        name="univ_id_manual" value="{{ old('univ_id_manual') }}"
+                                        autocomplete="univ_id_manual" autofocus>
+
+                                    @error('univ_id_manual')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row mb-3">
-                        <label for="password-confirm"
-                            class="col-md-4 col-form-label text-md-end">{{ __('Konfirmasi Password Baru') }}</label>
+                        <div class="row mb-3">
+                            <label for="password"
+                                class="col-md-4 col-form-label text-md-end">{{ __('Password Baru (Opsional)') }}</label>
 
-                        <div class="col-md-6">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                                autocomplete="new-password" placeholder="Tulis kembali password baru.">
+                            <div class="col-md-6">
+                                <input id="password" type="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password"
+                                    autocomplete="new-password" placeholder="Isi untuk mengubah password.">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="modal-footer p-0 pt-3">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
+                        <div class="row mb-3">
+                            <label for="password-confirm"
+                                class="col-md-4 col-form-label text-md-end">{{ __('Konfirmasi Password Baru') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control"
+                                    name="password_confirmation" autocomplete="new-password"
+                                    placeholder="Tulis kembali password baru.">
+                            </div>
+                        </div>
+
+                        <div class="modal-footer p-0 pt-3">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <script>
         function previewImage() {
