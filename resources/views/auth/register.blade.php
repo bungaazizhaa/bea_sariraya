@@ -47,9 +47,10 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Asal Perguruan Tinggi') }}</label>
 
                                 <div class="col-md-6">
-                                    <select id="univ_id" name="univ_id" class="form-control select2"
-                                        onchange="univLainnya(this);" required>
-                                        <option value="0" disabled selected>--- Pilih ---
+                                    <select id="univ_id" name="univ_id" class="form-control selectpicker"
+                                        data-style="btn btn-outline-secondary" onchange="univLainnya(this);"
+                                        data-live-search="true" required>
+                                        <option disabled selected>--- Pilih ---
                                         </option>
                                         <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">---
                                             Isi yang Lainnya
@@ -88,6 +89,30 @@
                                             </span>
                                         @enderror
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="prodi_id"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Program Studi') }}</label>
+
+                                <div class="col-md-6">
+                                    <select id="prodi_id" name="prodi_id" class="form-control selectpicker"
+                                        data-style="btn btn-outline-secondary" data-live-search="true" required>
+                                        <option value="" disabled selected>--- Pilih ---
+                                        </option>
+                                        @foreach ($getAllProdi as $prodi)
+                                            <option {{ old('prodi_id') == $prodi->id ? 'selected' : '' }}
+                                                value="{{ $prodi->id }}">{{ $prodi->id . '-' . $prodi->nama_prodi }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('prodi_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -160,10 +185,5 @@
 
             }
         }
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.select2').select2();
-        });
     </script>
 @endsection

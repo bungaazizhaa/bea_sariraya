@@ -45,8 +45,8 @@ class DatabaseSeeder extends Seeder
             [
                 'periode_id' => '2',
                 'name' => 'Batch-2',
-                'tm_adm' => '2022-04-23',
-                'ta_adm' => '2022-04-26',
+                'tm_adm' => '2022-04-26',
+                'ta_adm' => '2022-04-29',
                 'tp_adm' => '2022-04-30',
                 'status_adm' => null,
                 'ts_adm' => null,

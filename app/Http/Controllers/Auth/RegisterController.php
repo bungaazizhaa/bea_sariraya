@@ -6,6 +6,7 @@ use App\Models\Univ;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Prodi;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Redirect;
@@ -47,8 +48,9 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
+        $getAllProdi = Prodi::all();
         $getAllUniv = Univ::all();
-        return view('Auth.register', compact('getAllUniv'));
+        return view('Auth.register', compact('getAllProdi', 'getAllUniv'));
     }
 
     /**
@@ -63,11 +65,17 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
             'nim' => ['required', 'string', 'max:255'],
             'univ_id' => ['required'],
-            'univ_id.nama_universitas' => ['unique'],
-            'univ_id_manual' => ['required', 'string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
+            'prodi_id' => ['required'],
+            // 'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        if (isset($data['univ_id_manual'])) {
+            return Validator::make($data, [
+                'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
+            ]);
+        }
     }
 
     /**
@@ -86,6 +94,7 @@ class RegisterController extends Controller
                     'name' => $data['name'],
                     'nim' => $data['nim'],
                     'univ_id' => $getUniv->id,
+                    'prodi_id' => $data['prodi_id'],
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
                 ]);
@@ -98,6 +107,7 @@ class RegisterController extends Controller
                     'name' => $data['name'],
                     'nim' => $data['nim'],
                     'univ_id' => $getUniv->id,
+                    'prodi_id' => $data['prodi_id'],
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
                 ]);
@@ -107,6 +117,7 @@ class RegisterController extends Controller
                 'name' => $data['name'],
                 'nim' => $data['nim'],
                 'univ_id' => $data['univ_id'],
+                'prodi_id' => $data['prodi_id'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);

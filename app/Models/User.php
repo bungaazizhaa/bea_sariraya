@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'nim',
         'univ_id',
+        'prodi_id',
         'email',
         'password',
     ];
@@ -49,5 +50,10 @@ class User extends Authenticatable
     public function Univ()
     {
         return $this->belongsTo(Univ::class);
+    }
+
+    public function Prodi()
+    {
+        return $this->belongsTo(Prodi::class);
     }
 }
