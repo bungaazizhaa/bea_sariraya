@@ -94,3 +94,13 @@ h1{
 .faq{
     margin-top: 50px;
 }
+
+/* Kontak */
+.kontak{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.kontak p{
+    margin-top: 30px;
+}

@@ -212,7 +212,24 @@
             </div>
             <!-- Akhir Section FAQ -->
 
+            <!-- Section Kontak -->
+            <div class="kontak">
+                <center>
+                    <h1>Kontak Person</h1>
+                    <p>WhatsApp: +81-70-1304-5868</p>
+                    <p>Email: info@sariraya.com</p>
+                </center>
+            </div>
+            <!-- Akhir Section Kontak -->
+
         </div>
+
+        <!-- Footer -->
+        <footer class="pt-2 pt-md-3 pb-1 border-top bg-dark">
+            <div class="text-center bg-dark text-white">
+                <p>&copy; Sariraya 2022</p>
+            </div>
+        </footer>
 
 
     </body>
