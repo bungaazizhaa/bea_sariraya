@@ -22,7 +22,7 @@ class CreateAdministrasisTable extends Migration
             $table->string('tempat_lahir');
             $table->string('tanggal_lahir');
             $table->string('semester');
-            $table->float('ipk', 3, 2);
+            $table->float('ipk', 3, 2); //nama,total digit,digit desimal
             $table->string('keahlian');
             $table->string('alamat');
             $table->string('file_cv');

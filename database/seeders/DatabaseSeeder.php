@@ -139,7 +139,7 @@ class DatabaseSeeder extends Seeder
         Prodi::create(['nama_prodi' => 'Seni Rupa',],);
         Prodi::create(['nama_prodi' => 'Arsitektur',],);
 
-        User::factory(5)->create();
+        User::factory(15)->create();
 
         User::create(
             [
@@ -168,6 +168,6 @@ class DatabaseSeeder extends Seeder
                 'remember_token' => Str::random(10),
             ],
         );
-        Administrasi::factory(10)->create();
+        Administrasi::factory(5)->create();
     }
 }
