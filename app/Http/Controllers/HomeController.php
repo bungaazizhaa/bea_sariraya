@@ -40,12 +40,7 @@ class HomeController extends Controller
 
     public function indexProfilAdmin()
     {
-        return view('profil-admin');
-    }
-
-    public function indexProfilMahasiswa()
-    {
-        return view('profil-mahasiswa');
+        return view('view-admin.profil-admin');
     }
 
     public function indexAdmin()
@@ -59,6 +54,6 @@ class HomeController extends Controller
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
         $getUserLoggedIn = Auth::user();
-        return view('view-mahasiswa.home', compact('getUserLoggedIn', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv'));
+        return view('view-mahasiswa.profil-mahasiswa', compact('getUserLoggedIn', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv'));
     }
 }

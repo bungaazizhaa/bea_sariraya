@@ -66,7 +66,7 @@ class LoginController extends Controller
                     return redirect(route('tahap.penugasan'));
                 }
             } elseif (isset($getPeriodeAktif) && !isset(Auth::user()->picture)) {
-                return redirect(route('home'));
+                return redirect(route('profil.mahasiswa'));
             } else {
                 Alert::toast('Beasiswa Telah Dinyatakan Selesai, Tidak dapat melakukan Login. Saat ini tidak terdapat Program Beasiswa', 'info');
                 Auth::logout();

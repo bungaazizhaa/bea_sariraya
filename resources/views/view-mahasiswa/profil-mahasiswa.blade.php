@@ -12,10 +12,33 @@
 
         <div class="text-center">
             @if (Auth::user()->picture == null)
-                <div class="alert alert-warning" role="alert">
-                    <strong>Upload Foto Profil</strong> untuk melanjutkan ke Halaman Anda!
-                </div>
+                @if (!Route::has('register') && $getTanggalSekarang > $getPeriodeAktif->ta_adm)
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Anda Terdiskualifikasi! </strong>Tahap Administrasi Telah Ditutup dan Anda belum melakukan
+                        Upload Foto!.
+                    </div>
+                @else
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Wajib melakukan Upload Foto Profil</strong>, untuk melanjutkan ke Halaman Anda!
+                        <p class="mb-0">
+                            <strong>Jika Profil Kosong</strong> hingga Waktu Pengubahan berakhir, Anda akan<strong>
+                                Terdiskualifikasi!</strong>
+                        </p>
+                    </div>
+                @endif
+                @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
+                    <div class="alert alert-info" role="alert">
+                        <strong>Foto & Data Profil</strong> dapat diubah sampai :
+                        <strong>{{ \Carbon\Carbon::parse($getPeriodeAktif->ta_adm)->isoFormat('dddd, D MMMM Y - 23:59') }}</strong>
+                    </div>
+                @endif
             @else
+                @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
+                    <div class="alert alert-info" role="alert">
+                        <strong>Profil dapat diubah sampai :
+                            {{ \Carbon\Carbon::parse($getPeriodeAktif->ta_adm)->isoFormat('dddd, D MMMM Y - 23:59') }}</strong>
+                    </div>
+                @endif
                 <span>Tahap saat ini:</span>
                 <div class="mb-3">
                     @if ($getPeriodeAktif->status_adm == null)
@@ -46,10 +69,21 @@
                 <div class="card rounded-md myshadow">
                     <div class="card-header text-white bg-dark text-center rounded-top-md">
                         <span class="float-left">Foto</span>
+<<<<<<< Updated upstream:resources/views/view-mahasiswa/home.blade.php
                         <span><button type="button" class="btn btn-sm btn-secondary float-right" data-toggle="modal"
                                 data-target="#editFotoModal">
                                 Upload Foto
                             </button></span>
+=======
+                        @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
+                            <span>
+                                <button type="button" id="tombolEditFoto" class="btn btn-sm btn-secondary float-right"
+                                    data-toggle="modal" data-target="#editFotoModal">
+                                    Upload Foto
+                                </button>
+                            </span>
+                        @endif
+>>>>>>> Stashed changes:resources/views/view-mahasiswa/profil-mahasiswa.blade.php
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body d-flex mx-auto flex-column pt-2 pb-0">
@@ -70,11 +104,23 @@
             <div class="col-md-8">
                 <div class="card rounded-md myshadow">
                     <div class="card-header text-white bg-dark text-center rounded-top-md">
+<<<<<<< Updated upstream:resources/views/view-mahasiswa/home.blade.php
                         <span class="float-left">Profil Mahasiswa</span>
                         <span><button type="button" class="btn btn-sm btn-secondary float-right" data-toggle="modal"
                                 data-target="#editProfil">
                                 Edit
                             </button></span>
+=======
+                        <span class="float-left">Data Profil</span>
+                        @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
+                            <span>
+                                <button id="tombolEditProfil" type="button" class="btn btn-sm btn-secondary float-right"
+                                    data-toggle="modal" data-target="#editProfil">
+                                    Edit
+                                </button>
+                            </span>
+                        @endif
+>>>>>>> Stashed changes:resources/views/view-mahasiswa/profil-mahasiswa.blade.php
                     </div><!-- /.card-header -->
                     <!-- Table row -->
                     <div class="row m-2">
@@ -136,6 +182,7 @@
         </div>
     </div>
 
+<<<<<<< Updated upstream:resources/views/view-mahasiswa/home.blade.php
 
     {{-- MODAL UPLOAD FOTO --}}
     <div class="modal fade" id="editFotoModal" tabindex="-1" role="dialog" aria-labelledby="editFotoModal"
@@ -160,6 +207,33 @@
                                 <input type="file" class="custom-file-input" id="Foto" name="Foto"
                                     onchange="previewImage()">
                                 <label class="custom-file-label" for="Foto">Choose file</label>
+=======
+    @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
+        {{-- MODAL UPLOAD FOTO --}}
+        <div class="modal fade" id="editFotoModal" tabindex="-1" role="dialog" aria-labelledby="editFotoModal"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form method="POST" action="{{ route('upload.foto') }}" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editFotoModal">Upload File Pas Foto 3x4</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card-footer rounded-bottom-md">
+                                <img class="img-preview mb-2 d-flex mx-auto" alt="" width="210px" height="280px"
+                                    style="max-width: 210px; max-height:280px">
+
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="Foto" name="Foto"
+                                        onchange="previewImage()" value="{{ old('Foto') }}">
+                                    <label class="custom-file-label" for="Foto">Choose file</label>
+                                </div>
+>>>>>>> Stashed changes:resources/views/view-mahasiswa/profil-mahasiswa.blade.php
                             </div>
                         </div>
                     </div>
@@ -172,6 +246,7 @@
         </div>
     </div>
 
+<<<<<<< Updated upstream:resources/views/view-mahasiswa/home.blade.php
     {{-- MODAL EDIT PROFIL --}}
     <div class="modal fade" id="editProfil" tabindex="-1" role="dialog" aria-labelledby="editProfil" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -196,6 +271,37 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+=======
+
+        {{-- MODAL EDIT PROFIL --}}
+        <div class="modal fade" id="editProfil" tabindex="-1" role="dialog" aria-labelledby="editProfil"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content p-3">
+                    <form method="POST" action="{{ route('update.myuser') }}">
+                        @csrf
+                        <div class="modal-header pt-0 mb-3">
+                            <h5 class="modal-title" id="editFotoModal">Formulir Ubah Data Anda</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="name"
+                                class="col-md-4 col-form-label text-md-end">{{ __('Nama Lengkap') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                    name="name" value="{{ old('name', Auth::user()->name) }}" autocomplete="name"
+                                    autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+>>>>>>> Stashed changes:resources/views/view-mahasiswa/profil-mahasiswa.blade.php
                         </div>
                     </div>
 
@@ -214,6 +320,7 @@
                         </div>
                     </div>
 
+<<<<<<< Updated upstream:resources/views/view-mahasiswa/home.blade.php
                     <div class="row mb-3">
                         <label for="univ_id"
                             class="col-md-4 col-form-label text-md-end">{{ __('Asal Perguruan Tinggi') }}</label>
@@ -225,6 +332,25 @@
                                 @foreach ($getAllUniv as $univ)
                                     <option {{ old('univ_id', Auth::user()->univ_id) == $univ->id ? 'selected' : '' }}
                                         value="{{ $univ->id }}">{{ $univ->nama_universitas }}
+=======
+                        <div class="row mb-3">
+                            <label for="univ_id"
+                                class="col-md-4 col-form-label text-md-end">{{ __('Asal Perguruan Tinggi') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="univ_id" name="univ_id" class="form-control select" data-live-search="true"
+                                    onchange="univLainnya(this);">
+                                    <option value="0" disabled selected>- Pilih -
+                                    </option>
+                                    @foreach ($getAllUniv as $univ)
+                                        <option
+                                            {{ old('univ_id', Auth::user()->univ_id) == $univ->id ? 'selected' : '' }}
+                                            value="{{ $univ->id }}">{{ $univ->nama_universitas }}
+                                        </option>
+                                    @endforeach
+                                    <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">- Lainnya
+                                        -
+>>>>>>> Stashed changes:resources/views/view-mahasiswa/profil-mahasiswa.blade.php
                                     </option>
                                 @endforeach
                                 <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">- Lainnya
@@ -326,5 +452,4 @@
             }
         }
     </script>
-
 @endsection

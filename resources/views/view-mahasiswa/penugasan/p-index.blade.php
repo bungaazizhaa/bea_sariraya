@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <h1>Halaman Tahap Penugasan</h1>
 </body>
 

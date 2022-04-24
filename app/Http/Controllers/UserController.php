@@ -118,7 +118,7 @@ class UserController extends Controller
 
             User::where('id', $request->user()->id)->update(['picture' => $new_image_name]);
             Alert::success('Foto Berhasil Diupload.', 'Anda dapat melanjutkan ke Proses Penerimaan Beasiswa.');
-            return redirect(route('home'));
+            return redirect(route('profil.mahasiswa'));
         }
 
         Alert::success('Error Title', 'Error Message');
@@ -144,27 +144,24 @@ class UserController extends Controller
                 'password' => ['string', 'min:8', 'confirmed'],
             ]);
         }
-        $id = Auth::user()->id;
-        $user = User::find($id);
-        if ($request->univ_id == "other") {
-            $getUniv = Univ::where('nama_universitas', '=', $request->univ_id_manual)->first();
-            if ($getUniv) {
-                $user->univ_id = $getUniv->univ_id;
-            } else {
-                Univ::create([
-                    'nama_universitas' => $request->univ_id_manual,
-                ]);
-                $getUniv = Univ::where('nama_universitas', '=', $request->univ_id_manual)->first();
-                $user->univ_id = $getUniv->univ_id;
-            }
-        }
 
+        $valueInputManual = $request->univ_id_manual;
         $id = Auth::user()->id;
         $user = User::find($id);
         $user->name = $request->name;
         $user->nim = $request->nim;
-
-        $request->univ_id != "other" ? $user->univ_id = $getUniv->univ_id : '';
+        if ($request->univ_id == 'other') {
+            $getUniv = Univ::where('nama_universitas', '=', $valueInputManual)->first();
+            if (!$getUniv) {
+                Univ::create([
+                    'nama_universitas' => $valueInputManual,
+                ]);
+            }
+            $getUnivId = Univ::where('nama_universitas', '=', $valueInputManual)->first()->id;
+            $user->univ_id = $getUnivId;
+        } else {
+            $user->univ_id = $request->univ_id;
+        }
 
         if ($request->password != '') {
             $user->password = Hash::make($request->password);
@@ -176,7 +173,7 @@ class UserController extends Controller
             return back();
         } else {
             Alert::success('Berhasil', 'Akun ' . $user->name . ' berhasil diperbarui.');
-            return redirect(route('home'));
+            return redirect(route('profil.mahasiswa'));
         }
     }
 }

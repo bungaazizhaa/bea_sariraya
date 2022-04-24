@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <h1>Halaman Tahap Wawancara (Hanya Melihat Jadwal Kembali)</h1>
 </body>
 

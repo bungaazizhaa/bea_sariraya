@@ -32,8 +32,7 @@ Route::get('/', [HomeController::class, 'indexLandingPage'])->name('landing');
 Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa'])->group(function () {
     // all routes that need time-restrictions
 
-    Route::get('/home', [HomeController::class, 'indexMahasiswa'])->name('home');
-    Route::get('/profil', [HomeController::class, 'indexProfilMahasiswa'])->name('profil.mahasiswa');
+    Route::get('/my-profile', [HomeController::class, 'indexMahasiswa'])->name('profil.mahasiswa');
 });
 
 Route::get('/tahap-administrasi', [AdministrasiController::class, 'admShow'])->name('tahap.administrasi')->middleware('periode.timerestricted', 'administrasi.timerestricted', 'auth');

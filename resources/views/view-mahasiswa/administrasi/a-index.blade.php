@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <h1>Halaman Tahap Administrasi</h1>
 </body>
 

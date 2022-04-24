@@ -6,6 +6,7 @@ use Closure;
 use Carbon\Carbon;
 use App\Models\Periode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdministrasiTimeRestrictedMiddleware
@@ -22,29 +23,34 @@ class AdministrasiTimeRestrictedMiddleware
 
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
-
-        //=========== TAHAP ADMINISTRASI ===========
-        if ($getPeriodeAktif->status_adm == null) {
-            if ($getTanggalSekarang < $getPeriodeAktif->tm_adm) { //Sesi Belum Dibuka
-                $info = 'Tahap Administrasi Belum Dibuka.';
-                return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif')));
-            } elseif ($getTanggalSekarang > $getPeriodeAktif->ta_adm) { //Sesi Sudah Ditutup
-                $info = 'Tahap Administrasi Sudah Ditutup. Saat ini sedang dilakukan proses Seleksi.';
-                $tglpengumuman = $getPeriodeAktif->tp_adm;
-                return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif', 'tglpengumuman')));
-            }
-        } elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_wwn) { //Sesi Sudah Selesai dan Diumumkan
-            $user = 'lolos'; //kondisi user yang diambil dari database
-            $tanggal_wawancara = '2022-04-31 14:00:00'; //kondisi user yang diambil dari database
-            if ($user == 'lolos') {
-                return response(view('view-mahasiswa.administrasi.a-pengumumanlolos', compact('getPeriodeAktif', 'user', 'tanggal_wawancara')));
-            }
-        } elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getTanggalSekarang >= $getPeriodeAktif->tm_wwn) {
-            $user = 'lolos'; //kondisi user yang diambil dari database
-            if ($user == 'lolos') {
-                return redirect(route('tahap.wawancara'));
-            } else {
-                return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif', 'user')));
+        if (!isset(Auth::user()->picture) && $getTanggalSekarang <= $getPeriodeAktif->ta_adm) {
+            return redirect(route('profil.mahasiswa'));
+        } elseif ((!isset(Auth::user()->picture) && isset($getPeriodeAktif->status_adm))) {
+            $user = ''; //kondisi user yang diambil dari database
+            return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif', 'user')));
+        } else {
+            if ($getPeriodeAktif->status_adm == null) {
+                if ($getTanggalSekarang < $getPeriodeAktif->tm_adm) { //Sesi Belum Dibuka
+                    $info = 'Tahap Administrasi Belum Dibuka.';
+                    return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif')));
+                } elseif ($getPeriodeAktif->ta_adm < $getTanggalSekarang) { //Sesi Sudah Ditutup
+                    $info = 'Tahap Administrasi Sudah Ditutup. Saat ini sedang dilakukan proses Seleksi.';
+                    $tglpengumuman = $getPeriodeAktif->tp_adm;
+                    return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif', 'tglpengumuman')));
+                }
+            } elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_wwn) { //Sesi Sudah Selesai dan Diumumkan
+                $user = ''; //kondisi user yang diambil dari database
+                $tanggal_wawancara = '2022-04-31 14:00:00'; //kondisi user yang diambil dari database
+                if ($user == 'lolos') {
+                    return response(view('view-mahasiswa.administrasi.a-pengumumanlolos', compact('getPeriodeAktif', 'user', 'tanggal_wawancara')));
+                }
+            } elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getTanggalSekarang >= $getPeriodeAktif->tm_wwn) {
+                $user = ''; //kondisi user yang diambil dari database
+                if ($user == 'lolos') {
+                    return redirect(route('tahap.wawancara'));
+                } else {
+                    return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif', 'user')));
+                }
             }
         }
         return $next($request);
