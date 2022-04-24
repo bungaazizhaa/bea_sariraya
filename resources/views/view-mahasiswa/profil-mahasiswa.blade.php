@@ -267,9 +267,6 @@
                                     <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">- Lainnya
                                         -
                                     </option>
-                                    <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">- Lainnya
-                                        -
-                                    </option>
                                 </select>
                                 @error('univ_id')
                                     <span class="invalid-feedback" role="alert">
