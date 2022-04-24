@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Administrasi;
 use App\Models\Univ;
 use App\Models\User;
 use App\Models\Periode;
@@ -167,5 +168,6 @@ class DatabaseSeeder extends Seeder
                 'remember_token' => Str::random(10),
             ],
         );
+        Administrasi::factory(10)->create();
     }
 }

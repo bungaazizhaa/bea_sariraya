@@ -56,4 +56,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Prodi::class);
     }
+
+    public function Administrasi()
+    {
+        return $this->hasMany(Administrasi::class);
+    }
+
+    public function Periode()
+    {
+        return $this->HasManyThrough(Periode::class, Administrasi::class);
+    }
 }
