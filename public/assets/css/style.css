@@ -1,0 +1,96 @@
+html,
+body {
+    height: 100%;
+    font-family: Poppins;
+    font-style: normal;
+    color: #000000;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Banner */
+.banner img{
+    width:100%;
+}
+
+/* Tombol Daftar */
+.tomboldaftar {
+    padding-top: 30px;
+    font-weight:800;
+    font-size:x-large;
+}
+
+.tombol {
+    height: 40px;
+    font-size: 18px;
+    font-weight: 5px;
+    margin: 10px;
+    background-color: #42d12c;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+/* Timeline */
+.timeline{
+    padding-top: 50px;
+}
+
+h1{
+    font-weight: 900;
+    font-size:250%;
+}
+
+.mycard1 {
+    border-radius: 30px;
+    border: none;
+    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+.mycard1 img{
+    width: 100px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+.mycard1 h5{
+    font-size: 100%;
+    font-weight: bold;
+}
+
+/* Apa itu Bea Sariraya*/
+.sariraya {
+    margin-top: 50px;
+}
+
+.sariraya img{
+    width: 60%;
+}
+
+.foto {
+    text-align:center;
+}
+
+.bea {
+    background-color: #F9F5DB;
+    padding: 20px;
+    width: 500px;
+    text-align: center;
+}
+
+/* Tentang Sariraya */
+.tentangsariraya{
+    margin-top: 50px;
+}
+
+/* FAQ */
+.faq{
+    margin-top: 50px;
+}

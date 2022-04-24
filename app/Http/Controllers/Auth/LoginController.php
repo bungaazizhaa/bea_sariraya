@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\Periode;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -42,6 +37,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+<<<<<<< HEAD
 
     public function showLoginForm()
     {
@@ -92,4 +88,6 @@ class LoginController extends Controller
             ? new JsonResponse([], 204)
             : redirect('/');
     }
+=======
+>>>>>>> FE Landing Page Sementara
 }

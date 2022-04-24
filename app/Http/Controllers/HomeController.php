@@ -31,6 +31,14 @@ class HomeController extends Controller
         return view('view-admin.dashboard');
     }
 
+    /* SEMENTARA */
+    public function indexAwal()
+    {
+        return view('awal');
+    }
+
+    /* SEMENTARA */
+
     public function indexLandingPage()
     {
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');

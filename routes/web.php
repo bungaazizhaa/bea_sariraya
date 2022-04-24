@@ -24,6 +24,9 @@ use App\Http\Controllers\AdministrasiController;
 
 Route::get('/', [HomeController::class, 'indexLandingPage'])->name('landing');
 
+// ================= ROUTE SEMENTARA =================
+Route::get('/awal', [HomeController::class, 'indexAwal'])->name('awal');
+
 
 // ================= ROUTE HOME MAHASISWA =================
 Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa'])->group(function () {
@@ -59,3 +62,7 @@ if (isset($getPeriodeAktif->ta_adm)) {
     Route::post('uploadfoto', [UserController::class, 'uploadFoto'])->name('upload.foto'); //Edit Foto User dari Profil Akun Sendiri
     Auth::routes();
 }
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
