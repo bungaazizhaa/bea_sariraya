@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Landing Page</title>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -137,10 +137,10 @@
                         <div class="col-lg-6">
                             <div class="card mycard1 bea">
                                 <h5 class="text-center"> Keuntungan Beasiswa :</h5>
-                                <p class="text-left">Uang saku Rp500,000 per bulan selama 1 semester. <br>
-                                    Business Coaching bersama CEO Sariraya Co., Ltd. <br>
-                                    Mentoring beasiswa luar negeri. <br>
-                                    Pengembangan diri dan karakter.
+                                <p class="text-left">- Uang saku Rp500,000 per bulan selama 1 semester. <br>
+                                    - Business Coaching bersama CEO Sariraya Co., Ltd. <br>
+                                    - Mentoring beasiswa luar negeri. <br>
+                                    - Pengembangan diri dan karakter.
                                 </p>
                             </div>
                         </div>
@@ -149,10 +149,10 @@
                         <div class="col-lg-6">
                             <div class="card mycard1 text-left bea">
                                 <h5 class="text-center">Syarat Administrasi :</h5>
-                                <p>Scan Kartu Tanda Mahasiswa <br>
-                                    Scan Transkrip Nilai <br>
-                                    Portofolio pengembangan website dan/atau desain grafis <br>
-                                    Esai 1000 kata: Strategi Pemanfaatan Peluang Pasar Produk Halal di Jepang</p>
+                                <p>- Scan Kartu Tanda Mahasiswa <br>
+                                    - Scan Transkrip Nilai <br>
+                                    - Portofolio pengembangan website dan/atau desain grafis <br>
+                                    - Esai 1000 kata: Strategi Pemanfaatan Peluang Pasar Produk Halal di Jepang</p>
                             </div>
                         </div>
                     </div>
@@ -172,7 +172,7 @@
                             di antaranya :
                             <br> produksi tempe, bakso halal dan sambal pecel,toko retail produk-produk makanan halal japanhalal_net , restoran halal, Halal Fried Chicken sariraya.hfcjapan , Halal Pizza Station pizzastation.jp dan impor serta distribusi produk halal dari berbagai negara terutama Asia Tenggara khususnya Indonesia ke Jepang.
                         </p>
-                        <p>Cek untuk informasi lebih lanjut mengenai perusahaan di website resmi Sariraya Co., Ltd sariraya.com.</p>
+                        <p>Cek untuk informasi lebih lanjut mengenai perusahaan di website resmi Sariraya Co., Ltd <a href="http://sariraya.com"> (Sariraya.com)</a></p>
                     </div>
 
                     <div class="col-lg-6 foto">
@@ -188,23 +188,29 @@
                     <h1>FAQ</h1>
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="card mycard1 text-left bea">
+                            <div class="card mycard text-left bea">
                                 <h5>Q : Apakah beasiswa ini berlaku untuk semua jurusan ?</h5>
                                 <p>A : Mohon maaf, tidak bisa. Beasiswa ini hanya terbuka bagi mahasiswa jurusan tersebut saja.
                                 </p>
 
                                 <h5>Q : Apakah beasiswa ini terbuka untuk alumni / yang sudah lulus ?</h5>
                                 <p>A : Tidak, beasiswa ini hanya diperuntukkan bagi Mahasiswa S1/D4 yang masih aktif kuliah minimal di semester 6.</p>
+
+                                <h5>Q : Dimana saya akan mengetahui pengumuman kelulusan di setiap seleksi ?</h5>
+                                <p>A : Pengumuman akan diberitahuan melalui website ini, dan pastikan anda sudah login terlebih dahulu untuk melihat status kelulusan anda</p>
                             </div>
                         </div>
 
                         <div class="col-lg-6">
-                            <div class="card mycard1 text-left bea">
+                            <div class="card mycard text-left bea">
                                 <h5>Q : Apakah pendaftaran beasiswa ini berbayar ?</h5>
                                 <p>A :Tidak, beasiswa ini tidak dipungut biaya apapun (gratis).</p>
 
                                 <h5>Q : Apakah ada ketentuan dalam penulisan esai untuk syarat beasiswa ini ?</h5>
                                 <p>A : Tidak ada ketentuan khusus, yang penting formatnya rapi dan terbaca jelas, konten sesuai tema dan jumlah kata maksimal 1000 kata saja.</p>
+
+                                <h5>Q : Kemana saya harus menghubungi apabila ada hal yang ingin saya tanyakan ?</h5>
+                                <p>A : Anda bisa menghubungi kontak person di bawah ini dan juga mengunjungi instagram sariraya untuk mendapatkan info terupdate mengenai beasiswa</p>
                             </div>
                         </div>
                     </div>

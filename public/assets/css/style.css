@@ -10,8 +10,8 @@ body {
 .container {
     max-width: 1300px;
     margin: auto;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 /* Banner */
@@ -52,7 +52,16 @@ h1{
     border: none;
     box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s;
+    height: 250px;
 }
+
+.mycard {
+    border-radius: 30px;
+    border: none;
+    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
 
 .mycard1 img{
     width: 100px;
@@ -65,9 +74,14 @@ h1{
     font-weight: bold;
 }
 
+.mycard h5{
+    font-size: 100%;
+    font-weight: bold;
+}
 /* Apa itu Bea Sariraya*/
 .sariraya {
     margin-top: 50px;
+    margin-bottom: 30px;
 }
 
 .sariraya img{
@@ -80,7 +94,7 @@ h1{
 
 .bea {
     background-color: #F9F5DB;
-    padding: 20px;
+    padding: 30px;
     width: 500px;
     text-align: center;
 }
