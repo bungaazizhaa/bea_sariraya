@@ -13,7 +13,7 @@
 
                             <div class="row mb-3">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Nama Lengkap') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nama Lengkap') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="nim" class="col-md-4 col-form-label text-md-end">{{ __('NIM') }}</label>
+                                <label for="nim" class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="nim" type="text" class="form-control @error('nim') is-invalid @enderror"
@@ -44,7 +44,7 @@
 
                             <div class="row mb-3">
                                 <label for="univ_id"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Asal Perguruan Tinggi') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Asal Perguruan Tinggi') }}</label>
 
                                 <div class="col-md-6">
                                     <select id="univ_id" name="univ_id" class="form-control selectpicker"
@@ -58,7 +58,8 @@
                                         </option>
                                         @foreach ($getAllUniv as $univ)
                                             <option {{ old('univ_id') == $univ->id ? 'selected' : '' }}
-                                                value="{{ $univ->id }}">{{ $univ->nama_universitas }}
+                                                value="{{ $univ->id }}">
+                                                {{ $univ->id . '. ' . $univ->nama_universitas }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -75,7 +76,7 @@
                                 <div class="row mb-3">
 
                                     <label for="univ_id_manual"
-                                        class="col-md-4 col-form-label text-md-end">{{ __('Masukkan Perguruan Tinggi') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Masukkan Perguruan Tinggi') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="univ_id_manual" type="text"
@@ -94,7 +95,7 @@
 
                             <div class="row mb-3">
                                 <label for="prodi_id"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Program Studi') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Program Studi') }}</label>
 
                                 <div class="col-md-6">
                                     <select id="prodi_id" name="prodi_id" class="form-control selectpicker"
@@ -103,7 +104,7 @@
                                         </option>
                                         @foreach ($getAllProdi as $prodi)
                                             <option {{ old('prodi_id') == $prodi->id ? 'selected' : '' }}
-                                                value="{{ $prodi->id }}">{{ $prodi->id . '-' . $prodi->nama_prodi }}
+                                                value="{{ $prodi->id }}">{{ $prodi->id . '. ' . $prodi->nama_prodi }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -118,7 +119,7 @@
 
                             <div class="row mb-3">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Email Address') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -134,7 +135,7 @@
 
                             <div class="row mb-3">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -151,7 +152,7 @@
 
                             <div class="row mb-3">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"

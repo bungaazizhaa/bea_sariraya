@@ -223,7 +223,7 @@
                         </div>
                         <div class="row mb-3">
                             <label for="name"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Nama Lengkap') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ __('Nama Lengkap') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -240,7 +240,7 @@
 
 
                         <div class="row mb-3">
-                            <label for="nim" class="col-md-4 col-form-label text-md-end">{{ __('NIM') }}</label>
+                            <label for="nim" class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
 
                             <div class="col-md-6">
                                 <input id="nim" type="text" class="form-control @error('nim') is-invalid @enderror"
@@ -256,7 +256,7 @@
 
                         <div class="row mb-3">
                             <label for="univ_id"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Asal Perguruan Tinggi') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ __('Asal Perguruan Tinggi') }}</label>
 
                             <div class="col-md-6">
                                 <select id="univ_id" name="univ_id" class="form-control select" data-live-search="true"
@@ -286,7 +286,7 @@
                             <div class="row mb-3">
 
                                 <label for="univ_id_manual"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Masukkan Perguruan Tinggi') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Masukkan Perguruan Tinggi') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="univ_id_manual" type="text"
@@ -305,7 +305,7 @@
 
                         <div class="row mb-3">
                             <label for="password"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Password Baru (Opsional)') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ __('Password Baru (Opsional)') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password"
@@ -322,7 +322,7 @@
 
                         <div class="row mb-3">
                             <label for="password-confirm"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Konfirmasi Password Baru') }}</label>
+                                class="col-md-4 col-form-label text-md-right">{{ __('Konfirmasi Password Baru') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control"
