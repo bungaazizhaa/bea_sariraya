@@ -142,7 +142,7 @@ h1{
 }
 
 .row-kontak{
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 .regis h4{
@@ -153,4 +153,8 @@ h1{
 
 .regis{
     border-radius: 15px;
+}
+
+.row-kontak1{
+    margin-top: 10%;
 }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Login</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -25,9 +25,9 @@
 
     <!-- Banner -->
     <div class="banner-regist">
-        <img src="{{ asset('assets/images/regis.png') }}" alt="">
+        <img src="{{ asset('assets/images/login.png') }}" alt="">
         <div class="txt">
-            <div class="row row-kontak mb-4">
+            <div class="row row-kontak1 mb-4">
                 <div class="col-12 col-md-6  text-md-left text-center d-flex my-auto">
                     <div class="welcom ml-md-5 mx-auto">
                         <p>Pendaftaran Beasiswa Sariraya Japan 2022</p>
@@ -39,34 +39,20 @@
                         <div class="card-body">
                             <form action="/contact/insertcontact" method="POST" enctype="multipart/form-data">
                                 <center>
-                                    <h4>Register</h4>
+                                    <h4>Login</h4>
                                 </center>
                                 <div class="form-group">
-                                    <input type="text" name="name" value="" class="form-control" id="exampleFormControlInput1" required placeholder="Nama Lengkap" />
+                                    <input type="text" name="name" value="" class="form-control" id="exampleFormControlInput1" required placeholder="Email" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="email" value="" class="form-control" id="exampleFormControlInput1" required placeholder="NIM" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="company" value="" class="form-control" id="exampleFormControlInput1" placeholder="Asal Perguruan Tinggi" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="company" value="" class="form-control" id="exampleFormControlInput1" placeholder="Program Studi" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="company" value="" class="form-control" id="exampleFormControlInput1" placeholder="Email" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="state" value="" class="form-control" id="exampleFormControlInput1" placeholder="Password" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="state" value="" class="form-control" id="exampleFormControlInput1" placeholder="Confirm Password" />
+                                    <input type="text" name="email" value="" class="form-control" id="exampleFormControlInput1" required placeholder="Password" />
                                 </div>
                                 <center>
-                                    <p>Sudah punya akun ? <a href="">Login disini.</a></p>
+                                    <p>Belum punya akun ? <a href="">Register disini.</a></p>
                                     <div class="button-submit">
-                                        <button type="submit" class="btn  tombol">Register</button>
+                                        <button type="submit" class="btn  tombol">Login</button>
                                     </div>
+                                    <a href="">Forgot password?</a>
                                 </center>
 
                             </form>

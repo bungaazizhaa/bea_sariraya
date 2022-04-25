@@ -26,6 +26,7 @@ Route::get('/', [HomeController::class, 'indexLandingPage'])->name('landing');
 // ================= ROUTE SEMENTARA =================
 Route::view('/awal', 'awal');
 Route::view('/regist', 'regist');
+Route::view('/masuk', 'masuk');
 
 // ================= ROUTE HOME MAHASISWA =================
 Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa'])->group(function () {
