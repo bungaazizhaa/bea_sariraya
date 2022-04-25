@@ -12,15 +12,10 @@ class PenugasanController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function pngShow()
+    public function index()
     {
         $info = '';
         return view('view-mahasiswa.penugasan.p-index', compact('info'));
-    }
-
-    public function index()
-    {
-        //
     }
 
     /**

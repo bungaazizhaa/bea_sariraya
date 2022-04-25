@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Periode extends Model
+class Prodi extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'id',
+    protected $fillable = [
+        'nama_prodi',
     ];
 
-
-    public function Administrasi()
+    public function User()
     {
-        return $this->belongsTo(Administrasi::class);
+        return $this->hasMany(User::class);
     }
 }

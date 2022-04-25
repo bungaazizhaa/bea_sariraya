@@ -32,18 +32,6 @@ class HomeController extends Controller
     }
 
     /* SEMENTARA */
-    public function indexAwal()
-    {
-        return view('awal');
-    }
-
-    public function indexRegist()
-    {
-        return view('regist');
-    }
-
-
-    /* SEMENTARA */
 
     public function indexLandingPage()
     {

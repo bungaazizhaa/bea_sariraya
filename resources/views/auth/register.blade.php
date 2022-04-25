@@ -47,19 +47,22 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Asal Perguruan Tinggi') }}</label>
 
                                 <div class="col-md-6">
-                                    <select id="univ_id" name="univ_id" class="form-control" onchange="univLainnya(this);"
-                                        required>
-                                        <option value="0" disabled selected>- Pilih -
+                                    <select id="univ_id" name="univ_id" class="form-control selectpicker"
+                                        data-style="btn btn-outline-secondary" onchange="univLainnya(this);"
+                                        data-live-search="true" required>
+                                        <option disabled selected>--- Pilih ---
+                                        </option>
+                                        <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">---
+                                            Isi yang Lainnya
+                                            ---
                                         </option>
                                         @foreach ($getAllUniv as $univ)
                                             <option {{ old('univ_id') == $univ->id ? 'selected' : '' }}
                                                 value="{{ $univ->id }}">{{ $univ->nama_universitas }}
                                             </option>
                                         @endforeach
-                                        <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">- Lainnya
-                                            -
-                                        </option>
                                     </select>
+
                                     @error('univ_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -86,6 +89,30 @@
                                             </span>
                                         @enderror
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="prodi_id"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Program Studi') }}</label>
+
+                                <div class="col-md-6">
+                                    <select id="prodi_id" name="prodi_id" class="form-control selectpicker"
+                                        data-style="btn btn-outline-secondary" data-live-search="true" required>
+                                        <option value="" disabled selected>--- Pilih ---
+                                        </option>
+                                        @foreach ($getAllProdi as $prodi)
+                                            <option {{ old('prodi_id') == $prodi->id ? 'selected' : '' }}
+                                                value="{{ $prodi->id }}">{{ $prodi->id . '-' . $prodi->nama_prodi }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('prodi_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -145,18 +172,18 @@
             </div>
         </div>
     </div>
-@endsection
+    <script>
+        function univLainnya(that) {
+            if (that.value == "other") {
+                document.getElementById("inputuniv").style.display = "block";
+                document.getElementById("univ_id_manual").required = true;
+                document.getElementById("univ_id_manual").focus();
+            } else {
+                document.getElementById("inputuniv").style.display = "none";
+                document.getElementById("univ_id_manual").value = null;
+                document.getElementById("univ_id_manual").required = false;
 
-<script>
-    function univLainnya(that) {
-        if (that.value == "other") {
-            document.getElementById("inputuniv").style.display = "block";
-            document.getElementById("univ_id_manual").required = true;
-        } else {
-            document.getElementById("inputuniv").style.display = "none";
-            document.getElementById("univ_id_manual").value = null;
-            document.getElementById("univ_id_manual").required = false;
-
+            }
         }
-    }
-</script>
+    </script>
+@endsection

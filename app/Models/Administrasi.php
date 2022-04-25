@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Periode extends Model
+class Administrasi extends Model
 {
     use HasFactory;
 
@@ -13,9 +13,14 @@ class Periode extends Model
         'id',
     ];
 
-
-    public function Administrasi()
+    public function Periode()
     {
-        return $this->belongsTo(Administrasi::class);
+        return $this->hasMany(Periode::class);
+    }
+
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
     }
 }

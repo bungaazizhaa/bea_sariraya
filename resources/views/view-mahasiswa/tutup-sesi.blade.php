@@ -23,7 +23,8 @@
         <h3>( Di Jam Kerja )</h3>
     @endisset
     @auth
-        <a href="{{ url('/home') }}" class="btn-sm text-gray-700 dark:text-gray-500 underline">Kembali ke Home</a>
+        <a href="{{ url('/my-profile') }}" class="btn-sm text-gray-700 dark:text-gray-500 underline">Kembali ke Profil
+            Anda</a>
     @endauth
     {{-- <h3>{{ \Carbon\Carbon::parse($getPeriodeAktif->tp_adm)->diffForHumans() }}</h3> --}}
 </body>

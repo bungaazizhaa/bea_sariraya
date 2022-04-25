@@ -28,18 +28,18 @@
                 @endif
                 @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
                     <div class="alert alert-info" role="alert">
-                        <strong>Foto & Data Profil</strong> dapat diubah sampai :
+                        <strong>Foto & Data Diri</strong> dapat diubah sampai :
                         <strong>{{ \Carbon\Carbon::parse($getPeriodeAktif->ta_adm)->isoFormat('dddd, D MMMM Y - 23:59') }}</strong>
                     </div>
                 @endif
             @else
                 @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
                     <div class="alert alert-info" role="alert">
-                        <strong>Profil dapat diubah sampai :
-                            {{ \Carbon\Carbon::parse($getPeriodeAktif->ta_adm)->isoFormat('dddd, D MMMM Y - 23:59') }}</strong>
+                        <strong>Foto & Data Diri</strong> dapat diubah sampai :
+                        <strong>{{ \Carbon\Carbon::parse($getPeriodeAktif->ta_adm)->isoFormat('dddd, D MMMM Y - 23:59') }}</strong>
                     </div>
                 @endif
-                <span>Tahap saat ini:</span>
+                <p class="mb-2">Tahap saat ini:</p>
                 <div class="mb-3">
                     @if ($getPeriodeAktif->status_adm == null)
                         <a href="/tahap-administrasi" class="btn btn-primary">Tahap Administrasi
@@ -98,7 +98,7 @@
             <div class="col-md-8">
                 <div class="card rounded-md myshadow">
                     <div class="card-header text-white bg-dark text-center rounded-top-md">
-                        <span class="float-left">Data Profil</span>
+                        <span class="float-left">Data Diri</span>
                         @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
                             <span>
                                 <button id="tombolEditProfil" type="button" class="btn btn-sm btn-secondary float-right"
@@ -127,6 +127,11 @@
                                         <th>Perguruan Tinggi</th>
                                         <th>:</th>
                                         <th>{{ Auth::user()->univ->nama_universitas }}</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Program Studi</th>
+                                        <th>:</th>
+                                        <th>{{ Auth::user()->prodi->nama_prodi }}</th>
                                     </tr>
                                     <tr>
                                         <td>NIM</td>
@@ -256,7 +261,11 @@
                             <div class="col-md-6">
                                 <select id="univ_id" name="univ_id" class="form-control select" data-live-search="true"
                                     onchange="univLainnya(this);">
-                                    <option value="0" disabled selected>- Pilih -
+                                    <option value="0" disabled selected>--- Pilih ---
+                                    </option>
+                                    <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">--- Isi yang
+                                        Lain
+                                        ---
                                     </option>
                                     @foreach ($getAllUniv as $univ)
                                         <option
@@ -264,9 +273,6 @@
                                             value="{{ $univ->id }}">{{ $univ->nama_universitas }}
                                         </option>
                                     @endforeach
-                                    <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">- Lainnya
-                                        -
-                                    </option>
                                 </select>
                                 @error('univ_id')
                                     <span class="invalid-feedback" role="alert">
