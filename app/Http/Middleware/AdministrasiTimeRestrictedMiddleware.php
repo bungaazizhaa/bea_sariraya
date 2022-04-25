@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Carbon\Carbon;
 use App\Models\Periode;
+use App\Models\Administrasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -36,7 +37,8 @@ class AdministrasiTimeRestrictedMiddleware
                 } elseif ($getPeriodeAktif->ta_adm < $getTanggalSekarang) { //Sesi Sudah Ditutup
                     $info = 'Tahap Administrasi Sudah Ditutup. Saat ini sedang dilakukan proses Seleksi.';
                     $tglpengumuman = $getPeriodeAktif->tp_adm;
-                    return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif', 'tglpengumuman')));
+                    $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id)->first();
+                    return response(view('view-mahasiswa.administrasi.a-detail', compact('info', 'getPeriodeAktif', 'getAdministrasiUser', 'tglpengumuman')));
                 }
             } elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_wwn) { //Sesi Sudah Selesai dan Diumumkan
                 $user = ''; //kondisi user yang diambil dari database

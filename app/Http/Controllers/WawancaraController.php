@@ -12,15 +12,10 @@ class WawancaraController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function wwnShow()
+    public function index()
     {
         $info = '';
         return view('view-mahasiswa.wawancara.w-index', compact('info'));
-    }
-
-    public function index()
-    {
-        //
     }
 
     /**

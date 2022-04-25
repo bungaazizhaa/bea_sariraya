@@ -11,7 +11,6 @@ class Administrasi extends Model
 
     protected $guarded = [
         'id',
-        'no_pendaftaran',
     ];
 
     public function Periode()
