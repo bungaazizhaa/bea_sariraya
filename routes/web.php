@@ -26,6 +26,7 @@ Route::get('/', [HomeController::class, 'indexLandingPage'])->name('landing');
 
 // ================= ROUTE SEMENTARA =================
 Route::get('/awal', [HomeController::class, 'indexAwal'])->name('awal');
+Route::get('/regist', [HomeController::class, 'indexRegist'])->name('regist');
 
 
 // ================= ROUTE HOME MAHASISWA =================
