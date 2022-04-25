@@ -59,11 +59,3 @@ if (isset($getPeriodeAktif->ta_adm)) { //Jika ada periode Aktif
 } else { //Jika Tidak ada periode Aktif
     Auth::routes(['register' => false]);
 }
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
