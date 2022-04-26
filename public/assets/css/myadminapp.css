@@ -1,0 +1,47 @@
+.rounded-md {
+    border-radius: 15px;
+}
+.rounded-top-md {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.rounded-bottom-md {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.myshadow {
+    box-shadow: 0 0.3rem 0.8rem rgba(17, 26, 34, 0.215) !important;
+}
+.small-box {
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+.small-box:hover {
+    box-shadow: 0 0.3rem 1rem rgba(43, 128, 255, 0.455);
+    transform: scale(1.035);
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(180, 180, 180);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+#waktu {
+    opacity: 1;
+    overflow: hidden;
+    height: 75px;
+    transition: 0.3s;
+}
+
+.sidebar-collapse #waktu {
+    opacity: 0;
+    height: 0px;
+}

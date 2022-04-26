@@ -47,7 +47,11 @@ class HomeController extends Controller
 
     public function indexAdmin()
     {
-        return view('view-admin.dashboard');
+        $getAllUniv = Univ::all();
+        $getAllPeriode = Periode::all();
+        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        return view('view-admin.dashboard', compact('getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAllPeriode'));
     }
 
     public function indexMahasiswa()

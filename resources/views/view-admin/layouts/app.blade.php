@@ -22,12 +22,12 @@
     <link rel="stylesheet" href="{{ asset('admin-lte') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('admin-lte') }}/dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="{{ asset('css') }}/myapp.css">
+    <link rel="stylesheet" href="{{ asset('assets/css') }}/myadminapp.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- jQuery -->
     <script src="{{ asset('admin-lte') }}/plugins/jquery/jquery.min.js"></script>
-    {{-- <script src="{{ asset('js') }}/jquery-1.7.1.min.js"></script> --}}
+
 
     <!-- Bootstrap 4 -->
     <script src="{{ asset('admin-lte') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -46,8 +46,8 @@
     <script src="{{ asset('admin-lte') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('admin-lte') }}/dist/js/adminlte.min.js"></script>
-    {{-- IjaboCropTool --}}
-    <link rel="stylesheet" href="{{ asset('css') }}/ijaboCropTool.min.css">
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="{{ asset('assets/js/moment-with-locales.min.js') }}" defer></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed dark-mode">
@@ -103,8 +103,8 @@
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <a href="{{ route('user.showprofil', Auth::user()->role) }}"
-                                class="btn btn-outline-light rounded-sm"><i class="far fa-user"></i> Profile</a>
+                            {{-- <a href="{{ route('user.showprofil', Auth::user()->role) }}"
+                                class="btn btn-outline-light rounded-sm"><i class="far fa-user"></i> Profile</a> --}}
                             <a href="#" class="btn btn-outline-danger rounded-sm float-right"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
                                     class="fas fa-sign-out-alt"></i>
