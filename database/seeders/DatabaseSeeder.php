@@ -127,17 +127,17 @@ class DatabaseSeeder extends Seeder
         Univ::create(['nama_universitas' => 'Universitas Telkom',],);
         Univ::create(['nama_universitas' => 'Universitas Udayana',],);
 
+        Prodi::create(['nama_prodi' => 'Arsitektur',],);
         Prodi::create(['nama_prodi' => 'Desain Komunikasi Visual',],);
         Prodi::create(['nama_prodi' => 'Desain Grafis',],);
-        Prodi::create(['nama_prodi' => 'Teknologi Informasi',],);
-        Prodi::create(['nama_prodi' => 'Sistem Informasi',],);
-        Prodi::create(['nama_prodi' => 'Sistem Komputer',],);
         Prodi::create(['nama_prodi' => 'Ilmu Komputer',],);
-        Prodi::create(['nama_prodi' => 'Teknik Komputer',],);
-        Prodi::create(['nama_prodi' => 'Teknik Informatika',],);
         Prodi::create(['nama_prodi' => 'Manajemen Pemasaran',],);
         Prodi::create(['nama_prodi' => 'Seni Rupa',],);
-        Prodi::create(['nama_prodi' => 'Arsitektur',],);
+        Prodi::create(['nama_prodi' => 'Sistem Informasi',],);
+        Prodi::create(['nama_prodi' => 'Sistem Komputer',],);
+        Prodi::create(['nama_prodi' => 'Teknik Komputer',],);
+        Prodi::create(['nama_prodi' => 'Teknik Informatika',],);
+        Prodi::create(['nama_prodi' => 'Teknologi Informasi',],);
 
         User::factory(15)->create();
 

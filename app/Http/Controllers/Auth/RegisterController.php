@@ -61,19 +61,25 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
-            'nim' => ['required', 'string', 'max:255'],
-            'univ_id' => ['required'],
-            'prodi_id' => ['required'],
-            // 'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-
-        if (isset($data['univ_id_manual'])) {
+        if (isset($data['Input_Universitas'])) {
             return Validator::make($data, [
-                'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
+                'name' => ['required', 'string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
+                'nim' => ['required', 'string', 'max:255'],
+                'univ_id' => ['required'],
+                'prodi_id' => ['required'],
+                'Input_Universitas' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+        } else {
+            return Validator::make($data, [
+                'name' => ['required', 'string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
+                'nim' => ['required', 'string', 'max:255'],
+                'univ_id' => ['required'],
+                'prodi_id' => ['required'],
+                // 'Input_Universitas' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
         }
     }
@@ -86,8 +92,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        Alert::success('Registrasi Berhasil.', 'Silahkan lengkapi data Anda!');
         if ($data['univ_id'] == "other") {
-            $getUniv = Univ::where('nama_universitas', '=', $data['univ_id_manual'])->first();
+            $getUniv = Univ::where('nama_universitas', '=', $data['Input_Universitas'])->first();
 
             if ($getUniv) {
                 return User::create([
@@ -100,9 +107,9 @@ class RegisterController extends Controller
                 ]);
             } else {
                 Univ::create([
-                    'nama_universitas' => $data['univ_id_manual'],
+                    'nama_universitas' => $data['Input_Universitas'],
                 ]);
-                $getUniv = Univ::where('nama_universitas', '=', $data['univ_id_manual'])->first();
+                $getUniv = Univ::where('nama_universitas', '=', $data['Input_Universitas'])->first();
                 return User::create([
                     'name' => $data['name'],
                     'nim' => $data['nim'],

@@ -367,7 +367,7 @@
         }
     </script>
 
-    @if (count($errors) > 0)
+    @if (count($errors) > 0 && isset($getAdministrasiUser))
         <script type="text/javascript">
             $(document).ready(function() {
                 izinkanEdit();

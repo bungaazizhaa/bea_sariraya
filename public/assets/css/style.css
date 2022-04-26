@@ -5,32 +5,39 @@ body {
     font-style: normal;
     color: #000000;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
-.container {
+.bootstrap-select .btn {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ced4da;
+    background-color: #ffffff;
+    color: #495057;
+}
+
+/* .container {
     max-width: 1300px;
     margin: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-}
+    padding-left: 30px;
+    padding-right: 30px;
+} */
 
 /* Banner */
-.banner img{
-    width:100%;
+.banner img {
+    width: 100%;
 }
 
 /* Tombol Daftar */
 .tomboldaftar {
-    padding-top: 30px;
-    font-weight:800;
-    font-size:x-large;
+    font-weight: 800;
+    font-size: x-large;
 }
 
 .tombol {
     height: 40px;
     font-size: 18px;
     font-weight: 5px;
-    margin: 10px;
     background-color: #42d12c;
     color: white;
     border-radius: 50px;
@@ -38,13 +45,13 @@ body {
 }
 
 /* Timeline */
-.timeline{
+.timeline {
     padding-top: 50px;
 }
 
-h1{
+h1 {
     font-weight: 900;
-    font-size:250%;
+    font-size: 100%;
 }
 
 .mycard1 {
@@ -62,19 +69,18 @@ h1{
     transition: transform 0.3s;
 }
 
-
-.mycard1 img{
+.mycard1 img {
     width: 100px;
     margin: 0 auto;
     padding-top: 30px;
 }
 
-.mycard1 h5{
+.mycard1 h5 {
     font-size: 100%;
     font-weight: bold;
 }
 
-.mycard h5{
+.mycard h5 {
     font-size: 100%;
     font-weight: bold;
 }
@@ -84,77 +90,77 @@ h1{
     margin-bottom: 30px;
 }
 
-.sariraya img{
+.sariraya img {
     width: 60%;
 }
 
 .foto {
-    text-align:center;
+    text-align: center;
 }
 
 .bea {
-    background-color: #F9F5DB;
+    background-color: #f9f5db;
     padding: 30px;
     width: 500px;
     text-align: center;
 }
 
 /* Tentang Sariraya */
-.tentangsariraya{
+.tentangsariraya {
     margin-top: 50px;
 }
 
 /* FAQ */
-.faq{
+.faq {
     margin-top: 50px;
 }
 
 /* Kontak */
-.kontak{
+.kontak {
     margin-top: 100px;
     margin-bottom: 100px;
 }
 
-.kontak p{
+.kontak p {
     margin-top: 30px;
 }
 
 /* Register */
-.welcom h1{
-    font-size: 80px;
+.welcom h1 {
+    font-size: 40px;
     color: white;
 }
 
-.welcom p{
-    font-size: 25px;
+.welcom p {
+    font-size: 24px;
     font-weight: bold;
     color: white;
 }
 
-.banner-regist img{
-    min-height: 100%;
-    min-width: 1024px;
-    width: 100%;
-    height: 100%;
+.banner-regist {
     position: fixed;
     top: 0;
-    left: 0;
+    background-color: #cccccc;
+    background-size: cover;
+    background-position: center left;
+    min-width: 100vw;
+    min-height: 100vh;
+    display: block;
+    background-repeat: no-repeat;
 }
 
-.row-kontak{
+.row-kontak {
     margin-top: 2%;
 }
 
-.regis h4{
+.regis p {
     font-weight: bold;
-    padding-top: 10px;
-    padding-bottom: 30px;
 }
 
-.regis{
+.regis {
     border-radius: 15px;
 }
 
-.row-kontak1{
+.row-kontak1 {
     margin-top: 10%;
 }
