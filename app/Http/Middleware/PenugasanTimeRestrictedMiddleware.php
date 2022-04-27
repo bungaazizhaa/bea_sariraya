@@ -24,11 +24,11 @@ class PenugasanTimeRestrictedMiddleware
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
 
-        if ($getPeriodeAktif->status_png == null && $statusAdmUser == 'lolos' && $statusWwnUser == 'lolos') {
+        if ($getPeriodeAktif->status_png == null) {
             if ($getTanggalSekarang < $getPeriodeAktif->tm_png) { //Sesi Belum Dibuka
                 $info = 'Tahap Penugasan Belum Dibuka.';
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif')));
-            } elseif ($getTanggalSekarang > $getPeriodeAktif->ta_png) { //Sesi Sudah Ditutup
+            } elseif ($getTanggalSekarang > $getPeriodeAktif->ta_png && $statusAdmUser == 'lolos' && $statusWwnUser == 'lolos') { //Sesi Sudah Ditutup
                 $info = 'Tahap Penugasan Sudah Ditutup. Mohon untuk Menunggu Pengumuman.';
                 $tglpengumuman = $getPeriodeAktif->tp_png;
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif', 'tglpengumuman')));

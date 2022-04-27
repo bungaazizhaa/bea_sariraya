@@ -27,16 +27,16 @@ class WawancaraTimeRestrictedMiddleware
         isset($getAdministrasiUser) ? $statusUserAdm = $getAdministrasiUser->status_adm : ''; //TODO: kondisi user yang diambil dari database
 
         //=========== TAHAP WAWANCARA ===========
-        if ($getPeriodeAktif->status_wwn == null && $statusUserAdm == 'lolos') { //Status Wawancara Belum Selesai && User Lolos Adm
+        if ($getPeriodeAktif->status_wwn == null) { //Status Wawancara Belum Selesai && User Lolos Adm
             if ($getTanggalSekarang < $getPeriodeAktif->tm_wwn) { //Sesi Belum Dibuka
                 $info = 'Tahap Wawancara Belum Dibuka.';
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif')));
-            } elseif ($getTanggalSekarang > $getPeriodeAktif->ta_wwn) { //Sesi Sudah Ditutup
+            } elseif ($getTanggalSekarang > $getPeriodeAktif->ta_wwn && $statusUserAdm == 'lolos') { //Sesi Sudah Ditutup
                 $info = 'Tahap Wawancara Sudah Ditutup. Mohon untuk Menunggu Pengumuman.';
                 $tglpengumuman = $getPeriodeAktif->tp_wwn;
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif', 'tglpengumuman')));
             }
-        } elseif ($getPeriodeAktif->status_wwn == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_png && $statusUserAdm == 'lolos') { //Wawancara Selesai & Belum memasuki Penugasan & User Lolos Adm
+        } elseif (isset($getAdministrasiUser) && $getPeriodeAktif->status_wwn == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_png && $statusUserAdm == 'lolos') { //Wawancara Selesai & Belum memasuki Penugasan & User Lolos Adm
             $statusWwnUser = 'lolos'; //TODO: kondisi user yang diambil dari database
             if (isset($getWawancaraUser) && $statusWwnUser == 'lolos') {
                 return response(view('view-mahasiswa.wawancara.w-pengumumanlolos', compact('getPeriodeAktif', 'statusWwnUser')));
@@ -50,7 +50,7 @@ class WawancaraTimeRestrictedMiddleware
             } else {
                 return response(view('view-mahasiswa.wawancara.a-pengumumangagal', compact('getPeriodeAktif', 'statusWwnUser')));
             }
-        } else {
+        } elseif ($getPeriodeAktif->status_wwn == 'Selesai') {
             return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));
         }
         return $next($request);

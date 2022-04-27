@@ -33,13 +33,15 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js" defer></script>
 
-    <script src="{{ asset('assets/js/moment-with-locales.min.js') }}" defer></script>
+    {{-- Jangan Dihapus --}}
+    {{-- <script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/countdown.min.js') }}"></script> --}}
 </head>
 
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container d-flex justify-content-center">
+            <div class="container d-flex justify-content-between">
                 <a class="navbar-brand me-auto" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -51,27 +53,24 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item mb-1" id="waktu">
+                    <ul class="navbar-nav ml-auto">
+                        {{-- <li class="nav-item mb-1" id="waktu">
                             <p class="text-center m-0 p-0 mt-2">Waktu Sekarang</p>
                             <p class="text-center m-0 p-0 mt-0" id="tgl">Hari, 00 Bulan 0000 - 00:00:00</p>
-                        </li>
+                        </li> --}}
 
-                        <script>
-                            function myClock() {
-                                setTimeout(function() {
-                                    moment.locale('id');
-                                    var Tanggal = moment().format('dddd, DD MMMM YYYY - HH:mm:ss');
-                                    var eTgl = document.getElementById('tgl');
-                                    eTgl.innerHTML = Tanggal;
-                                    myClock();
-                                }, 100)
-                            };
-                            $(document).ready(function() {
-                                myClock();
-                            });
-                        </script>
+                        {{-- Jangan Dihapus --}}
+                        {{-- <script>
+                            (function myClock() {
+                                moment.locale('id');
+                                var Tanggal = moment().format('dddd, DD MMMM YYYY - HH:mm:ss');
+                                var eTgl = document.getElementById('tgl');
+                                eTgl.innerHTML = Tanggal;
+                                requestAnimationFrame(myClock);
+                            })();
+                        </script> --}}
                     </ul>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto ml-md-0">
 
@@ -98,7 +97,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

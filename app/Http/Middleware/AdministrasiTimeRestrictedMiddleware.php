@@ -28,6 +28,7 @@ class AdministrasiTimeRestrictedMiddleware
         isset($getAdministrasiUser) ? $statusUserAdm = $getAdministrasiUser->status_adm : '';
 
         if (!isset(Auth::user()->picture) && $getTanggalSekarang <= $getPeriodeAktif->ta_adm) {
+            Alert::warning('Isi Foto Profil Terlebih Dahulu.', 'Ukuran Pas Foto 3x4.');
             return redirect(route('profil.mahasiswa'));
         } elseif ((!isset(Auth::user()->picture) && isset($getPeriodeAktif->status_adm))) {
             return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));

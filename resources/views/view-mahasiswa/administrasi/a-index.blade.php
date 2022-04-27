@@ -26,6 +26,7 @@
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript" defer></script>
 
     <script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script>
+    <script src="{{ asset('assets/js/countdown.min.js') }}"></script>
 </head>
 
 <body>
@@ -33,7 +34,7 @@
     <h1 class="text-center mt-5">Tahap Administrasi</h1>
 
     <div class="container ">
-        <form method="POST" action="{{ route('update.administrasi') }}">
+        <form id="admForm" method="POST" action="{{ route('update.administrasi') }}">
             @csrf
             @if (isset($getAdministrasiUser))
                 <p class="text-center mb-1">Data Anda disimpan pada : <span
@@ -46,34 +47,34 @@
             <input id="periode_id" hidden type="text" class="form-control @error('periode_id') is-invalid @enderror"
                 periode_id="periode_id" value="{{ $getPeriodeAktif->id }}" autocomplete="periode_id">
 
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item mb-1" id="waktu">
-                    <p class="text-center m-0 p-0 mt-2">Waktu Sekarang:</p>
-                    <p class="text-center m-0 p-0 mt-0" id="tgl">Hari, 00 Bulan 0000 - 00:00:00</p>
-                </li>
-
-                <script>
-                    function myClock() {
-                        setTimeout(function() {
-                            moment.locale('id');
-                            var Tanggal = moment().format('dddd, DD MMMM YYYY - HH:mm:ss');
-                            var eTgl = document.getElementById('tgl');
-                            eTgl.innerHTML = Tanggal;
-                            myClock();
-                        }, 100)
-                    };
-                    $(document).ready(function() {
-                        myClock();
-                    });
-                </script>
-            </ul>
-
             <div class="row d-flex justify-content-center my-5 mx-1">
                 <div class="col-md-8 alert alert-info text-center" role="alert">
-                    Halaman ini dapat diisi sampai :
-                    <strong
-                        class="text-nowrap">{{ \Carbon\Carbon::parse($getPeriodeAktif->ta_adm)->isoFormat('dddd, D MMMM Y - 23:59') }}</strong>
+                    Halaman ini ditutup dalam waktu
+                    <span id="countdownAdm" class="font-weight-bold text-nowrap"></span>
                 </div>
+
+                <script>
+                    function submitAdm() {
+                        $("#admForm").submit();
+                    }
+                    countdown.setLabels(
+                        ' Milidetik| Detik| Menit| Jam| Hari| Minggu| Bulan| Tahun| Dekade| Abad| Ribu',
+                        ' Milidetik| Detik| Menit| Jam| Hari| Minggu| Bulan| Tahun| Dekade| Abad| Ribu',
+                        ', ',
+                        ', ',
+                        'Sekarang!');
+                    var ta_adm = '{{ $getPeriodeAktif->ta_adm }}';
+                    var then = moment(ta_adm, 'YYYY-MM-DD').add(1, 'days').locale('id');
+                    (function timerLoop() {
+                        $("#countdownAdm").text(countdown(then).toString());
+                        if (countdown(then).toString() === 'Sekarang!') {
+                            cancelAnimationFrame(timerLoop);
+                            setTimeout(submitAdm, 990)
+                        } else {
+                            requestAnimationFrame(timerLoop);
+                        }
+                    })();
+                </script>
                 {{-- ============== DATA DIRI ============== --}}
                 <div class="col-md-8 mb-5 px-0">
                     <div class="card">
@@ -187,7 +188,7 @@
                                         class="form-control editable @error('tempat_lahir') is-invalid @enderror"
                                         name="tempat_lahir" spellcheck="false" disabled
                                         value="{{ old('tempat_lahir', isset($getAdministrasiUser) ? $getAdministrasiUser->tempat_lahir : '') }}"
-                                        autocomplete="tempat_lahir" required>
+                                        autocomplete="tempat_lahir">
 
                                     @error('tempat_lahir')
                                         <span class="invalid-feedback" role="alert">
@@ -206,7 +207,7 @@
                                         class="form-control editable datepicker @error('tanggal_lahir') is-invalid @enderror"
                                         name="tanggal_lahir" spellcheck="false" disabled
                                         value="{{ old('tanggal_lahir', isset($getAdministrasiUser) ? $getAdministrasiUser->tanggal_lahir : '') }}"
-                                        autocomplete="tanggal_lahir" required>
+                                        autocomplete="tanggal_lahir">
                                     @error('tanggal_lahir')
                                         <strong class="text-danger small font-weight-bold"
                                             role="alert">{{ $message }}</strong>
@@ -223,7 +224,7 @@
                                         class="form-control editable @error('semester') is-invalid @enderror"
                                         name="semester" disabled
                                         value="{{ old('semester', isset($getAdministrasiUser) ? $getAdministrasiUser->semester : '') }}"
-                                        autocomplete="semester" required>
+                                        autocomplete="semester">
 
                                     @error('semester')
                                         <span class="invalid-feedback" role="alert">
@@ -242,7 +243,7 @@
                                         class="form-control editable @error('ipk') is-invalid @enderror" name="ipk"
                                         spellcheck="false" disabled
                                         value="{{ old('ipk', isset($getAdministrasiUser) ? $getAdministrasiUser->ipk : '') }}"
-                                        autocomplete="ipk" required>
+                                        autocomplete="ipk">
 
                                     @error('ipk')
                                         <span class="invalid-feedback" role="alert">
@@ -261,7 +262,7 @@
                                         class="form-control editable @error('keahlian') is-invalid @enderror"
                                         name="keahlian" disabled
                                         value="{{ old('keahlian', isset($getAdministrasiUser) ? $getAdministrasiUser->keahlian : '') }}"
-                                        autocomplete="keahlian" required>
+                                        autocomplete="keahlian">
 
                                     @error('keahlian')
                                         <span class="invalid-feedback" role="alert">

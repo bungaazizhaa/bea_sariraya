@@ -118,7 +118,7 @@ class UserController extends Controller
 
             User::where('id', $request->user()->id)->update(['picture' => $new_image_name]);
             Alert::success('Foto Berhasil Diupload.', 'Anda dapat melanjutkan ke Proses Penerimaan Beasiswa.');
-            return redirect(route('profil.mahasiswa'));
+            return redirect(route('tahap.administrasi'));
         }
 
         Alert::success('Error Title', 'Error Message');
