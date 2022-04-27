@@ -188,7 +188,7 @@
                                         class="form-control editable @error('tempat_lahir') is-invalid @enderror"
                                         name="tempat_lahir" spellcheck="false" disabled
                                         value="{{ old('tempat_lahir', isset($getAdministrasiUser) ? $getAdministrasiUser->tempat_lahir : '') }}"
-                                        autocomplete="tempat_lahir">
+                                        autocomplete="tempat_lahir" placeholder="Nama Kota Atau Kabupaten">
 
                                     @error('tempat_lahir')
                                         <span class="invalid-feedback" role="alert">
@@ -207,7 +207,7 @@
                                         class="form-control editable datepicker @error('tanggal_lahir') is-invalid @enderror"
                                         name="tanggal_lahir" spellcheck="false" disabled
                                         value="{{ old('tanggal_lahir', isset($getAdministrasiUser) ? $getAdministrasiUser->tanggal_lahir : '') }}"
-                                        autocomplete="tanggal_lahir">
+                                        autocomplete="tanggal_lahir" placeholder="YYYY-MM-DD">
                                     @error('tanggal_lahir')
                                         <strong class="text-danger small font-weight-bold"
                                             role="alert">{{ $message }}</strong>
@@ -224,7 +224,7 @@
                                         class="form-control editable @error('semester') is-invalid @enderror"
                                         name="semester" disabled
                                         value="{{ old('semester', isset($getAdministrasiUser) ? $getAdministrasiUser->semester : '') }}"
-                                        autocomplete="semester">
+                                        autocomplete="semester" placeholder="Antara 6 sampai 14">
 
                                     @error('semester')
                                         <span class="invalid-feedback" role="alert">
@@ -243,7 +243,7 @@
                                         class="form-control editable @error('ipk') is-invalid @enderror" name="ipk"
                                         spellcheck="false" disabled
                                         value="{{ old('ipk', isset($getAdministrasiUser) ? $getAdministrasiUser->ipk : '') }}"
-                                        autocomplete="ipk">
+                                        autocomplete="ipk" placeholder="Misal, 3.70">
 
                                     @error('ipk')
                                         <span class="invalid-feedback" role="alert">
@@ -262,7 +262,7 @@
                                         class="form-control editable @error('keahlian') is-invalid @enderror"
                                         name="keahlian" disabled
                                         value="{{ old('keahlian', isset($getAdministrasiUser) ? $getAdministrasiUser->keahlian : '') }}"
-                                        autocomplete="keahlian">
+                                        autocomplete="keahlian" placeholder="Misal, Web Developer">
 
                                     @error('keahlian')
                                         <span class="invalid-feedback" role="alert">

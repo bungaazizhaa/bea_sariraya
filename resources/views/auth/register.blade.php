@@ -82,7 +82,7 @@
                                             data-live-search="true" required>
                                             {{-- <option disabled selected>Asal Perguruan Tinggi
                                             </option> --}}
-                                            <option style="max-width:330px;" data-divider="true"
+                                            <option style="max-width:330px;"
                                                 {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">-
                                                 Lainnya
                                                 -
