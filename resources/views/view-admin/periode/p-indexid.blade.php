@@ -64,7 +64,7 @@
                         @if ($getTanggalSekarang > $periodeOpenned->ta_adm)
                             <a href="/nilai-administrasi" class="btn btn-outline-light">Nilai Administrasi</a>
                         @endif
-                        @if ($getTanggalSekarang >= $periodeOpenned->tp_adm)
+                        @if ($getTanggalSekarang >= $periodeOpenned->tp_adm->format('Y-m-d'))
                             <button class="btn btn-outline-light ml-auto">Umumkan</button>
                         @endif
                     </div>
@@ -108,7 +108,7 @@
                         @if ($getTanggalSekarang >= $periodeOpenned->tm_wwn)
                             <a href="/nilai-administrasi" class="btn btn-outline-light">Nilai Wawancara</a>
                         @endif
-                        @if ($getTanggalSekarang >= $periodeOpenned->tp_wwn)
+                        @if ($getTanggalSekarang >= $periodeOpenned->tp_wwn->format('Y-m-d'))
                             <button class="btn btn-outline-light ml-auto">Umumkan</button>
                         @endif
                     </div>
@@ -152,7 +152,7 @@
                         @if ($getTanggalSekarang > $periodeOpenned->ta_png)
                             <a href="/nilai-administrasi" class="btn btn-outline-light">Nilai Penugasan</a>
                         @endif
-                        @if ($getTanggalSekarang >= $periodeOpenned->tp_png)
+                        @if ($getTanggalSekarang >= $periodeOpenned->tp_png->format('Y-m-d'))
                             <button class="btn btn-outline-light ml-auto">Umumkan</button>
                         @endif
                     </div>
