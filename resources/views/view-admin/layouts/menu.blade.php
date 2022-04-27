@@ -36,8 +36,8 @@
             <p class="text-nowrap">Data User</p>
         </a>
     </li>
-    <li class="nav-item mb-1 menu-collapse">
-        <a href="#" class="nav-link {{ Request::segment(2) === 'pendaftar' ? 'active' : null }}">
+    <li class="nav-item mb-1 menu-collapse  {{ Request::segment(1) === 'periode' ? 'menu-open' : null }}">
+        <a href="#" class="nav-link {{ Request::segment(1) === 'periode' ? 'active' : null }}">
             <i class="nav-icon fas fa-graduation-cap"></i>
             <p class="text-nowrap">
                 Periode Beasiswa
@@ -54,10 +54,10 @@
             </li>
             @foreach ($getAllPeriode as $periode)
                 <li class="nav-item">
-                    <a href="{{ route('admin', $periode->id) }}"
-                        class="nav-link {{ url()->current() === route('admin', $periode->id) ? 'active' : null }}">
+                    <a href="{{ route('periode', $periode->id) }}"
+                        class="nav-link {{ url()->current() === route('periode', $periode->id) ? 'active' : null }}">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>{{ $periode->name }}</p>
+                        <p>{{ $periode->name . ' (' . ucfirst($periode->status) . ')' }}</p>
                     </a>
                 </li>
             @endforeach

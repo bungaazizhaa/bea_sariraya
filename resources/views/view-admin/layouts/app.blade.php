@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @yield('titlepage')
 
     <link rel="icon" href="{{ asset('assets') }}/images/bunga2.png">
@@ -47,12 +48,20 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('admin-lte') }}/dist/js/adminlte.min.js"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script src="{{ asset('assets/js/moment-with-locales.min.js') }}" defer></script>
+
+    <!-- SelectPicker -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    {{-- <script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script> --}}
+
+    {{-- Date Picker --}}
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed dark-mode">
     <div class="wrapper">
-
         <!-- Preloader -->
         {{-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="{{ asset('assets') }}/logo sariraya.png" alt="AdminLTELogo" height="40"
@@ -142,6 +151,7 @@
 
     </div>
     <!-- ./wrapper -->
+
 
 </body>
 

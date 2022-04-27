@@ -9,6 +9,18 @@ class Periode extends Model
 {
     use HasFactory;
 
+    protected $dates = [
+        'tm_adm',
+        'ta_adm',
+        'tp_adm',
+        'tm_wwn',
+        'ta_wwn',
+        'tp_wwn',
+        'tm_png',
+        'ta_png',
+        'tp_png',
+    ];
+
     protected $guarded = [
         'id',
     ];

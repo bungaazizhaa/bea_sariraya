@@ -407,8 +407,19 @@
 </head>
 
 <body class="antialiased">
+    <noscript>
+        <h2 class="text-center">JavaScript is disabled!
+            Please enable JavaScript in your web browser!</h2>
+
+        <style type="text/css">
+            #main-content {
+                display: none;
+            }
+
+        </style>
+    </noscript>
     @include('sweetalert::alert')
-    <div style="flex-direction:column"
+    <div id="main-content" style="flex-direction:column"
         class="flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         @if (Route::has('login') && !$getPeriodeAktif == null)
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">

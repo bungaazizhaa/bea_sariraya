@@ -30,10 +30,21 @@
 </head>
 
 <body>
-    @include('sweetalert::alert')
-    <h1 class="text-center mt-5">Tahap Administrasi</h1>
+    <noscript>
+        <h2 class="text-center">JavaScript is disabled!
+            Please enable JavaScript in your web browser!</h2>
 
-    <div class="container ">
+        <style type="text/css">
+            #main-content {
+                display: none;
+            }
+
+        </style>
+    </noscript>
+    @include('sweetalert::alert')
+    <div id="main-content" class="container ">
+        <h1 class="text-center mt-5">Tahap Administrasi</h1>
+
         <form id="admForm" method="POST" action="{{ route('update.administrasi') }}">
             @csrf
             @if (isset($getAdministrasiUser))
@@ -341,6 +352,7 @@
                 showRightIcon: false,
                 maxDate: today,
                 modal: true,
+                autoclose: true,
                 footer: true
             });
         });

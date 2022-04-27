@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\WawancaraController;
 use App\Http\Controllers\AdministrasiController;
+use App\Http\Controllers\PeriodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,8 @@ Route::get('/tahap-penugasan', [PenugasanController::class, 'index'])->name('tah
 // ================= ROUTE HOME ADMIN =================
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard', [HomeController::class, 'indexAdmin'])->name('admin');
+    Route::post('/update-periode/{id}', [PeriodeController::class, 'update'])->name('update.periode');
+    Route::get('/periode/{id}', [PeriodeController::class, 'indexPeriodeById'])->name('periode');
     Route::get('/profil-admin', [HomeController::class, 'indexProfilAdmin'])->name('profil.admin');
 });
 

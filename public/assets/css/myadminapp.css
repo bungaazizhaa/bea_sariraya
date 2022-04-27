@@ -45,3 +45,37 @@
     opacity: 0;
     height: 0px;
 }
+
+.tombol:hover {
+    background-color: #eeeeee;
+    color: rgb(255, 255, 255) !important;
+    opacity: 1 !important;
+    transform: translateY(-3px);
+}
+
+.bg-selesai {
+    background-color: rgb(25, 124, 99);
+    color: #d4d4d4;
+}
+
+.btn-primary {
+    transition: 0.4s;
+}
+
+.btn-primary:hover {
+    background-color: #dbebfd !important;
+    border-color: #007bff !important;
+    color: rgb(25, 93, 165) !important;
+}
+
+.datepicker {
+    /* z-index: 99999 !important; */
+    color: rgb(235, 235, 235) !important;
+    background-color: #34373a !important;
+}
+
+.modal-body .btn {
+    background-color: #343a40 !important;
+    border-color: #6c757d !important;
+    color: rgb(235, 235, 235) !important;
+}
