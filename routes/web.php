@@ -45,14 +45,22 @@ Route::get('/tahap-penugasan', [PenugasanController::class, 'index'])->name('tah
 // ================= ROUTE HOME ADMIN =================
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard', [HomeController::class, 'indexAdmin'])->name('admin');
-    Route::post('/update-periode/{id}', [PeriodeController::class, 'update'])->name('update.periode');
-    Route::get('/periode/{id}', [PeriodeController::class, 'indexPeriodeById'])->name('periode');
+
+    Route::get('/nilai-administrasi/{name}', [AdministrasiController::class, 'nilaiAdm'])->name('nilai.adm');
+    Route::post('/update-nilai-administrasi/{id}', [AdministrasiController::class, 'updatenilaiAdm'])->name('updatenilai.adm');
+    Route::post('/periode/store', [PeriodeController::class, 'store'])->name('store.periode');
+    Route::post('/update-periode/{name}', [PeriodeController::class, 'update'])->name('update.periode');
+
+    Route::post('/periode/umumkan/{name}', [PeriodeController::class, 'umumkanAdm'])->name('umumkan.adm');
+    Route::get('/periode/{name}', [PeriodeController::class, 'indexPeriodeById'])->name('periode');
     Route::get('/profil-admin', [HomeController::class, 'indexProfilAdmin'])->name('profil.admin');
 });
 
 $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
 
-if (isset($getPeriodeAktif->ta_adm)) { //Jika ada periode Aktif
+if ($getPeriodeAktif == null) {  //Jika Tidak ada periode Aktif
+    Auth::routes(['register' => false]);
+} else { //Jika ada periode Aktif
     $getTanggalAkhirAdministrasi = $getPeriodeAktif->ta_adm;
     $getTanggalSekarang = Carbon::now()->format('Y-m-d');
     if ($getTanggalSekarang > $getTanggalAkhirAdministrasi) { //dan Jika Sekarang sudah melewati Tanggal Akhir Administrasi
@@ -60,6 +68,4 @@ if (isset($getPeriodeAktif->ta_adm)) { //Jika ada periode Aktif
     } else { //Jika Sekarang Belum melewati Tanggal Akhir Administrasi, Bisa Register, Bisa Update
         Auth::routes();
     }
-} else { //Jika Tidak ada periode Aktif
-    Auth::routes(['register' => false]);
 }

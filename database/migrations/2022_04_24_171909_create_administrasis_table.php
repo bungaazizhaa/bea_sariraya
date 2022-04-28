@@ -18,7 +18,9 @@ class CreateAdministrasisTable extends Migration
             $table->timestamps();
             $table->string('no_pendaftaran')->unique();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('periode_id')->constrained()->onUpdate('cascade');
+            // $table->foreignId('periode_id')->constrained()->onUpdate('cascade');
+            $table->unsignedInteger('periode_id');
+            $table->foreign('periode_id')->references('id_periode')->on('periodes')->onUpdate('cascade')->onDelete('cascade');
             $table->string('tempat_lahir')->nullable(); //Seharusnya ga Nullable
             $table->date('tanggal_lahir')->nullable(); //Seharusnya ga Nullable
             $table->string('semester')->nullable(); //Seharusnya ga Nullable

@@ -13,6 +13,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public $table = "users";
+
     /**
      * The attributes that are mass assignable.
      *
@@ -60,6 +62,11 @@ class User extends Authenticatable
     public function Administrasi()
     {
         return $this->hasMany(Administrasi::class);
+    }
+
+    public function Wawancara()
+    {
+        return $this->hasManyThrough(Wawancara::class, Administrasi::class);
     }
 
     public function Periode()

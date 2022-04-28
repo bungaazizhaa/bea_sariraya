@@ -49,9 +49,10 @@ class HomeController extends Controller
     {
         $getAllUniv = Univ::all();
         $getAllPeriode = Periode::all();
+        $getPeriodeLast = Periode::orderBy('id_periode', 'desc')->value('id_periode');
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        return view('view-admin.dashboard', compact('getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAllPeriode'));
+        return view('view-admin.dashboard', compact('getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAllPeriode', 'getPeriodeLast'));
     }
 
     public function indexMahasiswa()

@@ -49,7 +49,7 @@
             @csrf
             @if (isset($getAdministrasiUser))
                 <p class="text-center mb-1">Data Anda disimpan pada : <span
-                        class="text-nowrap">{{ $getAdministrasiUser->updated_at->isoFormat('dddd, D MMMM Y - HH:mm:ss') }}</span>
+                        class="text-nowrap">{{ $getAdministrasiUser->updated_at->diffForHumans() }}</span>
                 </p>
             @endif
             <input id="user_id" hidden type="text" class="form-control @error('user_id') is-invalid @enderror"
@@ -217,7 +217,7 @@
                                     <input id="tanggal_lahir" type="text"
                                         class="form-control editable datepicker @error('tanggal_lahir') is-invalid @enderror"
                                         name="tanggal_lahir" spellcheck="false" disabled
-                                        value="{{ old('tanggal_lahir', isset($getAdministrasiUser) ? $getAdministrasiUser->tanggal_lahir : '') }}"
+                                        value="{{ old('tanggal_lahir',isset($getAdministrasiUser) ? $getAdministrasiUser->tanggal_lahir->format('Y-m-d') : '') }}"
                                         autocomplete="tanggal_lahir" placeholder="YYYY-MM-DD">
                                     @error('tanggal_lahir')
                                         <strong class="text-danger small font-weight-bold"

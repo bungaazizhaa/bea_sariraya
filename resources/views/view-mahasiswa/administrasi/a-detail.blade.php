@@ -41,8 +41,8 @@
         <h1 class="text-center mt-5 h2">Detail Formulir Administrasi Anda</h1>
 
         @if (isset($getAdministrasiUser))
-            <p class="text-center mb-1">Data Anda terakhir disimpan pada : <span
-                    class="text-nowrap">{{ $getAdministrasiUser->updated_at->isoFormat('dddd, D MMMM Y - HH:mm:ss') }}</span>
+            <p class="text-center mb-1">Data Anda terakhir disimpan <span
+                    class="text-nowrap">{{ $getAdministrasiUser->updated_at->diffForHumans() }}</span>
             </p>
         @endif
         <input id="user_id" hidden type="text" class="form-control @error('user_id') is-invalid @enderror"
@@ -276,6 +276,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

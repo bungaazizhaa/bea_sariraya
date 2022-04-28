@@ -23,12 +23,12 @@ class WawancaraTimeRestrictedMiddleware
     {
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
-        $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id)->first();
+        $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
         isset($getAdministrasiUser) ? $statusUserAdm = $getAdministrasiUser->status_adm : ''; //TODO: kondisi user yang diambil dari database
 
         //=========== TAHAP WAWANCARA ===========
         if ($getPeriodeAktif->status_wwn == null) { //Status Wawancara Belum Selesai && User Lolos Adm
-            if ($getTanggalSekarang < $getPeriodeAktif->tm_wwn) { //Sesi Belum Dibuka
+            if ($getTanggalSekarang < $getPeriodeAktif->tm_wwn->format('Y-m-d')) { //Sesi Belum Dibuka
                 $info = 'Tahap Wawancara Belum Dibuka.';
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif')));
             } elseif ($getTanggalSekarang > $getPeriodeAktif->ta_wwn && $statusUserAdm == 'lolos') { //Sesi Sudah Ditutup
@@ -36,14 +36,14 @@ class WawancaraTimeRestrictedMiddleware
                 $tglpengumuman = $getPeriodeAktif->tp_wwn;
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif', 'tglpengumuman')));
             }
-        } elseif (isset($getAdministrasiUser) && $getPeriodeAktif->status_wwn == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_png && $statusUserAdm == 'lolos') { //Wawancara Selesai & Belum memasuki Penugasan & User Lolos Adm
+        } elseif (isset($getAdministrasiUser) && $getPeriodeAktif->status_wwn == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_png->format('Y-m-d') && $statusUserAdm == 'lolos') { //Wawancara Selesai & Belum memasuki Penugasan & User Lolos Adm
             $statusWwnUser = 'lolos'; //TODO: kondisi user yang diambil dari database
             if (isset($getWawancaraUser) && $statusWwnUser == 'lolos') {
                 return response(view('view-mahasiswa.wawancara.w-pengumumanlolos', compact('getPeriodeAktif', 'statusWwnUser')));
             } else {
                 return response(view('view-mahasiswa.wawancara.w-pengumumangagal', compact('getPeriodeAktif', 'statusWwnUser')));
             }
-        } elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getTanggalSekarang >= $getPeriodeAktif->tm_png && $statusUserAdm == 'lolos') {
+        } elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getTanggalSekarang >= $getPeriodeAktif->tm_png->format('Y-m-d') && $statusUserAdm == 'lolos') {
             $statusWwnUser = 'lolos'; //TODO: kondisi user yang diambil dari database
             if (isset($getWawancaraUser) && $statusWwnUser == 'lolos') {
                 return redirect(route('tahap.penugasan'));

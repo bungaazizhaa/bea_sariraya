@@ -15,7 +15,8 @@ class CreatePeriodesTable extends Migration
     {
         Schema::create('periodes', function (Blueprint $table) {
             $table->id();
-            $table->integer('periode_id');
+            $table->unsignedInteger('id_periode');
+            $table->unique('id_periode');
             $table->string('name');
 
             $table->date('tm_adm')->comment('TM = Tanggal Mulai');

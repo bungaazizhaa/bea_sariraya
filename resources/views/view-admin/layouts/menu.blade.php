@@ -23,21 +23,22 @@
 </script>
 
 <li class="nav-item mb-1">
-    <a href="{{ Auth::user()->role === 'admin' ? route('admin') : route('home') }}"
-        class="nav-link {{ url()->full() == (Auth::user()->role === 'admin' ? route('admin') : route('home')) ? 'active' : null }}">
+    <a href="{{ route('admin') }}" class="nav-link {{ url()->full() == route('admin') ? 'active' : null }}">
         <i class="nav-icon fas fa-home"></i>
         <p>Home</p>
     </a>
 </li>
 @if (auth()->user()->role === 'admin')
     <li class="nav-item mb-1">
-        <a href="{{ route('admin') }}" class="nav-link {{ url()->current() === route('admin') ? 'active' : null }}">
+        <a href="{{ route('admin') }}" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
             <p class="text-nowrap">Data User</p>
         </a>
     </li>
-    <li class="nav-item mb-1 menu-collapse  {{ Request::segment(1) === 'periode' ? 'menu-open' : null }}">
-        <a href="#" class="nav-link {{ Request::segment(1) === 'periode' ? 'active' : null }}">
+    <li
+        class="nav-item mb-1 menu-collapse  {{ Request::segment(1) === 'periode' || Request::segment(1) === 'nilai-administrasi' ? 'menu-open' : null }}">
+        <a href="#"
+            class="nav-link {{ Request::segment(1) === 'periode' || Request::segment(1) === 'nilai-administrasi' ? 'active' : null }}">
             <i class="nav-icon fas fa-graduation-cap"></i>
             <p class="text-nowrap">
                 Periode Beasiswa
@@ -45,19 +46,12 @@
             </p>
         </a>
         <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="{{ route('admin') }}"
-                    class="nav-link {{ route('admin') === url()->current() ? 'active' : null }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>All Batch</p>
-                </a>
-            </li>
             @foreach ($getAllPeriode as $periode)
                 <li class="nav-item">
-                    <a href="{{ route('periode', $periode->id) }}"
-                        class="nav-link {{ url()->current() === route('periode', $periode->id) ? 'active' : null }}">
+                    <a href="{{ route('periode', $periode->name) }}"
+                        class="nav-link {{ url()->current() === route('periode', $periode->name) ||url()->current() === route('nilai.adm', $periode->name)? 'active': null }}">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>{{ $periode->name . ' (' . ucfirst($periode->status) . ')' }}</p>
+                        <p>{{ ucfirst($periode->name) . ' (' . ucfirst($periode->status) . ')' }}</p>
                     </a>
                 </li>
             @endforeach

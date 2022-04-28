@@ -9,6 +9,12 @@ class Administrasi extends Model
 {
     use HasFactory;
 
+    public $table = "administrasis";
+
+    protected $dates = [
+        'tanggal_lahir',
+    ];
+
     protected $guarded = [
         'id',
     ];
@@ -18,6 +24,10 @@ class Administrasi extends Model
         return $this->hasMany(Periode::class);
     }
 
+    public function Wawancara()
+    {
+        return $this->hasOne(Wawancara::class, 'administrasi_id');
+    }
 
     public function User()
     {

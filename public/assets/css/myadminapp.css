@@ -54,11 +54,14 @@
 }
 
 .bg-selesai {
-    background-color: rgb(25, 124, 99);
+    background-color: rgb(25, 124, 99) !important;
     color: #d4d4d4;
 }
 
 .btn-primary {
+    background-color: rgb(0, 123, 255) !important;
+    border-width: 1px;
+    border-color: rgb(0, 123, 255);
     transition: 0.4s;
 }
 
@@ -69,13 +72,39 @@
 }
 
 .datepicker {
-    /* z-index: 99999 !important; */
     color: rgb(235, 235, 235) !important;
     background-color: #34373a !important;
+}
+
+.datetimepicker {
+    color: rgb(235, 235, 235) !important;
+    background-color: #34373a !important;
+}
+
+.datetimepicker {
+    z-index: 99999;
+    /* color: rgb(235, 235, 235) !important;
+    background-color: #34373a !important; */
 }
 
 .modal-body .btn {
     background-color: #343a40 !important;
     border-color: #6c757d !important;
     color: rgb(235, 235, 235) !important;
+}
+
+#tombolKalender .btn {
+    background-color: #343a40 !important;
+    border-color: #6c757d !important;
+    color: rgb(235, 235, 235) !important;
+}
+
+.text-primary {
+    color: rgb(118, 184, 255) !important;
+}
+.nav-link:hover {
+    color: rgb(255, 255, 255) !important;
+}
+.text-primary:hover {
+    color: rgb(255, 255, 255) !important;
 }

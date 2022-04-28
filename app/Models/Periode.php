@@ -9,6 +9,8 @@ class Periode extends Model
 {
     use HasFactory;
 
+    public $table = "periodes";
+
     protected $dates = [
         'tm_adm',
         'ta_adm',

@@ -58,6 +58,10 @@
     {{-- Date Picker --}}
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+
+    {{-- Jangan Dihapus --}}
+    <script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script>
+    <script src="{{ asset('assets/js/countdown.min.js') }}"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed dark-mode">
@@ -151,7 +155,6 @@
 
     </div>
     <!-- ./wrapper -->
-
 
 </body>
 

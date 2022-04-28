@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Periode;
 use App\Models\Administrasi;
+use App\Models\Wawancara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -24,7 +25,7 @@ class AdministrasiController extends Controller
         $info = '';
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id)->first();
+        $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
 
         if (isset($getAdministrasiUser)) {
             return view('view-mahasiswa.administrasi.a-index', compact('info', 'getPeriodeAktif', 'getTanggalSekarang', 'getAdministrasiUser'));
@@ -41,6 +42,47 @@ class AdministrasiController extends Controller
     public function create()
     {
         //
+    }
+
+
+    public function nilaiAdm($name)
+    {
+        $getAllPeriode = Periode::all();
+        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
+        $periodeOpenned = Periode::where('name', '=', $name)->first();
+        $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->paginate(1);
+        return view('view-admin.administrasi.nilai-administrasi', compact('getTanggalSekarang', 'periodeOpenned', 'administrasiOpenned', 'getAllPeriode'));
+    }
+
+    public function updatenilaiAdm(Request $request, $id)
+    {
+        $administrasiSelected = Administrasi::where('id', '=', $id)->first();
+        $administrasiSelected->status_adm = $request->status_adm;
+        $administrasiSelected->catatan = $request->catatan;
+        $administrasiSelected->save();
+        Alert::success('Administrasi ' . $administrasiSelected->user->name . ' sudah di Perbarui', 'Data telah tersimpan.');
+        if ($request->status_adm == 'lolos') {
+            if (isset($administrasiSelected->wawancara->id)) {
+                $wawancara = Wawancara::where('administrasi_id', '=', $administrasiSelected->id)->first();
+                $wawancara->jadwal_wwn = $request->jadwal_wwn;
+                $wawancara->touch();
+                $wawancara->save();
+            } else {
+                Wawancara::create([
+                    'administrasi_id' => $administrasiSelected->id,
+                    'jadwal_wwn' => $request['jadwal_wwn'],
+                ]);
+            }
+            Alert::success('Administrasi ' . $administrasiSelected->user->name . ' sudah di Nilai', 'Data telah tersimpan.');
+        } elseif ($request->status_adm == 'gagal') {
+            if (isset($administrasiSelected->wawancara->id)) {
+                $wawancara = Wawancara::where('administrasi_id', '=', $administrasiSelected->id)->first();
+                $wawancara->delete();
+            }
+            Alert::success('Administrasi ' . $administrasiSelected->user->name . ' sudah di Nilai', 'Data telah tersimpan.');
+        }
+
+        return redirect()->back();
     }
 
     /**
@@ -89,7 +131,7 @@ class AdministrasiController extends Controller
     {
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id)->first();
+        $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
 
         if (isset($getAdministrasiUser) && $getTanggalSekarang > $getPeriodeAktif->ta_adm) {
             return view('view-mahasiswa.administrasi.a-detail', compact('getPeriodeAktif', 'getTanggalSekarang', 'getAdministrasiUser'));
@@ -120,7 +162,7 @@ class AdministrasiController extends Controller
 
         $validator->validated();
 
-        $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id)->first();
+        $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
         // dd($getAdministrasiUser);
         if ($getAdministrasiUser != null) { //Jika Sudah Ada maka di Update
             $id = $getAdministrasiUser->id;
@@ -137,7 +179,7 @@ class AdministrasiController extends Controller
             Administrasi::create([
                 'no_pendaftaran' => strtoupper($request['periode_id'] . uniqid()),
                 'user_id' => Auth::user()->id,
-                'periode_id' => $getPeriodeAktif->id,
+                'periode_id' => $getPeriodeAktif->id_periode,
                 'tempat_lahir' => $request['tempat_lahir'],
                 'tanggal_lahir' => $request['tanggal_lahir'],
                 'semester' => $request['semester'],

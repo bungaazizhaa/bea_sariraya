@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
     {
         Periode::create(
             [
-                'periode_id' => '1',
-                'name' => 'Batch-1',
+                'id_periode' => '1',
+                'name' => 'batch-1',
                 'tm_adm' => '2021-01-23',
                 'ta_adm' => '2021-01-26',
                 'tp_adm' => '2021-01-30',
@@ -44,8 +44,8 @@ class DatabaseSeeder extends Seeder
         );
         Periode::create(
             [
-                'periode_id' => '2',
-                'name' => 'Batch-2',
+                'id_periode' => '2',
+                'name' => 'batch-2',
                 'tm_adm' => '2022-04-26',
                 'ta_adm' => '2022-04-29',
                 'tp_adm' => '2022-04-30',
@@ -66,8 +66,8 @@ class DatabaseSeeder extends Seeder
         );
         Periode::create(
             [
-                'periode_id' => '3',
-                'name' => 'Batch-3',
+                'id_periode' => '3',
+                'name' => 'batch-3',
                 'tm_adm' => '2023-04-23',
                 'ta_adm' => '2023-04-26',
                 'tp_adm' => '2023-04-30',

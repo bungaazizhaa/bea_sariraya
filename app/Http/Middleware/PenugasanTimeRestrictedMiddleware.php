@@ -25,12 +25,12 @@ class PenugasanTimeRestrictedMiddleware
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
 
         if ($getPeriodeAktif->status_png == null) {
-            if ($getTanggalSekarang < $getPeriodeAktif->tm_png) { //Sesi Belum Dibuka
+            if ($getTanggalSekarang < $getPeriodeAktif->tm_png->format('Y-m-d')) { //Sesi Belum Dibuka
                 $info = 'Tahap Penugasan Belum Dibuka.';
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif')));
-            } elseif ($getTanggalSekarang > $getPeriodeAktif->ta_png && $statusAdmUser == 'lolos' && $statusWwnUser == 'lolos') { //Sesi Sudah Ditutup
+            } elseif ($getTanggalSekarang > $getPeriodeAktif->ta_png->format('Y-m-d') && $statusAdmUser == 'lolos' && $statusWwnUser == 'lolos') { //Sesi Sudah Ditutup
                 $info = 'Tahap Penugasan Sudah Ditutup. Mohon untuk Menunggu Pengumuman.';
-                $tglpengumuman = $getPeriodeAktif->tp_png;
+                $tglpengumuman = $getPeriodeAktif->tp_png->format('Y-m-d');
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif', 'tglpengumuman')));
             }
         } elseif ($getPeriodeAktif->status_png == 'Selesai' && $getPeriodeAktif->status == 'aktif' && $statusAdmUser == 'lolos' && $statusWwnUser == 'lolos') { //Sesi Sudah Selesai dan Diumumkan

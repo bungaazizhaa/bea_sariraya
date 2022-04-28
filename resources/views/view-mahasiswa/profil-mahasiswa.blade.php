@@ -21,7 +21,7 @@
                     <div class="alert alert-danger" role="alert">
                         <strong>Wajib melakukan Upload Foto Profil</strong>, untuk melanjutkan ke Halaman Anda!
                         <p class="mb-0">
-                            <strong>Jika Profil Kosong</strong> hingga Waktu Pengubahan berakhir, Anda akan<strong>
+                            <strong>Jika Profil Kosong</strong> hingga Waktu Pengubahan berakhir, maka Anda akan<strong>
                                 Terdiskualifikasi!</strong>
                         </p>
                     </div>
@@ -66,7 +66,7 @@
 
         <!-- Main content -->
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-lg-4">
                 <div class="card rounded-md myshadow mb-3">
                     <div class="card-header text-white bg-dark text-center rounded-top-md">
                         <span class="float-left">Foto</span>
@@ -95,7 +95,7 @@
             </div>
 
 
-            <div class="col-md-8">
+            <div class="col-lg-8">
                 <div class="card rounded-md myshadow">
                     <div class="card-header text-white bg-dark text-center rounded-top-md">
                         <span class="float-left">Data Diri</span>

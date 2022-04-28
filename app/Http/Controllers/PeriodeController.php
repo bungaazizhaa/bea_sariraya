@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Administrasi;
 use Carbon\Carbon;
 use App\Models\Univ;
 use App\Models\Periode;
@@ -21,14 +22,17 @@ class PeriodeController extends Controller
         //
     }
 
-    protected $periodeOpenned;
-    public function indexPeriodeById($id)
+    public function indexPeriodeById($name)
     {
+        $noLolos = 1;
+        $noGagal = 1;
         $getAllUniv = Univ::all();
         $getAllPeriode = Periode::all();
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
-        $periodeOpenned = Periode::find($id);
-        return view('view-admin.periode.p-indexid', compact('periodeOpenned', 'getAllUniv', 'getAllPeriode', 'getTanggalSekarang'));
+        $periodeOpenned = Periode::where('name', '=', $name)->first();
+        $getAllAdmLolos = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '=', 'lolos')->get();
+        $getAllAdmGagal = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '!=', 'lolos')->get();
+        return view('view-admin.periode.p-indexid', compact('periodeOpenned', 'getAllUniv', 'getAllPeriode', 'getTanggalSekarang', 'getAllAdmLolos', 'getAllAdmGagal', 'noLolos', 'noGagal'));
     }
 
     /**
@@ -49,7 +53,60 @@ class PeriodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'id_periode' => 'required|integer|unique:periodes',
+            'name' => 'required|unique:periodes|string|max:255',
+            'tm_adm' => 'required|date|date_format:d-m-Y',
+            'ta_adm' => 'required|date|date_format:d-m-Y',
+            'tp_adm' => 'required|date|date_format:d-m-Y',
+            // 'status_adm' => 'string',
+            'tm_wwn' => 'required|date|date_format:d-m-Y',
+            'ta_wwn' => 'required|date|date_format:d-m-Y',
+            'tp_wwn' => 'required|date|date_format:d-m-Y',
+            // 'status_wwn' => 'string',
+            'tm_png' => 'required|date|date_format:d-m-Y',
+            'ta_png' => 'required|date|date_format:d-m-Y',
+            'tp_png' => 'required|date|date_format:d-m-Y',
+            // 'status_png' => 'string',
+
+        ]);
+
+        if ($validator->fails()) {
+            Alert::error('Gagal melakukan Penambahan Periode.', 'Cek kesalahan Pengisian.');
+            // var_dump($validator);
+        }
+        $validator->validated();
+
+        $string = $request['name'];
+        //Lower case everything
+        $string = strtolower($string);
+        //Make alphanumeric (removes all other characters)
+        $string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
+        //Clean up multiple dashes or whitespaces
+        $string = preg_replace("/[\s-]+/", " ", $string);
+        //Convert whitespaces and underscore to dash
+        $string = preg_replace("/[\s_]/", "-", $string);
+
+        Periode::create([
+            'id_periode' => $request['id_periode'],
+            'name' => $string,
+            'tm_adm' => $request['tm_adm'],
+            'ta_adm' => $request['ta_adm'],
+            'tp_adm' => $request['tp_adm'],
+            'status_adm' => null,
+            'tm_wwn' => $request['tm_wwn'],
+            'ta_wwn' => $request['ta_wwn'],
+            'tp_wwn' => $request['tp_wwn'],
+            'status_wwn' => null,
+            'tm_png' => $request['tm_png'],
+            'ta_png' => $request['ta_png'],
+            'tp_png' => $request['tp_png'],
+            'status_png' => null,
+            'status' => 'nonaktif',
+        ]);
+
+        Alert::success('Berhasil membuat Periode Baru!', 'Data Periode telah dibuat.');
+        return redirect(route('periode', $string));
     }
 
     /**
@@ -74,6 +131,17 @@ class PeriodeController extends Controller
         //
     }
 
+    public function umumkanAdm($name)
+    {
+        $periodeSelected = Periode::where('name', '=', $name)->first();
+        $periodeSelected->status_adm = 'Selesai';
+        $periodeSelected->save();
+
+        Alert::success('Tahap Administrasi ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Selanjutnya adalah Tahap Wawancara.');
+        return redirect(route('periode', $name));
+        // 
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -81,7 +149,7 @@ class PeriodeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $name)
     {
         $validator = Validator::make($request->all(), [
             'tm_adm' => 'required|date|date_format:d-m-Y',
@@ -104,7 +172,12 @@ class PeriodeController extends Controller
         }
         $validator->validated();
 
-        $periode = Periode::find($id);
+        $periodeAktif = Periode::where('status', '=', 'aktif')->get();
+        foreach ($periodeAktif as $data) {
+            $data->status = 'nonaktif';
+            $data->save();
+        }
+        $periode = Periode::where('name', '=', $name)->first();
         $periode->tm_adm = $request->tm_adm;
         $periode->ta_adm = $request->ta_adm;
         $periode->tp_adm = $request->tp_adm;
@@ -120,7 +193,7 @@ class PeriodeController extends Controller
         $periode->status = $request->status;
         $periode->save();
         Alert::success('Berhasil!', 'Data Periode Telah Diperbarui.');
-        return redirect(route('periode', $periode->id));
+        return redirect(route('periode', $periode->name));
     }
 
     /**
