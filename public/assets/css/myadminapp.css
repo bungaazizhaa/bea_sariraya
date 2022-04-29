@@ -105,3 +105,8 @@
 .text-primary:hover {
     color: rgb(255, 255, 255) !important;
 }
+
+#editPeriode .bg-secondary,
+#tambahPeriode .bg-secondary {
+    background-color: #3f484e !important;
+}

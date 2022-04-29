@@ -35,7 +35,7 @@ class PeriodeController extends Controller
         // $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->get();
         $getAllWwnLolos = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->where('status_wwn', '=', 'lolos')->get();
         $getAllWwnGagal = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->where('status_wwn', '=', 'gagal')->get();
-        return view('view-admin.periode.p-indexid', compact('periodeOpenned', 'getAllUniv', 'getAllPeriode', 'getTanggalSekarang', 'getAllAdmLolos', 'getAllAdmGagal', 'getAllWwnLolos', 'getAllWwnGagal'));
+        return view('view-admin.periode.periodeid-index', compact('periodeOpenned', 'getAllUniv', 'getAllPeriode', 'getTanggalSekarang', 'getAllAdmLolos', 'getAllAdmGagal', 'getAllWwnLolos', 'getAllWwnGagal'));
     }
 
     /**
@@ -175,13 +175,32 @@ class PeriodeController extends Controller
             // var_dump($validator);
         }
         $validator->validated();
-
-        $periodeAktif = Periode::where('status', '=', 'aktif')->get();
-        foreach ($periodeAktif as $data) {
-            $data->status = 'nonaktif';
-            $data->save();
-        }
+        $periodeAktif = Periode::where('status', '=', 'aktif')->whereNotIn('name', array($name))->get();
         $periode = Periode::where('name', '=', $name)->first();
+        if ($periode->id_periode != $request->id_periode) {
+            $validator = Validator::make($request->all(), [
+                'id_periode' => 'required|unique:periodes|integer',
+            ]);
+            if ($validator->fails()) {
+                Alert::error('Gagal melakukan Update.', 'Cek kesalahan Pengisian.');
+                // var_dump($validator);
+            }
+            $validator->validated();
+            $periode->id_periode = $request->id_periode;
+        }
+        if ($name != $request->name) {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255|unique:periodes',
+            ]);
+            if ($validator->fails()) {
+                Alert::error('Gagal melakukan Update.', 'Cek kesalahan Pengisian.');
+                // var_dump($validator);
+            }
+            $validator->validated();
+            $periode->name = $request->name;
+        }
+
+        $periode->tp_adm = $request->tp_adm;
         $periode->tm_adm = $request->tm_adm;
         $periode->ta_adm = $request->ta_adm;
         $periode->tp_adm = $request->tp_adm;
@@ -194,6 +213,10 @@ class PeriodeController extends Controller
         $periode->ta_png = $request->ta_png;
         $periode->tp_png = $request->tp_png;
         $periode->status_png = $request->status_png;
+        foreach ($periodeAktif as $data) {
+            $data->status = 'nonaktif';
+            $data->save();
+        }
         $periode->status = $request->status;
         $periode->save();
         Alert::success('Berhasil!', 'Data Periode Telah Diperbarui.');

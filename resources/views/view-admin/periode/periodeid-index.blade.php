@@ -180,16 +180,49 @@
                     <form id="periodeForm" method="POST"
                         action="{{ route('update.periode', $periodeOpenned->name) }}">
                         @csrf
-                        {{-- <div class="modal-header">
-                            <h5 class="modal-title" id="editPeriodeLabel">Detail Periode</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div> --}}
+                        <div class="modal-header h4 text-center">
+                            <p class="mb-0 w-100">Form Edit Periode</p>
+                        </div>
                         <div class="modal-body pb-0">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="bg-secondary py-md-1 pb-3 px-3 rounded myshadow mb-3">
+                                        <div class="row">
+                                            <label for="id_periode"
+                                                class="col col-form-label text-md-right">ID
+                                                Periode
+                                                :</label>
+                                            <div class="col-12 col-md-10 mb-1">
+                                                <input autocomplete="off" id="id_periode"
+                                                    name="id_periode"
+                                                    value="{{ old('id_periode', $periodeOpenned->id_periode) }}"
+                                                    class="form-control">
+                                                @error('id_periode')
+                                                    <span class="small text-danger" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="name"
+                                                class="col col-form-label text-md-right">Nama Periode
+                                                :</label>
+                                            <div class="col-12 col-md-10">
+                                                <input autocomplete="off" id="name" name="name"
+                                                    value="{{ old('name', $periodeOpenned->name) }}"
+                                                    class="form-control">
+                                                @error('name')
+                                                    <span class="small text-danger" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="bg-secondary py-md-1 pb-3 px-3 rounded mb-3">
                                         <div class="row">
                                             <label for="status" class="col col-form-label">Status
                                                 :</label>
@@ -213,7 +246,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="bg-secondary p-3 rounded myshadow mb-3">
+                                    <div class="bg-secondary p-3 rounded mb-3">
                                         <div class="d-flex justify-content-between">
                                             <div>
                                                 <p class="h5 mb-0 font-weight-bold">
@@ -283,7 +316,7 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <div class="bg-secondary p-3 rounded myshadow mb-3">
+                                    <div class="bg-secondary p-3 rounded mb-3">
                                         <div class="d-flex justify-content-between">
                                             <div>
                                                 <p class="h5 mb-0 font-weight-bold">
@@ -353,7 +386,7 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <div class="bg-secondary p-3 rounded myshadow mb-3">
+                                    <div class="bg-secondary p-3 rounded mb-3">
                                         <div class="d-flex justify-content-between">
                                             <div>
                                                 <p class="h5 mb-0 font-weight-bold">

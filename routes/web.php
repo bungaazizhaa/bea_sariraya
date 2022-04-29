@@ -35,6 +35,7 @@ Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa'])->group(f
     Route::post('update-data-saya', [UserController::class, 'updateMyUser'])->name('update.myuser'); //Edit Data User dari Profil Akun Sendiri
     Route::post('uploadfoto', [UserController::class, 'uploadFoto'])->name('upload.foto'); //Edit Foto User dari Profil Akun Sendiri
     Route::post('update-administrasi', [AdministrasiController::class, 'update'])->name('update.administrasi');
+    Route::post('update-penugasan', [PenugasanController::class, 'update'])->name('update.penugasan');
     // Route::get('/my-administrasi', [AdministrasiController::class, 'detailAdm'])->name('detail.adm');
 });
 

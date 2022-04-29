@@ -218,12 +218,24 @@
                             <div class="card-body rounded-bottom-md">
                                 <img class="img-preview mb-2 d-flex mx-auto" alt="" width="210px"
                                     height="280px" style="max-width: 210px; max-height:280px">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="Foto" name="Foto"
-                                        onchange="previewImage()" value="{{ old('Foto') }}">
-                                    <label class="custom-file-label" for="Foto">Choose file</label>
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="Foto"
+                                            name="Foto" onchange="previewImage()"
+                                            value="{{ old('Foto') }}">
+                                        <label class="custom-file-label" for="Foto">Pilih
+                                            File</label>
+                                    </div>
                                 </div>
                             </div>
+                            <script>
+                                $('#Foto').on('change', function() {
+                                    //get the file name
+                                    var fileName = $(this).val();
+                                    //replace the "Choose a file" label
+                                    $(this).next('.custom-file-label').html(fileName);
+                                })
+                            </script>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary"

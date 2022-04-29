@@ -315,9 +315,7 @@
                     @if (isset($getAdministrasiUser))
                         <div class="fixed-bottom text-center">
                             <button type="button" id="tombolEdit" class="btn btn-xl m-3 btn-secondary"
-                                onclick="izinkanEdit();">
-                                Ubah Data
-                            </button>
+                                onclick="izinkanEdit();">Ubah Data</button>
                             <div id="tombolSimpan" style="display: none;">
                                 <button type="submit" class="btn btn-xl m-3 btn-primary">
                                     Simpan
@@ -344,7 +342,8 @@
 
     <script>
         $(document).ready(function() {
-            today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+            today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
+                .getDate());
             $('.datepicker').datepicker({
                 format: 'yyyy-mm-dd',
                 uiLibrary: 'bootstrap4',
@@ -373,7 +372,7 @@
             $tombolSimpan.css("display", $tombolSimpan.css("display") === 'none' ? 'inline' : 'none');
             document.getElementById("tempat_lahir").focus();
             $tombolEdit.innerHTML = ($tombolEdit.innerHTML ===
-                'Batalkan' ? 'Ubah Data' : 'Batalkan');
+                'Ubah Data' ? 'Batalkan' : 'Ubah Data');
             if ($tombolEdit.innerHTML === 'Ubah Data') {
                 location.reload();
             }

@@ -38,7 +38,7 @@
                     action="{{ route('store.periode') }}">
                     @csrf
                     <div class="modal-header h4 text-center">
-                        Form Tambah Periode
+                        <p class="mb-0 w-100">Form Tambah Periode</p>
                     </div>
                     <div class="modal-body pb-1">
                         <div class="row">
@@ -51,7 +51,7 @@
                                         <div class="col-12 col-md-10">
                                             <input autocomplete="off" id="id_periode" name="id_periode"
                                                 value="{{ $getPeriodeLast + 1 }}"
-                                                class="form-control mb-1">{{ old('id_periode') }}
+                                                class="form-control mb-1">
                                             @error('id_periode')
                                                 <div class="small text-danger" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -66,7 +66,7 @@
                                         <div class="col-12 col-md-10">
                                             <input autocomplete="off" id="name" name="name"
                                                 value="batch-{{ $getPeriodeLast + 1 }}"
-                                                class="form-control">{{ old('name') }}
+                                                class="form-control">
                                             @error('name')
                                                 <div class="small text-danger" role="alert">
                                                     <strong>{{ $message }}</strong>
