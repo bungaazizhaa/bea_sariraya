@@ -6,6 +6,7 @@ use App\Models\Administrasi;
 use Carbon\Carbon;
 use App\Models\Univ;
 use App\Models\Periode;
+use App\Models\Wawancara;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
@@ -24,15 +25,17 @@ class PeriodeController extends Controller
 
     public function indexPeriodeById($name)
     {
-        $noLolos = 1;
-        $noGagal = 1;
         $getAllUniv = Univ::all();
         $getAllPeriode = Periode::all();
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $periodeOpenned = Periode::where('name', '=', $name)->first();
         $getAllAdmLolos = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '=', 'lolos')->get();
         $getAllAdmGagal = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '!=', 'lolos')->get();
-        return view('view-admin.periode.p-indexid', compact('periodeOpenned', 'getAllUniv', 'getAllPeriode', 'getTanggalSekarang', 'getAllAdmLolos', 'getAllAdmGagal', 'noLolos', 'noGagal'));
+        $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->pluck('id');
+        // $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->get();
+        $getAllWwnLolos = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->where('status_wwn', '=', 'lolos')->get();
+        $getAllWwnGagal = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->where('status_wwn', '=', 'gagal')->get();
+        return view('view-admin.periode.p-indexid', compact('periodeOpenned', 'getAllUniv', 'getAllPeriode', 'getTanggalSekarang', 'getAllAdmLolos', 'getAllAdmGagal', 'getAllWwnLolos', 'getAllWwnGagal'));
     }
 
     /**
@@ -77,19 +80,9 @@ class PeriodeController extends Controller
         }
         $validator->validated();
 
-        $string = $request['name'];
-        //Lower case everything
-        $string = strtolower($string);
-        //Make alphanumeric (removes all other characters)
-        $string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
-        //Clean up multiple dashes or whitespaces
-        $string = preg_replace("/[\s-]+/", " ", $string);
-        //Convert whitespaces and underscore to dash
-        $string = preg_replace("/[\s_]/", "-", $string);
-
         Periode::create([
             'id_periode' => $request['id_periode'],
-            'name' => $string,
+            'name' => $request['name'],
             'tm_adm' => $request['tm_adm'],
             'ta_adm' => $request['ta_adm'],
             'tp_adm' => $request['tp_adm'],
@@ -106,7 +99,7 @@ class PeriodeController extends Controller
         ]);
 
         Alert::success('Berhasil membuat Periode Baru!', 'Data Periode telah dibuat.');
-        return redirect(route('periode', $string));
+        return redirect(route('periode', $request['name']));
     }
 
     /**
@@ -138,6 +131,17 @@ class PeriodeController extends Controller
         $periodeSelected->save();
 
         Alert::success('Tahap Administrasi ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Selanjutnya adalah Tahap Wawancara.');
+        return redirect(route('periode', $name));
+        // 
+    }
+
+    public function umumkanWwn($name)
+    {
+        $periodeSelected = Periode::where('name', '=', $name)->first();
+        $periodeSelected->status_wwn = 'Selesai';
+        $periodeSelected->save();
+
+        Alert::success('Tahap Wawancara ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Selanjutnya adalah Tahap Penugasan.');
         return redirect(route('periode', $name));
         // 
     }

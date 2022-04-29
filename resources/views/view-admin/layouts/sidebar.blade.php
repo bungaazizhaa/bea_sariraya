@@ -1,7 +1,9 @@
+{{-- <aside class="main-sidebar sidebar-light-success elevation-1"> --}}
 <aside class="main-sidebar sidebar-dark-success elevation-1">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-        <img src="{{ asset('assets') }}/images/logo.png" alt="AdminLTE Logo" class="brand-image">
+        <img src="{{ asset('assets') }}/images/logo.png" alt="AdminLTE Logo"
+            class="brand-image">
         <span class="brand-text text-light">Beasiswa Sariraya</span>
     </a>
 
@@ -32,7 +34,8 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
        with font-awesome or any other icon font library -->
                 @include('view-admin.layouts.menu')

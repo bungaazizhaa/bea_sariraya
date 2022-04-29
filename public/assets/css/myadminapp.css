@@ -102,9 +102,6 @@
 .text-primary {
     color: rgb(118, 184, 255) !important;
 }
-.nav-link:hover {
-    color: rgb(255, 255, 255) !important;
-}
 .text-primary:hover {
     color: rgb(255, 255, 255) !important;
 }

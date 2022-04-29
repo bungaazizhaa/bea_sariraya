@@ -34,7 +34,6 @@ class AdministrasiTimeRestrictedMiddleware
             return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));
         } elseif ($getPeriodeAktif->status_adm != 'Selesai') { //Tahap Administrasi Belum Selesai
             if ($getPeriodeAktif->tm_adm->format('Y-m-d') > $getTanggalSekarang) { //Sesi Belum Dibuka
-                dd($getPeriodeAktif->tm_adm->format('Y-m-d'));
                 $info = 'Tahap Administrasi Belum Dibuka.';
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif')));
             } elseif ($getPeriodeAktif->ta_adm < $getTanggalSekarang && !$getPeriodeAktif->status_adm == 'Selesai') { //Sesi Sudah Ditutup
@@ -44,11 +43,11 @@ class AdministrasiTimeRestrictedMiddleware
                 return response(view('view-mahasiswa.administrasi.a-detail', compact('info', 'getPeriodeAktif', 'getAdministrasiUser', 'tglpengumuman')));
             }
         } elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_wwn->format('Y-m-d')) { //Sudah diumumkan dan Belum Memasuki T.Wawancara
-            $tanggal_wawancara = $getAdministrasiUser->wawancara->jadwal_wwn; //TODO: kondisi user yang diambil dari database
             if (isset($getAdministrasiUser) && $statusUserAdm == 'lolos') {
+                $tanggal_wawancara = $getAdministrasiUser->wawancara->jadwal_wwn; //TODO: kondisi user yang diambil dari database
                 return response(view('view-mahasiswa.administrasi.a-pengumumanlolos', compact('getPeriodeAktif', 'tanggal_wawancara')));
             } else {
-                return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif', 'tanggal_wawancara')));
+                return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));
             }
         } elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getTanggalSekarang >= $getPeriodeAktif->tm_wwn->format('Y-m-d')) { //Sudah diumumkan dan Sudah Memasuki T.Wawancara
             if (isset($getAdministrasiUser) && $statusUserAdm == 'lolos') {

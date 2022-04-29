@@ -14,44 +14,66 @@
             @if (Auth::user()->picture == null)
                 @if (!Route::has('register') && $getTanggalSekarang > $getPeriodeAktif->ta_adm)
                     <div class="alert alert-danger" role="alert">
-                        <strong>Anda Terdiskualifikasi! </strong>Tahap Administrasi Telah Ditutup dan Anda belum melakukan
+                        <strong>Anda Terdiskualifikasi! </strong>Tahap Administrasi Telah Ditutup dan
+                        Anda belum melakukan
                         Upload Foto!.
                     </div>
                 @else
-                    <div class="alert alert-danger" role="alert">
-                        <strong>Wajib melakukan Upload Foto Profil</strong>, untuk melanjutkan ke Halaman Anda!
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Wajib melakukan Upload Foto Profil</strong>, untuk melanjutkan ke
+                        Halaman Anda!
                         <p class="mb-0">
-                            <strong>Jika Profil Kosong</strong> hingga Waktu Pengubahan berakhir, maka Anda akan<strong>
+                            <strong>Jika Profil Kosong</strong> hingga Waktu Pengubahan berakhir, maka
+                            Anda akan<strong>
                                 Terdiskualifikasi!</strong>
                         </p>
                     </div>
                 @endif
-                @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
+
+                @if (Route::has('register') && $getTanggalSekarang >= $getPeriodeAktif->tm_adm->format('Y-m-d'))
                     <div class="alert alert-info" role="alert">
-                        <strong>Foto & Data Diri</strong> dapat diubah sampai :
-                        <strong>{{ \Carbon\Carbon::parse($getPeriodeAktif->ta_adm)->isoFormat('dddd, D MMMM Y - 23:59') }}</strong>
+                        <strong>Pengisian Formulir Administrasi Sudah di Mulai.</strong> Segera lengkapi
+                        Foto Anda dan menuju pengisian Formulir Administrasi.
+                    </div>
+                @elseif (Route::has('register') && $getTanggalSekarang < $getPeriodeAktif->tm_adm->format('Y-m-d'))
+                    <div class="alert alert-info" role="alert">
+                        <strong>Pengisian Formulir Administrasi Belum di Mulai.</strong>
                     </div>
                 @endif
-            @else
-                @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
-                    <div class="alert alert-info" role="alert">
-                        <strong>Foto & Data Diri</strong> dapat diubah sampai :
-                        <strong>{{ \Carbon\Carbon::parse($getPeriodeAktif->ta_adm)->isoFormat('dddd, D MMMM Y - 23:59') }}</strong>
-                    </div>
-                @endif
+            @endif
+            @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
+                <div class="alert alert-info" role="alert">
+                    <strong>Foto & Data Diri</strong> dapat diubah sampai :
+                    <strong>{{ \Carbon\Carbon::parse($getPeriodeAktif->ta_adm)->isoFormat('dddd, D MMMM Y - 23:59') }}</strong>
+                </div>
+            @endif
+            <div class="alert alert-info rounded py-3 mb-3">
                 <p class="mb-2">Tahap saat ini:</p>
                 <div class="mb-3">
-                    @if ($getPeriodeAktif->status_adm == null)
-                        <a href="/tahap-administrasi" class="btn btn-primary">Tahap Administrasi
+                    @if ($getPeriodeAktif->status_adm == null && $getTanggalSekarang < $getPeriodeAktif->tm_adm->format('Y-m-d'))
+                        <a href="/tahap-administrasi" class="btn btn-secondary">Tahap Administrasi
+                            Belum Dimulai.
                         </a>
-                    @elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_wwn)
-                        <a href="/tahap-administrasi" class="btn btn-primary">Lihat Pengumuman Administrasi
+                    @elseif ($getPeriodeAktif->status_adm == null && $getTanggalSekarang >= $getPeriodeAktif->tm_adm->format('Y-m-d') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm->format('Y-m-d'))
+                        <a href="/tahap-administrasi" class="btn btn-primary">Tahap Administrasi Dimulai
                         </a>
-                    @elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getPeriodeAktif->status_wwn == null)
-                        <a href="/tahap-wawancara" class="btn btn-primary">Tahap Wawancara
+                    @elseif ($getPeriodeAktif->status_adm == null && $getTanggalSekarang > $getPeriodeAktif->ta_adm->format('Y-m-d'))
+                        <a href="/tahap-administrasi" class="btn btn-secondary">Tahap Administrasi
+                            Ditutup
                         </a>
-                    @elseif ($getPeriodeAktif->status_wwn == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_png)
-                        <a href="/tahap-wawancara" class="btn btn-primary">Lihat Pengumuman Wawancara
+                    @elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_wwn->format('Y-m-d'))
+                        <a href="/tahap-administrasi" class="btn btn-primary">Lihat Pengumuman
+                            Administrasi
+                        </a>
+                    @elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getPeriodeAktif->status_wwn == null && $getTanggalSekarang >= $getPeriodeAktif->tm_wwn->format('Y-m-d') && $getTanggalSekarang <= $getPeriodeAktif->ta_wwn->format('Y-m-d'))
+                        <a href="/tahap-wawancara" class="btn btn-primary">Tahap Wawancara Dimulai
+                        </a>
+                    @elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getPeriodeAktif->status_wwn == null && $getTanggalSekarang > $getPeriodeAktif->ta_wwn->format('Y-m-d'))
+                        <a href="/tahap-wawancara" class="btn btn-secondary">Tahap Wawancara Ditutup
+                        </a>
+                    @elseif ($getPeriodeAktif->status_wwn == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_png->format('Y-m-d'))
+                        <a href="/tahap-wawancara" class="btn btn-primary">Lihat Pengumuman
+                            Wawancara
                         </a>
                     @elseif ($getPeriodeAktif->status_wwn == 'Selesai' && $getPeriodeAktif->status_png == null)
                         <a href="/tahap-penugasan" class="btn btn-primary">Tahap Penugasan
@@ -61,7 +83,7 @@
                         </a>
                     @endif
                 </div>
-            @endif
+            </div>
         </div>
 
         <!-- Main content -->
@@ -72,8 +94,9 @@
                         <span class="float-left">Foto</span>
                         @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
                             <span>
-                                <button type="button" id="tombolEditFoto" class="btn btn-sm btn-secondary float-right"
-                                    data-toggle="modal" data-target="#editFotoModal">
+                                <button type="button" id="tombolEditFoto"
+                                    class="btn btn-sm btn-secondary float-right" data-toggle="modal"
+                                    data-target="#editFotoModal">
                                     Upload Foto
                                 </button>
                             </span>
@@ -101,8 +124,9 @@
                         <span class="float-left">Data Diri</span>
                         @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
                             <span>
-                                <button id="tombolEditProfil" type="button" class="btn btn-sm btn-secondary float-right"
-                                    data-toggle="modal" data-target="#editProfil">
+                                <button id="tombolEditProfil" type="button"
+                                    class="btn btn-sm btn-secondary float-right" data-toggle="modal"
+                                    data-target="#editProfil">
                                     Edit
                                 </button>
                             </span>
@@ -175,23 +199,25 @@
 
     @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
         {{-- MODAL UPLOAD FOTO --}}
-        <div class="modal fade" id="editFotoModal" tabindex="-1" role="dialog" aria-labelledby="editFotoModal"
-            aria-hidden="true">
+        <div class="modal fade" id="editFotoModal" tabindex="-1" role="dialog"
+            aria-labelledby="editFotoModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form method="POST" action="{{ route('upload.foto') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('upload.foto') }}"
+                        enctype="multipart/form-data">
                         @csrf
 
                         <div class="modal-header">
                             <h5 class="modal-title" id="editFotoModal">Upload File Pas Foto 3x4</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <div class="card-body rounded-bottom-md">
-                                <img class="img-preview mb-2 d-flex mx-auto" alt="" width="210px" height="280px"
-                                    style="max-width: 210px; max-height:280px">
+                                <img class="img-preview mb-2 d-flex mx-auto" alt="" width="210px"
+                                    height="280px" style="max-width: 210px; max-height:280px">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="Foto" name="Foto"
                                         onchange="previewImage()" value="{{ old('Foto') }}">
@@ -200,7 +226,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                     </form>
@@ -209,15 +236,16 @@
         </div>
 
         {{-- MODAL EDIT PROFIL --}}
-        <div class="modal fade" id="editProfil" tabindex="-1" role="dialog" aria-labelledby="editProfil"
-            aria-hidden="true">
+        <div class="modal fade" id="editProfil" tabindex="-1" role="dialog"
+            aria-labelledby="editProfil" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content p-3">
                     <form method="POST" action="{{ route('update.myuser') }}">
                         @csrf
                         <div class="modal-header pt-0 mb-3">
                             <h5 class="modal-title" id="editFotoModal">Formulir Ubah Data Anda</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -226,8 +254,9 @@
                                 class="col-md-4 col-form-label text-md-right">{{ __('Nama Lengkap') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="name" value="{{ old('name', Auth::user()->name) }}" autocomplete="name"
+                                <input id="name" type="text"
+                                    class="form-control @error('name') is-invalid @enderror" name="name"
+                                    value="{{ old('name', Auth::user()->name) }}" autocomplete="name"
                                     autofocus>
 
                                 @error('name')
@@ -240,11 +269,14 @@
 
 
                         <div class="row mb-3">
-                            <label for="nim" class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
+                            <label for="nim"
+                                class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nim" type="text" class="form-control @error('nim') is-invalid @enderror"
-                                    name="nim" value="{{ old('nim', Auth::user()->nim) }}" autocomplete="nim" autofocus>
+                                <input id="nim" type="text"
+                                    class="form-control @error('nim') is-invalid @enderror" name="nim"
+                                    value="{{ old('nim', Auth::user()->nim) }}" autocomplete="nim"
+                                    autofocus>
 
                                 @error('nim')
                                     <span class="invalid-feedback" role="alert">
@@ -259,18 +291,20 @@
                                 class="col-md-4 col-form-label text-md-right">{{ __('Asal Perguruan Tinggi') }}</label>
 
                             <div class="col-md-6">
-                                <select id="univ_id" name="univ_id" class="form-control select" data-live-search="true"
-                                    onchange="univLainnya(this);">
+                                <select id="univ_id" name="univ_id" class="form-control select"
+                                    data-live-search="true" onchange="univLainnya(this);">
                                     <option value="0" disabled selected>--- Pilih ---
                                     </option>
-                                    <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">--- Isi yang
+                                    <option {{ old('univ_id') == 'other' ? 'selected' : '' }}
+                                        value="other">--- Isi yang
                                         Lain
                                         ---
                                     </option>
                                     @foreach ($getAllUniv as $univ)
                                         <option
                                             {{ old('univ_id', Auth::user()->univ_id) == $univ->id ? 'selected' : '' }}
-                                            value="{{ $univ->id }}">{{ $univ->nama_universitas }}
+                                            value="{{ $univ->id }}">
+                                            {{ $univ->nama_universitas }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -282,7 +316,8 @@
                             </div>
                         </div>
 
-                        <div id="inputuniv" style="display: {{ old('univ_id_manual') == null ? 'none' : 'block' }};">
+                        <div id="inputuniv"
+                            style="display: {{ old('univ_id_manual') == null ? 'none' : 'block' }};">
                             <div class="row mb-3">
 
                                 <label for="univ_id_manual"
@@ -309,8 +344,9 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
-                                    autocomplete="new-password" placeholder="Isi untuk mengubah password.">
+                                    class="form-control @error('password') is-invalid @enderror"
+                                    name="password" autocomplete="new-password"
+                                    placeholder="Isi untuk mengubah password.">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -332,7 +368,8 @@
                         </div>
 
                         <div class="modal-footer p-0 pt-3">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                     </form>

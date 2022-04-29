@@ -26,9 +26,13 @@ class Wawancara extends Model
 
     public function Administrasi()
     {
-        return $this->belongsTo(Administrasi::class);
+        return $this->belongsTo(Administrasi::class, 'administrasi_id');
     }
 
+    public function Penugasan()
+    {
+        return $this->hasOne(Penugasan::class, 'wawancara_id');
+    }
 
     public function User()
     {

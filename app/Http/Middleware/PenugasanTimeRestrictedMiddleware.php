@@ -5,7 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Carbon\Carbon;
 use App\Models\Periode;
+use App\Models\Administrasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PenugasanTimeRestrictedMiddleware
@@ -19,12 +21,14 @@ class PenugasanTimeRestrictedMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $statusAdmUser = "lolos"; //kondisi user yang diambil dari database
-        $statusWwnUser = "lolos"; //kondisi user yang diambil dari database
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
-
-        if ($getPeriodeAktif->status_png == null) {
+        $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
+        isset($getAdministrasiUser) ? $statusAdmUser = $getAdministrasiUser->status_adm : ''; //TODO: kondisi user yang diambil dari database
+        isset($getAdministrasiUser->wawancara->status_wwn) ? $statusWwnUser = $getAdministrasiUser->wawancara->status_wwn : $statusWwnUser = ''; //TODO: kondisi user yang diambil dari database
+        // $statusAdmUser = "lolos"; //kondisi user yang diambil dari database
+        // $statusWwnUser = "lolos"; //kondisi user yang diambil dari database
+        if ($getPeriodeAktif->status_png == null && $statusAdmUser == 'lolos' && $statusWwnUser == 'lolos') {
             if ($getTanggalSekarang < $getPeriodeAktif->tm_png->format('Y-m-d')) { //Sesi Belum Dibuka
                 $info = 'Tahap Penugasan Belum Dibuka.';
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif')));
@@ -40,7 +44,7 @@ class PenugasanTimeRestrictedMiddleware
             } else {
                 return response(view('view-mahasiswa.penugasan.p-pengumumangagal', compact('getPeriodeAktif', 'statusPngUser')));
             }
-        } elseif ($statusAdmUser == 'lolos' && $statusWwnUser == 'gagal') {
+        } elseif ($statusAdmUser == 'lolos' && $statusWwnUser != 'lolos') {
             return response(view('view-mahasiswa.wawancara.w-pengumumangagal', compact('getPeriodeAktif')));
         } else {
             return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));

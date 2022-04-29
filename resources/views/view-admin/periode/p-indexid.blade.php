@@ -41,11 +41,11 @@
                         <div class="mt-2">
                             @if ($periodeOpenned->status_adm == 'Selesai')
                                 <span class="btn" style="width: 64px">
-                                    <i class="fa-regular text-light fa-circle-check fa-2xl"></i>
+                                    <i class="fa-regular text-primary fa-circle-check fa-2xl"></i>
                                 </span>
                             @else
                                 <span class="btn" style="width: 64px">
-                                    <i class="fa-regular text-light fa-clock fa-2xl"></i>
+                                    <i class="fa-regular text-warning fa-clock fa-2xl"></i>
                                 </span>
                             @endif
                         </div>
@@ -57,12 +57,14 @@
                     <p class="mb-1 mt-2">Tanggal Akhir :</p>
                     <p><strong>{{ $periodeOpenned->ta_adm->isoFormat('D MMMM Y') }}</strong></p>
                     <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
-                    <p class="mb-0"><strong>{{ $periodeOpenned->tp_adm->isoFormat('D MMMM Y') }}</strong>
+                    <p class="mb-0">
+                        <strong>{{ $periodeOpenned->tp_adm->isoFormat('D MMMM Y') }}</strong>
                     </p>
                     <hr style="border-color:#ffffff88">
                     <div id="footer-tahap" class="d-flex" style="height:38px">
                         @if ($getTanggalSekarang > $periodeOpenned->ta_adm->format('Y-m-d'))
-                            <a href="/nilai-administrasi/{{ $periodeOpenned->name }}" class="btn btn-outline-light">Nilai
+                            <a href="/{{ $periodeOpenned->name }}/nilai-administrasi"
+                                class="btn btn-outline-light text-truncate">Nilai
                                 Administrasi</a>
                         @endif
                         @if ($getTanggalSekarang >= $periodeOpenned->tp_adm->format('Y-m-d'))
@@ -87,11 +89,11 @@
                         <div class="mt-2">
                             @if ($periodeOpenned->status_wwn == 'Selesai')
                                 <span class="btn" style="width: 64px">
-                                    <i class="fa-regular text-light fa-circle-check fa-2xl"></i>
+                                    <i class="fa-regular text-primary fa-circle-check fa-2xl"></i>
                                 </span>
                             @else
                                 <span class="btn" style="width: 64px">
-                                    <i class="fa-regular text-light fa-clock fa-2xl"></i>
+                                    <i class="fa-regular text-warning fa-clock fa-2xl"></i>
                                 </span>
                             @endif
                         </div>
@@ -103,12 +105,14 @@
                     <p class="mb-1 mt-2">Tanggal Akhir :</p>
                     <p><strong>{{ $periodeOpenned->ta_wwn->isoFormat('D MMMM Y') }}</strong></p>
                     <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
-                    <p class="mb-0"><strong>{{ $periodeOpenned->tp_wwn->isoFormat('D MMMM Y') }}</strong>
+                    <p class="mb-0">
+                        <strong>{{ $periodeOpenned->tp_wwn->isoFormat('D MMMM Y') }}</strong>
                     </p>
                     <hr style="border-color:#ffffff88">
                     <div id="footer-tahap" class="d-flex" style="height:38px">
                         @if ($getTanggalSekarang >= $periodeOpenned->tm_wwn->format('Y-m-d'))
-                            <a href="/nilai-wawancara" class="btn btn-outline-light">Nilai Wawancara</a>
+                            <a href="/{{ $periodeOpenned->name }}/nilai-wawancara"
+                                class="btn btn-outline-light text-truncate">Nilai Wawancara</a>
                         @endif
                         @if ($getTanggalSekarang >= $periodeOpenned->tp_wwn->format('Y-m-d'))
                             <button class="btn btn-outline-light ml-auto" data-toggle="modal"
@@ -132,11 +136,11 @@
                         <div class="mt-2">
                             @if ($periodeOpenned->status_png == 'Selesai')
                                 <span class="btn" style="width: 64px">
-                                    <i class="fa-regular text-light fa-circle-check fa-2xl"></i>
+                                    <i class="fa-regular text-primary fa-circle-check fa-2xl"></i>
                                 </span>
                             @else
                                 <span class="btn" style="width: 64px">
-                                    <i class="fa-regular text-light fa-clock fa-2xl"></i>
+                                    <i class="fa-regular text-warning fa-clock fa-2xl"></i>
                                 </span>
                             @endif
                         </div>
@@ -148,12 +152,14 @@
                     <p class="mb-1 mt-2">Tanggal Akhir :</p>
                     <p><strong>{{ $periodeOpenned->ta_png->isoFormat('D MMMM Y') }}</strong></p>
                     <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
-                    <p class="mb-0"><strong>{{ $periodeOpenned->tp_png->isoFormat('D MMMM Y') }}</strong>
+                    <p class="mb-0">
+                        <strong>{{ $periodeOpenned->tp_png->isoFormat('D MMMM Y') }}</strong>
                     </p>
                     <hr style="border-color:#ffffff88">
                     <div id="footer-tahap" class="d-flex" style="height:38px">
                         @if ($getTanggalSekarang > $periodeOpenned->ta_png)
-                            <a href="/nilai-penugasan" class="btn btn-outline-light">Nilai Penugasan</a>
+                            <a href="/nilai-penugasan" class="btn btn-outline-light text-truncate">Nilai
+                                Penugasan</a>
                         @endif
                         @if ($getTanggalSekarang >= $periodeOpenned->tp_png->format('Y-m-d'))
                             <button class="btn btn-outline-light ml-auto" data-toggle="modal"
@@ -167,11 +173,12 @@
 
         {{-- ======== MODAL EDIT PERIODE ======== --}}
         <!-- Modal -->
-        <div class="modal fade" id="editPeriode" tabindex="-1" role="dialog" aria-labelledby="editPeriodeLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="editPeriode" tabindex="-1" role="dialog"
+            aria-labelledby="editPeriodeLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <form id="periodeForm" method="POST" action="{{ route('update.periode', $periodeOpenned->name) }}">
+                    <form id="periodeForm" method="POST"
+                        action="{{ route('update.periode', $periodeOpenned->name) }}">
                         @csrf
                         {{-- <div class="modal-header">
                             <h5 class="modal-title" id="editPeriodeLabel">Detail Periode</h5>
@@ -184,9 +191,11 @@
                                 <div class="col-12">
                                     <div class="bg-secondary py-md-1 pb-3 px-3 rounded myshadow mb-3">
                                         <div class="row">
-                                            <label for="status" class="col col-form-label">Status :</label>
+                                            <label for="status" class="col col-form-label">Status
+                                                :</label>
                                             <div class="col-12 col-md-10">
-                                                <select id="status" name="status" class="form-control selectpicker"
+                                                <select id="status" name="status"
+                                                    class="form-control selectpicker"
                                                     style="background-color: #eeeeee!important; color:black!important;"
                                                     title="Status Periode" required>
                                                     <option
@@ -215,8 +224,10 @@
                                         </p>
                                         <hr style="border-color:#ffffff88">
                                         <p class="mb-1">Tanggal Mulai :</p>
-                                        <input autocomplete="off" id="tm_adm" type="tm_adm" class="datepicker"
-                                            class="form-control @error('tm_adm') is-invalid @enderror" name="tm_adm"
+                                        <input autocomplete="off" id="tm_adm" type="tm_adm"
+                                            class="datepicker"
+                                            class="form-control @error('tm_adm') is-invalid @enderror"
+                                            name="tm_adm"
                                             value="{{ old('tm_adm', $periodeOpenned->tm_adm->format('d-m-Y')) }}"
                                             required autofocus>
 
@@ -226,8 +237,10 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Akhir :</p>
-                                        <input autocomplete="off" id="ta_adm" type="ta_adm" class="datepicker"
-                                            class="form-control @error('ta_adm') is-invalid @enderror" name="ta_adm"
+                                        <input autocomplete="off" id="ta_adm" type="ta_adm"
+                                            class="datepicker"
+                                            class="form-control @error('ta_adm') is-invalid @enderror"
+                                            name="ta_adm"
                                             value="{{ old('ta_adm', $periodeOpenned->ta_adm->format('d-m-Y')) }}"
                                             required autofocus>
 
@@ -237,8 +250,10 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
-                                        <input autocomplete="off" id="tp_adm" type="tp_adm" class="datepicker"
-                                            class="form-control @error('tp_adm') is-invalid @enderror" name="tp_adm"
+                                        <input autocomplete="off" id="tp_adm" type="tp_adm"
+                                            class="datepicker"
+                                            class="form-control @error('tp_adm') is-invalid @enderror"
+                                            name="tp_adm"
                                             value="{{ old('tp_adm', $periodeOpenned->tp_adm->format('d-m-Y')) }}"
                                             required autofocus>
 
@@ -248,7 +263,8 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Status Administrasi :</p>
-                                        <select id="status_adm" name="status_adm" class="form-control selectpicker"
+                                        <select id="status_adm" name="status_adm"
+                                            class="form-control selectpicker"
                                             title="Status Administrasi" required>
                                             <option
                                                 {{ old('status_adm', $periodeOpenned->status_adm) == 'Selesai' ? 'selected' : '' }}
@@ -278,8 +294,10 @@
                                         </p>
                                         <hr style="border-color:#ffffff88">
                                         <p class="mb-1">Tanggal Mulai :</p>
-                                        <input autocomplete="off" id="tm_wwn" type="tm_wwn" class="datepicker"
-                                            class="form-control @error('tm_wwn') is-invalid @enderror" name="tm_wwn"
+                                        <input autocomplete="off" id="tm_wwn" type="tm_wwn"
+                                            class="datepicker"
+                                            class="form-control @error('tm_wwn') is-invalid @enderror"
+                                            name="tm_wwn"
                                             value="{{ old('tm_wwn', $periodeOpenned->tm_wwn->format('d-m-Y')) }}"
                                             required autofocus>
 
@@ -289,8 +307,10 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Akhir :</p>
-                                        <input autocomplete="off" id="ta_wwn" type="ta_wwn" class="datepicker"
-                                            class="form-control @error('ta_wwn') is-invalid @enderror" name="ta_wwn"
+                                        <input autocomplete="off" id="ta_wwn" type="ta_wwn"
+                                            class="datepicker"
+                                            class="form-control @error('ta_wwn') is-invalid @enderror"
+                                            name="ta_wwn"
                                             value="{{ old('ta_wwn', $periodeOpenned->ta_wwn->format('d-m-Y')) }}"
                                             required autofocus>
 
@@ -300,8 +320,10 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
-                                        <input autocomplete="off" id="tp_wwn" type="tp_wwn" class="datepicker"
-                                            class="form-control @error('tp_wwn') is-invalid @enderror" name="tp_wwn"
+                                        <input autocomplete="off" id="tp_wwn" type="tp_wwn"
+                                            class="datepicker"
+                                            class="form-control @error('tp_wwn') is-invalid @enderror"
+                                            name="tp_wwn"
                                             value="{{ old('tp_wwn', $periodeOpenned->tp_wwn->format('d-m-Y')) }}"
                                             required autofocus>
 
@@ -311,8 +333,9 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Status Wawancara :</p>
-                                        <select id="status_wwn" name="status_wwn" class="form-control selectpicker"
-                                            title="Status Wawancara" required>
+                                        <select id="status_wwn" name="status_wwn"
+                                            class="form-control selectpicker" title="Status Wawancara"
+                                            required>
                                             <option
                                                 {{ old('status_wwn', $periodeOpenned->status_wwn) == 'Selesai' ? 'selected' : '' }}
                                                 value="Selesai">Selesai</option>
@@ -341,8 +364,10 @@
                                         </p>
                                         <hr style="border-color:#ffffff88">
                                         <p class="mb-1">Tanggal Mulai :</p>
-                                        <input autocomplete="off" id="tm_png" type="tm_png" class="datepicker"
-                                            class="form-control @error('tm_png') is-invalid @enderror" name="tm_png"
+                                        <input autocomplete="off" id="tm_png" type="tm_png"
+                                            class="datepicker"
+                                            class="form-control @error('tm_png') is-invalid @enderror"
+                                            name="tm_png"
                                             value="{{ old('tm_png', $periodeOpenned->tm_png->format('d-m-Y')) }}"
                                             required autofocus>
 
@@ -352,8 +377,10 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Akhir :</p>
-                                        <input autocomplete="off" id="ta_png" type="ta_png" class="datepicker"
-                                            class="form-control @error('ta_png') is-invalid @enderror" name="ta_png"
+                                        <input autocomplete="off" id="ta_png" type="ta_png"
+                                            class="datepicker"
+                                            class="form-control @error('ta_png') is-invalid @enderror"
+                                            name="ta_png"
                                             value="{{ old('ta_png', $periodeOpenned->ta_png->format('d-m-Y')) }}"
                                             required autofocus>
 
@@ -363,8 +390,10 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
-                                        <input autocomplete="off" id="tp_png" type="tp_png" class="datepicker"
-                                            class="form-control @error('tp_png') is-invalid @enderror" name="tp_png"
+                                        <input autocomplete="off" id="tp_png" type="tp_png"
+                                            class="datepicker"
+                                            class="form-control @error('tp_png') is-invalid @enderror"
+                                            name="tp_png"
                                             value="{{ old('tp_png', $periodeOpenned->tp_png->format('d-m-Y')) }}"
                                             required autofocus>
 
@@ -374,8 +403,9 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Status Penugasan :</p>
-                                        <select id="status_png" name="status_png" class="form-control selectpicker"
-                                            title="Status Penugasan" required>
+                                        <select id="status_png" name="status_png"
+                                            class="form-control selectpicker" title="Status Penugasan"
+                                            required>
                                             <option
                                                 {{ old('status_png', $periodeOpenned->status_png) == 'Selesai' ? 'selected' : '' }}
                                                 value="Selesai">Selesai</option>
@@ -394,7 +424,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                     </form>
@@ -406,22 +437,27 @@
 
         {{-- ======== MODAL UMUMKAN ADMINISTRASI ======== --}}
         <!-- Modal -->
-        <div class="modal fade" id="umumkanAdm" tabindex="-1" role="dialog" aria-labelledby="umumkanAdmLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="umumkanAdm" tabindex="-1" role="dialog"
+            aria-labelledby="umumkanAdmLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form id="pengumumanAdmForm" method="POST"
                         action="{{ route('umumkan.adm', $periodeOpenned->name) }}">
                         @csrf
+                        <div class="modal-header h4 text-center">
+                            <div class="modal-title w-100">Umumkan Tahap Administrasi</div>
+                        </div>
                         <div class="modal-body pb-0">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="bg-dark border-left border-success py-md-1 pb-3 px-3 myshadow mb-3">
-                                        <p class="p-3 h5 bg-success mt-3">Daftar Mahasiswa yang Menerima Pengumuman
+                                    <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
+                                        <p class="p-3 h5 bg-success mt-3">Daftar Mahasiswa yang
+                                            Menerima Pengumuman
                                             Lolos :
                                         </p>
                                         {{-- <hr style="border-color:#ffffff"> --}}
-                                        <table class="table  table-borderless">
+                                        <table
+                                            class="table table-responsive table-borderless text-nowrap">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">No</th>
@@ -431,27 +467,36 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($getAllAdmLolos as $userLolos)
-                                                    <tr>
-                                                        <th scope="row">{{ $noLolos++ }}</th>
-                                                        <td>{{ $userLolos->user->name }}</td>
-                                                        <td>{{ $userLolos->user->email }}</td>
-                                                        <td>{{ isset($userLolos->wawancara->jadwal_wwn) ? $userLolos->wawancara->jadwal_wwn->format('d M Y - H:i') : '' }}
-                                                            WIB
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                                @if ($getAllAdmLolos != null || $getAllAdmGagal != null)
+                                                    <?php $i = 1; ?>
+                                                    @foreach ($getAllAdmLolos as $userLolos)
+                                                        <tr>
+                                                            <th scope="row">{{ $i++ }}</th>
+                                                            <td>{{ $userLolos->user->name }}</td>
+                                                            <td>{{ $userLolos->user->email }}</td>
+                                                            <td>{{ isset($userLolos->wawancara->jadwal_wwn) ? $userLolos->wawancara->jadwal_wwn->format('d M Y - H:i') : '' }}
+                                                                WIB
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @else
+                                                    <div>
+                                                        Peserta Lolos / Gagal Belum Ada.
+                                                    </div>
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="bg-dark border-left border-danger  py-md-1 pb-3 px-3 myshadow mb-3">
-                                        <p class="p-3 h5 bg-danger mt-3">Daftar Mahasiswa yang Menerima Pengumuman
+                                    <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
+                                        <p class="p-3 h5 bg-danger mt-3">Daftar Mahasiswa yang Menerima
+                                            Pengumuman
                                             Gagal :
                                         </p>
                                         {{-- <hr style="border-color:#ffffff"> --}}
-                                        <table class="table  table-borderless">
+                                        <table
+                                            class="table table-responsive table-borderless text-nowrap">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">No</th>
@@ -460,9 +505,10 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <?php $i = 1; ?>
                                                 @foreach ($getAllAdmGagal as $userGagal)
                                                     <tr>
-                                                        <th scope="row">{{ $noGagal++ }}</th>
+                                                        <th scope="row">{{ $i++ }}</th>
                                                         <td>{{ $userGagal->user->name }}</td>
                                                         <td>{{ $userGagal->user->email }}</td>
                                                     </tr>
@@ -477,9 +523,110 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary mr-auto"
+                                data-dismiss="modal">Close</button>
                             <div class="text-right">
                                 <p class="m-0 p-0 small">Tandai Tahap Administrasi Telah Selesai.</p>
+                                <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Selesai & Kirim</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{-- ======== MODAL UMUMKAN ADMINISTRASI ======== --}}
+        <!-- Modal -->
+        <div class="modal fade" id="umumkanWwn" tabindex="-1" role="dialog"
+            aria-labelledby="umumkanWwnLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <form id="pengumumanWwnForm" method="POST"
+                        action="{{ route('umumkan.wwn', $periodeOpenned->name) }}">
+                        @csrf
+                        <div class="modal-body pb-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
+                                        <p class="p-3 h5 bg-success mt-3">Daftar Mahasiswa yang
+                                            Menerima Pengumuman
+                                            Lolos :
+                                        </p>
+                                        {{-- <hr style="border-color:#ffffff"> --}}
+                                        <table
+                                            class="table table-responsive table-borderless text-nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">No</th>
+                                                    <th scope="col">Nama</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Soal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $i = 1; ?>
+                                                @if ($getAllWwnLolos != null || $getAllWwnGagal != null)
+                                                    @foreach ($getAllWwnLolos as $userLolos)
+                                                        <tr>
+                                                            <th scope="row">{{ $i++ }}</th>
+                                                            <td>{{ $userLolos->administrasi->user->name }}
+                                                            </td>
+                                                            <td>{{ $userLolos->administrasi->user->email }}
+                                                            </td>
+                                                            <td>{{ isset($userLolos->penugasan->soal) ? $userLolos->penugasan->soal : '' }}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @else
+                                                    <div>
+                                                        Peserta Lolos / Gagal Belum Ada.
+                                                    </div>
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
+                                        <p class="p-3 h5 bg-danger mt-3">Daftar Mahasiswa yang Menerima
+                                            Pengumuman
+                                            Gagal :
+                                        </p>
+                                        {{-- <hr style="border-color:#ffffff"> --}}
+                                        <table
+                                            class="table table-responsive table-borderless text-nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">No</th>
+                                                    <th scope="col">Nama</th>
+                                                    <th scope="col">Email</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $i = 1; ?>
+                                                @foreach ($getAllWwnGagal as $userGagal)
+                                                    <tr>
+                                                        <th scope="row">{{ $i++ }}</th>
+                                                        <td>{{ $userGagal->administrasi->user->name }}
+                                                        </td>
+                                                        <td>{{ $userGagal->administrasi->user->email }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                {{--  --}}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary mr-auto"
+                                data-dismiss="modal">Close</button>
+                            <div class="text-right">
+                                <p class="m-0 p-0 small">Tandai Tahap Wawancara Telah Selesai.</p>
                                 <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
                             </div>
                             <button type="submit" class="btn btn-primary">Selesai & Kirim</button>

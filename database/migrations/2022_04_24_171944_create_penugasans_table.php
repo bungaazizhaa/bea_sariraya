@@ -15,6 +15,13 @@ class CreatePenugasansTable extends Migration
     {
         Schema::create('penugasans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('wawancara_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string('soal')->nullable();
+            $table->string('field_jawaban')->nullable();
+            $table->string('file_jawaban')->nullable();
+            $table->string('status_png')->nullable();
+            $table->string('catatan')->nullable();
+            $table->unique('wawancara_id');
             $table->timestamps();
         });
     }

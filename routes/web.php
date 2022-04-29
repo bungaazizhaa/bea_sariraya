@@ -24,12 +24,12 @@ use App\Http\Controllers\PeriodeController;
 
 Route::get('/', [HomeController::class, 'indexLandingPage'])->name('landing');
 
-// ================= ROUTE SEMENTARA =================
+//TODO: ================= ROUTE SEMENTARA =================
 Route::view('/awal', 'awal');
 Route::view('/regist', 'regist');
 Route::view('/masuk', 'masuk');
 
-// ================= ROUTE HOME MAHASISWA =================
+//TODO: ================= ROUTE HOME MAHASISWA =================
 Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa'])->group(function () {
     Route::get('/my-profile', [HomeController::class, 'indexMahasiswa'])->name('profil.mahasiswa');
     Route::post('update-data-saya', [UserController::class, 'updateMyUser'])->name('update.myuser'); //Edit Data User dari Profil Akun Sendiri
@@ -42,17 +42,23 @@ Route::get('/tahap-administrasi', [AdministrasiController::class, 'index'])->nam
 Route::get('/tahap-wawancara', [WawancaraController::class, 'index'])->name('tahap.wawancara')->middleware('periode.timerestricted', 'wawancara.timerestricted', 'auth');
 Route::get('/tahap-penugasan', [PenugasanController::class, 'index'])->name('tahap.penugasan')->middleware('periode.timerestricted', 'penugasan.timerestricted', 'auth');
 
-// ================= ROUTE HOME ADMIN =================
+//TODO: ================= ROUTE HOME ADMIN =================
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard', [HomeController::class, 'indexAdmin'])->name('admin');
+    //Periode
+    Route::get('/{name}/detail-periode', [PeriodeController::class, 'indexPeriodeById'])->name('periode'); //detail-periode
+    Route::post('/periode/store', [PeriodeController::class, 'store'])->name('store.periode'); //membuat-baru-periode
+    Route::post('/{name}/administrasi/umumkan', [PeriodeController::class, 'umumkanAdm'])->name('umumkan.adm'); //Set status_adm Selesai di Periode
+    Route::post('/{name}/wawancara/umumkan', [PeriodeController::class, 'umumkanWwn'])->name('umumkan.wwn'); //Set status_adm Selesai di Periode
+    //Administrasi
+    Route::get('/{name}/nilai-administrasi', [AdministrasiController::class, 'nilaiAdm'])->name('nilai.adm'); //halaman nilai adm
+    Route::post('/update-nilai-administrasi/{id}', [AdministrasiController::class, 'updatenilaiAdm'])->name('updatenilai.adm'); //menyimpan penilaian adm
+    //Wawancara
+    Route::get('/{name}/nilai-wawancara', [WawancaraController::class, 'nilaiWwn'])->name('nilai.wwn'); //halaman nilai wwn
+    Route::post('/update-nilai-wawancara/{id}', [WawancaraController::class, 'updatenilaiWwn'])->name('updatenilai.wwn'); //menyimpan penilaian wwn
+    //Penugasan
+    Route::post('/{name}/update-periode', [PeriodeController::class, 'update'])->name('update.periode');
 
-    Route::get('/nilai-administrasi/{name}', [AdministrasiController::class, 'nilaiAdm'])->name('nilai.adm');
-    Route::post('/update-nilai-administrasi/{id}', [AdministrasiController::class, 'updatenilaiAdm'])->name('updatenilai.adm');
-    Route::post('/periode/store', [PeriodeController::class, 'store'])->name('store.periode');
-    Route::post('/update-periode/{name}', [PeriodeController::class, 'update'])->name('update.periode');
-
-    Route::post('/periode/umumkan/{name}', [PeriodeController::class, 'umumkanAdm'])->name('umumkan.adm');
-    Route::get('/periode/{name}', [PeriodeController::class, 'indexPeriodeById'])->name('periode');
     Route::get('/profil-admin', [HomeController::class, 'indexProfilAdmin'])->name('profil.admin');
 });
 

@@ -15,15 +15,15 @@ class CreateWawancarasTable extends Migration
     {
         Schema::create('wawancaras', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            // $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('administrasi_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->unique('administrasi_id');
             // $table->unsignedInteger('periode_id');
             // $table->foreign('periode_id')->references('id_periode')->on('periodes')->onUpdate('cascade')->onDelete('cascade');
-            $table->unique('administrasi_id');
             $table->dateTime('jadwal_wwn')->nullable(); //Seharusnya ga Nullable
             $table->enum('status_wwn', ['lolos', 'gagal'])->nullable(); //Seharusnya ga Nullable
             $table->string('catatan')->nullable(); //Seharusnya ga Nullable
+            $table->timestamps();
         });
     }
 
