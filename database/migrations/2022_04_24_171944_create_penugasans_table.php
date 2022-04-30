@@ -17,7 +17,7 @@ class CreatePenugasansTable extends Migration
             $table->id();
             $table->foreignId('wawancara_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('soal')->nullable();
-            $table->string('field_jawaban')->nullable();
+            $table->text('field_jawaban')->nullable();
             $table->string('file_jawaban')->nullable();
             $table->string('status_png')->nullable();
             $table->string('catatan')->nullable();

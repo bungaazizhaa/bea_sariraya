@@ -30,6 +30,6 @@ class Periode extends Model
 
     public function Administrasi()
     {
-        return $this->belongsTo(Administrasi::class);
+        return $this->belongsTo(Administrasi::class, 'periode_id');
     }
 }

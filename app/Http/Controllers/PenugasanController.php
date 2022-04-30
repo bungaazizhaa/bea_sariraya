@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Periode;
-use App\Models\Administrasi;
 use App\Models\Penugasan;
+use App\Models\Administrasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -81,35 +81,57 @@ class PenugasanController extends Controller
      */
     public function update(Request $request)
     {
-        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-
-        $validator = Validator::make($request->all(), [
-            // 'tempat_lahir' => 'string|max:255',
-            // 'tanggal_lahir' => 'date|date_format:Y-m-d',
-            // 'semester' => 'numeric|between:6,14',
-            // 'ipk' => 'numeric|between:0,4.00',
-            // 'keahlian' => 'string|max:255',
-        ]);
-
-        if ($validator->fails()) {
-            Alert::error('Gagal melakukan Update.', 'Cek kesalahan Pengisian.');
-        }
-
-        $validator->validated();
 
         $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
         // dd($getAdministrasiUser);
         $getPenugasanUser = $getAdministrasiUser->wawancara->penugasan;
         $id = $getPenugasanUser->id;
-        $getPenugasanUser = Penugasan::find($id);
-        $getPenugasanUser->field_jawaban = $request->field_jawaban;
-        $getPenugasanUser->file_jawaban = $request->file_jawaban;
-        $getPenugasanUser->touch();
-        $getPenugasanUser->save();
-        Alert::success('Data Berhasil Di Update.', 'Data baru telah tersimpan.');
+        if (isset($request->field_jawaban)) {
+            $validator = Validator::make($request->all(), [
+                'field_jawaban' => 'string',
+            ]);
+        }
 
-        return redirect(route('tahap.wawancara'));
+        if (isset($request->file_jawaban)) {
+            $validator = Validator::make($request->all(), [
+                'file_jawaban' => 'mimes:jpeg,png,jpg,pdf|max:5120'
+            ]);
+        }
+
+        if (isset($request->field_jawaban) || isset($request->file_jawaban) && $validator->fails()) {
+            Alert::error('Gagal melakukan Update.', 'Cek kesalahan Pengisian.');
+        }
+        if (isset($request->field_jawaban) || isset($request->file_jawaban)) {
+            $validator->validated();
+        }
+
+        if (isset($request->file_jawaban)) {
+            $path = $getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '-' . str_replace(' ', '-', $getAdministrasiUser->user->name) . '/';
+            $file = $request->file('file_jawaban');
+            $new_image_name = 'FileJawaban-' . str_replace(' ', '-', $getAdministrasiUser->user->name) .  date('-Ymd-H.i.s.') . $file->extension();
+            $upload = $file->move(public_path($path), $new_image_name);
+
+            if ($upload) {
+                $userInfo =  $getPenugasanUser->file_jawaban;
+                if ($userInfo != '') {
+                    unlink($path . $userInfo);
+                }
+
+                $getPenugasanUser = Penugasan::find($id)->update(['file_jawaban' => $new_image_name]);
+                // Alert::success('Foto Berhasil Diupload.', 'Anda dapat melanjutkan ke Proses Penerimaan Beasiswa.');
+                // return redirect(route('tahap.administrasi'));
+            } else {
+                Alert::error('Gagal Upload!', 'Data Penugasan Gagal Disimpan.');
+                return back();
+            }
+        }
+        $getPenugasanUser = Penugasan::find($id)->update(['field_jawaban' => $request->field_jawaban]);
+
+        if ($getPenugasanUser) {
+            Alert::success('Berhasil!', 'Data Penugasan Telah Disimpan.');
+        }
+        return back();
     }
 
     /**
@@ -118,8 +140,16 @@ class PenugasanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function filejawabanDestroy($id)
     {
-        //
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
+        $getPenugasanUser = $getAdministrasiUser->wawancara->penugasan;
+        $path = $getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '-' . str_replace(' ', '-', $getAdministrasiUser->user->name) . '/';
+        unlink($path . $getPenugasanUser->file_jawaban);
+        $getPenugasanUser->file_jawaban = null;
+        $getPenugasanUser->save();
+        Alert::success('Data Terhapus!', 'Data Penugasan Telah Diperbarui.');
+        return back();
     }
 }

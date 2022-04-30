@@ -30,6 +30,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <noscript>
         <h2 class="text-center">JavaScript is disabled!
             Please enable JavaScript in your web browser!</h2>
@@ -41,8 +42,8 @@
 
         </style>
     </noscript>
-    @include('sweetalert::alert')
-    <div id="main-content" class="container ">
+
+    <div id="main-content" class="container-fluid">
         <h1 class="text-center mt-5">Tahap Penugasan</h1>
         @if (isset($getPenugasanUser))
             <p class="text-center mb-1">Data Anda disimpan pada : <span
@@ -62,8 +63,8 @@
             </div>
 
             <script>
-                function submitAdm() {
-                    $("#admForm").submit();
+                function submitWwn() {
+                    $("#wwnForm").submit();
                 }
                 countdown.setLabels(
                     ' Milidetik| Detik| Menit| Jam| Hari| Minggu| Bulan| Tahun| Dekade| Abad| Ribu',
@@ -71,13 +72,13 @@
                     ', ',
                     ', ',
                     'Sekarang!');
-                var ta_adm = '{{ $getPeriodeAktif->ta_png }}';
-                var then = moment(ta_adm, 'YYYY-MM-DD').add(1, 'days').locale('id');
+                var ta_wwn = '{{ $getPeriodeAktif->ta_png }}';
+                var then = moment(ta_wwn, 'YYYY-MM-DD').add(1, 'days').locale('id');
                 (function timerLoop() {
                     $("#countdownAdm").text(countdown(then).toString());
                     if (countdown(then).toString() === 'Sekarang!') {
                         cancelAnimationFrame(timerLoop);
-                        setTimeout(submitAdm, 990)
+                        setTimeout(submitWwn, 990)
                     } else {
                         requestAnimationFrame(timerLoop);
                     }
@@ -192,45 +193,56 @@
             {{-- ============== JAWABAN TUGAS ============== --}}
             <div class="col-md-8 mb-5 px-0">
                 <div class="card">
-                    <form id="pngForm" method="POST" action="{{ route('update.penugasan') }}">
-                        @csrf
-                        <div class="card-header h4">
-                            Tugas Anda!
-                        </div>
-                        <div class="card-body">
 
+                    <div class="card-header h4">
+                        Tugas Anda!
+                    </div>
+                    <div class="card-body">
+                        <form id="pngForm" method="POST" action="{{ route('update.penugasan') }}"
+                            enctype="multipart/form-data">
+                            @csrf
                             <div class="row mb-3">
-                                <strong for="soal" class="col-md-4 my-2 text-md-right">Soal
-                                    :</strong>
+                                <label for="field_jawaban" class="col-12 col-form-label">{{ __('Soal :') }}</label>
 
-                                <div class="col-md-6 my-2">
+                                <div class="col-12">
                                     <strong>{{ $getPenugasanUser->soal }}</strong>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label for="field_jawaban"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Kolom Jawaban') }}</label>
+                                    class="col-12 col-form-label">{{ __('Kolom Jawaban :') }}</label>
 
-                                <div class="col-md-6">
-                                    <textarea id="field_jawaban" type="text" disabled
+                                <div class="col-12">
+                                    <textarea id="field_jawaban" type="text" disabled onkeyup="textAreaAdjust(this)" style="overflow:hidden; font-size:15pt"
                                         class="form-control editable @error('field_jawaban') is-invalid @enderror"
                                         name="field_jawaban" autocomplete="field_jawaban"
                                         placeholder="Isi disini jika Jawaban Tugas berupa Uraian Kata.">{{ old('field_jawaban', $getAdministrasiUser->wawancara->penugasan->field_jawaban) }}</textarea>
 
                                     @error('field_jawaban')
-                                        <span class="invalid-feedback" role="alert">
+                                        <div class="text-danger small" role="alert">
                                             <strong>{{ $message }}</strong>
-                                        </span>
+                                        </div>
                                     @enderror
                                 </div>
+
+                                <script>
+                                    function textAreaAdjust(element) {
+                                        element.style.height = "1px";
+                                        element.style.height = (25 + element.scrollHeight) + "px";
+                                    }
+                                    $(document).ready(function() {
+                                        var element = document.getElementById("field_jawaban");
+                                        textAreaAdjust(element);
+                                    });
+                                </script>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="file_jawaban" class="col-md-4 col-form-label text-md-right">Unggah
-                                    File</label>
-                                <div class="col-md-6">
-                                    <div class="input-group mb-3">
+                                <label for="file_jawaban" class="col-12 col-form-label">Unggah
+                                    File :</label>
+                                <div class="col-12">
+                                    <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input editable" disabled
                                                 id="file_jawaban" name="file_jawaban"
@@ -238,44 +250,60 @@
                                             <label class="custom-file-label" for="file_jawaban">Pilih File</label>
                                         </div>
                                     </div>
+                                    @error('file_jawaban')
+                                        <div class="text-danger small" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @enderror
                                 </div>
-                                <script>
-                                    $('#file_jawaban').on('change', function() {
-                                        //get the file name
-                                        var fileName = $(this).val();
-                                        //replace the "Choose a file" label
-                                        $(this).next('.custom-file-label').html(fileName);
-                                    })
-                                </script>
-                                @error('file_jawaban')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+
+                        </form>
+                        @if (isset($getPenugasanUser->file_jawaban))
+                            <label for="file_jawaban" class="col-12 col-form-label">File Sebelumnya :</label>
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <a class="btn btn-primary"
+                                        href={{ asset($getPeriodeAktif->name .'/' .$getAdministrasiUser->user->id .'-' .str_replace(' ', '-', $getAdministrasiUser->user->name) .'/' .$getPenugasanUser->file_jawaban) }}>View</a>
+                                    <form id="deleteFj" method="post" class="ml-3"
+                                        action="{{ route('filejawaban.destroy', $getPenugasanUser->id) }}">
+                                        @csrf
+                                        <button form="deleteFj" type="submit" class="btn btn-outline-danger">Delete
+                                            File</button>
+                                    </form>
+                                </div>
                             </div>
-
-                        </div>
+                        @endif
+                        <script type="text/javascript">
+                            $('.custom-file input').change(function(e) {
+                                var files = [];
+                                for (var i = 0; i < $(this)[0].files.length; i++) {
+                                    files.push($(this)[0].files[i].name);
+                                }
+                                $(this).next('.custom-file-label').html(files.join(', '));
+                            });
+                        </script>
+                    </div>
                 </div>
-
-                @if (isset($getPenugasanUser))
-                    <div class="fixed-bottom text-center">
-                        <button type="button" id="tombolEdit" class="btn btn-xl m-3 btn-secondary"
-                            onclick="izinkanEdit();">Ubah Jawaban Tugas</button>
-                        <div id="tombolSimpan" style="display: none;">
-                            <button type="submit" class="btn btn-xl m-3 btn-primary">
-                                Simpan
-                                Perubahan
-                            </button>
-                        </div>
-                    </div>
-                @else
-                    <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                @endif
-                </form>
             </div>
+
+            @if (isset($getPenugasanUser))
+                <div class="fixed-bottom text-center">
+                    <button type="button" id="tombolEdit" class="btn btn-xl m-3 btn-secondary"
+                        onclick="izinkanEdit();">Ubah Jawaban Tugas</button>
+                    <div id="tombolSimpan" style="display: none;">
+                        <button form="pngForm" type="submit" class="btn btn-xl m-3 btn-primary">
+                            Simpan
+                            Perubahan
+                        </button>
+                    </div>
+                </div>
+            @else
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            @endif
         </div>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
@@ -315,7 +343,6 @@
             var $tombolEdit = document.getElementById("tombolEdit");
             document.querySelectorAll('.editable').forEach(b => b.toggleAttribute('disabled'));
             $tombolSimpan.css("display", $tombolSimpan.css("display") === 'none' ? 'inline' : 'none');
-            document.getElementById("field_jawaban").focus();
             $tombolEdit.innerHTML = ($tombolEdit.innerHTML ===
                 'Ubah Jawaban Tugas' ? 'Batalkan' : 'Ubah Jawaban Tugas');
             if ($tombolEdit.innerHTML === 'Ubah Jawaban Tugas') {

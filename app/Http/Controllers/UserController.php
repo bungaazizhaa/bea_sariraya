@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Univ;
 use App\Models\User;
+use App\Models\Periode;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use function PHPUnit\Framework\isNull;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -92,6 +94,7 @@ class UserController extends Controller
 
     public function uploadFoto(Request $request)
     {
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
         $validator = Validator::make($request->all(), ['Foto' => 'required|mimes:jpeg,png,jpg|max:1024']);
 
         if ($validator->fails()) {
@@ -105,15 +108,17 @@ class UserController extends Controller
             'Foto' => 'required|mimes:jpeg,png,jpg|max:1024',
         ]);
 
-        $path = 'pictures/';
+        $path = $getPeriodeAktif->name . '/' . $request->user()->id . '-' . str_replace(' ', '-', $request->user()->name) . '/';
+        $path2 = 'pictures' . '/';
         $file = $request->file('Foto');
-        $new_image_name = 'UIMG' . date('-Y-m-d-') . uniqid() . '-' . $request->user()->name . '.jpg';
+        $new_image_name = 'PasFoto-' . str_replace(' ', '-', $request->user()->name) .  date('-Ymd-H.i.s.') . $file->extension();
         $upload = $file->move(public_path($path), $new_image_name);
-
+        File::copy(public_path($path) . $new_image_name, public_path($path2) . $new_image_name);
         if ($upload) {
             $userInfo =  $request->user()->picture;
             if ($userInfo != '') {
                 unlink($path . $userInfo);
+                unlink($path2 . $userInfo);
             }
 
             User::where('id', $request->user()->id)->update(['picture' => $new_image_name]);

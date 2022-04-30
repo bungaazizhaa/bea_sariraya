@@ -19,10 +19,6 @@ class Wawancara extends Model
         'id',
     ];
 
-    public function Periode()
-    {
-        return $this->hasMany(Periode::class);
-    }
 
     public function Administrasi()
     {

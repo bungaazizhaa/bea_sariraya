@@ -97,7 +97,7 @@ class PeriodeController extends Controller
             'status_png' => null,
             'status' => 'nonaktif',
         ]);
-
+        mkdir($request['name']);
         Alert::success('Berhasil membuat Periode Baru!', 'Data Periode telah dibuat.');
         return redirect(route('periode', $request['name']));
     }
@@ -198,6 +198,7 @@ class PeriodeController extends Controller
             }
             $validator->validated();
             $periode->name = $request->name;
+            rename($name, $request->name);
         }
 
         $periode->tp_adm = $request->tp_adm;

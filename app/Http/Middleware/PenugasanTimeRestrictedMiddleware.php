@@ -28,8 +28,8 @@ class PenugasanTimeRestrictedMiddleware
         isset($getAdministrasiUser->wawancara->status_wwn) ? $statusWwnUser = $getAdministrasiUser->wawancara->status_wwn : $statusWwnUser = ''; //TODO: kondisi user yang diambil dari database
         // $statusAdmUser = "lolos"; //kondisi user yang diambil dari database
         // $statusWwnUser = "lolos"; //kondisi user yang diambil dari database
-        if ($getPeriodeAktif->status_png == null && $statusAdmUser == 'lolos' && $statusWwnUser == 'lolos') {
-            if ($getTanggalSekarang < $getPeriodeAktif->tm_png->format('Y-m-d')) { //Sesi Belum Dibuka
+        if (isset(Auth::user()->picture) && isset($getAdministrasiUser) && $getPeriodeAktif->status_png == null && $statusAdmUser == 'lolos' && $statusWwnUser == 'lolos') {
+            if (isset($getAdministrasiUser) && $getTanggalSekarang < $getPeriodeAktif->tm_png->format('Y-m-d')) { //Sesi Belum Dibuka
                 $info = 'Tahap Penugasan Belum Dibuka.';
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif')));
             } elseif ($getTanggalSekarang > $getPeriodeAktif->ta_png->format('Y-m-d') && $statusAdmUser == 'lolos' && $statusWwnUser == 'lolos') { //Sesi Sudah Ditutup
@@ -37,14 +37,14 @@ class PenugasanTimeRestrictedMiddleware
                 $tglpengumuman = $getPeriodeAktif->tp_png->format('Y-m-d');
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif', 'tglpengumuman')));
             }
-        } elseif ($getPeriodeAktif->status_png == 'Selesai' && $getPeriodeAktif->status == 'aktif' && $statusAdmUser == 'lolos' && $statusWwnUser == 'lolos') { //Sesi Sudah Selesai dan Diumumkan
+        } elseif (isset($getAdministrasiUser) && $getPeriodeAktif->status_png == 'Selesai' && $getPeriodeAktif->status == 'aktif' && $statusAdmUser == 'lolos' && $statusWwnUser == 'lolos') { //Sesi Sudah Selesai dan Diumumkan
             $statusPngUser = 'lolos';
-            if ($statusPngUser == 'lolos') {
+            if (isset(Auth::user()->picture) && $statusPngUser == 'lolos') {
                 return response(view('view-mahasiswa.penugasan.p-pengumumanlolos', compact('getPeriodeAktif', 'statusPngUser')));
             } else {
                 return response(view('view-mahasiswa.penugasan.p-pengumumangagal', compact('getPeriodeAktif', 'statusPngUser')));
             }
-        } elseif ($statusAdmUser == 'lolos' && $statusWwnUser != 'lolos') {
+        } elseif (isset(Auth::user()->picture) && isset($getAdministrasiUser) && $statusAdmUser == 'lolos' && $statusWwnUser != 'lolos') {
             return response(view('view-mahasiswa.wawancara.w-pengumumangagal', compact('getPeriodeAktif')));
         } else {
             return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));

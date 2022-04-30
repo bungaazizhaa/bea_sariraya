@@ -36,6 +36,7 @@ Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa'])->group(f
     Route::post('uploadfoto', [UserController::class, 'uploadFoto'])->name('upload.foto'); //Edit Foto User dari Profil Akun Sendiri
     Route::post('update-administrasi', [AdministrasiController::class, 'update'])->name('update.administrasi');
     Route::post('update-penugasan', [PenugasanController::class, 'update'])->name('update.penugasan');
+    Route::post('/delete-filejawaban/{id}', [PenugasanController::class, 'filejawabanDestroy'])->name('filejawaban.destroy');
     // Route::get('/my-administrasi', [AdministrasiController::class, 'detailAdm'])->name('detail.adm');
 });
 
@@ -47,8 +48,9 @@ Route::get('/tahap-penugasan', [PenugasanController::class, 'index'])->name('tah
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard', [HomeController::class, 'indexAdmin'])->name('admin');
     //Periode
-    Route::get('/{name}/detail-periode', [PeriodeController::class, 'indexPeriodeById'])->name('periode'); //detail-periode
     Route::post('/periode/store', [PeriodeController::class, 'store'])->name('store.periode'); //membuat-baru-periode
+    Route::get('/{name}/detail-periode', [PeriodeController::class, 'indexPeriodeById'])->name('periode'); //detail-periode
+    Route::post('/{name}/update-periode', [PeriodeController::class, 'update'])->name('update.periode');
     Route::post('/{name}/administrasi/umumkan', [PeriodeController::class, 'umumkanAdm'])->name('umumkan.adm'); //Set status_adm Selesai di Periode
     Route::post('/{name}/wawancara/umumkan', [PeriodeController::class, 'umumkanWwn'])->name('umumkan.wwn'); //Set status_adm Selesai di Periode
     //Administrasi
@@ -58,7 +60,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/{name}/nilai-wawancara', [WawancaraController::class, 'nilaiWwn'])->name('nilai.wwn'); //halaman nilai wwn
     Route::post('/update-nilai-wawancara/{id}', [WawancaraController::class, 'updatenilaiWwn'])->name('updatenilai.wwn'); //menyimpan penilaian wwn
     //Penugasan
-    Route::post('/{name}/update-periode', [PeriodeController::class, 'update'])->name('update.periode');
 
     Route::get('/profil-admin', [HomeController::class, 'indexProfilAdmin'])->name('profil.admin');
 });
