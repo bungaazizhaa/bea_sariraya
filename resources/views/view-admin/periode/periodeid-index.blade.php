@@ -11,8 +11,8 @@
         <h1 class="h4">Informasi</h1>
         <div class="row">
             <div class="col mb-3">
-                <div onclick="location.href='{{ route('periode', $periodeOpenned->id) }}'"
-                    class="{{ $periodeOpenned->status == 'aktif' ? 'bg-success' : 'bg-secondary' }} rounded myshadow d-flex">
+                <div
+                    class="{{ $periodeOpenned->status == 'aktif' ? 'bg-success' : 'bg-secondary' }} rounded myshadow d-flex h-100">
                     <p class="m-3 h5">
                         Status
                         : {{ ucfirst($periodeOpenned->status) }}
@@ -21,9 +21,33 @@
             </div>
             <div class="ml-2 mb-3 mr-2">
                 <button type="button" data-toggle="modal" data-target="#editPeriode"
-                    class="rounded myshadow d-flex justify-content-center align-items-center btn btn-sm btn-primary my-0 p-3 tombol"><i
-                        class="fas fa-edit"></i>&nbsp;Ubah
+                    class="rounded myshadow d-flex justify-content-center align-items-center btn-warning my-0 p-3"><i
+                        class="fas fa-edit"></i>&nbsp;Atur Periode
                 </button>
+            </div>
+        </div>
+        {{-- Input Group WA --}}
+        <div class="row">
+            <div class="col-12 mb-3">
+                <form id="groupwaForm" method="POST" action="{{ route('groupwaupdate.periode', $periodeOpenned->name) }}">
+                    @csrf
+                    <div
+                        class="rounded myshadow {{ $periodeOpenned->status == 'aktif' ? 'bg-success' : 'bg-secondary' }} h-100">
+                        <div class="row p-3 p-md-2">
+                            <div class="col">
+                                <p class="h5 pl-md-2 pt-1">Grup WhatsApp :</p>
+                            </div>
+                            <div class="col-md-8">
+                                <input autocomplete="off" type="text" id="group_wa" name="group_wa" spellcheck="false"
+                                    class="form-control my-2 my-md-0" value="{{ $periodeOpenned->group_wa }}">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="rounded myshadow btn d-flex ml-auto btn-dark">Tetapkan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="row">
@@ -170,6 +194,7 @@
                 </div>
             </div>
         </div>
+
 
 
         {{-- ======== MODAL EDIT PERIODE ======== --}}

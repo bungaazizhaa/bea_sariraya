@@ -160,6 +160,16 @@ class PeriodeController extends Controller
         // 
     }
 
+    public function groupwaUpdate(Request $request, $name)
+    {
+        $periodeSelected = Periode::where('name', '=', $name)->first();
+        $periodeSelected->group_wa = $request->group_wa;
+        $periodeSelected->save();
+        Alert::success('Group WhatsApp ' . ucfirst($periodeSelected->name) . ' sudah Diperbarui.', 'Selanjutnya adalah membuat Group WhatsApp.');
+        return redirect(route('periode', $name));
+    }
+
+
     /**
      * Update the specified resource in storage.
      *

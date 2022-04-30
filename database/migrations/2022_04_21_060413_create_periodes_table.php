@@ -38,6 +38,7 @@ class CreatePeriodesTable extends Migration
             $table->dateTime('ts_png')->nullable();
 
             $table->enum('status', ['aktif', 'nonaktif'])->default('nonaktif');
+            $table->string('group_wa')->nullable();
             $table->timestamps();
         });
     }

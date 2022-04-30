@@ -25,17 +25,17 @@
 </script>
 
 <li class="nav-item mb-1">
-    <a href="{{ route('admin') }}"
-        class="nav-link {{ url()->full() == route('admin') ? 'active' : null }}">
+    <a href="{{ route('admin') }}" class="nav-link {{ url()->full() == route('admin') ? 'active' : null }}">
         <i class="nav-icon fas fa-home"></i>
         <p>Home</p>
     </a>
 </li>
 @if (auth()->user()->role === 'admin')
     <li class="nav-item mb-1">
-        <a href="{{ route('admin') }}" class="nav-link">
+        <a href="{{ route('data.pengguna') }}"
+            class="nav-link {{ url()->full() == route('data.pengguna') ? 'active' : null }}">
             <i class="nav-icon fas fa-users"></i>
-            <p class="text-nowrap">Data User</p>
+            <p class="text-nowrap">Data Pengguna</p>
         </a>
     </li>
     <li

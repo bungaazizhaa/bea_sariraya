@@ -115,3 +115,7 @@
 #tambahPeriode .bg-secondary {
     background-color: #3f484e !important;
 }
+
+.text-success {
+    color: #0fd6a4 !important;
+}

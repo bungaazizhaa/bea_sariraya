@@ -58,6 +58,16 @@ class UserController extends Controller
         //
     }
 
+    public function showDataPengguna()
+    {
+        $getAllUniv = Univ::all();
+        $getAllPeriode = Periode::all();
+        $getAllUser = User::filter(request(['search']))->paginate(10)->withQueryString();
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        return view('view-admin.user.u-index', compact('getPeriodeAktif', 'getAllUniv', 'getAllPeriode', 'getAllUser'));
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -89,7 +99,20 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $path = 'pictures/';
+        $user = User::find($id);
+        $userInfo =  $user->picture;
+        if ($userInfo != '') {
+            unlink($path . $userInfo);
+        }
+        $user->delete();
+        if (!$user) {
+            Alert::danger('Gagal', 'Gagal menghapus user.');
+            return back();
+        } else {
+            Alert::success('Berhasil', 'Anda Berhasil Menghapus ' . $user->name . '.');
+            return redirect(route('data.pengguna'));
+        }
     }
 
     public function uploadFoto(Request $request)
@@ -108,7 +131,7 @@ class UserController extends Controller
             'Foto' => 'required|mimes:jpeg,png,jpg|max:1024',
         ]);
 
-        $path = $getPeriodeAktif->name . '/' . $request->user()->id . '-' . str_replace(' ', '-', $request->user()->name) . '/';
+        $path = $getPeriodeAktif->name . '/' . $request->user()->id . '/';
         $path2 = 'pictures' . '/';
         $file = $request->file('Foto');
         $new_image_name = '_PasFoto-' . str_replace(' ', '-', $request->user()->name) .  date('-Ymd-H.i.s.') . $file->extension();
