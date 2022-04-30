@@ -48,50 +48,41 @@
                                 <div class="col-md-3 text-center text-md-left px-3">
                                     <div>
                                         <img src="/pictures/{{ $wwnUser->administrasi->user->picture == '' ? 'noimg.png' : $wwnUser->administrasi->user->picture }}"
-                                            class="rounded" alt="User Image" height="200px"
-                                            width="150px">
+                                            class="rounded" alt="User Image" height="200px" width="150px">
                                     </div>
                                 </div>
                                 <div class="col-md-9">
                                     <div class="row">
-                                        <label for="nama"
-                                            class="col-md-4 col-form-label text-md-right h5"
+                                        <label for="nama" class="col-md-4 col-form-label text-md-right h5"
                                             style="font-size:16px">
                                             Nama</label>
 
                                         <div class="col-md-8 mb-3">
-                                            <input id="nama" type="text" disabled class="form-control"
-                                                name="nama"
+                                            <input id="nama" type="text" disabled class="form-control" name="nama"
                                                 value="{{ $wwnUser->administrasi->user->name }}">
                                         </div>
-                                        <label for="univ"
-                                            class="col-md-4 col-form-label text-md-right h5"
+                                        <label for="univ" class="col-md-4 col-form-label text-md-right h5"
                                             style="font-size:16px">
                                             Perguruan Tinggi</label>
 
                                         <div class="col-md-8 mb-3">
-                                            <input id="univ" type="text" disabled class="form-control"
-                                                name="univ"
+                                            <input id="univ" type="text" disabled class="form-control" name="univ"
                                                 value="{{ $wwnUser->administrasi->user->univ->nama_universitas }}">
                                         </div>
-                                        <label for="prodi"
-                                            class="col-md-4 col-form-label text-md-right h5"
+                                        <label for="prodi" class="col-md-4 col-form-label text-md-right h5"
                                             style="font-size:16px">
                                             Program Studi</label>
 
                                         <div class="col-md-8 mb-3">
-                                            <input id="prodi" type="text" disabled
-                                                class="form-control" name="prodi"
+                                            <input id="prodi" type="text" disabled class="form-control" name="prodi"
                                                 value="{{ $wwnUser->administrasi->user->prodi->nama_prodi }}">
                                         </div>
-                                        <label for="prodi"
-                                            class="col-md-4 col-form-label text-md-right h5"
+                                        <label for="prodi" class="col-md-4 col-form-label text-md-right h5"
                                             style="font-size:16px">
                                             Email</label>
 
                                         <div class="col-md-8">
-                                            <input id="prodi" type="text" disabled
-                                                class="form-control" name="prodi"
+                                            <input id="prodi" type="text" disabled class="form-control" name="prodi"
                                                 value="{{ $wwnUser->administrasi->user->email }}">
                                         </div>
                                     </div>
@@ -114,20 +105,18 @@
                                         class="col-md-4 col-form-label text-md-right">{{ __('No Pendaftaran') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="no_pendaftaran" type="text" disabled
-                                            class="form-control" name="no_pendaftaran"
-                                            value="{{ $wwnUser->administrasi->no_pendaftaran }}">
+                                        <input id="no_pendaftaran" type="text" disabled class="form-control"
+                                            name="no_pendaftaran" value="{{ $wwnUser->administrasi->no_pendaftaran }}">
                                     </div>
                                 </div>
                             @endif
 
                             <div class="row mb-3">
-                                <label for="nim"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
+                                <label for="nim" class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="nim" type="text" disabled class="form-control"
-                                        name="nim" value="{{ $wwnUser->administrasi->user->nim }}">
+                                    <input id="nim" type="text" disabled class="form-control" name="nim"
+                                        value="{{ $wwnUser->administrasi->user->nim }}">
                                 </div>
                             </div>
 
@@ -136,8 +125,8 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Tempat Lahir') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="tempat_lahir" type="text" class="form-control"
-                                        name="tempat_lahir" spellcheck="false" disabled
+                                    <input id="tempat_lahir" type="text" class="form-control" name="tempat_lahir"
+                                        spellcheck="false" disabled
                                         value="{{ isset($wwnUser) ? $wwnUser->administrasi->tempat_lahir : '' }}">
                                 </div>
                             </div>
@@ -147,9 +136,9 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Lahir') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="tanggal_lahir" type="text" class="form-control"
-                                        name="tanggal_lahir" spellcheck="false" disabled
-                                        value="{{ $wwnUser->administrasi->tanggal_lahir->isoFormat('D MMMM YYYY') }}">
+                                    <input id="tanggal_lahir" type="text" class="form-control" name="tanggal_lahir"
+                                        spellcheck="false" disabled
+                                        value="{{ $wwnUser->administrasi->tanggal_lahir->format('d F Y') }}">
                                 </div>
                             </div>
 
@@ -158,21 +147,18 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Semester') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="semester" type="text" spellcheck="false"
-                                        class="form-control" name="semester" disabled
-                                        value="{{ $wwnUser->administrasi->semester }}">
+                                    <input id="semester" type="text" spellcheck="false" class="form-control"
+                                        name="semester" disabled value="{{ $wwnUser->administrasi->semester }}">
 
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="ipk"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('IPK') }}</label>
+                                <label for="ipk" class="col-md-4 col-form-label text-md-right">{{ __('IPK') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="ipk" type="text" class="form-control" name="ipk"
-                                        spellcheck="false" disabled
-                                        value="{{ $wwnUser->administrasi->ipk }}">
+                                    <input id="ipk" type="text" class="form-control" name="ipk" spellcheck="false"
+                                        disabled value="{{ $wwnUser->administrasi->ipk }}">
                                 </div>
                             </div>
 
@@ -181,9 +167,8 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Keahlian') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="keahlian" type="text" spellcheck="false"
-                                        class="form-control" name="keahlian" disabled
-                                        value="{{ $wwnUser->administrasi->keahlian }}">
+                                    <input id="keahlian" type="text" spellcheck="false" class="form-control"
+                                        name="keahlian" disabled value="{{ $wwnUser->administrasi->keahlian }}">
 
                                 </div>
                             </div>
@@ -232,13 +217,11 @@
                             <div class="card-body">
 
                                 <div class="row mb-3">
-                                    <label for="name"
-                                        class="col-md-4 col-form-label text-md-right">Status
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">Status
                                         Wawancara</label>
                                     <div class="col-md-8">
-                                        <select id="status_wwn" name="status_wwn"
-                                            onchange="lolos(this);" class="form-control selectpicker"
-                                            title="Status Wawancara">
+                                        <select id="status_wwn" name="status_wwn" onchange="lolos(this);"
+                                            class="form-control selectpicker" title="Status Wawancara">
                                             <option class="bg-success h4 p-3"
                                                 style="height: 60px!important; text-align:center;"
                                                 {{ old('status_wwn', $wwnUser->status_wwn) == 'lolos' ? 'selected' : '' }}
@@ -258,14 +241,13 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="name"
-                                        class="col-md-4 col-form-label text-md-right">Jadwal
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">Jadwal
                                         Wawancara</label>
                                     <div id="tombolKalender" class="col-md-8">
                                         <input autocomplete="off" id="jadwal_wwn" type="jadwal_wwn"
-                                            class="form-control @error('jadwal_wwn') is-invalid @enderror"
-                                            name="jadwal_wwn" disabled
-                                            value="{{ old('jadwal_wwn',isset($wwnUser->jadwal_wwn) ? $wwnUser->jadwal_wwn->isoFormat('dddd, d MMMM YYYY HH:mm \WIB') : '') }}">
+                                            class="form-control @error('jadwal_wwn') is-invalid @enderror" name="jadwal_wwn"
+                                            disabled
+                                            value="{{ old('jadwal_wwn', isset($wwnUser->jadwal_wwn) ? $wwnUser->jadwal_wwn->format('D, d F Y H:i') . ' WIB' : '') }}">
                                         <span>
                                             <div class="p">(
                                                 {{ $wwnUser->jadwal_wwn->diffForHumans() }} )</div>
@@ -276,19 +258,17 @@
                                     <label class="col-md-4 col-form-label text-md-right">Catatan
                                         Administrasi Sebelumnya</label>
                                     <div class="col-md-8">
-                                        <textarea class="form-control">{{ old('catatan', $wwnUser->administrasi->catatan) }}</textarea>
+                                        <textarea class="form-control" disabled>{{ old('catatan', $wwnUser->administrasi->catatan) }}</textarea>
                                     </div>
                                 </div>
                                 <div id="kolomsoal"
                                     style="display: {{ old('soal', $wwnUser->status_wwn) === 'lolos' ? 'block' : 'none' }};">
                                     <div class="row mb-3">
-                                        <label for="name"
-                                            class="col-md-4 col-form-label text-md-right">Soal
+                                        <label for="name" class="col-md-4 col-form-label text-md-right">Soal
                                             Penugasan</label>
                                         <div class="col-md-8">
                                             <input autocomplete="off" id="soal" type="soal"
-                                                class="form-control @error('soal') is-invalid @enderror"
-                                                name="soal"
+                                                class="form-control @error('soal') is-invalid @enderror" name="soal"
                                                 value="{{ old('soal', isset($wwnUser->penugasan->soal) ? $wwnUser->penugasan->soal : '') }}">
 
                                             @error('soal')
@@ -300,8 +280,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="catatan"
-                                        class="col-md-4 col-form-label text-md-right">Catatan
+                                    <label for="catatan" class="col-md-4 col-form-label text-md-right">Catatan
                                         Wawancara</label>
                                     <div class="col-md-8">
                                         <textarea id="catatan" name="catatan" class="form-control selectpicker"
@@ -317,8 +296,7 @@
 
                             </div>
                             <div class="card-footer">
-                                <button type="submit"
-                                    class="btn btn-success text-nowrap float-right">Simpan
+                                <button type="submit" class="btn btn-success text-nowrap float-right">Simpan
                                     Perubahan</button>
                             </div>
                         </form>

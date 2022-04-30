@@ -53,6 +53,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/{name}/update-periode', [PeriodeController::class, 'update'])->name('update.periode');
     Route::post('/{name}/administrasi/umumkan', [PeriodeController::class, 'umumkanAdm'])->name('umumkan.adm'); //Set status_adm Selesai di Periode
     Route::post('/{name}/wawancara/umumkan', [PeriodeController::class, 'umumkanWwn'])->name('umumkan.wwn'); //Set status_adm Selesai di Periode
+    Route::post('/{name}/penugasan/umumkan', [PeriodeController::class, 'umumkanPng'])->name('umumkan.png'); //Set status_adm Selesai di Periode
     //Administrasi
     Route::get('/{name}/nilai-administrasi', [AdministrasiController::class, 'nilaiAdm'])->name('nilai.adm'); //halaman nilai adm
     Route::post('/update-nilai-administrasi/{id}', [AdministrasiController::class, 'updatenilaiAdm'])->name('updatenilai.adm'); //menyimpan penilaian adm
@@ -60,6 +61,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/{name}/nilai-wawancara', [WawancaraController::class, 'nilaiWwn'])->name('nilai.wwn'); //halaman nilai wwn
     Route::post('/update-nilai-wawancara/{id}', [WawancaraController::class, 'updatenilaiWwn'])->name('updatenilai.wwn'); //menyimpan penilaian wwn
     //Penugasan
+    Route::get('/{name}/nilai-penugasan', [PenugasanController::class, 'nilaiPng'])->name('nilai.png'); //halaman nilai png
+    Route::post('/update-nilai-penugasan/{id}', [PenugasanController::class, 'updatenilaiPng'])->name('updatenilai.png'); //menyimpan penilaian wwn
 
     Route::get('/profil-admin', [HomeController::class, 'indexProfilAdmin'])->name('profil.admin');
 });

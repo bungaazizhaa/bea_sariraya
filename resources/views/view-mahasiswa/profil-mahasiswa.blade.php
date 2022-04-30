@@ -88,21 +88,22 @@
 
         <!-- Main content -->
         <div class="row">
-            <div class="col-lg-4">
-                <div class="card rounded-md myshadow mb-3">
-                    <div class="card-header text-white bg-dark text-center rounded-top-md">
-                        <span class="float-left">Foto</span>
+            <div class="col-lg-4 pr-md-0">
+                <div class="alert alert-dark rounded-md myshadow mb-3">
+                    <div class="mb-3 pt-1 mx-auto rounded-top-md">
+                        <span class="h5 ">Foto</span>
                         @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
                             <span>
-                                <button type="button" id="tombolEditFoto" class="btn btn-sm btn-secondary float-right"
-                                    data-toggle="modal" data-target="#editFotoModal">
+                                <button type="button" id="tombolEditFoto"
+                                    class="float-left btn btn-sm btn-outline-secondary float-right" data-toggle="modal"
+                                    data-target="#editFotoModal">
                                     Upload Foto
                                 </button>
                             </span>
                         @endif
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body d-flex mx-auto flex-column pt-2 pb-0">
+                    <div class="alert alert-secondary  d-flex mx-auto flex-column pt-2 pb-0">
                         <div class="mx-auto mb-2">
                             <img src="/pictures/{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}"
                                 class="rounded" alt="User Image" height="280px" width="210px">
@@ -118,22 +119,23 @@
 
 
             <div class="col-lg-8">
-                <div class="card rounded-md myshadow">
-                    <div class="card-header text-white bg-dark text-center rounded-top-md">
-                        <span class="float-left">Data Diri</span>
+                <div class="alert alert-dark rounded-md myshadow mb-3">
+                    <div class="mb-3 pt-1 mx-auto rounded-top-md">
+                        <span class="h5 ">Data Diri</span>
                         @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
                             <span>
-                                <button id="tombolEditProfil" type="button" class="btn btn-sm btn-secondary float-right"
-                                    data-toggle="modal" data-target="#editProfil">
-                                    Edit
+                                <button id="tombolEditProfil" type="button"
+                                    class="float-right btn btn-sm btn-outline-secondary float-right" data-toggle="modal"
+                                    data-target="#editProfil">
+                                    Ubah Data
                                 </button>
                             </span>
                         @endif
                     </div><!-- /.card-header -->
                     <!-- Table row -->
-                    <div class="row m-2">
-                        <div class="col-12 table-responsive">
-                            <table class="table table-hover mb-0">
+                    <div class="row px-3">
+                        <div class="col-12 alert alert-secondary table-responsive">
+                            <table class="table mb-0">
                                 <tbody>
                                     <tr>
                                         <th style="width: 30%">Nama</td>

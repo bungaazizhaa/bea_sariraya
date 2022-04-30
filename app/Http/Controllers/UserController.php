@@ -111,9 +111,9 @@ class UserController extends Controller
         $path = $getPeriodeAktif->name . '/' . $request->user()->id . '-' . str_replace(' ', '-', $request->user()->name) . '/';
         $path2 = 'pictures' . '/';
         $file = $request->file('Foto');
-        $new_image_name = 'PasFoto-' . str_replace(' ', '-', $request->user()->name) .  date('-Ymd-H.i.s.') . $file->extension();
-        $upload = $file->move(public_path($path), $new_image_name);
-        File::copy(public_path($path) . $new_image_name, public_path($path2) . $new_image_name);
+        $new_image_name = '_PasFoto-' . str_replace(' ', '-', $request->user()->name) .  date('-Ymd-H.i.s.') . $file->extension();
+        $upload = $file->move(public_path($path2), $new_image_name);
+        File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
         if ($upload) {
             $userInfo =  $request->user()->picture;
             if ($userInfo != '') {
@@ -154,6 +154,20 @@ class UserController extends Controller
         $id = Auth::user()->id;
         $user = User::find($id);
         $user->name = $request->name;
+        if (isset(Auth::user()->picture) && Auth::user()->name != $request->name) {
+            $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+            $path = $getPeriodeAktif->name . '/' . $request->user()->id . '-' . str_replace(' ', '-', $request->user()->name) . '/';
+            $path2 = 'pictures' . '/';
+            $file = $path2 . Auth::user()->picture;
+            if (pathinfo((public_path($path) . Auth::user()->picture))) {
+                unlink(public_path($path) . Auth::user()->picture);
+            }
+            $extension = pathinfo($file, PATHINFO_EXTENSION);
+            $new_image_name = '_PasFoto-' . str_replace(' ', '-', $request->name) .  date('-Ymd-H.i.s.') . $extension;
+            $user->picture = $new_image_name;
+            rename(public_path($path2) . Auth::user()->picture, public_path($path2) . $new_image_name);
+            File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
+        }
         $user->nim = $request->nim;
         if ($request->univ_id == 'other') {
             $getUniv = Univ::where('nama_universitas', '=', $valueInputManual)->first();

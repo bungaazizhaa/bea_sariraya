@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Periode;
 use App\Models\Penugasan;
 use App\Models\Administrasi;
+use App\Models\Wawancara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -50,6 +51,28 @@ class PenugasanController extends Controller
         //
     }
 
+
+    public function nilaiPng($name)
+    {
+        $getAllPeriode = Periode::all();
+        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
+        $periodeOpenned = Periode::where('name', '=', $name)->first();
+        $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->pluck('id');
+        // dd($administrasiOpenned);
+        $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->pluck('id');
+        $penugasanOpenned = Penugasan::whereIn('wawancara_id', $wawancaraOpenned)->paginate(1);
+        return view('view-admin.penugasan.nilai-penugasan', compact('getTanggalSekarang', 'periodeOpenned', 'wawancaraOpenned', 'penugasanOpenned', 'getAllPeriode'));
+    }
+
+    public function updatenilaiPng(Request $request, $id)
+    {
+        $penugasanSelected = Penugasan::where('id', '=', $id)->first();
+        $penugasanSelected->status_png = $request->status_png;
+        $penugasanSelected->catatan = $request->catatan;
+        $penugasanSelected->save();
+        Alert::success('Penugasan ' . $penugasanSelected->wawancara->administrasi->user->name . ' sudah di Perbarui', 'Data telah tersimpan.');
+        return redirect()->back();
+    }
     /**
      * Display the specified resource.
      *
@@ -107,9 +130,9 @@ class PenugasanController extends Controller
         }
 
         if (isset($request->file_jawaban)) {
-            $path = $getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '-' . str_replace(' ', '-', $getAdministrasiUser->user->name) . '/';
+            $path = $getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/';
             $file = $request->file('file_jawaban');
-            $new_image_name = 'FileJawaban-' . str_replace(' ', '-', $getAdministrasiUser->user->name) .  date('-Ymd-H.i.s.') . $file->extension();
+            $new_image_name = 'FileJawaban-' . date('-Ymd-H.i.s.') . $file->extension();
             $upload = $file->move(public_path($path), $new_image_name);
 
             if ($upload) {
@@ -145,7 +168,7 @@ class PenugasanController extends Controller
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
         $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
         $getPenugasanUser = $getAdministrasiUser->wawancara->penugasan;
-        $path = $getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '-' . str_replace(' ', '-', $getAdministrasiUser->user->name) . '/';
+        $path = $getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/';
         unlink($path . $getPenugasanUser->file_jawaban);
         $getPenugasanUser->file_jawaban = null;
         $getPenugasanUser->save();

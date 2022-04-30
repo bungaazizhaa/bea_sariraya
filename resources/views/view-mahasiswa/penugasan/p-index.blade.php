@@ -193,7 +193,6 @@
             {{-- ============== JAWABAN TUGAS ============== --}}
             <div class="col-md-8 mb-5 px-0">
                 <div class="card">
-
                     <div class="card-header h4">
                         Tugas Anda!
                     </div>
@@ -256,20 +255,22 @@
                                         </div>
                                     @enderror
                                 </div>
-
+                            </div>
                         </form>
                         @if (isset($getPenugasanUser->file_jawaban))
-                            <label for="file_jawaban" class="col-12 col-form-label">File Sebelumnya :</label>
-                            <div class="col-12">
-                                <div class="input-group">
-                                    <a class="btn btn-primary"
-                                        href={{ asset($getPeriodeAktif->name .'/' .$getAdministrasiUser->user->id .'-' .str_replace(' ', '-', $getAdministrasiUser->user->name) .'/' .$getPenugasanUser->file_jawaban) }}>View</a>
-                                    <form id="deleteFj" method="post" class="ml-3"
-                                        action="{{ route('filejawaban.destroy', $getPenugasanUser->id) }}">
-                                        @csrf
-                                        <button form="deleteFj" type="submit" class="btn btn-outline-danger">Delete
-                                            File</button>
-                                    </form>
+                            <div class="row mb-3">
+                                <label for="file_jawaban" class="col-12 col-form-label">File Tugas Tersimpan :</label>
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <a class="btn btn-primary" target="_blank"
+                                            href={{ asset($getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/' . $getPenugasanUser->file_jawaban) }}>View</a>
+                                        <form id="deleteFj" method="post" class="ml-3"
+                                            action="{{ route('filejawaban.destroy', $getPenugasanUser->id) }}">
+                                            @csrf
+                                            <button form="deleteFj" type="submit" class="btn btn-outline-danger">Delete
+                                                File</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         @endif
@@ -283,27 +284,19 @@
                             });
                         </script>
                     </div>
-                </div>
-            </div>
-
-            @if (isset($getPenugasanUser))
-                <div class="fixed-bottom text-center">
-                    <button type="button" id="tombolEdit" class="btn btn-xl m-3 btn-secondary"
-                        onclick="izinkanEdit();">Ubah Jawaban Tugas</button>
-                    <div id="tombolSimpan" style="display: none;">
-                        <button form="pngForm" type="submit" class="btn btn-xl m-3 btn-primary">
-                            Simpan
-                            Perubahan
-                        </button>
+                    <div class="fixed-bottom text-center">
+                        <button type="button" id="tombolEdit" class="btn btn-xl m-3 btn-secondary"
+                            onclick="izinkanEdit();">Ubah Jawaban Tugas</button>
+                        <div id="tombolSimpan" style="display: none;">
+                            <button form="pngForm" type="submit" class="btn btn-xl m-3 btn-primary">
+                                Simpan
+                                Perubahan
+                            </button>
+                        </div>
                     </div>
                 </div>
-            @else
-                <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            @endif
+            </div>
         </div>
-    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Administrasi;
+use App\Models\Penugasan;
 use Carbon\Carbon;
 use App\Models\Univ;
 use App\Models\Periode;
@@ -32,10 +33,12 @@ class PeriodeController extends Controller
         $getAllAdmLolos = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '=', 'lolos')->get();
         $getAllAdmGagal = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '!=', 'lolos')->get();
         $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->pluck('id');
-        // $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->get();
         $getAllWwnLolos = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->where('status_wwn', '=', 'lolos')->get();
         $getAllWwnGagal = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->where('status_wwn', '=', 'gagal')->get();
-        return view('view-admin.periode.periodeid-index', compact('periodeOpenned', 'getAllUniv', 'getAllPeriode', 'getTanggalSekarang', 'getAllAdmLolos', 'getAllAdmGagal', 'getAllWwnLolos', 'getAllWwnGagal'));
+        $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->pluck('id');
+        $getAllPngLolos = Penugasan::whereIn('wawancara_id', $wawancaraOpenned)->where('status_png', '=', 'lolos')->get();
+        $getAllPngGagal = Penugasan::whereIn('wawancara_id', $wawancaraOpenned)->where('status_png', '=', 'gagal')->get();
+        return view('view-admin.periode.periodeid-index', compact('periodeOpenned', 'getAllUniv', 'getAllPeriode', 'getTanggalSekarang', 'getAllAdmLolos', 'getAllAdmGagal', 'getAllWwnLolos', 'getAllWwnGagal', 'getAllPngLolos', 'getAllPngGagal'));
     }
 
     /**
@@ -142,6 +145,17 @@ class PeriodeController extends Controller
         $periodeSelected->save();
 
         Alert::success('Tahap Wawancara ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Selanjutnya adalah Tahap Penugasan.');
+        return redirect(route('periode', $name));
+        // 
+    }
+
+    public function umumkanPng($name)
+    {
+        $periodeSelected = Periode::where('name', '=', $name)->first();
+        $periodeSelected->status_png = 'Selesai';
+        $periodeSelected->save();
+
+        Alert::success('Tahap Wawancara ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Selanjutnya adalah membuat Group WhatsApp.');
         return redirect(route('periode', $name));
         // 
     }
