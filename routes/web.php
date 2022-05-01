@@ -37,6 +37,7 @@ Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa'])->group(f
     Route::post('update-administrasi', [AdministrasiController::class, 'update'])->name('update.administrasi');
     Route::post('update-penugasan', [PenugasanController::class, 'update'])->name('update.penugasan');
     Route::post('/delete-filejawaban/{id}', [PenugasanController::class, 'filejawabanDestroy'])->name('filejawaban.destroy');
+    Route::get('/delete-fileadm/{column}', [AdministrasiController::class, 'fileadmDestroy'])->name('fileadm.destroy');
     // Route::get('/my-administrasi', [AdministrasiController::class, 'detailAdm'])->name('detail.adm');
 });
 

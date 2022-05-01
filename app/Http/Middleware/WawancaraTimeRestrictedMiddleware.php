@@ -27,6 +27,9 @@ class WawancaraTimeRestrictedMiddleware
         isset($getAdministrasiUser) ? $statusAdmUser = $getAdministrasiUser->status_adm : ''; //TODO: kondisi user yang diambil dari database
         isset($getAdministrasiUser->wawancara->status_wwn) ? $statusWwnUser = $getAdministrasiUser->wawancara->status_wwn : ''; //TODO: kondisi user yang diambil dari database
         //=========== TAHAP WAWANCARA ===========
+        if ($getPeriodeAktif->status_adm == 'Selesai' && $statusAdmUser != 'lolos') {
+            return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));
+        }
         if ($getPeriodeAktif->status_wwn == null) { //Status Wawancara Belum Selesai && User Lolos Adm
             if ($getTanggalSekarang < $getPeriodeAktif->tm_wwn->format('Y-m-d')) { //Sesi Belum Dibuka
                 $info = 'Tahap Wawancara Belum Dibuka.';
@@ -48,9 +51,10 @@ class WawancaraTimeRestrictedMiddleware
             } elseif (!isset($getAdministrasiUser->wawancara->status_wwn) || $statusWwnUser != 'gagal') {
                 return response(view('view-mahasiswa.wawancara.w-pengumumangagal', compact('getPeriodeAktif')));
             }
-        } elseif ($getPeriodeAktif->status_wwn == 'Selesai' && $statusAdmUser != 'lolos') {
-            return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));
         }
+        // elseif ($getPeriodeAktif->status_adm == 'Selesai' && $statusAdmUser != 'lolos') {
+        //     return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));
+        // }
         return $next($request);
     }
 }

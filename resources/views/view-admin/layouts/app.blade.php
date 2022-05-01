@@ -12,24 +12,20 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="{{ asset('admin-lte') }}/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('admin-lte') }}/plugins/fontawesome-free/css/all.min.css">
     <script src="https://kit.fontawesome.com/637f4baacf.js" crossorigin="anonymous"></script>
     {{-- SweetAlert2 --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- DataTables -->
-    <link rel="stylesheet"
-        href="{{ asset('admin-lte') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('admin-lte') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet"
         href="{{ asset('admin-lte') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet"
-        href="{{ asset('admin-lte') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('admin-lte') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('admin-lte') }}/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css') }}/myadminapp.css">
     <!-- Ionicons -->
-    <link rel="stylesheet"
-        href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- jQuery -->
     <script src="{{ asset('admin-lte') }}/plugins/jquery/jquery.min.js"></script>
 
@@ -40,11 +36,9 @@
     <script src="{{ asset('admin-lte') }}/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="{{ asset('admin-lte') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js">
     </script>
-    <script
-        src="{{ asset('admin-lte') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js">
+    <script src="{{ asset('admin-lte') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js">
     </script>
-    <script
-        src="{{ asset('admin-lte') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js">
+    <script src="{{ asset('admin-lte') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js">
     </script>
     <script src="{{ asset('admin-lte') }}/plugins/datatables-buttons/js/dataTables.buttons.min.js">
     </script>
@@ -71,8 +65,7 @@
     {{-- <script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script> --}}
 
     {{-- Date Picker --}}
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet"
-        type="text/css" />
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 
     {{-- Jangan Dihapus --}}
@@ -115,8 +108,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <div class="user-image img-circle image-previewer elevation-2"
-                            alt="User Image" style="background-image: url('/pictures/{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}'); background-size: cover; background-position: center top; width: 36px;
+                        <div class="user-image img-circle image-previewer elevation-2" alt="User Image" style="background-image: url('/pictures/{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}'); background-size: cover; background-position: center top; width: 36px;
                             height: 36px;">
                         </div>
                         <span class="d-none d-lg-inline ml-2">{{ Auth::user()->name }}</span>
@@ -125,8 +117,7 @@
                         <!-- User image -->
                         <li class="user-header">
                             <div class="row d-flex justify-content-center m-2">
-                                <div class="user-image img-circle image-previewer myshadow"
-                                    alt="User Image" style="background-image: url('/pictures/{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}'); background-size: cover; background-position: center top; width: 100px;
+                                <div class="user-image img-circle image-previewer myshadow" alt="User Image" style="background-image: url('/pictures/{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}'); background-size: cover; background-position: center top; width: 100px;
                                     height: 100px;">
                                 </div>
                             </div>

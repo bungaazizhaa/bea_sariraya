@@ -33,15 +33,15 @@
 @if (auth()->user()->role === 'admin')
     <li class="nav-item mb-1">
         <a href="{{ route('data.pengguna') }}"
-            class="nav-link {{ url()->full() == route('data.pengguna') ? 'active' : null }}">
+            class="nav-link {{ Request::segment(2) === 'data-pengguna' ? 'active' : null }}">
             <i class="nav-icon fas fa-users"></i>
             <p class="text-nowrap">Data Pengguna</p>
         </a>
     </li>
     <li
-        class="nav-item mb-1 menu-collapse  {{ Request::segment(2) === 'detail-periode' ||Request::segment(2) === 'nilai-administrasi' ||Request::segment(2) === 'nilai-wawancara'? 'menu-open': null }}">
+        class="nav-item mb-1 menu-collapse  {{ Request::segment(2) === 'detail-periode' ||Request::segment(2) === 'nilai-administrasi' ||Request::segment(2) === 'nilai-wawancara' ||Request::segment(2) === 'nilai-penugasan'? 'menu-open': null }}">
         <a href="#"
-            class="nav-link {{ Request::segment(2) === 'detail-periode' ||Request::segment(2) === 'nilai-administrasi' ||Request::segment(2) === 'nilai-wawancara'? 'active': null }}">
+            class="nav-link {{ Request::segment(2) === 'detail-periode' ||Request::segment(2) === 'nilai-administrasi' ||Request::segment(2) === 'nilai-wawancara' ||Request::segment(2) === 'nilai-penugasan'? 'active': null }}">
             <i class="nav-icon fas fa-graduation-cap"></i>
             <p class="text-nowrap">
                 Periode Beasiswa
@@ -52,7 +52,7 @@
             @foreach ($getAllPeriode as $periode)
                 <li class="nav-item">
                     <a href="{{ route('periode', $periode->name) }}"
-                        class="nav-link {{ url()->current() === route('periode', $periode->name) ||url()->current() === route('nilai.adm', $periode->name) ||url()->current() === route('nilai.wwn', $periode->name)? 'active': null }}">
+                        class="nav-link {{ url()->current() === route('periode', $periode->name) ||url()->current() === route('nilai.adm', $periode->name) ||url()->current() === route('nilai.wwn', $periode->name) ||url()->current() === route('nilai.png', $periode->name)? 'active': null }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>{{ ucfirst($periode->name) . ' (' . ucfirst($periode->status) . ')' }}
                         </p>

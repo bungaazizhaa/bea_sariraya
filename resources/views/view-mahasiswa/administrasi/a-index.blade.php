@@ -42,10 +42,10 @@
         </style>
     </noscript>
     @include('sweetalert::alert')
-    <div id="main-content" class="container ">
+    <div id="main-content" class="container-fluid ">
         <h1 class="text-center mt-5">Tahap Administrasi</h1>
 
-        <form id="admForm" method="POST" action="{{ route('update.administrasi') }}">
+        <form id="admForm" method="POST" action="{{ route('update.administrasi') }}" enctype="multipart/form-data">
             @csrf
             @if (isset($getAdministrasiUser))
                 <p class="text-center mb-1">Data Anda disimpan pada : <span
@@ -87,116 +87,56 @@
                     })();
                 </script>
                 {{-- ============== DATA DIRI ============== --}}
+                <div class="col-md-8 mb-3 px-0">
+                    <div class="alert alert-secondary pb-0 ">
+                        <table
+                            class="table table-borderless table-responsive d-block d-md-flex justify-content-center text-nowrap">
+                            <tbody>
+                                @if (isset($getAdministrasiUser))
+                                    <tr style="height:10px;">
+                                        <td>Nomor Pendaftaran</td>
+                                        <td>:</td>
+                                        <td>{{ $getAdministrasiUser->no_pendaftaran }}</td>
+                                    </tr>
+                                @endif
+                                <tr style="height:10px;">
+                                    <td>Nama</td>
+                                    <td>:</td>
+                                    <td>{{ Auth::user()->name }}</td>
+                                </tr>
+                                <tr style="height:10px;">
+                                    <td>NIM</td>
+                                    <td>:</td>
+                                    <td>{{ Auth::user()->nim }}</td>
+                                </tr>
+                                <tr style="height:10px;">
+                                    <td>Perguruan Tinggi</td>
+                                    <td>:</td>
+                                    <td>{{ Auth::user()->univ->nama_universitas }}</td>
+                                </tr>
+                                <tr style="height:10px;">
+                                    <td>Program Studi</td>
+                                    <td>:</td>
+                                    <td>{{ Auth::user()->prodi->nama_prodi }}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 <div class="col-md-8 mb-5 px-0">
                     <div class="card">
                         <div class="card-header h4">
                             Data Diri
                         </div>
                         <div class="card-body">
-
-                            @if (isset($getAdministrasiUser))
-                                <div class="row mb-3">
-                                    <label for="no_pendaftaran"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('No Pendaftaran') }}</label>
-
-                                    <div class="col-md-6">
-                                        {{-- <input id="no_pendaftaran" type="hidden"
-                                        class="form-control @error('no_pendaftaran') is-invalid @enderror"
-                                        name="no_pendaftaran"
-                                        value="{{ old('no_pendaftaran', strtoupper($getPeriodeAktif->id . uniqid())) }}"
-                                        autocomplete="no_pendaftaran" > --}}
-                                        <input id="no_pendaftaran" type="text" disabled
-                                            class="form-control @error('no_pendaftaran') is-invalid @enderror"
-                                            name="no_pendaftaran" value="{{ $getAdministrasiUser->no_pendaftaran }}"
-                                            autocomplete="no_pendaftaran">
-
-                                        @error('no_pendaftaran')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            @endif
-
-                            <div class="row mb-3">
-                                <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
-
-                                <div class="col-md-6">
-
-                                    <input id="name" type="text" disabled
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name', Auth::user()->name) }}" autocomplete="name">
-
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="nim"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="nim" type="text" disabled
-                                        class="form-control @error('nim') is-invalid @enderror" name="nim"
-                                        value="{{ old('nim', Auth::user()->nim) }}" autocomplete="nim">
-
-                                    @error('nim')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="univ_id"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Perguruan Tinggi') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="univ_id" type="text" disabled
-                                        class="form-control @error('univ_id') is-invalid @enderror" name="univ_id"
-                                        value="{{ old('univ_id', Auth::user()->univ->nama_universitas) }}"
-                                        autocomplete="univ_id">
-
-                                    @error('univ_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="prodi_id"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Program Studi') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="prodi_id" type="text" disabled
-                                        class="form-control @error('prodi_id') is-invalid @enderror" name="prodi_id"
-                                        value="{{ old('prodi_id', Auth::user()->prodi->nama_prodi) }}"
-                                        autocomplete="prodi_id">
-
-                                    @error('prodi_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
                             <div class="row mb-3">
                                 <label for="tempat_lahir"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Tempat Lahir') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="tempat_lahir" type="text"
-                                        class="form-control editable @error('tempat_lahir') is-invalid @enderror"
+                                        class="form-control editable {{ isset($getAdministrasiUser->tempat_lahir) ? 'font-weight-bold' : '' }} @error('tempat_lahir') is-invalid @enderror"
                                         name="tempat_lahir" spellcheck="false" disabled
                                         value="{{ old('tempat_lahir', isset($getAdministrasiUser) ? $getAdministrasiUser->tempat_lahir : '') }}"
                                         autocomplete="tempat_lahir" placeholder="Nama Kota Atau Kabupaten">
@@ -215,9 +155,9 @@
 
                                 <div class="col-md-6">
                                     <input id="tanggal_lahir" type="text"
-                                        class="form-control editable datepicker @error('tanggal_lahir') is-invalid @enderror"
+                                        class="form-control editable {{ isset($getAdministrasiUser->tanggal_lahir) ? 'font-weight-bold' : '' }} datepicker @error('tanggal_lahir') is-invalid @enderror"
                                         name="tanggal_lahir" spellcheck="false" disabled
-                                        value="{{ old('tanggal_lahir',isset($getAdministrasiUser) ? $getAdministrasiUser->tanggal_lahir->format('Y-m-d') : '') }}"
+                                        value="{{ old('tanggal_lahir',isset($getAdministrasiUser->tanggal_lahir) ? $getAdministrasiUser->tanggal_lahir->format('Y-m-d') : '') }}"
                                         autocomplete="tanggal_lahir" placeholder="YYYY-MM-DD">
                                     @error('tanggal_lahir')
                                         <strong class="text-danger small font-weight-bold"
@@ -232,7 +172,7 @@
 
                                 <div class="col-md-6">
                                     <input id="semester" type="text" spellcheck="false"
-                                        class="form-control editable @error('semester') is-invalid @enderror"
+                                        class="form-control editable {{ isset($getAdministrasiUser->semester) ? 'font-weight-bold' : '' }} @error('semester') is-invalid @enderror"
                                         name="semester" disabled
                                         value="{{ old('semester', isset($getAdministrasiUser) ? $getAdministrasiUser->semester : '') }}"
                                         autocomplete="semester" placeholder="Antara 6 sampai 14">
@@ -251,8 +191,8 @@
 
                                 <div class="col-md-6">
                                     <input id="ipk" type="text"
-                                        class="form-control editable @error('ipk') is-invalid @enderror" name="ipk"
-                                        spellcheck="false" disabled
+                                        class="form-control editable {{ isset($getAdministrasiUser->ipk) ? 'font-weight-bold' : '' }} @error('ipk') is-invalid @enderror"
+                                        name="ipk" spellcheck="false" disabled
                                         value="{{ old('ipk', isset($getAdministrasiUser) ? $getAdministrasiUser->ipk : '') }}"
                                         autocomplete="ipk" placeholder="Misal, 3.70">
 
@@ -270,7 +210,7 @@
 
                                 <div class="col-md-6">
                                     <input id="keahlian" type="text" spellcheck="false"
-                                        class="form-control editable @error('keahlian') is-invalid @enderror"
+                                        class="form-control editable {{ isset($getAdministrasiUser->keahlian) ? 'font-weight-bold' : '' }} @error('keahlian') is-invalid @enderror"
                                         name="keahlian" disabled
                                         value="{{ old('keahlian', isset($getAdministrasiUser) ? $getAdministrasiUser->keahlian : '') }}"
                                         autocomplete="keahlian" placeholder="Misal, Web Developer">
@@ -293,7 +233,193 @@
                         </div>
                         <div class="card-body">
 
-                            {{--  --}}
+                            <div class="row mb-3">
+                                <label for="file_cv" class="col-md-4 col-form-label text-md-right">File CV</label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file"
+                                                class="custom-file-input editable {{ isset($getAdministrasiUser->file_cv) ? 'font-weight-bold' : '' }}"
+                                                disabled id="file_cv" name="file_cv"
+                                                accept="application/pdf, image/jpg, image/jpeg, image/png"
+                                                value="{{ old('file_cv', isset($getAdministrasiUser) ? $getAdministrasiUser->file_cv : '') }}">
+                                            <label class="custom-file-label" for="file_cv">.pdf, .jpg,
+                                                .jpeg,
+                                                .png</label>
+                                        </div>
+                                    </div>
+                                    @error('file_cv')
+                                        <div class="text-danger small" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            @if (isset($getAdministrasiUser->file_cv))
+                                <div class="row mb-3">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <a class="btn btn-outline-primary" target="_blank"
+                                                href={{ asset($getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/' . $getAdministrasiUser->file_cv) }}>Lihat
+                                                CV Tersimpan</a>
+                                            <a onclick="window.location.href='{{ route('fileadm.destroy', 'file_cv') }}';"
+                                                class="btn btn-light border border-danger text-danger ml-3">Delete
+                                                File</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="row mb-3">
+                                <label for="file_esai" class="col-md-4 col-form-label text-md-right">File Esai</label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file"
+                                                class="custom-file-input editable {{ isset($getAdministrasiUser->file_esai) ? 'font-weight-bold' : '' }}"
+                                                disabled id="file_esai" name="file_esai" accept="application/pdf"
+                                                value="{{ old('file_esai', isset($getAdministrasiUser) ? $getAdministrasiUser->file_esai : '') }}">
+                                            <label class="custom-file-label" for="file_esai">.pdf</label>
+                                        </div>
+                                    </div>
+                                    @error('file_esai')
+                                        <div class="text-danger small" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            @if (isset($getAdministrasiUser->file_esai))
+                                <div class="row mb-3">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <a class="btn btn-outline-primary" target="_blank"
+                                                href={{ asset($getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/' . $getAdministrasiUser->file_esai) }}>Lihat
+                                                Esai Tersimpan</a>
+                                            <a onclick="window.location.href='{{ route('fileadm.destroy', 'file_esai') }}';"
+                                                class="btn btn-light border border-danger text-danger ml-3">Delete
+                                                File</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="row mb-3">
+                                <label for="file_portofolio" class="col-md-4 col-form-label text-md-right">File
+                                    Portofolio (Optional)</label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file"
+                                                class="custom-file-input editable {{ isset($getAdministrasiUser->file_portofolio) ? 'font-weight-bold' : '' }}"
+                                                disabled id="file_portofolio" name="file_portofolio"
+                                                accept="application/pdf, image/jpg, image/jpeg, image/png"
+                                                value="{{ old('file_portofolio', isset($getAdministrasiUser) ? $getAdministrasiUser->file_portofolio : '') }}">
+                                            <label class="custom-file-label" for="file_portofolio">.pdf, .jpg,
+                                                .jpeg,
+                                                .png</label>
+                                        </div>
+                                    </div>
+                                    @error('file_portofolio')
+                                        <div class="text-danger small" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            @if (isset($getAdministrasiUser->file_portofolio))
+                                <div class="row mb-3">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <a class="btn btn-outline-primary" target="_blank"
+                                                href={{ asset($getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/' . $getAdministrasiUser->file_portofolio) }}>Lihat
+                                                Portofilio Tersimpan</a>
+                                            <a onclick="window.location.href='{{ route('fileadm.destroy', 'file_portofolio') }}';"
+                                                class="btn btn-light border border-danger text-danger ml-3">Delete
+                                                File</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="row mb-3">
+                                <label for="file_ktm" class="col-md-4 col-form-label text-md-right">File KTM</label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file"
+                                                class="custom-file-input editable {{ isset($getAdministrasiUser->file_ktm) ? 'font-weight-bold' : '' }}"
+                                                disabled id="file_ktm" name="file_ktm"
+                                                accept="application/pdf, image/jpg, image/jpeg, image/png"
+                                                value="{{ old('file_ktm', isset($getAdministrasiUser) ? $getAdministrasiUser->file_ktm : '') }}">
+                                            <label class="custom-file-label" for="file_ktm">.pdf, .jpg,
+                                                .jpeg,
+                                                .png</label>
+                                        </div>
+                                    </div>
+                                    @error('file_ktm')
+                                        <div class="text-danger small" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            @if (isset($getAdministrasiUser->file_ktm))
+                                <div class="row mb-3">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <a class="btn btn-outline-primary" target="_blank"
+                                                href={{ asset($getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/' . $getAdministrasiUser->file_ktm) }}>Lihat
+                                                KTM Tersimpan</a>
+                                            <a onclick="window.location.href='{{ route('fileadm.destroy', 'file_ktm') }}';"
+                                                class="btn btn-light border border-danger text-danger ml-3">Delete
+                                                File</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="row mb-3">
+                                <label for="file_transkrip" class="col-md-4 col-form-label text-md-right">File
+                                    Transkrip</label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file"
+                                                class="custom-file-input editable {{ isset($getAdministrasiUser->file_transkrip) ? 'font-weight-bold' : '' }}"
+                                                disabled id="file_transkrip" name="file_transkrip"
+                                                accept="application/pdf, image/jpg, image/jpeg, image/png"
+                                                value="{{ old('file_transkrip', isset($getAdministrasiUser) ? $getAdministrasiUser->file_transkrip : '') }}">
+                                            <label class="custom-file-label" for="file_transkrip">.pdf,
+                                                .jpg, .jpeg,
+                                                .png</label>
+                                        </div>
+                                    </div>
+                                    @error('file_transkrip')
+                                        <div class="text-danger small" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            @if (isset($getAdministrasiUser->file_transkrip))
+                                <div class="row mb-3">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <a class="btn btn-outline-primary" target="_blank"
+                                                href={{ asset($getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/' . $getAdministrasiUser->file_transkrip) }}>Lihat
+                                                Transkrip Tersimpan</a>
+                                            <a onclick="window.location.href='{{ route('fileadm.destroy', 'file_transkrip') }}';"
+                                                class="btn btn-light border border-danger text-danger ml-3">Delete
+                                                File</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
 
                         </div>
                     </div>
@@ -307,7 +433,62 @@
                         </div>
                         <div class="card-body">
 
-                            {{--  --}}
+
+                            <div class="row mb-3">
+                                <label for="no_wa"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nomor WhatsApp') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="no_wa" type="text" spellcheck="false"
+                                        class="form-control editable {{ isset($getAdministrasiUser->no_wa) ? 'font-weight-bold' : '' }} @error('no_wa') is-invalid @enderror"
+                                        name="no_wa" disabled
+                                        value="{{ old('no_wa', isset($getAdministrasiUser) ? $getAdministrasiUser->no_wa : '') }}"
+                                        autocomplete="no_wa" placeholder="">
+
+                                    @error('no_wa')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="instagram"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Instagram') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="instagram" type="text" spellcheck="false"
+                                        class="form-control editable {{ isset($getAdministrasiUser->instagram) ? 'font-weight-bold' : '' }} @error('instagram') is-invalid @enderror"
+                                        name="instagram" disabled
+                                        value="{{ old('instagram', isset($getAdministrasiUser) ? $getAdministrasiUser->instagram : '') }}"
+                                        autocomplete="instagram" placeholder="">
+
+                                    @error('instagram')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="facebook"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Facebook') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="facebook" type="text" spellcheck="false"
+                                        class="form-control editable {{ isset($getAdministrasiUser->facebook) ? 'font-weight-bold' : '' }} @error('facebook') is-invalid @enderror"
+                                        name="facebook" disabled
+                                        value="{{ old('facebook', isset($getAdministrasiUser) ? $getAdministrasiUser->facebook : '') }}"
+                                        autocomplete="facebook" placeholder="">
+
+                                    @error('facebook')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -325,7 +506,7 @@
                         </div>
                     @else
                         <div class="text-center mt-4">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-outline-primary">Submit</button>
                         </div>
                     @endif
                 </div>
@@ -338,6 +519,17 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
+
+    {{-- Browse Show Name --}}
+    <script type="text/javascript">
+        $('.custom-file input').change(function(e) {
+            var files = [];
+            for (var i = 0; i < $(this)[0].files.length; i++) {
+                files.push($(this)[0].files[i].name);
+            }
+            $(this).next('.custom-file-label').html(files.join(', '));
+        });
     </script>
 
     <script>
@@ -370,7 +562,6 @@
             var $tombolEdit = document.getElementById("tombolEdit");
             document.querySelectorAll('.editable').forEach(b => b.toggleAttribute('disabled'));
             $tombolSimpan.css("display", $tombolSimpan.css("display") === 'none' ? 'inline' : 'none');
-            document.getElementById("tempat_lahir").focus();
             $tombolEdit.innerHTML = ($tombolEdit.innerHTML ===
                 'Ubah Data' ? 'Batalkan' : 'Ubah Data');
             if ($tombolEdit.innerHTML === 'Ubah Data') {

@@ -71,12 +71,26 @@ class User extends Authenticatable
     public function scopeFilter($query, array $filters)
     {
 
+        // $query->when($filters['search'] ?? false, function ($query, $search) {
+        //     return $query->where(function ($query) use ($search) {
+        //         $query->where('name', 'like', '%' . $search . '%')
+        //             ->orWhere('role', 'like', '%' . $search . '%')
+        //             ->orWhere('email', 'like', '%' . $search . '%')
+        //             ->orWhere('created_at', 'like', '%' . $search . '%');
+        //     });
+        // });
+
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return $query->where(function ($query) use ($search) {
-                $query->where('name', 'like', '%' . $search . '%')
-                    ->orWhere('role', 'like', '%' . $search . '%')
-                    ->orWhere('email', 'like', '%' . $search . '%')
-                    ->orWhere('created_at', 'like', '%' . $search . '%');
+                $query->where('name', 'LIKE', '%' . $search . '%')
+                    ->orWhere('role', 'LIKE', '%' . $search . '%')
+                    ->orWhere('email', 'LIKE', '%' . $search . '%')
+                    ->orWhere('created_at', 'LIKE', '%' . $search . '%')
+                    ->orWhereHas('univ', function ($q) use ($search) {
+                        return $q->where('nama_universitas', 'LIKE', '%' . $search . '%');
+                    })->orWhereHas('prodi', function ($q) use ($search) {
+                        return $q->where('nama_prodi', 'LIKE', '%' . $search . '%');
+                    });
             });
         });
     }

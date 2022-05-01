@@ -33,7 +33,7 @@ class CreateAdministrasisTable extends Migration
             $table->string('file_ktm')->nullable(); //Seharusnya ga Nullable
             $table->string('file_transkrip')->nullable(); //Seharusnya ga Nullable
             $table->string('no_wa')->nullable(); //Seharusnya ga Nullable
-            $table->string('instragram')->nullable();
+            $table->string('instagram')->nullable();
             $table->string('facebook')->nullable();
             $table->enum('status_adm', ['lolos', 'gagal'])->nullable(); //Seharusnya ga Nullable
             $table->string('catatan')->nullable();

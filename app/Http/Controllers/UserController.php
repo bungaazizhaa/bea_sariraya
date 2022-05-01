@@ -158,20 +158,21 @@ class UserController extends Controller
         $request->validate([
             'name' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
             'nim' => ['string', 'max:255'],
-
+            'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255', 'nullable'],
+            'password' => ['string', 'min:8', 'confirmed', 'nullable'],
         ]);
 
-        if ($request->univ_id_manual != '') {
-            $request->validate([
-                'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
-            ]);
-        }
+        // if ($request->univ_id_manual != '') {
+        //     $request->validate([
+        //         'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
+        //     ]);
+        // }
 
-        if ($request->password != '') {
-            $request->validate([
-                'password' => ['string', 'min:8', 'confirmed'],
-            ]);
-        }
+        // if ($request->password != '') {
+        //     $request->validate([
+        //         'password' => ['string', 'min:8', 'confirmed'],
+        //     ]);
+        // }
 
         $valueInputManual = $request->univ_id_manual;
         $id = Auth::user()->id;
@@ -179,7 +180,7 @@ class UserController extends Controller
         $user->name = $request->name;
         if (isset(Auth::user()->picture) && Auth::user()->name != $request->name) {
             $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-            $path = $getPeriodeAktif->name . '/' . $request->user()->id . '-' . str_replace(' ', '-', $request->user()->name) . '/';
+            $path = $getPeriodeAktif->name . '/' . $request->user()->id . '/';
             $path2 = 'pictures' . '/';
             $file = $path2 . Auth::user()->picture;
             if (pathinfo((public_path($path) . Auth::user()->picture))) {

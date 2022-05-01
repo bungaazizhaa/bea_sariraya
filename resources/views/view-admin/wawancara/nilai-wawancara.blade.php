@@ -3,13 +3,16 @@
     <title>Dashboard Beasiswa Sariraya</title>
 @endsection
 @section('title')
-    <h4 class="m-0 p-0">Dashboard</h4>
+    <h4 class="m-0 p-0"><span class="text-nowrap">Periode {{ ucfirst($periodeOpenned->name) }}</span></h4>
 @endsection
 @section('content')
     <div class="container-fluid px-lg-4 mx-lg-4">
         <!-- Main content -->
         @foreach ($wawancaraOpenned as $wwnUser)
-            <h1 class="text-center mt-3 h2">Detail Mahasiswa & <span class="text-nowrap">Penilaian
+            <div><a class="btn btn-light mx-2" href="{{ url()->previous() }}"><i class="fa-solid fa-arrow-left"></i>
+                    Kembali </a>
+            </div>
+            <h1 class="text-center mt-3 h2"><span class="text-nowrap">Penilaian
                     Wawancara</span></h1>
             @if (isset($wwnUser))
                 <p class="text-center text-muted mb-1">Data terakhir disimpan <span

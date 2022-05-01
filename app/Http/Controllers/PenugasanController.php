@@ -104,30 +104,24 @@ class PenugasanController extends Controller
      */
     public function update(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'field_jawaban' => 'string|nullable',
+            'file_jawaban' => 'mimes:jpeg,png,jpg,pdf|max:5120|nullable'
+        ]);
+
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
 
         $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
         // dd($getAdministrasiUser);
         $getPenugasanUser = $getAdministrasiUser->wawancara->penugasan;
         $id = $getPenugasanUser->id;
-        if (isset($request->field_jawaban)) {
-            $validator = Validator::make($request->all(), [
-                'field_jawaban' => 'string',
-            ]);
-        }
 
-        if (isset($request->file_jawaban)) {
-            $validator = Validator::make($request->all(), [
-                'file_jawaban' => 'mimes:jpeg,png,jpg,pdf|max:5120'
-            ]);
-        }
-
-        if (isset($request->field_jawaban) || isset($request->file_jawaban) && $validator->fails()) {
+        if ($validator->fails()) {
             Alert::error('Gagal melakukan Update.', 'Cek kesalahan Pengisian.');
         }
-        if (isset($request->field_jawaban) || isset($request->file_jawaban)) {
-            $validator->validated();
-        }
+
+        $validator->validated();
 
         if (isset($request->file_jawaban)) {
             $path = $getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/';
