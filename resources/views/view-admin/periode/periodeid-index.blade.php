@@ -3,7 +3,7 @@
     <title>Dashboard Beasiswa Sariraya</title>
 @endsection
 @section('title')
-    <h4 class="m-0 p-0">Periode {{ $periodeOpenned->name }}</h4>
+    <h4 class="m-0 p-0">Periode {{ ucfirst($periodeOpenned->name) }}</h4>
 @endsection
 @section('content')
     <!-- Main content -->
@@ -88,12 +88,13 @@
                     <div id="footer-tahap" class="d-flex" style="height:38px">
                         @if ($getTanggalSekarang > $periodeOpenned->ta_adm->format('Y-m-d'))
                             <a href="/{{ $periodeOpenned->name }}/nilai-administrasi"
-                                class="btn btn-outline-light text-truncate">Nilai
+                                class="btn btn-outline-light text-truncate"><i class="fa-solid fa-list-check"></i>&nbsp;
+                                Nilai
                                 Administrasi</a>
                         @endif
                         @if ($getTanggalSekarang >= $periodeOpenned->tp_adm->format('Y-m-d'))
-                            <button class="btn btn-outline-light ml-auto" data-toggle="modal"
-                                data-target="#umumkanAdm">Umumkan</button>
+                            <button class="btn btn-outline-light ml-auto" data-toggle="modal" data-target="#umumkanAdm"><i
+                                    class="fa-solid fa-check"></i>&nbsp; Umumkan</button>
                         @endif
                     </div>
                 </div>
@@ -136,11 +137,12 @@
                     <div id="footer-tahap" class="d-flex" style="height:38px">
                         @if ($getTanggalSekarang >= $periodeOpenned->tm_wwn->format('Y-m-d'))
                             <a href="/{{ $periodeOpenned->name }}/nilai-wawancara"
-                                class="btn btn-outline-light text-truncate">Nilai Wawancara</a>
+                                class="btn btn-outline-light text-truncate"><i class="fa-solid fa-list-check"></i>&nbsp;
+                                Nilai Wawancara</a>
                         @endif
                         @if ($getTanggalSekarang >= $periodeOpenned->tp_wwn->format('Y-m-d'))
-                            <button class="btn btn-outline-light ml-auto" data-toggle="modal"
-                                data-target="#umumkanWwn">Umumkan</button>
+                            <button class="btn btn-outline-light ml-auto" data-toggle="modal" data-target="#umumkanWwn"><i
+                                    class="fa-solid fa-check"></i>&nbsp; Umumkan</button>
                         @endif
                     </div>
                 </div>
@@ -183,12 +185,13 @@
                     <div id="footer-tahap" class="d-flex" style="height:38px">
                         @if ($getTanggalSekarang > $periodeOpenned->ta_png)
                             <a href="/{{ $periodeOpenned->name }}/nilai-penugasan"
-                                class="btn btn-outline-light text-truncate">Nilai
+                                class="btn btn-outline-light text-truncate"><i class="fa-solid fa-list-check"></i>&nbsp;
+                                Nilai
                                 Penugasan</a>
                         @endif
                         @if ($getTanggalSekarang >= $periodeOpenned->tp_png->format('Y-m-d'))
-                            <button class="btn btn-outline-light ml-auto" data-toggle="modal"
-                                data-target="#umumkanPng">Umumkan</button>
+                            <button class="btn btn-outline-light ml-auto" data-toggle="modal" data-target="#umumkanPng"><i
+                                    class="fa-solid fa-check"></i>&nbsp; Umumkan</button>
                         @endif
                     </div>
                 </div>
@@ -554,11 +557,16 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
-                            <div class="text-right">
-                                <p class="m-0 p-0 small">Tandai Tahap Administrasi Telah Selesai.</p>
-                                <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Selesai & Kirim</button>
+                            @if (isset($periodeOpenned->status_adm))
+                                Telah Diumumkan pada
+                                {{ isset($periodeOpenned->ts_adm) ? $periodeOpenned->ts_adm->format('d M Y - H:i') : '' }}.
+                            @else
+                                <div class="text-right">
+                                    <p class="m-0 p-0 small">Tandai Tahap Administrasi Telah Selesai.</p>
+                                    <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Selesai & Kirim</button>
+                            @endif
                         </div>
                     </form>
                 </div>
@@ -651,11 +659,16 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
-                            <div class="text-right">
-                                <p class="m-0 p-0 small">Tandai Tahap Wawancara Telah Selesai.</p>
-                                <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Selesai & Kirim</button>
+                            @if (isset($periodeOpenned->status_wwn))
+                                Telah Diumumkan pada
+                                {{ isset($periodeOpenned->ts_wwn) ? $periodeOpenned->ts_wwn->format('d M Y - H:i') : '' }}.
+                            @else
+                                <div class="text-right">
+                                    <p class="m-0 p-0 small">Tandai Tahap Wawancara Telah Selesai.</p>
+                                    <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Selesai & Kirim</button>
+                            @endif
                         </div>
                     </form>
                 </div>
@@ -748,11 +761,16 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
-                            <div class="text-right">
-                                <p class="m-0 p-0 small">Tandai Tahap Wawancara Telah Selesai.</p>
-                                <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Selesai & Kirim</button>
+                            @if (isset($periodeOpenned->status_png))
+                                Telah Diumumkan pada
+                                {{ isset($periodeOpenned->ts_png) ? $periodeOpenned->ts_png->format('d M Y - H:i') : '' }}.
+                            @else
+                                <div class="text-right">
+                                    <p class="m-0 p-0 small">Tandai Tahap Penugasan Telah Selesai.</p>
+                                    <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Selesai & Kirim</button>
+                            @endif
                         </div>
                     </form>
                 </div>

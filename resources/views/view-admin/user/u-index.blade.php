@@ -1,9 +1,10 @@
 @extends('view-admin.layouts.app')
 @section('titlepage')
-    <title>Data User</title>
+    <title>Data Pengguna</title>
 @endsection
 @section('title')
-    <h4 class="m-0 p-0">Data User</h4>
+    <h4 class="m-0 p-0 text-truncate" style="white-space: nowrap;
+                                    overflow: hidden;text-overflow: ellipsis;">Data Pengguna</h4>
 @endsection
 @section('content')
     <div class="container">
@@ -27,10 +28,11 @@
             <div class="row">
                 @if ($getAllUser->count())
                     @foreach ($getAllUser as $user)
-                        <div class="col-12 col-md-6 col-xl-6">
+                        <div class="col-12 col-md-6">
                             <div class="card rounded-md myshadow">
                                 <div class="row px-2">
                                     <img src="/pictures/{{ $user->picture == '' ? 'noimg.png' : $user->picture }}"
+                                        onclick="location.href='{{ route('pengguna.show', $user->id) }}'"
                                         class="rounded-md image-previewer m-2" alt="User Image" width="120px"
                                         height="160px">
                                     <ul class="list-unstyled mt-2 float-right" style="width:calc(100% - 140px);">
@@ -62,7 +64,7 @@
                                     </div>
                                     <div class="mr-0 ml-auto">
                                         <a href="{{ route('pengguna.show', $user->id) }}" id="showUser"
-                                            class="btn btn-xs rounded bg-dark text-info">Detail
+                                            class="btn btn-xs rounded bg-dark text-info px-3 mr-2">Detail
                                         </a>
                                         {{-- <a href="{{ route('pengguna.edit', $user->id) }}" id="editUserAlert"
                                             class="btn btn-xs rounded bg-dark text-warning">

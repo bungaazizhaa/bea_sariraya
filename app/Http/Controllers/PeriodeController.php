@@ -131,6 +131,7 @@ class PeriodeController extends Controller
     {
         $periodeSelected = Periode::where('name', '=', $name)->first();
         $periodeSelected->status_adm = 'Selesai';
+        $periodeSelected->ts_adm = now();
         $periodeSelected->save();
 
         Alert::success('Tahap Administrasi ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Selanjutnya adalah Tahap Wawancara.');
@@ -142,6 +143,7 @@ class PeriodeController extends Controller
     {
         $periodeSelected = Periode::where('name', '=', $name)->first();
         $periodeSelected->status_wwn = 'Selesai';
+        $periodeSelected->ts_wwn = now();
         $periodeSelected->save();
 
         Alert::success('Tahap Wawancara ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Selanjutnya adalah Tahap Penugasan.');
@@ -153,6 +155,7 @@ class PeriodeController extends Controller
     {
         $periodeSelected = Periode::where('name', '=', $name)->first();
         $periodeSelected->status_png = 'Selesai';
+        $periodeSelected->ts_png = now();
         $periodeSelected->save();
 
         Alert::success('Tahap Wawancara ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Selanjutnya adalah membuat Group WhatsApp.');

@@ -99,7 +99,7 @@
                     <li class="breadcrumb-item active">Dashboard v1</li>
                 </ol>
             </ul> --}}
-            <ul class="navbar-nav mx-1">
+            <ul class="navbar-nav mx-1 text-truncate">
                 <li class="nav-item">
                     @yield('title')
                 </li>

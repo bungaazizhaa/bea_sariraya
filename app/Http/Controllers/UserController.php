@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Administrasi;
 use App\Models\Univ;
 use App\Models\User;
 use App\Models\Periode;
@@ -55,7 +56,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $getAllPeriode = Periode::all();
+        $getUser = User::find($id);
+        $getAdministrasiUser = Administrasi::where('user_id', '=', $id)->get();
+        return view('view-admin.user.u-show', compact('getUser', 'getAdministrasiUser', 'getAllPeriode'));
     }
 
     public function showDataPengguna()

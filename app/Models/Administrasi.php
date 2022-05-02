@@ -21,7 +21,7 @@ class Administrasi extends Model
 
     public function Periode()
     {
-        return $this->hasOne(Periode::class, 'id_periode');
+        return $this->belongsTo(Periode::class, 'periode_id');
     }
 
     public function Wawancara()

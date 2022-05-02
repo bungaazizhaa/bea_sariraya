@@ -15,12 +15,15 @@ class Periode extends Model
         'tm_adm',
         'ta_adm',
         'tp_adm',
+        'ts_adm',
         'tm_wwn',
         'ta_wwn',
         'tp_wwn',
+        'ts_wwn',
         'tm_png',
         'ta_png',
         'tp_png',
+        'ts_png',
     ];
 
     protected $guarded = [
@@ -30,6 +33,6 @@ class Periode extends Model
 
     public function Administrasi()
     {
-        return $this->belongsTo(Administrasi::class, 'periode_id');
+        return $this->hasMany(Administrasi::class, 'id_periode');
     }
 }
