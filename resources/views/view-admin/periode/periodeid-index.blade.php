@@ -8,7 +8,6 @@
 @section('content')
     <!-- Main content -->
     <div class="container px-4">
-        <h1 class="h4">Informasi</h1>
         <div class="row">
             <div class="col mb-3">
                 <div
@@ -32,7 +31,7 @@
                 <form id="groupwaForm" method="POST" action="{{ route('groupwaupdate.periode', $periodeOpenned->name) }}">
                     @csrf
                     <div
-                        class="rounded myshadow {{ $periodeOpenned->status == 'aktif' ? 'bg-success' : 'bg-secondary' }} h-100">
+                        class="rounded myshadow {{ isset($periodeOpenned->group_wa) ? 'bg-selesai' : 'bg-secondary' }} h-100">
                         <div class="row p-3 p-md-2">
                             <div class="col">
                                 <p class="h5 pl-md-2 pt-1">Grup WhatsApp :</p>

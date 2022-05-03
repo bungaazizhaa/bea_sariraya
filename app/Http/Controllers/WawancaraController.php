@@ -65,7 +65,7 @@ class WawancaraController extends Controller
         $periodeOpenned = Periode::where('name', '=', $name)->first();
         $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->pluck('id');
         // dd($administrasiOpenned);
-        $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->paginate(1);
+        $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->filter(request(['search']))->paginate(1)->withQueryString();
         return view('view-admin.wawancara.nilai-wawancara', compact('getTanggalSekarang', 'periodeOpenned', 'wawancaraOpenned', 'getAllPeriode'));
     }
 

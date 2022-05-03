@@ -63,10 +63,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Administrasi::class);
     }
+    // public function Wawancara()
+    // {
+    //     return $this->hasManyThrough(Wawancara::class, Administrasi::class, 'user_id', 'administrasi_id');
+    // }
     public function Periode()
     {
         return $this->HasManyThrough(Periode::class, Administrasi::class);
     }
+
 
     public function scopeFilter($query, array $filters)
     {

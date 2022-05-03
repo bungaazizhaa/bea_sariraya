@@ -19,6 +19,27 @@ class Wawancara extends Model
         'id',
     ];
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where(function ($query) use ($search) {
+                $query->whereHas('administrasi', function ($q) use ($search) {
+                    $q->whereHas('user', function ($q) use ($search) {
+                        return $q->where('name', 'LIKE', '%' . $search . '%')
+                            ->orWhere('users.id', 'LIKE', '%' . $search . '%')
+                            ->orWhere('status_wwn', 'LIKE', '%' . $search . '%')
+                            ->orWhereHas('univ', function ($q) use ($search) {
+                                return $q->where('nama_universitas', 'LIKE', '%' . $search . '%');
+                            })->orWhereHas('prodi', function ($q) use ($search) {
+                                return $q->where('nama_prodi', 'LIKE', '%' . $search . '%');
+                            })->orWhereHas('administrasi', function ($q) use ($search) {
+                                return $q->where('no_pendaftaran', 'LIKE', '%' . $search . '%');
+                            });
+                    });
+                });
+            });
+        });
+    }
 
     public function Administrasi()
     {
@@ -32,6 +53,6 @@ class Wawancara extends Model
 
     public function User()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOneThrough(User::class, Administrasi::class, 'id', 'id', 'administrasi_id', 'user_id');
     }
 }

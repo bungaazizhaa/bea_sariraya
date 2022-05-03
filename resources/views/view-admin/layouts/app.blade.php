@@ -151,7 +151,7 @@
         @include('view-admin.layouts.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper py-3">
+        <div class="content-wrapper pt-3">
             @include('sweetalert::alert')
             <!-- Main content -->
             @yield('content')

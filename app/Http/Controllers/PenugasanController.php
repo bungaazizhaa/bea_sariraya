@@ -60,7 +60,7 @@ class PenugasanController extends Controller
         $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->pluck('id');
         // dd($administrasiOpenned);
         $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->pluck('id');
-        $penugasanOpenned = Penugasan::whereIn('wawancara_id', $wawancaraOpenned)->paginate(1);
+        $penugasanOpenned = Penugasan::whereIn('wawancara_id', $wawancaraOpenned)->filter(request(['search']))->paginate(1)->withQueryString();
         return view('view-admin.penugasan.nilai-penugasan', compact('getTanggalSekarang', 'periodeOpenned', 'wawancaraOpenned', 'penugasanOpenned', 'getAllPeriode'));
     }
 

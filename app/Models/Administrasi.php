@@ -19,6 +19,26 @@ class Administrasi extends Model
         'id',
     ];
 
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where(function ($query) use ($search) {
+                $query->whereHas('user', function ($q) use ($search) {
+                    return $q->where('name', 'LIKE', '%' . $search . '%')
+                        ->orWhere('users.id', 'LIKE', '%' . $search . '%')
+                        ->orWhere('no_pendaftaran', 'LIKE', '%' . $search . '%')
+                        ->orWhere('status_adm', 'LIKE', '%' . $search . '%')
+                        ->orWhereHas('univ', function ($q) use ($search) {
+                            return $q->where('nama_universitas', 'LIKE', '%' . $search . '%');
+                        })->orWhereHas('prodi', function ($q) use ($search) {
+                            return $q->where('nama_prodi', 'LIKE', '%' . $search . '%');
+                        });
+                });
+            });
+        });
+    }
+
     public function Periode()
     {
         return $this->belongsTo(Periode::class, 'periode_id');
