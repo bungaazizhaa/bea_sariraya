@@ -47,6 +47,9 @@ Route::get('/tahap-penugasan', [PenugasanController::class, 'index'])->name('tah
 
 //TODO: ================= ROUTE HOME ADMIN =================
 Route::middleware(['auth', 'role:admin'])->group(function () {
+
+    Route::get('/admin/setting', [HomeController::class, 'viewSetting'])->name('setting.beasiswa');
+    Route::post('/admin/reset-beasiswa', [HomeController::class, 'resetBeasiswa'])->name('reset.beasiswa');
     Route::get('/dashboard', [HomeController::class, 'indexAdmin'])->name('admin');
     //Periode
     Route::post('/periode/store', [PeriodeController::class, 'store'])->name('store.periode'); //membuat-baru-periode
@@ -69,6 +72,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/data-pengguna', [UserController::class, 'showDataPengguna'])->name('data.pengguna'); //halaman nilai png
     Route::get('admin/data-pengguna/detail/{id}', [UserController::class, 'show'])->name('pengguna.show');;
     Route::get('admin/destroy/data-pengguna/{id}', [UserController::class, 'destroy'])->name('pengguna.destroy');
+    Route::post('admin/data-pengguna/update/{id}', [UserController::class, 'update'])->name('pengguna.update');
     // Home
     Route::get('/profil-admin', [HomeController::class, 'indexProfilAdmin'])->name('profil.admin');
 });

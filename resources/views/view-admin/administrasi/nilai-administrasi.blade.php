@@ -160,7 +160,7 @@
                                     <div class="col-md-6">
                                         <input id="tanggal_lahir" type="text" class="form-control" name="tanggal_lahir"
                                             spellcheck="false" disabled
-                                            value="{{ $admUser->tanggal_lahir->format('d F Y') . ' WIB' }}">
+                                            value="{{ isset($admUser->tanggal_lahir) ? $admUser->tanggal_lahir->format('d F Y') . ' WIB' : '' }}">
                                     </div>
                                 </div>
 
@@ -206,8 +206,81 @@
                             </div>
                             <div class="card-body">
 
-                                {{--  --}}
-
+                                <div class="row mb-3">
+                                    <label for="file_cv"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('File CV') }}</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            @if (isset($admUser->file_cv))
+                                                <a class="btn btn-outline-primary" target="_blank"
+                                                    href={{ asset($periodeOpenned->name . '/' . $admUser->user->id . '/' . $admUser->file_cv) }}>Lihat
+                                                    CV Tersimpan</a>
+                                            @elseif (!isset($admUser->file_cv))
+                                                <div class="mb-0 mt-1 pt-1">-</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="file_esai"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('FileEsai') }}</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            @if (isset($admUser->file_esai))
+                                                <a class="btn btn-outline-primary" target="_blank"
+                                                    href={{ asset($periodeOpenned->name . '/' . $admUser->user->id . '/' . $admUser->file_esai) }}>Lihat
+                                                    Esai Tersimpan</a>
+                                            @elseif (!isset($admUser->file_esai))
+                                                <div class="mb-0 mt-1 pt-1">-</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="file_portofolio"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('File Portofolio') }}</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            @if (isset($admUser->file_portofolio))
+                                                <a class="btn btn-outline-primary" target="_blank"
+                                                    href={{ asset($periodeOpenned->name . '/' . $admUser->user->id . '/' . $admUser->file_portofolio) }}>Lihat
+                                                    Portofilio Tersimpan</a>
+                                            @elseif (!isset($admUser->file_portofolio))
+                                                <div class="mb-0 mt-1 pt-1">-</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="file_ktm"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('File KTM') }}</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            @if (isset($admUser->file_ktm))
+                                                <a class="btn btn-outline-primary" target="_blank"
+                                                    href={{ asset($periodeOpenned->name . '/' . $admUser->user->id . '/' . $admUser->file_ktm) }}>Lihat
+                                                    KTM Tersimpan</a>
+                                            @elseif (!isset($admUser->file_ktm))
+                                                <div class="mb-0 mt-1 pt-1">-</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="file_transkrip"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('File Transkrip') }}</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            @if (isset($admUser->file_transkrip))
+                                                <a class="btn btn-outline-primary" target="_blank"
+                                                    href={{ asset($periodeOpenned->name . '/' . $admUser->user->id . '/' . $admUser->file_transkrip) }}>Lihat
+                                                    Transkrip Tersimpan</a>
+                                            @elseif (!isset($admUser->file_transkrip))
+                                                <div class="mb-0 mt-1 pt-1">-</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -220,7 +293,36 @@
                             </div>
                             <div class="card-body">
 
-                                {{--  --}}
+
+                                <div class="row mb-3">
+                                    <label for="no_wa"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Nomor WhatsApp') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="no_wa" type="text" class="form-control" name="no_wa"
+                                            spellcheck="false" disabled value="{{ $admUser->no_wa }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="instagram"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Instagram') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="instagram" type="text" class="form-control" name="instagram"
+                                            spellcheck="false" disabled value="{{ $admUser->instagram }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="facebook"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Facebook') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="facebook" type="text" class="form-control" name="facebook"
+                                            spellcheck="false" disabled value="{{ $admUser->facebook }}">
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -273,7 +375,7 @@
                                                     class="datepicker"
                                                     class="form-control @error('jadwal_wwn') is-invalid @enderror"
                                                     name="jadwal_wwn"
-                                                    value="{{ old('jadwal_wwn',isset($admUser->wawancara->jadwal_wwn) ? $admUser->wawancara->jadwal_wwn->format('Y-m-d H:i') : '') }}">
+                                                    value="{{ old('jadwal_wwn', isset($admUser->wawancara->jadwal_wwn) ? $admUser->wawancara->jadwal_wwn->format('Y-m-d H:i') : '') }}">
 
                                                 @error('jadwal_wwn')
                                                     <div class="small text-danger" role="alert">
@@ -350,5 +452,10 @@
 
             }
         }
+    </script>
+    <script>
+        $('document').ready(function() {
+            $('.card-body input:not([value!=""])').val('-');
+        });
     </script>
 @endsection

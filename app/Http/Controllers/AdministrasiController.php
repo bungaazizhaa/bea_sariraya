@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class AdministrasiController extends Controller
 {
@@ -290,8 +291,9 @@ class AdministrasiController extends Controller
             $administrasi->save();
             Alert::success('Data Berhasil Di Update.', 'Data baru telah tersimpan.');
         } else {
+
             Administrasi::create([
-                'no_pendaftaran' => strtoupper($request['periode_id'] . uniqid()),
+                'no_pendaftaran' => IdGenerator::generate(['table' => 'administrasis', 'field' => 'no_pendaftaran', 'length' => 10, 'prefix' => 'B' . $getPeriodeAktif->id_periode . '-' . $request->user()->id . '-']),
                 'user_id' => Auth::user()->id,
                 'periode_id' => $getPeriodeAktif->id_periode,
                 'tempat_lahir' => $request['tempat_lahir'],
@@ -304,8 +306,45 @@ class AdministrasiController extends Controller
                 'file_portofolio' => $request['file_portofolio'],
                 'file_ktm' => $request['file_ktm'],
                 'file_transkrip' => $request['file_transkrip'],
+                'no_wa' => $request['no_wa'],
+                'instragram' => $request['instragram'],
+                'facebook' => $request['facebook'],
             ]);
+            $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
+            $path = $getPeriodeAktif->name . '/' . Auth::user()->id . '/';
+            $id = $getAdministrasiUser->id;
+            // $administrasi = Administrasi::find($id);
+            if (isset($request->file_cv)) {
 
+                $file = $request->file('file_cv');
+                $new_file_name = 'FileCV-' . date('Ymd-H.i.s.') . $file->extension();
+                $upload = $file->move(public_path($path), $new_file_name);
+                $getAdministrasiUser = Administrasi::find($id)->update(['file_cv' => $new_file_name]);
+            }
+            if (isset($request->file_esai)) {
+                $file = $request->file('file_esai');
+                $new_file_name = 'FileEsai-' . date('Ymd-H.i.s.') . $file->extension();
+                $upload = $file->move(public_path($path), $new_file_name);
+                $getAdministrasiUser = Administrasi::find($id)->update(['file_esai' => $new_file_name]);
+            }
+            if (isset($request->file_portofolio)) {
+                $file = $request->file('file_portofolio');
+                $new_file_name = 'FilePortofolio-' . date('Ymd-H.i.s.') . $file->extension();
+                $upload = $file->move(public_path($path), $new_file_name);
+                $getAdministrasiUser = Administrasi::find($id)->update(['file_portofolio' => $new_file_name]);
+            }
+            if (isset($request->file_ktm)) {
+                $file = $request->file('file_ktm');
+                $new_file_name = 'FileKTM-' . date('Ymd-H.i.s.') . $file->extension();
+                $upload = $file->move(public_path($path), $new_file_name);
+                $getAdministrasiUser = Administrasi::find($id)->update(['file_ktm' => $new_file_name]);
+            }
+            if (isset($request->file_transkrip)) {
+                $file = $request->file('file_transkrip');
+                $new_file_name = 'FileTranskrip-' . date('Ymd-H.i.s.') . $file->extension();
+                $upload = $file->move(public_path($path), $new_file_name);
+                $getAdministrasiUser = Administrasi::find($id)->update(['file_transkrip' => $new_file_name]);
+            }
             $path = $getPeriodeAktif->name . '/' . $request->user()->id . '/' . Auth::user()->picture;
             $path2 = 'pictures' . '/';
             $file = $path2 . Auth::user()->picture;

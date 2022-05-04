@@ -129,11 +129,11 @@
                                                 <div
                                                     class="mr-5 my-2 py-2 px-3 badge
                                                     {{ !isset($admUser->wawancara->penugasan->status_png) ? 'badge-secondary' : '' }}
-                                                    {{ isset($admUser->wawancara->penugasan->status_png) && $admUser->wawancara->penugasan->status_png == 'lolos'? 'badge-success': '' }}
-                                                    {{ isset($admUser->wawancara->penugasan->status_png) && $admUser->wawancara->penugasan->status_png == 'gagal'? 'badge-danger': '' }}">
+                                                    {{ isset($admUser->wawancara->penugasan->status_png) && $admUser->wawancara->penugasan->status_png == 'lolos' ? 'badge-success' : '' }}
+                                                    {{ isset($admUser->wawancara->penugasan->status_png) && $admUser->wawancara->penugasan->status_png == 'gagal' ? 'badge-danger' : '' }}">
                                                     {{ !isset($admUser->wawancara->penugasan->status_png) ? 'Unset' : '' }}
-                                                    {{ isset($admUser->wawancara->penugasan->status_png) && $admUser->wawancara->penugasan->status_png == 'lolos'? 'Lolos': '' }}
-                                                    {{ isset($admUser->wawancara->penugasan->status_png) && $admUser->wawancara->penugasan->status_png == 'gagal'? 'Gagal': '' }}
+                                                    {{ isset($admUser->wawancara->penugasan->status_png) && $admUser->wawancara->penugasan->status_png == 'lolos' ? 'Lolos' : '' }}
+                                                    {{ isset($admUser->wawancara->penugasan->status_png) && $admUser->wawancara->penugasan->status_png == 'gagal' ? 'Gagal' : '' }}
                                                 </div>
                                                 {{-- <a class="btn btn-primary btn-sm m-2 px-3 rounded" href="#">
                                                     Detail

@@ -30,7 +30,7 @@ class AdministrasiFactory extends Factory
             'file_ktm' => uniqid() . '.png',
             'file_transkrip' => uniqid() . '.pdf',
             'no_wa' => '089' . mt_rand(000000000, 999999999),
-            'instragram' => $this->faker->userName(),
+            'instagram' => $this->faker->userName(),
             'facebook' => $this->faker->userName(),
             'status_adm' => $this->faker->randomElement(['lolos', 'gagal']),
             'catatan' => $this->faker->paragraph(2),

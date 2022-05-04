@@ -43,19 +43,21 @@
                                     <h4>Login</h4>
                                 </center>
                                 <div class="form-group">
-                                    <input type="text" name="name" value="" class="form-control"
+                                    <input type="text" name="email" value="" class="form-control"
                                         id="exampleFormControlInput1" required placeholder="Email" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="email" value="" class="form-control"
+                                    <input type="text" name="password" value="" class="form-control"
                                         id="exampleFormControlInput1" required placeholder="Password" />
                                 </div>
                                 <center>
-                                    <p>Belum punya akun ? <a href="">Register disini.</a></p>
+                                    <p>Belum punya akun ? <a href="{{ route('register') }}">Register disini.</a></p>
                                     <div class="button-submit">
                                         <button type="submit" class="btn  tombol">Login</button>
                                     </div>
-                                    <a href="">Forgot password?</a>
+                                    @if (Route::has('password.request'))
+                                        <a href="{{ route('password.request') }}">Forgot password?</a>
+                                    @endif
                                 </center>
 
                             </form>

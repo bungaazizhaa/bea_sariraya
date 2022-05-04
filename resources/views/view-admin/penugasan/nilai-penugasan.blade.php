@@ -70,7 +70,7 @@
                                 <div class="row">
                                     <div class="col-md-3 text-center text-md-left px-3">
                                         <div>
-                                            <img src="/pictures/{{ $pngUser->wawancara->administrasi->user->picture == ''? 'noimg.png': $pngUser->wawancara->administrasi->user->picture }}"
+                                            <img src="/pictures/{{ $pngUser->wawancara->administrasi->user->picture == '' ? 'noimg.png' : $pngUser->wawancara->administrasi->user->picture }}"
                                                 class="rounded" alt="User Image" height="200px" width="150px">
                                         </div>
                                     </div>
@@ -211,8 +211,81 @@
                             </div>
                             <div class="card-body">
 
-                                {{--  --}}
-
+                                <div class="row mb-3">
+                                    <label for="file_cv"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('File CV') }}</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            @if (isset($pngUser->wawancara->administrasi->file_cv))
+                                                <a class="btn btn-outline-primary" target="_blank"
+                                                    href={{ asset($periodeOpenned->name . '/' . $pngUser->wawancara->administrasi->user->id . '/' . $pngUser->wawancara->administrasi->file_cv) }}>Lihat
+                                                    CV Tersimpan</a>
+                                            @elseif (!isset($pngUser->wawancara->administrasi->file_cv))
+                                                <div class="mb-0 mt-1 pt-1">-</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="file_esai"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('FileEsai') }}</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            @if (isset($pngUser->wawancara->administrasi->file_esai))
+                                                <a class="btn btn-outline-primary" target="_blank"
+                                                    href={{ asset($periodeOpenned->name . '/' . $pngUser->wawancara->administrasi->user->id . '/' . $pngUser->wawancara->administrasi->file_esai) }}>Lihat
+                                                    Esai Tersimpan</a>
+                                            @elseif (!isset($pngUser->wawancara->administrasi->file_esai))
+                                                <div class="mb-0 mt-1 pt-1">-</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="file_portofolio"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('File Portofolio') }}</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            @if (isset($pngUser->wawancara->administrasi->file_portofolio))
+                                                <a class="btn btn-outline-primary" target="_blank"
+                                                    href={{ asset($periodeOpenned->name . '/' . $pngUser->wawancara->administrasi->user->id . '/' . $pngUser->wawancara->administrasi->file_portofolio) }}>Lihat
+                                                    Portofilio Tersimpan</a>
+                                            @elseif (!isset($pngUser->wawancara->administrasi->file_portofolio))
+                                                <div class="mb-0 mt-1 pt-1">-</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="file_ktm"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('File KTM') }}</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            @if (isset($pngUser->wawancara->administrasi->file_ktm))
+                                                <a class="btn btn-outline-primary" target="_blank"
+                                                    href={{ asset($periodeOpenned->name . '/' . $pngUser->wawancara->administrasi->user->id . '/' . $pngUser->wawancara->administrasi->file_ktm) }}>Lihat
+                                                    KTM Tersimpan</a>
+                                            @elseif (!isset($pngUser->wawancara->administrasi->file_ktm))
+                                                <div class="mb-0 mt-1 pt-1">-</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="file_transkrip"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('File Transkrip') }}</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            @if (isset($pngUser->wawancara->administrasi->file_transkrip))
+                                                <a class="btn btn-outline-primary" target="_blank"
+                                                    href={{ asset($periodeOpenned->name . '/' . $pngUser->wawancara->administrasi->user->id . '/' . $pngUser->wawancara->administrasi->file_transkrip) }}>Lihat
+                                                    Transkrip Tersimpan</a>
+                                            @elseif (!isset($pngUser->wawancara->administrasi->file_transkrip))
+                                                <div class="mb-0 mt-1 pt-1">-</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -225,7 +298,39 @@
                             </div>
                             <div class="card-body">
 
-                                {{--  --}}
+
+                                <div class="row mb-3">
+                                    <label for="no_wa"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Nomor WhatsApp') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="no_wa" type="text" class="form-control" name="no_wa"
+                                            spellcheck="false" disabled
+                                            value="{{ $pngUser->wawancara->administrasi->no_wa }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="instagram"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Instagram') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="instagram" type="text" class="form-control" name="instagram"
+                                            spellcheck="false" disabled
+                                            value="{{ $pngUser->wawancara->administrasi->instagram }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="facebook"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Facebook') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="facebook" type="text" class="form-control" name="facebook"
+                                            spellcheck="false" disabled
+                                            value="{{ $pngUser->wawancara->administrasi->facebook }}">
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -248,7 +353,7 @@
                                             Wawancara :</label>
                                         <div id="tombolKalender" class="col-md-8">
                                             <p class="my-2">
-                                                {{ isset($pngUser->wawancara->jadwal_wwn)? $pngUser->wawancara->jadwal_wwn->format('D, d F Y H:i') . ' WIB': '' }}
+                                                {{ isset($pngUser->wawancara->jadwal_wwn) ? $pngUser->wawancara->jadwal_wwn->format('D, d F Y H:i') . ' WIB' : '' }}
                                             </p>
                                             <span>
                                                 <div class="p">(
@@ -405,5 +510,10 @@
 
             }
         }
+    </script>
+    <script>
+        $('document').ready(function() {
+            $('.card-body input:not([value!=""])').val('-');
+        });
     </script>
 @endsection

@@ -507,7 +507,7 @@
                                                             <th scope="row">{{ $i++ }}</th>
                                                             <td>{{ $userAdmLolos->user->name }}</td>
                                                             <td>{{ $userAdmLolos->user->email }}</td>
-                                                            <td>{{ isset($userAdmLolos->wawancara->jadwal_wwn)? $userAdmLolos->wawancara->jadwal_wwn->format('d M Y - H:i'): '' }}
+                                                            <td>{{ isset($userAdmLolos->wawancara->jadwal_wwn) ? $userAdmLolos->wawancara->jadwal_wwn->format('d M Y - H:i') : '' }}
                                                                 WIB
                                                             </td>
                                                         </tr>

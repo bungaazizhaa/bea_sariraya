@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Hash;
 use function PHPUnit\Framework\isNull;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
 class UserController extends Controller
 {
@@ -92,7 +94,44 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|regex:/^[a-z A-Z]+$/u|string|max:255',
+        ]);
+        if ($request->email != Auth::user()->email) {
+            $validated = $request->validate([
+                'email' => 'unique:users|string|max:255',
+            ]);
+        }
+        $user = User::find($id);
+        $user->name = $request->name;
+        $path = 'pictures' . '/';
+        $file = $request->file('Foto');
+        $new_image_name = '_PasFoto-' . str_replace(' ', '-', isset($request->name) ? $request->name : $request->user()->name) .  date('-Ymd-H.i.s.') . $file->extension();
+        $upload = $file->move(public_path($path), $new_image_name);
+        if ($upload) {
+            $userInfo =  $request->user()->picture;
+            if ($userInfo != '') {
+                unlink($path . $userInfo);
+            }
+
+            $user->picture = $new_image_name;
+            Alert::success('Foto Berhasil Diupload.', 'Anda dapat melanjutkan ke Proses Penerimaan Beasiswa.');
+        }
+        if ($request->email != Auth::user()->email) {
+            $user->email = $request->email;
+        }
+        if ($request->password != '') {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+
+        if (!$user) {
+            Alert::danger('Gagal', 'Anda gagal mengubah user.');
+            return back();
+        } else {
+            Alert::success('Berhasil', 'Akun ' . $user->name . ' berhasil diperbarui.');
+            return redirect(route('setting.beasiswa'));
+        }
     }
 
     /**
@@ -103,11 +142,32 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+
         $path = 'pictures/';
+        $getAllPeriode = Periode::all();
         $user = User::find($id);
         $userInfo =  $user->picture;
         if ($userInfo != '') {
             unlink($path . $userInfo);
+        }
+        foreach ($getAllPeriode as $periode) {
+            $path2 = $periode->name . '/' . $user->id . '/';
+            if (is_dir(public_path($path2))) {
+                $dir = public_path($path2);
+                $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+                $files = new RecursiveIteratorIterator(
+                    $it,
+                    RecursiveIteratorIterator::CHILD_FIRST
+                );
+                foreach ($files as $file) {
+                    if ($file->isDir()) {
+                        rmdir($file->getRealPath());
+                    } else {
+                        unlink($file->getRealPath());
+                    }
+                }
+                rmdir($dir);
+            }
         }
         $user->delete();
         if (!$user) {
@@ -140,7 +200,12 @@ class UserController extends Controller
         $file = $request->file('Foto');
         $new_image_name = '_PasFoto-' . str_replace(' ', '-', $request->user()->name) .  date('-Ymd-H.i.s.') . $file->extension();
         $upload = $file->move(public_path($path2), $new_image_name);
-        File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
+        if (is_dir(public_path($path))) {
+            File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
+        } else {
+            mkdir(public_path($path));
+            File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
+        }
         if ($upload) {
             $userInfo =  $request->user()->picture;
             if ($userInfo != '') {

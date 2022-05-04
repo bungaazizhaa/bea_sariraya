@@ -257,7 +257,71 @@
                     </div>
                     <div class="card-body">
 
-                        {{--  --}}
+                        <div class="row mb-3">
+                            <label for="file_cv"
+                                class="col-md-4 col-form-label text-md-right">{{ __('File CV') }}</label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    @if (isset($getAdministrasiUser->file_cv))
+                                        <a class="btn btn-outline-primary" target="_blank"
+                                            href={{ asset($getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/' . $getAdministrasiUser->file_cv) }}>Lihat
+                                            CV Tersimpan</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="file_esai"
+                                class="col-md-4 col-form-label text-md-right">{{ __('FileEsai') }}</label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    @if (isset($getAdministrasiUser->file_esai))
+                                        <a class="btn btn-outline-primary" target="_blank"
+                                            href={{ asset($getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/' . $getAdministrasiUser->file_esai) }}>Lihat
+                                            Esai Tersimpan</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="file_portofolio"
+                                class="col-md-4 col-form-label text-md-right">{{ __('File Portofolio') }}</label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    @if (isset($getAdministrasiUser->file_portofolio))
+                                        <a class="btn btn-outline-primary" target="_blank"
+                                            href={{ asset($getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/' . $getAdministrasiUser->file_portofolio) }}>Lihat
+                                            Portofilio Tersimpan</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="file_ktm"
+                                class="col-md-4 col-form-label text-md-right">{{ __('File KTM') }}</label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    @if (isset($getAdministrasiUser->file_ktm))
+                                        <a class="btn btn-outline-primary" target="_blank"
+                                            href={{ asset($getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/' . $getAdministrasiUser->file_ktm) }}>Lihat
+                                            KTM Tersimpan</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="file_transkrip"
+                                class="col-md-4 col-form-label text-md-right">{{ __('File Transkrip') }}</label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    @if (isset($getAdministrasiUser->file_transkrip))
+                                        <a class="btn btn-outline-primary" target="_blank"
+                                            href={{ asset($getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/' . $getAdministrasiUser->file_transkrip) }}>Lihat
+                                            Transkrip Tersimpan</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -271,8 +335,61 @@
                     </div>
                     <div class="card-body">
 
-                        {{--  --}}
+                        <div class="row mb-3">
+                            <label for="no_wa"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Nomor WhatsApp') }}</label>
 
+                            <div class="col-md-6">
+                                <input id="no_wa" type="text" spellcheck="false"
+                                    class="form-control editable {{ isset($getAdministrasiUser->no_wa) ? 'font-weight-bold' : '' }} @error('no_wa') is-invalid @enderror"
+                                    name="no_wa" disabled
+                                    value="{{ old('no_wa', isset($getAdministrasiUser) ? $getAdministrasiUser->no_wa : '') }}"
+                                    autocomplete="no_wa" placeholder="">
+
+                                @error('no_wa')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="instagram"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Instagram') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="instagram" type="text" spellcheck="false"
+                                    class="form-control editable {{ isset($getAdministrasiUser->instagram) ? 'font-weight-bold' : '' }} @error('instagram') is-invalid @enderror"
+                                    name="instagram" disabled
+                                    value="{{ old('instagram', isset($getAdministrasiUser) ? $getAdministrasiUser->instagram : '') }}"
+                                    autocomplete="instagram" placeholder="">
+
+                                @error('instagram')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="facebook"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Facebook') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="facebook" type="text" spellcheck="false"
+                                    class="form-control editable {{ isset($getAdministrasiUser->facebook) ? 'font-weight-bold' : '' }} @error('facebook') is-invalid @enderror"
+                                    name="facebook" disabled
+                                    value="{{ old('facebook', isset($getAdministrasiUser) ? $getAdministrasiUser->facebook : '') }}"
+                                    autocomplete="facebook" placeholder="">
+
+                                @error('facebook')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -287,6 +404,11 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
+    <script>
+        $('document').ready(function() {
+            $('input:not([value!=""])').val('-');
+        });
     </script>
 </body>
 

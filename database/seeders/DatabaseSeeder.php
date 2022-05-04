@@ -138,8 +138,20 @@ class DatabaseSeeder extends Seeder
         Prodi::create(['nama_prodi' => 'Teknik Komputer',],);
         Prodi::create(['nama_prodi' => 'Teknik Informatika',],);
         Prodi::create(['nama_prodi' => 'Teknologi Informasi',],);
-
-        User::factory(15)->create();
+        User::create(
+            [
+                'role' => 'admin',
+                'nim' => '000',
+                'univ_id' => '1',
+                'prodi_id' => '1',
+                'name' => 'Administrator',
+                'picture' => null,
+                'email_verified_at' => now(),
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('12345678'),
+                'remember_token' => '',
+            ],
+        );
 
         User::create(
             [
@@ -154,20 +166,7 @@ class DatabaseSeeder extends Seeder
                 'remember_token' => Str::random(10),
             ]
         );
-        User::create(
-            [
-                'role' => 'admin',
-                'nim' => '000',
-                'univ_id' => '1',
-                'prodi_id' => '1',
-                'name' => 'Administrator',
-                'picture' => null,
-                'email_verified_at' => now(),
-                'email' => 'admin@gmail.com',
-                'password' => Hash::make('12345678'),
-                'remember_token' => Str::random(10),
-            ],
-        );
+        User::factory(15)->create();
         Administrasi::factory(5)->create();
     }
 }
