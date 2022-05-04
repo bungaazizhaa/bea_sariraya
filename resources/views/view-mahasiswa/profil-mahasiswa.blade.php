@@ -29,17 +29,6 @@
                         </p>
                     </div>
                 @endif
-
-                @if (Route::has('register') && $getTanggalSekarang >= $getPeriodeAktif->tm_adm->format('Y-m-d'))
-                    <div class="alert alert-info" role="alert">
-                        <strong>Pengisian Formulir Administrasi Sudah di Mulai.</strong> Segera lengkapi
-                        Foto Anda dan menuju pengisian Formulir Administrasi.
-                    </div>
-                @elseif (Route::has('register') && $getTanggalSekarang < $getPeriodeAktif->tm_adm->format('Y-m-d'))
-                    <div class="alert alert-info" role="alert">
-                        <strong>Pengisian Formulir Administrasi Belum di Mulai.</strong>
-                    </div>
-                @endif
             @endif
             @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
                 <div class="alert alert-info" role="alert">
@@ -170,7 +159,7 @@
                                     <tr>
                                         <td>Email Terverifikasi</td>
                                         <td>:</td>
-                                        <td>{{ Auth::user()->email_verified_at == ''? '': Auth::user()->email_verified_at->isoFormat('dddd, D MMMM Y - hh:mm:ss') }}
+                                        <td>{{ Auth::user()->email_verified_at == '' ? '' : Auth::user()->email_verified_at->isoFormat('dddd, D MMMM Y - hh:mm:ss') }}
                                         </td>
                                     </tr>
                                     <tr>

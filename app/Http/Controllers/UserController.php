@@ -104,18 +104,20 @@ class UserController extends Controller
         }
         $user = User::find($id);
         $user->name = $request->name;
-        $path = 'pictures' . '/';
-        $file = $request->file('Foto');
-        $new_image_name = '_PasFoto-' . str_replace(' ', '-', isset($request->name) ? $request->name : $request->user()->name) .  date('-Ymd-H.i.s.') . $file->extension();
-        $upload = $file->move(public_path($path), $new_image_name);
-        if ($upload) {
-            $userInfo =  $request->user()->picture;
-            if ($userInfo != '') {
-                unlink($path . $userInfo);
-            }
+        if ($request->file('Foto') != null) {
+            $path = 'pictures' . '/';
+            $file = $request->file('Foto');
+            $new_image_name = '_PasFoto-' . str_replace(' ', '-', isset($request->name) ? $request->name : $request->user()->name) .  date('-Ymd-H.i.s.') . $file->extension();
+            $upload = $file->move(public_path($path), $new_image_name);
+            if ($upload) {
+                $userInfo =  $request->user()->picture;
+                if ($userInfo != '') {
+                    unlink($path . $userInfo);
+                }
 
-            $user->picture = $new_image_name;
-            Alert::success('Foto Berhasil Diupload.', 'Anda dapat melanjutkan ke Proses Penerimaan Beasiswa.');
+                $user->picture = $new_image_name;
+                Alert::success('Foto Berhasil Diupload.', 'Anda dapat melanjutkan ke Proses Penerimaan Beasiswa.');
+            }
         }
         if ($request->email != Auth::user()->email) {
             $user->email = $request->email;
