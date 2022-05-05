@@ -5,7 +5,7 @@
 @section('title')
     <h4 class="m-0 p-0 text-truncate"
         style="white-space: nowrap;
-                                                                                                                                                                                                                                                                                    overflow: hidden;text-overflow: ellipsis;">
+                                                                                                                                                                                                                                                                                                overflow: hidden;text-overflow: ellipsis;">
         Data
         Pengguna
     </h4>
@@ -29,7 +29,7 @@
                     </form>
                     <div class="">
                         <a href="/admin/data-pengguna/tabel" class=" ml-2 btn btn-secondary text-nowrap"><i
-                                class="fa-solid fa-table"></i> Table View</a>
+                                class="fa-solid fa-table"></i>&nbsp; Table View</a>
                     </div>
                 </div>
             </div>
@@ -71,10 +71,11 @@
                                                 </span>{{ $user->created_at->translatedFormat('d M Y - H:i:s') }}</small></span>
                                     </div>
                                     <div class="mr-0 ml-auto">
-                                        <a href="{{ route('pengguna.show', $user->id) }}" id="showUser"
-                                            class="btn btn-xs rounded bg-dark text-info px-3 mr-2">Detail
-                                        </a>
-                                        {{-- <a href="{{ route('pengguna.edit', $user->id) }}" id="editUserAlert"
+                                        @if ($user->role == 'mahasiswa')
+                                            <a href="{{ route('pengguna.show', $user->id) }}" id="showUser"
+                                                class="btn btn-xs rounded bg-dark text-info px-3 mr-2">Detail
+                                            </a>
+                                            {{-- <a href="{{ route('pengguna.edit', $user->id) }}" id="editUserAlert"
                                             class="btn btn-xs rounded bg-dark text-warning">
                                             Edit
                                         </a>
@@ -82,10 +83,11 @@
                                             data-id="{{ $pengguna->id }}" data-toggle="modal">
                                             Edit
                                         </button> --}}
-                                        <a href="" id="deleteUserAlert" data-id="{{ $user->id }}"
-                                            data-name="{{ $user->name }}"
-                                            class="btn btn-xs rounded bg-dark text-danger">Hapus
-                                        </a>
+                                            <a href="" id="deleteUserAlert" data-id="{{ $user->id }}"
+                                                data-name="{{ $user->name }}"
+                                                class="btn btn-xs rounded bg-dark text-danger">Hapus
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

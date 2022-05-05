@@ -21,15 +21,6 @@
                                 class="rounded img-fluid image-previewer" alt="User Image" height="400px" width="300px">
                         </div>
                         <!-- /.card-body -->
-                        @if (Auth::user()->id == $getUser->id)
-                            <div class="card-footer rounded-bottom-md">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="userPictureFile"
-                                        name="userPictureFile">
-                                    <label class="custom-file-label" for="userPictureFile">Choose file</label>
-                                </div>
-                            </div>
-                        @endif
                     </div>
                     <!-- /.card -->
                 </div>

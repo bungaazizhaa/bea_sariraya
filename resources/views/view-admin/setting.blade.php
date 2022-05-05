@@ -119,7 +119,7 @@
             </div>
         </div>
 
-        <div class="col-12">
+        <div class="col-12 mt-5">
             <form id="formResetBeasiswa" method="POST" action="{{ route('reset.beasiswa') }}">
                 @csrf
                 <a type="button" id="resetBeasiswaAlert" class="btn btn-dark text-nowrap pr-3 mb-3 text-danger">

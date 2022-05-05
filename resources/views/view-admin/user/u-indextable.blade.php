@@ -5,7 +5,7 @@
 @section('title')
     <h4 class="m-0 p-0 text-truncate"
         style="white-space: nowrap;
-                                                                                                                                                                                                                                overflow: hidden;text-overflow: ellipsis;">
+                                                                                                                                                                                                                                                                                overflow: hidden;text-overflow: ellipsis;">
         Data
         Pengguna
     </h4>
@@ -15,6 +15,10 @@
         <div class="container-fluid">
             <!-- Main content -->
             <div class="row">
+                <div class="mb-3 ml-auto mr-3">
+                    <a href="/admin/data-pengguna" class=" ml-2 btn btn-secondary text-nowrap"><i
+                            class="fa-solid fa-address-card"></i>&nbsp; Card View</a>
+                </div>
                 <div class="col-12">
                     <div class="card rounded-md myshadow">
                         <div class="card-header">
@@ -58,13 +62,15 @@
                                                 <td>{{ $user->created_at->translatedFormat('d F Y H:i') }}</td>
                                                 <td>{{ $user->updated_at->translatedFormat('d F Y H:i') }}</td>
                                                 <td class="text-nowrap">
-                                                    <a href="{{ route('pengguna.show', $user->id) }}" id="showUser"
-                                                        class="btn btn-xs btn-primary rounded">Detail
-                                                    </a>
-                                                    <a href="" id="deleteUserAlert" data-id="{{ $user->id }}"
-                                                        data-name="{{ $user->name }}"
-                                                        class="btn btn-xs btn-danger rounded ml-2">Hapus
-                                                    </a>
+                                                    @if ($user->role == 'mahasiswa')
+                                                        <a href="{{ route('pengguna.show', $user->id) }}" id="showUser"
+                                                            class="btn btn-xs btn-primary rounded">Detail
+                                                        </a>
+                                                        <a href="" id="deleteUserAlert" data-id="{{ $user->id }}"
+                                                            data-name="{{ $user->name }}"
+                                                            class="btn btn-xs btn-danger rounded ml-2">Hapus
+                                                        </a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

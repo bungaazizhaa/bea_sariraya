@@ -69,7 +69,7 @@ class UserController extends Controller
         $getAllUniv = Univ::all();
         $getAllPeriode = Periode::all();
         $getAllUser = User::all();
-        $getUser = User::filter(request(['search']))->paginate(10)->withQueryString();
+        $getUser = User::filter(request(['search']))->paginate(20)->withQueryString();
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
         return view('view-admin.user.u-index', compact('getPeriodeAktif', 'getAllUniv', 'getAllPeriode', 'getAllUser', 'getUser'));
     }
