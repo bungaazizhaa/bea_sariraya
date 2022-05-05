@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,8 +16,8 @@ class AdministrasiFactory extends Factory
     public function definition()
     {
         return [
-            'no_pendaftaran' => strtoupper(mt_rand(1, 3) . uniqid()),
-            'user_id' => mt_rand(1, 5),
+            'no_pendaftaran' => IdGenerator::generate(['table' => 'administrasis', 'field' => 'no_pendaftaran', 'length' => 10, 'prefix' => 'B' . mt_rand(1, 3) . '-' . mt_rand(1, 5) . '-' . mt_rand(10000, 99999)]),
+            'user_id' => mt_rand(2, 60),
             'periode_id' => mt_rand(1, 3),
             'tempat_lahir' => $this->faker->city(),
             'tanggal_lahir' => $this->faker->date(),

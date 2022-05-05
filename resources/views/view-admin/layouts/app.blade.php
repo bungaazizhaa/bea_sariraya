@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset('admin-lte') }}/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css') }}/myadminapp.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    {{-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> --}}
     <!-- jQuery -->
     <script src="{{ asset('admin-lte') }}/plugins/jquery/jquery.min.js"></script>
 
@@ -124,7 +124,7 @@
                             <p>
                                 {{ Auth::user()->name }}
                                 <small>Member since
-                                    {{ Auth::user()->created_at->format('M. Y') }}</small>
+                                    {{ Auth::user()->created_at->translatedFormat('M. Y') }}</small>
                             </p>
                         </li>
                         <!-- Menu Footer-->
@@ -168,7 +168,8 @@
 
     </div>
     <!-- ./wrapper -->
-
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

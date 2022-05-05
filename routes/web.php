@@ -52,9 +52,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/reset-beasiswa', [HomeController::class, 'resetBeasiswa'])->name('reset.beasiswa');
     Route::get('/dashboard', [HomeController::class, 'indexAdmin'])->name('admin');
     //Periode
+    Route::get('/periode', [PeriodeController::class, 'index'])->name('index.periode'); //periode
     Route::post('/periode/store', [PeriodeController::class, 'store'])->name('store.periode'); //membuat-baru-periode
     Route::post('/{name}/group-wa/update', [PeriodeController::class, 'groupwaUpdate'])->name('groupwaupdate.periode'); //membuat-baru-periode
     Route::get('/{name}/detail-periode', [PeriodeController::class, 'indexPeriodeById'])->name('periode'); //detail-periode
+    Route::post('/{name}/destroy-periode', [PeriodeController::class, 'destroy'])->name('destroy.periode'); //membuat-baru-periode
     Route::post('/{name}/update-periode', [PeriodeController::class, 'update'])->name('update.periode');
     Route::post('/{name}/administrasi/umumkan', [PeriodeController::class, 'umumkanAdm'])->name('umumkan.adm'); //Set status_adm Selesai di Periode
     Route::post('/{name}/wawancara/umumkan', [PeriodeController::class, 'umumkanWwn'])->name('umumkan.wwn'); //Set status_adm Selesai di Periode
@@ -69,6 +71,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/{name}/nilai-penugasan', [PenugasanController::class, 'nilaiPng'])->name('nilai.png'); //halaman nilai png
     Route::post('/update-nilai-penugasan/{id}', [PenugasanController::class, 'updatenilaiPng'])->name('updatenilai.png'); //menyimpan penilaian wwn
     // User
+    Route::get('admin/data-pengguna/tabel', [UserController::class, 'showDataPenggunaTabel'])->name('datatabel.pengguna'); //halaman nilai png
     Route::get('admin/data-pengguna', [UserController::class, 'showDataPengguna'])->name('data.pengguna'); //halaman nilai png
     Route::get('admin/data-pengguna/detail/{id}', [UserController::class, 'show'])->name('pengguna.show');;
     Route::get('admin/destroy/data-pengguna/{id}', [UserController::class, 'destroy'])->name('pengguna.destroy');

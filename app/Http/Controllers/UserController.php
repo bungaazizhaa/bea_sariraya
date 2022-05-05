@@ -68,9 +68,19 @@ class UserController extends Controller
     {
         $getAllUniv = Univ::all();
         $getAllPeriode = Periode::all();
-        $getAllUser = User::filter(request(['search']))->paginate(10)->withQueryString();
+        $getAllUser = User::all();
+        $getUser = User::filter(request(['search']))->paginate(10)->withQueryString();
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        return view('view-admin.user.u-index', compact('getPeriodeAktif', 'getAllUniv', 'getAllPeriode', 'getAllUser'));
+        return view('view-admin.user.u-index', compact('getPeriodeAktif', 'getAllUniv', 'getAllPeriode', 'getAllUser', 'getUser'));
+    }
+
+    public function showDataPenggunaTabel()
+    {
+        $getAllUniv = Univ::all();
+        $getAllPeriode = Periode::all();
+        $getAllUser = User::all();
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        return view('view-admin.user.u-indextable', compact('getPeriodeAktif', 'getAllUniv', 'getAllPeriode', 'getAllUser'));
     }
 
 

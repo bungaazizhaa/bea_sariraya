@@ -166,7 +166,7 @@ class DatabaseSeeder extends Seeder
                 'remember_token' => Str::random(10),
             ]
         );
-        User::factory(15)->create();
-        Administrasi::factory(5)->create();
+        User::factory(300)->create();
+        Administrasi::factory(300)->create();
     }
 }

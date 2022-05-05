@@ -3,16 +3,20 @@
     <title>Data Pengguna</title>
 @endsection
 @section('title')
-    <h4 class="m-0 p-0 text-truncate" style="white-space: nowrap;
-                                        overflow: hidden;text-overflow: ellipsis;">Data Pengguna</h4>
+    <h4 class="m-0 p-0 text-truncate"
+        style="white-space: nowrap;
+                                                                                                                                                                                                                                                                                    overflow: hidden;text-overflow: ellipsis;">
+        Data
+        Pengguna
+    </h4>
 @endsection
 @section('content')
     <div class="container">
         <div class="container-fluid">
             <!-- Main content -->
             <div class="row justify-content-end">
-                <div class="col-12 col-md-5">
-                    <form action="/admin/data-pengguna">
+                <div class="col-12 col-md-6 d-flex justify-content-end">
+                    <form action="/admin/data-pengguna" class=" w-100">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Cari Nama, atau data yang lainnya."
                                 aria-label="Recipient's username" aria-describedby="basic-addon2" name="search"
@@ -23,13 +27,17 @@
                             </div>
                         </div>
                     </form>
+                    <div class="">
+                        <a href="/admin/data-pengguna/tabel" class=" ml-2 btn btn-secondary text-nowrap"><i
+                                class="fa-solid fa-table"></i> Table View</a>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                @if ($getAllUser->count())
-                    @foreach ($getAllUser as $user)
+                @if ($getUser->count())
+                    @foreach ($getUser as $user)
                         <div class="col-12 col-md-6">
-                            <div class="card rounded-md myshadow">
+                            <div class="card rounded-md myshadow user-box">
                                 <div class="row px-2">
                                     <img src="/pictures/{{ $user->picture == '' ? 'noimg.png' : $user->picture }}"
                                         onclick="location.href='{{ route('pengguna.show', $user->id) }}'"
@@ -45,7 +53,7 @@
                                             @endif
                                         </li>
                                         <p class="m-0 ml-2 font-weight-light text-truncate"><a class=" text-light"
-                                                href="">{{ $user->email }}</a>
+                                                href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                                         </p>
                                         <p class="m-0 ml-2 font-weight-light text-truncate">
                                             {{ ucfirst($user->role) }}</p>
@@ -60,7 +68,7 @@
                                 </div>
                                 <div class="card-footer rounded-bottom-md p-2 d-flex">
                                     <div class="mb-0 mr-2"><span><small><span class="text-muted"> Created at :
-                                                </span>{{ $user->created_at->format('D M Y - H:i:s') }}</small></span>
+                                                </span>{{ $user->created_at->translatedFormat('d M Y - H:i:s') }}</small></span>
                                     </div>
                                     <div class="mr-0 ml-auto">
                                         <a href="{{ route('pengguna.show', $user->id) }}" id="showUser"
@@ -90,40 +98,13 @@
                 @endif
                 <div class="col-12 mt-3">
                     <div class="d-flex justify-content-center">
-                        {{ $getAllUser->links() }}
+                        {{ $getUser->onEachSide(0)->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Page specific script -->
-    <script>
-        $(function() {
-            $("#tableuser").DataTable({
-                // "dom": 'Blfrtip',
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "info": true,
-                "stateSave": true,
-                "paging": true,
-                "lengthMenu": [
-                    [5, 10, 25, 50, -1],
-                    [5, 10, 25, 50, "All"]
-                ],
-                "buttons": ["pageLength", "copy", "excel", "pdf", {
-                    extend: 'print',
-                    text: 'Print',
-                    exportOptions: {
-                        modifier: {
-                            page: 'current'
-                        }
-                    }
-                }, "colvis"],
-            }).buttons().container().appendTo('#tableuser_wrapper .col-md-6:eq(0)');
-        });
-    </script>
 
     <script>
         const swalWithBootstrapButtons = Swal.mixin({

@@ -39,9 +39,9 @@
         </a>
     </li>
     <li
-        class="nav-item mb-1 menu-collapse  {{ Request::segment(2) === 'detail-periode' || Request::segment(2) === 'nilai-administrasi' || Request::segment(2) === 'nilai-wawancara' || Request::segment(2) === 'nilai-penugasan' ? 'menu-open' : null }}">
+        class="nav-item mb-1 menu-collapse  {{ Request::segment(2) === 'detail-periode' || Request::segment(2) === 'nilai-administrasi' || Request::segment(2) === 'nilai-wawancara' || Request::segment(2) === 'nilai-penugasan' || Request::segment(1) === 'periode' ? 'menu-open' : null }}">
         <a href="#"
-            class="nav-link {{ Request::segment(2) === 'detail-periode' || Request::segment(2) === 'nilai-administrasi' || Request::segment(2) === 'nilai-wawancara' || Request::segment(2) === 'nilai-penugasan' ? 'active' : null }}">
+            class="nav-link {{ Request::segment(2) === 'detail-periode' || Request::segment(2) === 'nilai-administrasi' || Request::segment(2) === 'nilai-wawancara' || Request::segment(2) === 'nilai-penugasan' || Request::segment(1) === 'periode' ? 'active' : null }}">
             <i class="nav-icon fas fa-graduation-cap"></i>
             <p class="text-nowrap">
                 Periode Beasiswa
@@ -49,6 +49,14 @@
             </p>
         </a>
         <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{ route('index.periode') }}"
+                    class="nav-link {{ url()->current() === route('index.periode') ? 'active' : null }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Atur Periode
+                    </p>
+                </a>
+            </li>
             @foreach ($getAllPeriode as $periode)
                 <li class="nav-item">
                     <a href="{{ route('periode', $periode->name) }}"

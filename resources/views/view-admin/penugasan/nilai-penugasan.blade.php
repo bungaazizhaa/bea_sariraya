@@ -163,7 +163,7 @@
                                     <div class="col-md-6">
                                         <input id="tanggal_lahir" type="text" class="form-control" name="tanggal_lahir"
                                             spellcheck="false" disabled
-                                            value="{{ $pngUser->wawancara->administrasi->tanggal_lahir->isoFormat('D MMMM YYYY') }}">
+                                            value="{{ $pngUser->wawancara->administrasi->tanggal_lahir->translatedFormat('D MMMM YYYY') }}">
                                     </div>
                                 </div>
 
@@ -353,7 +353,7 @@
                                             Wawancara :</label>
                                         <div id="tombolKalender" class="col-md-8">
                                             <p class="my-2">
-                                                {{ isset($pngUser->wawancara->jadwal_wwn) ? $pngUser->wawancara->jadwal_wwn->format('D, d F Y H:i') . ' WIB' : '' }}
+                                                {{ isset($pngUser->wawancara->jadwal_wwn) ? $pngUser->wawancara->jadwal_wwn->translatedFormat('D, d F Y H:i') . ' WIB' : '' }}
                                             </p>
                                             <span>
                                                 <div class="p">(
@@ -511,9 +511,9 @@
             }
         }
     </script>
-    <script>
+    {{-- <script>
         $('document').ready(function() {
             $('.card-body input:not([value!=""])').val('-');
         });
-    </script>
+    </script> --}}
 @endsection

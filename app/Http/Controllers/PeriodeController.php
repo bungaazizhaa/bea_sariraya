@@ -11,6 +11,8 @@ use App\Models\Wawancara;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
 class PeriodeController extends Controller
 {
@@ -21,7 +23,11 @@ class PeriodeController extends Controller
      */
     public function index()
     {
-        //
+        $getAllPeriode = Periode::all();
+        $getPeriodeLast = Periode::orderBy('id_periode', 'desc')->value('id_periode');
+        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        return view('view-admin.periode.periode-index', compact('getAllPeriode', 'getPeriodeLast', 'getTanggalSekarang', 'getPeriodeAktif'));
     }
 
     public function indexPeriodeById($name)
@@ -30,6 +36,7 @@ class PeriodeController extends Controller
         $getAllPeriode = Periode::all();
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $periodeOpenned = Periode::where('name', '=', $name)->first();
+        $getAdministrasiUser = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->get();
         $getAllAdmLolos = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '=', 'lolos')->get();
         $getAllAdmGagal = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '!=', 'lolos')->get();
         $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->pluck('id');
@@ -38,7 +45,7 @@ class PeriodeController extends Controller
         $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->pluck('id');
         $getAllPngLolos = Penugasan::whereIn('wawancara_id', $wawancaraOpenned)->where('status_png', '=', 'lolos')->get();
         $getAllPngGagal = Penugasan::whereIn('wawancara_id', $wawancaraOpenned)->where('status_png', '=', 'gagal')->get();
-        return view('view-admin.periode.periodeid-index', compact('periodeOpenned', 'getAllUniv', 'getAllPeriode', 'getTanggalSekarang', 'getAllAdmLolos', 'getAllAdmGagal', 'getAllWwnLolos', 'getAllWwnGagal', 'getAllPngLolos', 'getAllPngGagal'));
+        return view('view-admin.periode.periodeid-index', compact('periodeOpenned', 'getAllUniv', 'getAllPeriode', 'getTanggalSekarang', 'getAllAdmLolos', 'getAllAdmGagal', 'getAllWwnLolos', 'getAllWwnGagal', 'getAllPngLolos', 'getAllPngGagal', 'getAdministrasiUser'));
     }
 
     /**
@@ -62,17 +69,17 @@ class PeriodeController extends Controller
         $validator = Validator::make($request->all(), [
             'id_periode' => 'required|integer|unique:periodes',
             'name' => 'required|unique:periodes|string|max:255',
-            'tm_adm' => 'required|date|date_format:d-m-Y',
-            'ta_adm' => 'required|date|date_format:d-m-Y',
-            'tp_adm' => 'required|date|date_format:d-m-Y',
+            'tm_adm' => 'required|date|date_format:d F Y',
+            'ta_adm' => 'required|date|date_format:d F Y',
+            'tp_adm' => 'required|date|date_format:d F Y',
             // 'status_adm' => 'string',
-            'tm_wwn' => 'required|date|date_format:d-m-Y',
-            'ta_wwn' => 'required|date|date_format:d-m-Y',
-            'tp_wwn' => 'required|date|date_format:d-m-Y',
+            'tm_wwn' => 'required|date|date_format:d F Y',
+            'ta_wwn' => 'required|date|date_format:d F Y',
+            'tp_wwn' => 'required|date|date_format:d F Y',
             // 'status_wwn' => 'string',
-            'tm_png' => 'required|date|date_format:d-m-Y',
-            'ta_png' => 'required|date|date_format:d-m-Y',
-            'tp_png' => 'required|date|date_format:d-m-Y',
+            'tm_png' => 'required|date|date_format:d F Y',
+            'ta_png' => 'required|date|date_format:d F Y',
+            'tp_png' => 'required|date|date_format:d F Y',
             // 'status_png' => 'string',
 
         ]);
@@ -154,11 +161,15 @@ class PeriodeController extends Controller
     public function umumkanPng($name)
     {
         $periodeSelected = Periode::where('name', '=', $name)->first();
+        if ($periodeSelected->group_wa == null) {
+            Alert::error('Gagal! Mohon isi link Group WhatsApp ' . ucfirst($periodeSelected->name) . ' terlebih Dahulu! ', 'Terimakasih.');
+            return back();
+        }
         $periodeSelected->status_png = 'Selesai';
         $periodeSelected->ts_png = now();
         $periodeSelected->save();
 
-        Alert::success('Tahap Wawancara ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Selanjutnya adalah membuat Group WhatsApp.');
+        Alert::success('Tahap Penugasan ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Selanjutnya adalah menunggu Mahasiswa bergabung ke Group WhatsApp.');
         return redirect(route('periode', $name));
         // 
     }
@@ -183,17 +194,17 @@ class PeriodeController extends Controller
     public function update(Request $request, $name)
     {
         $validator = Validator::make($request->all(), [
-            'tm_adm' => 'required|date|date_format:d-m-Y',
-            'ta_adm' => 'required|date|date_format:d-m-Y',
-            'tp_adm' => 'required|date|date_format:d-m-Y',
+            'tm_adm' => 'required|date|date_format:d F Y',
+            'ta_adm' => 'required|date|date_format:d F Y',
+            'tp_adm' => 'required|date|date_format:d F Y',
             // 'status_adm' => 'string',
-            'tm_wwn' => 'required|date|date_format:d-m-Y',
-            'ta_wwn' => 'required|date|date_format:d-m-Y',
-            'tp_wwn' => 'required|date|date_format:d-m-Y',
+            'tm_wwn' => 'required|date|date_format:d F Y',
+            'ta_wwn' => 'required|date|date_format:d F Y',
+            'tp_wwn' => 'required|date|date_format:d F Y',
             // 'status_wwn' => 'string',
-            'tm_png' => 'required|date|date_format:d-m-Y',
-            'ta_png' => 'required|date|date_format:d-m-Y',
-            'tp_png' => 'required|date|date_format:d-m-Y',
+            'tm_png' => 'required|date|date_format:d F Y',
+            'ta_png' => 'required|date|date_format:d F Y',
+            'tp_png' => 'required|date|date_format:d F Y',
             // 'status_png' => 'string',
         ]);
 
@@ -257,8 +268,30 @@ class PeriodeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($name)
     {
-        //
+        $getBatch = Periode::where('name', '=', $name)->first();
+        if (isset($getBatch)) {
+            if (is_dir(public_path($getBatch->name))) {
+                $dir = public_path($getBatch->name);
+                $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+                $files = new RecursiveIteratorIterator(
+                    $it,
+                    RecursiveIteratorIterator::CHILD_FIRST
+                );
+                foreach ($files as $file) {
+                    if ($file->isDir()) {
+                        rmdir($file->getRealPath());
+                    } else {
+                        unlink($file->getRealPath());
+                    }
+                }
+                rmdir($dir);
+            }
+        }
+        $getBatch = Periode::where('name', '=', $name)->first()->delete();
+
+        Alert::success('Periode ' . ucfirst($name) . ' berhasil di Hapus!', 'Daftar periode telah terbarui.');
+        return redirect(route('index.periode'));
     }
 }

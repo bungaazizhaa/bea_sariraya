@@ -161,7 +161,7 @@
                                     <div class="col-md-6">
                                         <input id="tanggal_lahir" type="text" class="form-control" name="tanggal_lahir"
                                             spellcheck="false" disabled
-                                            value="{{ $wwnUser->administrasi->tanggal_lahir->format('d F Y') }}">
+                                            value="{{ $wwnUser->administrasi->tanggal_lahir->translatedFormat('d F Y') }}">
                                     </div>
                                 </div>
 
@@ -363,7 +363,7 @@
                                             <input autocomplete="off" id="jadwal_wwn" type="jadwal_wwn"
                                                 class="form-control @error('jadwal_wwn') is-invalid @enderror"
                                                 name="jadwal_wwn" disabled
-                                                value="{{ old('jadwal_wwn', isset($wwnUser->jadwal_wwn) ? $wwnUser->jadwal_wwn->format('D, d F Y H:i') . ' WIB' : '') }}">
+                                                value="{{ old('jadwal_wwn', isset($wwnUser->jadwal_wwn) ? $wwnUser->jadwal_wwn->translatedFormat('l, d F Y H:i') . ' WIB' : '') }}">
                                             <span>
                                                 <div class="p">(
                                                     {{ $wwnUser->jadwal_wwn->diffForHumans() }} )</div>
@@ -463,9 +463,9 @@
             }
         }
     </script>
-    <script>
+    {{-- <script>
         $('document').ready(function() {
             $('.card-body input:not([value!=""])').val('-');
         });
-    </script>
+    </script> --}}
 @endsection

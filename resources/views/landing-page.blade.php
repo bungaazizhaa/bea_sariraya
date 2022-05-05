@@ -22,7 +22,7 @@
     </head>
 
     <body>
-
+        @include('sweetalert::alert')
         <!-- Banner -->
         <div class="banner">
             <img src="{{ asset('assets/images/banner.png') }}" alt="">
@@ -31,7 +31,12 @@
 
         <div class="container">
             @if ($getPeriodeAktif == null)
-                <h1 class="text-gray-200"> Maaf. Saat ini sedang tidak ada Program Penerimaan Sariraya Co. Ltd</h1>
+                <div class=" py-5 my-4 p-md-0 m-md-0">
+                    <center class="text-gray-200 h4 py-5 my-5 p-md-5 m-md-5"> Maaf. Saat ini sedang tidak ada Program
+                        Penerimaan Beasiswa
+                        Sariraya.
+                    </center>
+                </div>
             @else
                 <!-- Section Tombol Pendaftaran -->
                 <div class="tomboldaftar">
@@ -48,25 +53,10 @@
                                     href="{{ route('register') }}">{{ __('Register') }}</a>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                            <a class="btn btn-outline-success rounded-pill "
+                                href="{{ Auth::user()->role == 'admin' ? '/dashboard' : '/my-profile' }}">
+                                {{ Auth::user()->name }}
+                            </a>
                         @endguest
                         </ul>
                     </center>
@@ -295,7 +285,7 @@
         </div>
 
         <!-- Footer -->
-        <footer class="pt-2 pt-md-3 pb-1 border-top bg-dark">
+        <footer class="pt-3 pt-3 pb-1 border-top bg-dark">
             <div class="text-center bg-dark text-white">
                 <p>&copy; Sariraya 2022</p>
             </div>

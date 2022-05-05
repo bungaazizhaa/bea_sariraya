@@ -37,11 +37,12 @@
                                 <p class="h5 pl-md-2 pt-1">Grup WhatsApp :</p>
                             </div>
                             <div class="col-md-8">
-                                <input autocomplete="off" type="text" id="group_wa" name="group_wa" spellcheck="false"
-                                    class="form-control my-2 my-md-0" value="{{ $periodeOpenned->group_wa }}">
+                                <input autocomplete="off" spellcheck="false" type="text" id="group_wa" name="group_wa"
+                                    spellcheck="false" class="form-control my-2 my-md-0"
+                                    value="{{ $periodeOpenned->group_wa }}">
                             </div>
                             <div class="col-md-2">
-                                <button type="submit" class="rounded myshadow btn d-flex ml-auto btn-dark">Tetapkan
+                                <button type="submit" class="rounded myshadow btn d-flex ml-auto btn-dark">Perbarui
                                 </button>
                             </div>
                         </div>
@@ -76,12 +77,12 @@
                     </p>
                     <hr style="border-color:#ffffff88">
                     <p class="mb-1">Tanggal Mulai :</p>
-                    <p><strong>{{ $periodeOpenned->tm_adm->format('d F Y') }}</strong></p>
+                    <p><strong>{{ $periodeOpenned->tm_adm->translatedFormat('d F Y') }}</strong></p>
                     <p class="mb-1 mt-2">Tanggal Akhir :</p>
-                    <p><strong>{{ $periodeOpenned->ta_adm->format('d F Y') }}</strong></p>
+                    <p><strong>{{ $periodeOpenned->ta_adm->translatedFormat('d F Y') }}</strong></p>
                     <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
                     <p class="mb-0">
-                        <strong>{{ $periodeOpenned->tp_adm->format('d F Y') }}</strong>
+                        <strong>{{ $periodeOpenned->tp_adm->translatedFormat('d F Y') }}</strong>
                     </p>
                     <hr style="border-color:#ffffff88">
                     <div id="footer-tahap" class="d-flex" style="height:38px">
@@ -125,12 +126,12 @@
                     </p>
                     <hr style="border-color:#ffffff88">
                     <p class="mb-1">Tanggal Mulai :</p>
-                    <p><strong>{{ $periodeOpenned->tm_wwn->format('d F Y') }}</strong></p>
+                    <p><strong>{{ $periodeOpenned->tm_wwn->translatedFormat('d F Y') }}</strong></p>
                     <p class="mb-1 mt-2">Tanggal Akhir :</p>
-                    <p><strong>{{ $periodeOpenned->ta_wwn->format('d F Y') }}</strong></p>
+                    <p><strong>{{ $periodeOpenned->ta_wwn->translatedFormat('d F Y') }}</strong></p>
                     <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
                     <p class="mb-0">
-                        <strong>{{ $periodeOpenned->tp_wwn->format('d F Y') }}</strong>
+                        <strong>{{ $periodeOpenned->tp_wwn->translatedFormat('d F Y') }}</strong>
                     </p>
                     <hr style="border-color:#ffffff88">
                     <div id="footer-tahap" class="d-flex" style="height:38px">
@@ -173,12 +174,12 @@
                     </p>
                     <hr style="border-color:#ffffff88">
                     <p class="mb-1">Tanggal Mulai :</p>
-                    <p><strong>{{ $periodeOpenned->tm_png->format('d F Y') }}</strong></p>
+                    <p><strong>{{ $periodeOpenned->tm_png->translatedFormat('d F Y') }}</strong></p>
                     <p class="mb-1 mt-2">Tanggal Akhir :</p>
-                    <p><strong>{{ $periodeOpenned->ta_png->format('d F Y') }}</strong></p>
+                    <p><strong>{{ $periodeOpenned->ta_png->translatedFormat('d F Y') }}</strong></p>
                     <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
                     <p class="mb-0">
-                        <strong>{{ $periodeOpenned->tp_png->format('d F Y') }}</strong>
+                        <strong>{{ $periodeOpenned->tp_png->translatedFormat('d F Y') }}</strong>
                     </p>
                     <hr style="border-color:#ffffff88">
                     <div id="footer-tahap" class="d-flex" style="height:38px">
@@ -197,6 +198,114 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-12">
+                <div class="card rounded">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3 class="card-title mt-2">Pendaftar {{ ucfirst($periodeOpenned->name) }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="tableperiodeuser" class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    {{-- <th>Foto</th> --}}
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Status Adm</th>
+                                    {{-- <th>Update Adm</th> --}}
+                                    <th>Status Wwn</th>
+                                    {{-- <th>Update Wwn</th> --}}
+                                    <th>Status Png</th>
+                                    {{-- <th>Update Png</th> --}}
+                                    <th>Keahlian</th>
+                                    <th>Perguruan Tinggi</th>
+                                    <th>Program Studi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                @if ($getAdministrasiUser->count())
+                                    @foreach ($getAdministrasiUser as $userAdm)
+                                        <tr>
+                                            <td>{{ $i++ }}</td>
+                                            {{-- <td><img src="/pictures/{{ $userAdm->user->picture == '' ? 'noimg.png' : $userAdm->user->picture }}"
+                                                    class="rounded" alt="User Image" height="120px" width="90px">
+                                            </td> --}}
+                                            <td><a class="text-light"
+                                                    href="{{ route('pengguna.show', $userAdm->user->id) }}">{{ $userAdm->user->name }}</a>
+                                            </td>
+                                            <td>{{ $userAdm->user->email }}</td>
+                                            <td>
+                                                <form id="editFormNilaiAdm{{ $userAdm->user->id }}"
+                                                    action="{{ route('nilai.adm', $periodeOpenned->name) }}">
+                                                    <input type="text" hidden aria-label="Recipient's username"
+                                                        name="search" value="{{ $userAdm->user->email }}" autofocus>
+                                                    <div style="cursor: pointer;"
+                                                        onclick="document.getElementById('editFormNilaiAdm{{ $userAdm->user->id }}').submit();"
+                                                        class="badge py-2 px-3 rounded-pill
+                                                        {{ isset($userAdm->status_adm) && $userAdm->status_adm == 'lolos' ? 'badge-success' : '' }}
+                                                        {{ isset($userAdm->status_adm) && $userAdm->status_adm == 'gagal' ? 'badge-danger' : '' }}
+                                                        {{ !isset($userAdm->status_adm) ? 'badge-secondary' : '' }}">
+                                                        {{ isset($userAdm->status_adm) ? ucfirst($userAdm->status_adm) : 'Unset' }}
+                                                    </div>
+                                                </form>
+                                                {{-- <td>{{ $userAdm->updated_at->translatedFormat('d F Y H:i') }}</td> --}}
+                                            <td>
+                                                <form id="editFormNilaiWwn{{ $userAdm->user->id }}"
+                                                    action="{{ route('nilai.wwn', $periodeOpenned->name) }}">
+                                                    <input type="text" hidden aria-label="Recipient's username"
+                                                        name="search" value="{{ $userAdm->user->email }}" autofocus>
+                                                    <div style="cursor: pointer;"
+                                                        onclick="document.getElementById('editFormNilaiWwn{{ $userAdm->user->id }}').submit();"
+                                                        class="badge py-2 px-3 rounded-pill
+                                                    {{ isset($userAdm->wawancara->status_wwn) && $userAdm->wawancara->status_wwn == 'lolos' ? 'badge-success' : '' }}
+                                                    {{ isset($userAdm->wawancara->status_wwn) && $userAdm->wawancara->status_wwn == 'gagal' ? 'badge-danger' : '' }}
+                                                    {{ !isset($userAdm->wawancara->status_wwn) ? 'badge-secondary' : '' }}">
+                                                        {{ isset($userAdm->wawancara->status_wwn) ? ucfirst($userAdm->wawancara->status_wwn) : 'Unset' }}
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            {{-- <td>{{ isset($userAdm->wawancara->updated_at) ? $userAdm->wawancara->updated_at->translatedFormat('d F Y H:i') : '-' }}
+                                            </td> --}}
+                                            <td>
+                                                <form id="editFormNilaiPng{{ $userAdm->user->id }}"
+                                                    action="{{ route('nilai.png', $periodeOpenned->name) }}">
+                                                    <input type="text" hidden aria-label="Recipient's username"
+                                                        name="search" value="{{ $userAdm->user->email }}" autofocus>
+                                                    <div style="cursor: pointer;"
+                                                        onclick="document.getElementById('editFormNilaiPng{{ $userAdm->user->id }}').submit();"
+                                                        class="badge py-2 px-3 rounded-pill
+                                                    {{ isset($userAdm->wawancara->penugasan->status_png) && $userAdm->wawancara->penugasan->status_png == 'lolos' ? 'badge-success' : '' }}
+                                                    {{ isset($userAdm->wawancara->penugasan->status_png) && $userAdm->wawancara->penugasan->status_png == 'gagal' ? 'badge-danger' : '' }}
+                                                    {{ !isset($userAdm->wawancara->penugasan->status_png) ? 'badge-secondary' : '' }}">
+                                                        {{ isset($userAdm->wawancara->penugasan->status_png) ? ucfirst($userAdm->wawancara->penugasan->status_png) : 'Unset' }}
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            {{-- <td>{{ isset($userAdm->wawancara->penugasan->updated_at) ? $userAdm->wawancara->penugasan->updated_at->translatedFormat('d F Y H:i') : '-' }}
+                                            </td> --}}
+                                            <td>{{ isset($userAdm->keahlian) ? $userAdm->keahlian : '-' }}</td>
+                                            <td>{{ $userAdm->user->univ->nama_universitas }}</td>
+                                            <td>{{ $userAdm->user->prodi->nama_prodi }}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
 
 
         {{-- ======== MODAL EDIT PERIODE ======== --}}
@@ -219,7 +328,8 @@
                                                 Periode
                                                 :</label>
                                             <div class="col-12 col-md-10 mb-1">
-                                                <input autocomplete="off" id="id_periode" name="id_periode"
+                                                <input autocomplete="off" spellcheck="false" id="id_periode"
+                                                    name="id_periode"
                                                     value="{{ old('id_periode', $periodeOpenned->id_periode) }}"
                                                     class="form-control">
                                                 @error('id_periode')
@@ -233,7 +343,7 @@
                                             <label for="name" class="col col-form-label text-md-right">Nama Periode
                                                 :</label>
                                             <div class="col-12 col-md-10">
-                                                <input autocomplete="off" id="name" name="name"
+                                                <input autocomplete="off" spellcheck="false" id="name" name="name"
                                                     value="{{ old('name', $periodeOpenned->name) }}"
                                                     class="form-control">
                                                 @error('name')
@@ -280,9 +390,10 @@
                                         </p>
                                         <hr style="border-color:#ffffff88">
                                         <p class="mb-1">Tanggal Mulai :</p>
-                                        <input autocomplete="off" id="tm_adm" type="tm_adm" class="datepicker"
+                                        <input autocomplete="off" spellcheck="false" id="tm_adm" type="tm_adm"
+                                            class="datepicker"
                                             class="form-control @error('tm_adm') is-invalid @enderror" name="tm_adm"
-                                            value="{{ old('tm_adm', $periodeOpenned->tm_adm->format('d-m-Y')) }}"
+                                            value="{{ old('tm_adm', $periodeOpenned->tm_adm->format('d F Y')) }}"
                                             required autofocus>
 
                                         @error('tm_adm')
@@ -291,9 +402,10 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Akhir :</p>
-                                        <input autocomplete="off" id="ta_adm" type="ta_adm" class="datepicker"
+                                        <input autocomplete="off" spellcheck="false" id="ta_adm" type="ta_adm"
+                                            class="datepicker"
                                             class="form-control @error('ta_adm') is-invalid @enderror" name="ta_adm"
-                                            value="{{ old('ta_adm', $periodeOpenned->ta_adm->format('d-m-Y')) }}"
+                                            value="{{ old('ta_adm', $periodeOpenned->ta_adm->format('d F Y')) }}"
                                             required autofocus>
 
                                         @error('ta_adm')
@@ -302,9 +414,10 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
-                                        <input autocomplete="off" id="tp_adm" type="tp_adm" class="datepicker"
+                                        <input autocomplete="off" spellcheck="false" id="tp_adm" type="tp_adm"
+                                            class="datepicker"
                                             class="form-control @error('tp_adm') is-invalid @enderror" name="tp_adm"
-                                            value="{{ old('tp_adm', $periodeOpenned->tp_adm->format('d-m-Y')) }}"
+                                            value="{{ old('tp_adm', $periodeOpenned->tp_adm->format('d F Y')) }}"
                                             required autofocus>
 
                                         @error('tp_adm')
@@ -343,9 +456,10 @@
                                         </p>
                                         <hr style="border-color:#ffffff88">
                                         <p class="mb-1">Tanggal Mulai :</p>
-                                        <input autocomplete="off" id="tm_wwn" type="tm_wwn" class="datepicker"
+                                        <input autocomplete="off" spellcheck="false" id="tm_wwn" type="tm_wwn"
+                                            class="datepicker"
                                             class="form-control @error('tm_wwn') is-invalid @enderror" name="tm_wwn"
-                                            value="{{ old('tm_wwn', $periodeOpenned->tm_wwn->format('d-m-Y')) }}"
+                                            value="{{ old('tm_wwn', $periodeOpenned->tm_wwn->format('d F Y')) }}"
                                             required autofocus>
 
                                         @error('tm_wwn')
@@ -354,9 +468,10 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Akhir :</p>
-                                        <input autocomplete="off" id="ta_wwn" type="ta_wwn" class="datepicker"
+                                        <input autocomplete="off" spellcheck="false" id="ta_wwn" type="ta_wwn"
+                                            class="datepicker"
                                             class="form-control @error('ta_wwn') is-invalid @enderror" name="ta_wwn"
-                                            value="{{ old('ta_wwn', $periodeOpenned->ta_wwn->format('d-m-Y')) }}"
+                                            value="{{ old('ta_wwn', $periodeOpenned->ta_wwn->format('d F Y')) }}"
                                             required autofocus>
 
                                         @error('ta_wwn')
@@ -365,9 +480,10 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
-                                        <input autocomplete="off" id="tp_wwn" type="tp_wwn" class="datepicker"
+                                        <input autocomplete="off" spellcheck="false" id="tp_wwn" type="tp_wwn"
+                                            class="datepicker"
                                             class="form-control @error('tp_wwn') is-invalid @enderror" name="tp_wwn"
-                                            value="{{ old('tp_wwn', $periodeOpenned->tp_wwn->format('d-m-Y')) }}"
+                                            value="{{ old('tp_wwn', $periodeOpenned->tp_wwn->format('d F Y')) }}"
                                             required autofocus>
 
                                         @error('tp_wwn')
@@ -406,9 +522,10 @@
                                         </p>
                                         <hr style="border-color:#ffffff88">
                                         <p class="mb-1">Tanggal Mulai :</p>
-                                        <input autocomplete="off" id="tm_png" type="tm_png" class="datepicker"
+                                        <input autocomplete="off" spellcheck="false" id="tm_png" type="tm_png"
+                                            class="datepicker"
                                             class="form-control @error('tm_png') is-invalid @enderror" name="tm_png"
-                                            value="{{ old('tm_png', $periodeOpenned->tm_png->format('d-m-Y')) }}"
+                                            value="{{ old('tm_png', $periodeOpenned->tm_png->format('d F Y')) }}"
                                             required autofocus>
 
                                         @error('tm_png')
@@ -417,9 +534,10 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Akhir :</p>
-                                        <input autocomplete="off" id="ta_png" type="ta_png" class="datepicker"
+                                        <input autocomplete="off" spellcheck="false" id="ta_png" type="ta_png"
+                                            class="datepicker"
                                             class="form-control @error('ta_png') is-invalid @enderror" name="ta_png"
-                                            value="{{ old('ta_png', $periodeOpenned->ta_png->format('d-m-Y')) }}"
+                                            value="{{ old('ta_png', $periodeOpenned->ta_png->format('d F Y')) }}"
                                             required autofocus>
 
                                         @error('ta_png')
@@ -428,9 +546,10 @@
                                             </div>
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
-                                        <input autocomplete="off" id="tp_png" type="tp_png" class="datepicker"
+                                        <input autocomplete="off" spellcheck="false" id="tp_png" type="tp_png"
+                                            class="datepicker"
                                             class="form-control @error('tp_png') is-invalid @enderror" name="tp_png"
-                                            value="{{ old('tp_png', $periodeOpenned->tp_png->format('d-m-Y')) }}"
+                                            value="{{ old('tp_png', $periodeOpenned->tp_png->format('d F Y')) }}"
                                             required autofocus>
 
                                         @error('tp_png')
@@ -507,7 +626,7 @@
                                                             <th scope="row">{{ $i++ }}</th>
                                                             <td>{{ $userAdmLolos->user->name }}</td>
                                                             <td>{{ $userAdmLolos->user->email }}</td>
-                                                            <td>{{ isset($userAdmLolos->wawancara->jadwal_wwn) ? $userAdmLolos->wawancara->jadwal_wwn->format('d M Y - H:i') : '' }}
+                                                            <td>{{ isset($userAdmLolos->wawancara->jadwal_wwn) ? $userAdmLolos->wawancara->jadwal_wwn->translatedFormat('d F Y - H:i') : '' }}
                                                                 WIB
                                                             </td>
                                                         </tr>
@@ -558,7 +677,7 @@
                             <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
                             @if (isset($periodeOpenned->status_adm))
                                 Telah Diumumkan pada
-                                {{ isset($periodeOpenned->ts_adm) ? $periodeOpenned->ts_adm->format('d M Y - H:i') : '' }}.
+                                {{ isset($periodeOpenned->ts_adm) ? $periodeOpenned->ts_adm->translatedFormat('d F Y - H:i') : '' }}.
                             @else
                                 <div class="text-right">
                                     <p class="m-0 p-0 small">Tandai Tahap Administrasi Telah Selesai.</p>
@@ -660,7 +779,7 @@
                             <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
                             @if (isset($periodeOpenned->status_wwn))
                                 Telah Diumumkan pada
-                                {{ isset($periodeOpenned->ts_wwn) ? $periodeOpenned->ts_wwn->format('d M Y - H:i') : '' }}.
+                                {{ isset($periodeOpenned->ts_wwn) ? $periodeOpenned->ts_wwn->translatedFormat('d F Y - H:i') : '' }}.
                             @else
                                 <div class="text-right">
                                     <p class="m-0 p-0 small">Tandai Tahap Wawancara Telah Selesai.</p>
@@ -762,7 +881,7 @@
                             <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
                             @if (isset($periodeOpenned->status_png))
                                 Telah Diumumkan pada
-                                {{ isset($periodeOpenned->ts_png) ? $periodeOpenned->ts_png->format('d M Y - H:i') : '' }}.
+                                {{ isset($periodeOpenned->ts_png) ? $periodeOpenned->ts_png->translatedFormat('d F Y - H:i') : '' }}.
                             @else
                                 <div class="text-right">
                                     <p class="m-0 p-0 small">Tandai Tahap Penugasan Telah Selesai.</p>
@@ -778,13 +897,39 @@
         <script>
             $('.datepicker').each(function() {
                 $(this).datepicker({
-                    format: 'dd-mm-yyyy',
+                    format: 'dd mmmm yyyy',
                     uiLibrary: 'bootstrap4',
                     iconsLibrary: 'fontawesome',
                     showRightIcon: true,
                     todayHighlight: true,
                     autoclose: true,
                 });
+            });
+        </script>
+        <!-- Page specific script -->
+        <script>
+            $(function() {
+                $("#tableperiodeuser").DataTable({
+                    // "dom": 'Blfrtip',
+                    "responsive": true,
+                    "lengthChange": false,
+                    "autoWidth": false,
+                    "info": true,
+                    "stateSave": true,
+                    "paging": true,
+                    "lengthMenu": [
+                        [5, 10, 25, 50, -1],
+                        [5, 10, 25, 50, "All"]
+                    ],
+                    "buttons": ["pageLength", "excel", "pdf", {
+                        extend: 'print',
+                        text: 'Print',
+                        exportOptions: {
+                            columns: ':visible',
+                            page: 'current'
+                        }
+                    }, "colvis"],
+                }).buttons().container().appendTo('#tableperiodeuser_wrapper .col-md-6:eq(0)');
             });
         </script>
     @endsection

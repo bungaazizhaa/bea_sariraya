@@ -13,12 +13,56 @@
     box-shadow: 0 0.3rem 0.8rem rgba(17, 26, 34, 0.215) !important;
 }
 .small-box {
-    transition: transform 0.3s;
+    border-style: solid;
+    border-width: 1px !important;
+    border-color: #4e5b66;
+    background-color: #4e5b66 !important;
+    transition: transform 0.2s;
+    cursor: pointer;
+    height: 118px;
+}
+.small-box .ion {
+    color: #1c252e80 !important;
+}
+
+.small-box:hover {
+    box-shadow: 0 0.3rem 0.8rem rgba(17, 26, 34, 0.215) !important;
+    background-color: #222f3a !important;
+    border-style: solid;
+    border-width: 1px !important;
+    border-color: #6c757d !important;
+}
+
+ion-icon {
+    pointer-events: none;
+}
+
+.small-box:hover .ion {
+    color: #636e79dd !important;
+}
+
+.image-previewer {
     cursor: pointer;
 }
-.small-box:hover {
-    box-shadow: 0 0.3rem 1rem rgba(43, 128, 255, 0.455);
-    transform: scale(1.035);
+
+.user-box {
+    transition: transform 0.2s;
+    border-style: solid;
+    border-width: 1px !important;
+    border-color: #343a40 !important;
+}
+
+.user-box:hover {
+    box-shadow: 0 0.3rem 0.8rem rgba(17, 26, 34, 0.215) !important;
+    background-color: #222f3a !important;
+    border-style: solid;
+    border-width: 1px !important;
+    border-color: #476b8b !important;
+}
+
+.inner p {
+    font-size: 20px !important;
+    line-height: 1.5rem;
 }
 
 ::-webkit-scrollbar {

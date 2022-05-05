@@ -11,58 +11,64 @@
         <div class="row">
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div onclick="location.href='{{ route('data.pengguna') }}'" class="small-box bg-info rounded-md myshadow">
+                <div onclick="location.href='{{ route('data.pengguna') }}'" class="small-box rounded-md">
                     <div class="inner">
-                        <h3 class="mb-1">{{ count($getAllUser->where('role', '=', 'mahasiswa')) }}</h3>
-                        <p class="mb-1">Jumlah Akun<br>Mahasiswa</p>
+                        <h3 class="mb-1 mt-2">{{ count($getAllUser->where('role', '=', 'mahasiswa')) }} Akun</h3>
+                        <p class="mb-1">Mahasiswa.</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-person-add"></i>
+                        <i class="ion">
+                            <ion-icon class="ion-icon" name="people"></ion-icon>
+                        </i>
                     </div>
-                    <a href="{{ route('data.pengguna') }}" class="small-box-footer rounded-bottom-md">More
-                        info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div onclick="location.href='{{ route('data.pengguna') }}'" class="small-box bg-info rounded-md myshadow">
+                <div onclick="location.href='{{ route('index.periode') }}'" class="small-box rounded-md">
                     <div class="inner">
-                        <h3 class="mb-1">{{ count($getAllUser->where('role', '=', 'mahasiswa')) }}</h3>
-                        <p class="mb-1">Jumlah Akun<br>Mahasiswa</p>
+                        <h3 class="mb-1 mt-2">{{ count($getAllPeriode) }} Periode</h3>
+                        <p class="mb-1">Telah dibuat.</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-person-add"></i>
+                        <i class="ion">
+                            <ion-icon name="school"></ion-icon>
+                        </i>
                     </div>
-                    <a href="{{ route('data.pengguna') }}" class="small-box-footer rounded-bottom-md">More
-                        info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div onclick="location.href='{{ route('data.pengguna') }}'" class="small-box bg-info rounded-md myshadow">
+                <div onclick="location.href='{{ route('index.periode') }}'" class="small-box rounded-md">
                     <div class="inner">
-                        <h3 class="mb-1">{{ count($getAllUser->where('role', '=', 'mahasiswa')) }}</h3>
-                        <p class="mb-1">Jumlah Akun<br>Mahasiswa</p>
+                        <h3 class="mb-1 mt-2">{{ count($getAllPeriode->where('status_png', '=', 'Selesai')) }}
+                            Periode
+                        </h3>
+                        <p class="mb-1">Telah Selesai.</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-person-add"></i>
+                        <i class="ion">
+                            <ion-icon name="checkmark-circle"></ion-icon>
+                        </i>
                     </div>
-                    <a href="{{ route('data.pengguna') }}" class="small-box-footer rounded-bottom-md">More
-                        info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div onclick="location.href='{{ route('data.pengguna') }}'" class="small-box bg-info rounded-md myshadow">
+                <div onclick="location.href='{{ route('periode', isset($getPeriodeAktif->name) ? $getPeriodeAktif->name : '') }}'"
+                    class="small-box rounded-md">
                     <div class="inner">
-                        <h3 class="mb-1">{{ count($getAllUser->where('role', '=', 'mahasiswa')) }}</h3>
-                        <p class="mb-1">Jumlah Akun<br>Mahasiswa</p>
+                        <h3 class="mb-1 {{ isset($getPeriodeAktif->name) ? 'mt-2' : 'mt-3' }}"
+                            style="{{ isset($getPeriodeAktif->name) ? '' : 'font-size: 28px!important;' }}">
+                            {{ isset($getPeriodeAktif->name) ? ucfirst($getPeriodeAktif->name) : 'Tidak Ada' }}
+                        </h3>
+                        <p class="mb-1">Periode Aktif.</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-person-add"></i>
+                        <i class="ion">
+                            <ion-icon name="school"></ion-icon>
+                        </i>
                     </div>
-                    <a href="{{ route('data.pengguna') }}" class="small-box-footer rounded-bottom-md">More
-                        info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>
@@ -110,5 +116,10 @@
                 autoclose: true,
             });
         });
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
     </script>
 @endsection

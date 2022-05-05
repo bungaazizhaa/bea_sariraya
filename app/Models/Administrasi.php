@@ -27,6 +27,7 @@ class Administrasi extends Model
                 $query->whereHas('user', function ($q) use ($search) {
                     return $q->where('name', 'LIKE', '%' . $search . '%')
                         ->orWhere('users.id', 'LIKE', '%' . $search . '%')
+                        ->orWhere('email', 'LIKE', '%' . $search . '%')
                         ->orWhere('no_pendaftaran', 'LIKE', '%' . $search . '%')
                         ->orWhere('status_adm', 'LIKE', '%' . $search . '%')
                         ->orWhereHas('univ', function ($q) use ($search) {

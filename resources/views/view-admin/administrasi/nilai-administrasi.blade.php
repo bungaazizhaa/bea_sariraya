@@ -453,9 +453,9 @@
             }
         }
     </script>
-    <script>
+    {{-- <script>
         $('document').ready(function() {
             $('.card-body input:not([value!=""])').val('-');
         });
-    </script>
+    </script> --}}
 @endsection

@@ -23,6 +23,7 @@ class Penugasan extends Model
                     return $q->whereHas('user', function ($q) use ($search) {
                         return $q->where('name', 'LIKE', '%' . $search . '%')
                             ->orWhere('users.id', 'LIKE', '%' . $search . '%')
+                            ->orWhere('email', 'LIKE', '%' . $search . '%')
                             ->orWhere('status_png', 'LIKE', '%' . $search . '%')
                             ->orWhereHas('univ', function ($q) use ($search) {
                                 return $q->where('nama_universitas', 'LIKE', '%' . $search . '%');

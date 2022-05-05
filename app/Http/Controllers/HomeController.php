@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Exists;
+use RealRashid\SweetAlert\Facades\Alert;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
@@ -46,11 +47,6 @@ class HomeController extends Controller
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
         return view('landing-page', compact('getPeriodeAktif', 'getTanggalSekarang'));
-    }
-
-    public function indexProfilAdmin()
-    {
-        return view('view-admin.profil-admin');
     }
 
     public function indexAdmin()
@@ -110,7 +106,7 @@ class HomeController extends Controller
 
         $getAllUser = User::all();
         foreach ($getAllUser as $user) {
-            if (isset($getAllUser)) {
+            if (count($getAllUser) > 0) {
                 $file = 'pictures/' . $user->picture;
                 if (isset($user->picture)) {
                     unlink(public_path($file));
@@ -148,7 +144,7 @@ class HomeController extends Controller
                 'remember_token' => '',
             ],
         );
-
+        Alert::html('Beasiswa Berhasil Direset. Semua Data Telah Terhapus.', " Username Admin = admin@gmail.com<br> Password Admin = 12345678 ", 'success');
         return redirect(route('admin'));
     }
 }
