@@ -1,6 +1,6 @@
 @extends('view-admin.layouts.app')
 @section('titlepage')
-    <title>Dashboard Beasiswa Sariraya</title>
+    <title>Periode {{ ucfirst($periodeOpenned->name) }} Beasiswa Sariraya</title>
 @endsection
 @section('title')
     <h4 class="m-0 p-0"><span class="text-nowrap">Periode {{ ucfirst($periodeOpenned->name) }}</span></h4>
@@ -385,6 +385,7 @@
                                             <div class="col-md-8">
                                                 <input autocomplete="off" id="soal" type="soal"
                                                     class="form-control @error('soal') is-invalid @enderror" name="soal"
+                                                    required spellcheck="false"
                                                     value="{{ old('soal', isset($wwnUser->penugasan->soal) ? $wwnUser->penugasan->soal : '') }}">
 
                                                 @error('soal')

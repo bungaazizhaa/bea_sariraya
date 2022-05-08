@@ -19,7 +19,6 @@
     background-color: #4e5b66 !important;
     transition: transform 0.2s;
     cursor: pointer;
-    height: 118px;
 }
 .small-box .ion {
     color: #1c252e80 !important;
@@ -30,7 +29,7 @@
     background-color: #222f3a !important;
     border-style: solid;
     border-width: 1px !important;
-    border-color: #6c757d !important;
+    border-color: #4b78a0 !important;
 }
 
 ion-icon {
@@ -168,3 +167,30 @@ ion-icon {
     border-width: 0px !important;
     border-style: none !important;
 }
+
+.swal2-popup {
+    background-color: #222222 !important;
+}
+
+.swal2-icon-success .swal2-timer-progress-bar {
+    background-color: #00bc8c !important;
+}
+
+.swal2-icon-error .swal2-timer-progress-bar {
+    background-color: #f27474 !important;
+}
+
+/* .swal2-confirm {
+    background-color: #00bc8c !important;
+    border-radius: 30px !important;
+    border-width: 0px !important;
+    box-shadow: #00bc8c !important;
+    border-style: none !important;
+} */
+
+/* .swal2-actions {
+    color: #00bc8c !important;
+    background-color: #00bc8c !important;
+    border-radius: 30px !important;
+    border-width: 0px !important;
+} */

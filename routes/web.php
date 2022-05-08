@@ -26,11 +26,10 @@ Route::get('/', [HomeController::class, 'indexLandingPage'])->name('landing');
 
 //TODO: ================= ROUTE SEMENTARA =================
 Route::view('/awal', 'awal');
-Route::view('/regist', 'regist');
 Route::view('/masuk', 'masuk');
 
 //TODO: ================= ROUTE HOME MAHASISWA =================
-Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa'])->group(function () {
+Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa', 'verified'])->group(function () {
     Route::get('/my-profile', [HomeController::class, 'indexMahasiswa'])->name('profil.mahasiswa');
     Route::post('update-data-saya', [UserController::class, 'updateMyUser'])->name('update.myuser'); //Edit Data User dari Profil Akun Sendiri
     Route::post('uploadfoto', [UserController::class, 'uploadFoto'])->name('upload.foto'); //Edit Foto User dari Profil Akun Sendiri
@@ -41,9 +40,9 @@ Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa'])->group(f
     // Route::get('/my-administrasi', [AdministrasiController::class, 'detailAdm'])->name('detail.adm');
 });
 
-Route::get('/tahap-administrasi', [AdministrasiController::class, 'index'])->name('tahap.administrasi')->middleware('periode.timerestricted', 'administrasi.timerestricted', 'auth');
-Route::get('/tahap-wawancara', [WawancaraController::class, 'index'])->name('tahap.wawancara')->middleware('periode.timerestricted', 'wawancara.timerestricted', 'auth');
-Route::get('/tahap-penugasan', [PenugasanController::class, 'index'])->name('tahap.penugasan')->middleware('periode.timerestricted', 'penugasan.timerestricted', 'auth');
+Route::get('/tahap-administrasi', [AdministrasiController::class, 'index'])->name('tahap.administrasi')->middleware('periode.timerestricted', 'administrasi.timerestricted', 'auth', 'verified');
+Route::get('/tahap-wawancara', [WawancaraController::class, 'index'])->name('tahap.wawancara')->middleware('periode.timerestricted', 'wawancara.timerestricted', 'auth', 'verified');
+Route::get('/tahap-penugasan', [PenugasanController::class, 'index'])->name('tahap.penugasan')->middleware('periode.timerestricted', 'penugasan.timerestricted', 'auth', 'verified');
 
 //TODO: ================= ROUTE HOME ADMIN =================
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -83,13 +82,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
 
 if ($getPeriodeAktif == null) {  //Jika Tidak ada periode Aktif
-    Auth::routes(['register' => false]);
+    Auth::routes(['register' => false, 'verify' => true]);
 } else { //Jika ada periode Aktif
     $getTanggalAkhirAdministrasi = $getPeriodeAktif->ta_adm;
     $getTanggalSekarang = Carbon::now()->format('Y-m-d');
     if ($getTanggalSekarang > $getTanggalAkhirAdministrasi) { //dan Jika Sekarang sudah melewati Tanggal Akhir Administrasi
-        Auth::routes(['register' => false]); //Tutup Registrasi
+        Auth::routes(['register' => false, 'verify' => true]); //Tutup Registrasi
     } else { //Jika Sekarang Belum melewati Tanggal Akhir Administrasi, Bisa Register, Bisa Update
-        Auth::routes();
+        Auth::routes(['verify' => true]);
     }
 }

@@ -70,7 +70,8 @@ class PenugasanController extends Controller
         $penugasanSelected->status_png = $request->status_png;
         $penugasanSelected->catatan = $request->catatan;
         $penugasanSelected->save();
-        Alert::success('Penugasan ' . $penugasanSelected->wawancara->administrasi->user->name . ' sudah di Perbarui', 'Data telah tersimpan.');
+        toast('Penugasan ' . $penugasanSelected->wawancara->administrasi->user->name . ' sudah di Perbarui', 'success');
+        // Alert::success('Penugasan ' . $penugasanSelected->wawancara->administrasi->user->name . ' sudah di Perbarui', 'Data telah tersimpan.');
         return redirect()->back();
     }
     /**

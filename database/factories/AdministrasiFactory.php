@@ -17,7 +17,7 @@ class AdministrasiFactory extends Factory
     {
         return [
             'no_pendaftaran' => IdGenerator::generate(['table' => 'administrasis', 'field' => 'no_pendaftaran', 'length' => 10, 'prefix' => 'B' . mt_rand(1, 3) . '-' . mt_rand(1, 5) . '-' . mt_rand(10000, 99999)]),
-            'user_id' => mt_rand(2, 60),
+            'user_id' => mt_rand(2, 30),
             'periode_id' => mt_rand(1, 3),
             'tempat_lahir' => $this->faker->city(),
             'tanggal_lahir' => $this->faker->date(),

@@ -1,6 +1,6 @@
 @extends('view-admin.layouts.app')
 @section('titlepage')
-    <title>Dashboard Beasiswa Sariraya</title>
+    <title>Pengaturan Periode Beasiswa Sariraya</title>
 @endsection
 @section('title')
     <h4 class="m-0 p-0">Pengaturan Periode</h4>
@@ -20,7 +20,7 @@
                             </div>
                             <div class="col-6">
                                 <a type="button" data-toggle="modal" data-target="#tambahPeriode"
-                                    class="btn btn-info card-title float-right rounded">
+                                    class="btn btn-outline-info card-title float-right rounded-pill">
                                     <i class="fa-solid fa-plus nav-icon"></i>&nbsp; Tambah Periode
                                 </a>
                             </div>
@@ -330,7 +330,7 @@
     <script>
         $('.datepicker').each(function() {
             $(this).datepicker({
-                format: 'dd-mmmm-yyyy',
+                format: 'dd mmmm yyyy',
                 uiLibrary: 'bootstrap4',
                 iconsLibrary: 'fontawesome',
                 showRightIcon: true,

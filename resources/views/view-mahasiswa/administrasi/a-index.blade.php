@@ -157,7 +157,7 @@
                                     <input id="tanggal_lahir" type="text"
                                         class="form-control editable {{ isset($getAdministrasiUser->tanggal_lahir) ? 'font-weight-bold' : '' }} datepicker @error('tanggal_lahir') is-invalid @enderror"
                                         name="tanggal_lahir" spellcheck="false" disabled
-                                        value="{{ old('tanggal_lahir',isset($getAdministrasiUser->tanggal_lahir) ? $getAdministrasiUser->tanggal_lahir->format('Y-m-d') : '') }}"
+                                        value="{{ old('tanggal_lahir', isset($getAdministrasiUser->tanggal_lahir) ? $getAdministrasiUser->tanggal_lahir->format('Y-m-d') : '') }}"
                                         autocomplete="tanggal_lahir" placeholder="YYYY-MM-DD">
                                     @error('tanggal_lahir')
                                         <strong class="text-danger small font-weight-bold"
@@ -222,6 +222,24 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <label for="alamat"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Alamat') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="alamat" type="text" spellcheck="false"
+                                        class="form-control editable {{ isset($getAdministrasiUser->alamat) ? 'font-weight-bold' : '' }} @error('alamat') is-invalid @enderror"
+                                        name="alamat" disabled
+                                        value="{{ old('alamat', isset($getAdministrasiUser) ? $getAdministrasiUser->alamat : '') }}"
+                                        autocomplete="alamat" placeholder="Alamat Tempat Tinggal">
+
+                                    @error('alamat')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -232,7 +250,11 @@
                             Upload Berkas
                         </div>
                         <div class="card-body">
-
+                            <div class="alert alert-info text-center">
+                                Format yang diizinkan: <span class="font-weight-bold">.jpeg, .png, .jpg,
+                                    .pdf.</span><br>Ukuran Maksimal Setiap File: <span class="font-weight-bold">
+                                    5MB</span>
+                            </div>
                             <div class="row mb-3">
                                 <label for="file_cv" class="col-md-4 col-form-label text-md-right">File CV</label>
                                 <div class="col-md-6">
@@ -243,9 +265,7 @@
                                                 disabled id="file_cv" name="file_cv"
                                                 accept="application/pdf, image/jpg, image/jpeg, image/png"
                                                 value="{{ old('file_cv', isset($getAdministrasiUser) ? $getAdministrasiUser->file_cv : '') }}">
-                                            <label class="custom-file-label" for="file_cv">.pdf, .jpg,
-                                                .jpeg,
-                                                .png</label>
+                                            <label class="custom-file-label" for="file_cv">...</label>
                                         </div>
                                     </div>
                                     @error('file_cv')
@@ -279,7 +299,7 @@
                                                 class="custom-file-input editable {{ isset($getAdministrasiUser->file_esai) ? 'font-weight-bold' : '' }}"
                                                 disabled id="file_esai" name="file_esai" accept="application/pdf"
                                                 value="{{ old('file_esai', isset($getAdministrasiUser) ? $getAdministrasiUser->file_esai : '') }}">
-                                            <label class="custom-file-label" for="file_esai">.pdf</label>
+                                            <label class="custom-file-label" for="file_esai">...</label>
                                         </div>
                                     </div>
                                     @error('file_esai')
@@ -316,9 +336,7 @@
                                                 disabled id="file_portofolio" name="file_portofolio"
                                                 accept="application/pdf, image/jpg, image/jpeg, image/png"
                                                 value="{{ old('file_portofolio', isset($getAdministrasiUser) ? $getAdministrasiUser->file_portofolio : '') }}">
-                                            <label class="custom-file-label" for="file_portofolio">.pdf, .jpg,
-                                                .jpeg,
-                                                .png</label>
+                                            <label class="custom-file-label" for="file_portofolio">...</label>
                                         </div>
                                     </div>
                                     @error('file_portofolio')
@@ -354,9 +372,7 @@
                                                 disabled id="file_ktm" name="file_ktm"
                                                 accept="application/pdf, image/jpg, image/jpeg, image/png"
                                                 value="{{ old('file_ktm', isset($getAdministrasiUser) ? $getAdministrasiUser->file_ktm : '') }}">
-                                            <label class="custom-file-label" for="file_ktm">.pdf, .jpg,
-                                                .jpeg,
-                                                .png</label>
+                                            <label class="custom-file-label" for="file_ktm">...</label>
                                         </div>
                                     </div>
                                     @error('file_ktm')
@@ -393,9 +409,7 @@
                                                 disabled id="file_transkrip" name="file_transkrip"
                                                 accept="application/pdf, image/jpg, image/jpeg, image/png"
                                                 value="{{ old('file_transkrip', isset($getAdministrasiUser) ? $getAdministrasiUser->file_transkrip : '') }}">
-                                            <label class="custom-file-label" for="file_transkrip">.pdf,
-                                                .jpg, .jpeg,
-                                                .png</label>
+                                            <label class="custom-file-label" for="file_transkrip">...</label>
                                         </div>
                                     </div>
                                     @error('file_transkrip')

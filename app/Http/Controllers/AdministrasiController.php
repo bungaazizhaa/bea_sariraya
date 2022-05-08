@@ -78,7 +78,8 @@ class AdministrasiController extends Controller
         $administrasiSelected->status_adm = $request->status_adm;
         $administrasiSelected->catatan = $request->catatan;
         $administrasiSelected->save();
-        Alert::success('Administrasi ' . $administrasiSelected->user->name . ' sudah di Perbarui', 'Data telah tersimpan.');
+        toast('Administrasi ' . $administrasiSelected->user->name . ' sudah di Perbarui.', 'success');
+        // Alert::success('Administrasi ' . $administrasiSelected->user->name . ' sudah di Perbarui', 'Data telah tersimpan.');
         if ($request->status_adm == 'lolos') {
             if (isset($administrasiSelected->wawancara->id)) {
                 $wawancara = Wawancara::where('administrasi_id', '=', $administrasiSelected->id)->first();
@@ -91,13 +92,15 @@ class AdministrasiController extends Controller
                     'jadwal_wwn' => $request['jadwal_wwn'],
                 ]);
             }
-            Alert::success('Administrasi ' . $administrasiSelected->user->name . ' sudah di Nilai', 'Data telah tersimpan.');
+            toast('Administrasi ' . $administrasiSelected->user->name . ' sudah di Nilai.', 'success');
+            // Alert::success('Administrasi ' . $administrasiSelected->user->name . ' sudah di Nilai', 'Data telah tersimpan.');
         } elseif ($request->status_adm == 'gagal') {
             if (isset($administrasiSelected->wawancara->id)) {
                 $wawancara = Wawancara::where('administrasi_id', '=', $administrasiSelected->id)->first();
                 $wawancara->delete();
             }
-            Alert::success('Administrasi ' . $administrasiSelected->user->name . ' sudah di Nilai', 'Data telah tersimpan.');
+            toast('Administrasi ' . $administrasiSelected->user->name . ' sudah di Nilai.', 'success');
+            // Alert::success('Administrasi ' . $administrasiSelected->user->name . ' sudah di Nilai', 'Data telah tersimpan.');
         }
 
         return redirect()->back();
@@ -172,6 +175,7 @@ class AdministrasiController extends Controller
             'semester' => 'numeric|between:6,14|nullable',
             'ipk' => 'numeric|between:0,4.00|nullable',
             'keahlian' => 'string|max:255|nullable',
+            'alamat' => 'string|max:255|nullable',
             'file_cv' => 'mimes:pdf,png,jpg,pdf|max:5120|nullable',
             'file_esai' => 'mimes:jpeg,png,jpg,pdf|max:5120|nullable',
             'file_portofolio' => 'mimes:jpeg,png,jpg,pdf|max:5120|nullable',
@@ -198,6 +202,8 @@ class AdministrasiController extends Controller
             $administrasi->tanggal_lahir = $request->tanggal_lahir;
             $administrasi->semester = $request->semester;
             $administrasi->ipk = $request->ipk;
+            $administrasi->keahlian = $request->keahlian;
+            $administrasi->alamat = $request->alamat;
             if (isset($request->file_cv)) {
 
                 $file = $request->file('file_cv');

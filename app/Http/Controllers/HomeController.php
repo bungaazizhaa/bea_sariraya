@@ -35,10 +35,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('view-admin.dashboard');
-    }
+    // public function index()
+    // {
+    //     return view('view-admin.dashboard');
+    // }
 
     /* SEMENTARA */
 
@@ -54,10 +54,12 @@ class HomeController extends Controller
         $getAllUser = User::all();
         $getAllUniv = Univ::all();
         $getAllPeriode = Periode::all();
+        $getAllAdministrasi = Administrasi::all();
+        $getAllWawancara = Wawancara::all();
         $getPeriodeLast = Periode::orderBy('id_periode', 'desc')->value('id_periode');
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        return view('view-admin.dashboard', compact('getAllUser', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAllPeriode', 'getPeriodeLast'));
+        return view('view-admin.dashboard', compact('getAllUser', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAllPeriode', 'getPeriodeLast', 'getAllAdministrasi', 'getAllWawancara'));
     }
 
     public function viewSetting()
@@ -144,7 +146,7 @@ class HomeController extends Controller
                 'remember_token' => '',
             ],
         );
-        Alert::html('Beasiswa Berhasil Direset. Semua Data Telah Terhapus.', " Username Admin = admin@gmail.com<br> Password Admin = 12345678 ", 'success');
+        Alert::html('Beasiswa Berhasil Direset. Semua Data Telah Terhapus.', " Username Admin = admin@gmail.com ", 'success');
         return redirect(route('admin'));
     }
 }

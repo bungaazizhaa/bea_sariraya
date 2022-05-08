@@ -4,8 +4,7 @@
 @endsection
 @section('title')
     <h4 class="m-0 p-0 text-truncate"
-        style="white-space: nowrap;
-                                                                                                                                                                                                                                                                                overflow: hidden;text-overflow: ellipsis;">
+        style="white-space: nowrap;                                                                                                                                                                                                                                                                    overflow: hidden;text-overflow: ellipsis;">
         Data
         Pengguna
     </h4>

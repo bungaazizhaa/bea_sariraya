@@ -44,7 +44,7 @@ class PenugasanTimeRestrictedMiddleware
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif', 'tglpengumuman')));
             }
         } elseif (isset($getAdministrasiUser) && $getPeriodeAktif->status_png == 'Selesai' && $getPeriodeAktif->status == 'aktif' && $statusAdmUser == 'lolos' && $statusWwnUser == 'lolos') { //Sesi Sudah Selesai dan Diumumkan
-            $statusPngUser = 'lolos';
+            $statusPngUser = $getAdministrasiUser->wawancara->penugasan->status_png;
             if (isset(Auth::user()->picture) && $statusPngUser == 'lolos') {
                 return response(view('view-mahasiswa.penugasan.p-pengumumanlolos', compact('getPeriodeAktif', 'statusPngUser')));
             } else {

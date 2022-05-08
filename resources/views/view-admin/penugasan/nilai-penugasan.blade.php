@@ -1,6 +1,6 @@
 @extends('view-admin.layouts.app')
 @section('titlepage')
-    <title>Dashboard Beasiswa Sariraya</title>
+    <title>Periode {{ ucfirst($periodeOpenned->name) }} Beasiswa Sariraya</title>
 @endsection
 @section('title')
     <h4 class="m-0 p-0">
@@ -163,7 +163,7 @@
                                     <div class="col-md-6">
                                         <input id="tanggal_lahir" type="text" class="form-control" name="tanggal_lahir"
                                             spellcheck="false" disabled
-                                            value="{{ $pngUser->wawancara->administrasi->tanggal_lahir->translatedFormat('D MMMM YYYY') }}">
+                                            value="{{ $pngUser->wawancara->administrasi->tanggal_lahir->translatedFormat('d F Y') }}">
                                     </div>
                                 </div>
 
@@ -398,26 +398,28 @@
                                         <label for="field_jawaban" class="col-md-4 col-form-label text-md-right">Jawaban
                                             Penugasan</label>
                                         <div class="col-md-8">
-                                            <input disabled
-                                                class="form-control @error('field_jawaban') is-invalid @enderror"
-                                                value="{{ isset($pngUser->field_jawaban) ? $pngUser->field_jawaban : '-' }}">
+                                            <textarea disabled
+                                                class="form-control @error('field_jawaban') is-invalid @enderror">{{ isset($pngUser->field_jawaban) ? $pngUser->field_jawaban : '-' }}</textarea>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <label for="name" class="col-md-4 col-form-label text-md-right">File
-                                            Jawaban</label>
-                                        <div class="col-md-8">
-                                            <a class="btn btn-outline-primary" target="_blank" rel="noopener noreferrer"
-                                                href={{ asset($periodeOpenned->name . '/' . $pngUser->wawancara->administrasi->user->id . '/' . $pngUser->file_jawaban) }}>Lihat
-                                                File Jawaban</a>
+                                    @if (isset($pngUser->file_jawaban))
+                                        <div class="row mb-3">
+                                            <label for="name" class="col-md-4 col-form-label text-md-right">File
+                                                Jawaban</label>
+                                            <div class="col-md-8">
+                                                <a class="btn btn-outline-primary" target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    href={{ asset($periodeOpenned->name . '/' . $pngUser->wawancara->administrasi->user->id . '/' . $pngUser->file_jawaban) }}>Lihat
+                                                    File Jawaban</a>
 
-                                            @error('soal')
-                                                <div class="small text-danger" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </div>
-                                            @enderror
+                                                @error('soal')
+                                                    <div class="small text-danger" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </div>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
 
                                     <div class="row mb-3">
                                         <label for="status_png" class="col-md-4 col-form-label text-md-right">Status

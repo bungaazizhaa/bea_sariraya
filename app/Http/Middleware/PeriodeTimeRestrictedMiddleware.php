@@ -24,7 +24,7 @@ class PeriodeTimeRestrictedMiddleware
 
         if ($getPeriodeAktif == null && Auth()->user()->role == 'mahasiswa') {
             auth()->logout();
-            Alert::toast('Tidak dapat melakukan Login. Saat ini tidak ada Program Beasiswa.', 'info');
+            Alert::toast('Beasiswa Telah Dinyatakan Selesai. Saat ini tidak terdapat Program Beasiswa', 'info');
             return redirect(route('landing'));
         }
         return $next($request);

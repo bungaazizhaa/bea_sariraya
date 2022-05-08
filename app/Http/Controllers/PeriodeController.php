@@ -37,10 +37,18 @@ class PeriodeController extends Controller
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $periodeOpenned = Periode::where('name', '=', $name)->first();
         $getAdministrasiUser = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->get();
-        $getAllAdmLolos = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '=', 'lolos')->get();
+        $getAllAdmLolos = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '=', 'lolos')
+            // ->whereHas('wawancara', function ($q) {
+            //     return $q->where('jadwal_wwn', '!=', $this->string = '');
+            // })
+            ->get();
         $getAllAdmGagal = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '!=', 'lolos')->get();
         $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->pluck('id');
-        $getAllWwnLolos = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->where('status_wwn', '=', 'lolos')->get();
+        $getAllWwnLolos = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->where('status_wwn', '=', 'lolos')
+            // ->whereHas('penugasan', function ($q) {
+            //     return $q->where('soal', '!=', $this->string = '');
+            // })
+            ->get();
         $getAllWwnGagal = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->where('status_wwn', '=', 'gagal')->get();
         $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->pluck('id');
         $getAllPngLolos = Penugasan::whereIn('wawancara_id', $wawancaraOpenned)->where('status_png', '=', 'lolos')->get();
@@ -179,7 +187,7 @@ class PeriodeController extends Controller
         $periodeSelected = Periode::where('name', '=', $name)->first();
         $periodeSelected->group_wa = $request->group_wa;
         $periodeSelected->save();
-        Alert::success('Group WhatsApp ' . ucfirst($periodeSelected->name) . ' sudah Diperbarui.', 'Selanjutnya adalah membuat Group WhatsApp.');
+        Alert::success('Link Group WhatsApp ' . ucfirst($periodeSelected->name) . ' sudah Diperbarui.', 'Data Tersimpan.');
         return redirect(route('periode', $name));
     }
 

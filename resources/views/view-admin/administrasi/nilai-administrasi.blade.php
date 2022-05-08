@@ -1,6 +1,6 @@
 @extends('view-admin.layouts.app')
 @section('titlepage')
-    <title>Dashboard Beasiswa Sariraya</title>
+    <title>Periode {{ ucfirst($periodeOpenned->name) }} Beasiswa Sariraya</title>
 @endsection
 @section('title')
     <h4 class="m-0 p-0"><span class="text-nowrap">Periode {{ ucfirst($periodeOpenned->name) }}</span></h4>
@@ -160,7 +160,7 @@
                                     <div class="col-md-6">
                                         <input id="tanggal_lahir" type="text" class="form-control" name="tanggal_lahir"
                                             spellcheck="false" disabled
-                                            value="{{ isset($admUser->tanggal_lahir) ? $admUser->tanggal_lahir->format('d F Y') . ' WIB' : '' }}">
+                                            value="{{ isset($admUser->tanggal_lahir) ? $admUser->tanggal_lahir->translatedFormat('d F Y') : '' }}">
                                     </div>
                                 </div>
 

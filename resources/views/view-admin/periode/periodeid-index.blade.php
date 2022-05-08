@@ -1,6 +1,6 @@
 @extends('view-admin.layouts.app')
 @section('titlepage')
-    <title>Dashboard Beasiswa Sariraya</title>
+    <title>Periode {{ ucfirst($periodeOpenned->name) }} Beasiswa Sariraya</title>
 @endsection
 @section('title')
     <h4 class="m-0 p-0">Periode {{ ucfirst($periodeOpenned->name) }}</h4>
@@ -21,7 +21,7 @@
             <div class="ml-2 mb-3 mr-2">
                 <button type="button" data-toggle="modal" data-target="#editPeriode"
                     class="rounded myshadow d-flex justify-content-center align-items-center btn-warning my-0 p-3"><i
-                        class="fas fa-edit"></i>&nbsp;Atur Periode
+                        class="fa-solid fa-gear"></i>&nbsp; Pengaturan
                 </button>
             </div>
         </div>
@@ -42,7 +42,7 @@
                                     value="{{ $periodeOpenned->group_wa }}">
                             </div>
                             <div class="col-md-2">
-                                <button type="submit" class="rounded myshadow btn d-flex ml-auto btn-dark">Perbarui
+                                <button type="submit" class="rounded myshadow btn d-flex ml-auto btn-dark">Perbarui Link
                                 </button>
                             </div>
                         </div>
@@ -224,6 +224,7 @@
                                     <th>Status Png</th>
                                     {{-- <th>Update Png</th> --}}
                                     <th>Keahlian</th>
+                                    <th>Jadwal Wawancara</th>
                                     <th>Perguruan Tinggi</th>
                                     <th>Program Studi</th>
                                 </tr>
@@ -245,14 +246,14 @@
                                                 <form id="editFormNilaiAdm{{ $userAdm->user->id }}"
                                                     action="{{ route('nilai.adm', $periodeOpenned->name) }}">
                                                     <input type="text" hidden aria-label="Recipient's username"
-                                                        name="search" value="{{ $userAdm->user->email }}" autofocus>
+                                                        name="search" value="{{ $userAdm->no_pendaftaran }}" autofocus>
                                                     <div style="cursor: pointer;"
                                                         onclick="document.getElementById('editFormNilaiAdm{{ $userAdm->user->id }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
-                                                        {{ isset($userAdm->status_adm) && $userAdm->status_adm == 'lolos' ? 'badge-success' : '' }}
+                                                        {{ isset($userAdm->status_adm) && isset($userAdm->wawancara->jadwal_wwn) && $userAdm->status_adm == 'lolos' ? 'badge-success' : '' }}
                                                         {{ isset($userAdm->status_adm) && $userAdm->status_adm == 'gagal' ? 'badge-danger' : '' }}
-                                                        {{ !isset($userAdm->status_adm) ? 'badge-secondary' : '' }}">
-                                                        {{ isset($userAdm->status_adm) ? ucfirst($userAdm->status_adm) : 'Unset' }}
+                                                        {{ !isset($userAdm->status_adm) || !isset($userAdm->wawancara->jadwal_wwn) ? 'badge-secondary' : '' }}">
+                                                        {{ isset($userAdm->status_adm) ? ucfirst($userAdm->status_adm) . ' Adm' : 'Unset' }}
                                                     </div>
                                                 </form>
                                                 {{-- <td>{{ $userAdm->updated_at->translatedFormat('d F Y H:i') }}</td> --}}
@@ -260,14 +261,14 @@
                                                 <form id="editFormNilaiWwn{{ $userAdm->user->id }}"
                                                     action="{{ route('nilai.wwn', $periodeOpenned->name) }}">
                                                     <input type="text" hidden aria-label="Recipient's username"
-                                                        name="search" value="{{ $userAdm->user->email }}" autofocus>
+                                                        name="search" value="{{ $userAdm->no_pendaftaran }}" autofocus>
                                                     <div style="cursor: pointer;"
                                                         onclick="document.getElementById('editFormNilaiWwn{{ $userAdm->user->id }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
-                                                    {{ isset($userAdm->wawancara->status_wwn) && $userAdm->wawancara->status_wwn == 'lolos' ? 'badge-success' : '' }}
+                                                    {{ isset($userAdm->wawancara->status_wwn) && isset($userAdm->wawancara->penugasan->soal) && $userAdm->wawancara->status_wwn == 'lolos' ? 'badge-success' : '' }}
                                                     {{ isset($userAdm->wawancara->status_wwn) && $userAdm->wawancara->status_wwn == 'gagal' ? 'badge-danger' : '' }}
-                                                    {{ !isset($userAdm->wawancara->status_wwn) ? 'badge-secondary' : '' }}">
-                                                        {{ isset($userAdm->wawancara->status_wwn) ? ucfirst($userAdm->wawancara->status_wwn) : 'Unset' }}
+                                                    {{ !isset($userAdm->wawancara->status_wwn) || !isset($userAdm->wawancara->penugasan->soal) ? 'badge-secondary' : '' }}">
+                                                        {{ isset($userAdm->wawancara->status_wwn) ? ucfirst($userAdm->wawancara->status_wwn) . ' Wwn' : 'Unset' }}
                                                     </div>
                                                 </form>
                                             </td>
@@ -277,20 +278,22 @@
                                                 <form id="editFormNilaiPng{{ $userAdm->user->id }}"
                                                     action="{{ route('nilai.png', $periodeOpenned->name) }}">
                                                     <input type="text" hidden aria-label="Recipient's username"
-                                                        name="search" value="{{ $userAdm->user->email }}" autofocus>
+                                                        name="search" value="{{ $userAdm->no_pendaftaran }}" autofocus>
                                                     <div style="cursor: pointer;"
                                                         onclick="document.getElementById('editFormNilaiPng{{ $userAdm->user->id }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
                                                     {{ isset($userAdm->wawancara->penugasan->status_png) && $userAdm->wawancara->penugasan->status_png == 'lolos' ? 'badge-success' : '' }}
                                                     {{ isset($userAdm->wawancara->penugasan->status_png) && $userAdm->wawancara->penugasan->status_png == 'gagal' ? 'badge-danger' : '' }}
                                                     {{ !isset($userAdm->wawancara->penugasan->status_png) ? 'badge-secondary' : '' }}">
-                                                        {{ isset($userAdm->wawancara->penugasan->status_png) ? ucfirst($userAdm->wawancara->penugasan->status_png) : 'Unset' }}
+                                                        {{ isset($userAdm->wawancara->penugasan->status_png) ? ucfirst($userAdm->wawancara->penugasan->status_png) . ' Png' : 'Unset' }}
                                                     </div>
                                                 </form>
                                             </td>
                                             {{-- <td>{{ isset($userAdm->wawancara->penugasan->updated_at) ? $userAdm->wawancara->penugasan->updated_at->translatedFormat('d F Y H:i') : '-' }}
                                             </td> --}}
                                             <td>{{ isset($userAdm->keahlian) ? $userAdm->keahlian : '-' }}</td>
+                                            <td>{{ isset($userAdm->wawancara->jadwal_wwn) ? $userAdm->wawancara->jadwal_wwn->translatedFormat('d M Y - H:i') . ' WIB' : '-' }}
+                                            </td>
                                             <td>{{ $userAdm->user->univ->nama_universitas }}</td>
                                             <td>{{ $userAdm->user->prodi->nama_prodi }}</td>
                                         </tr>
@@ -727,7 +730,7 @@
                                                             </td>
                                                             <td>{{ $userWwnLolos->administrasi->user->email }}
                                                             </td>
-                                                            <td>{{ isset($userLolos->penugasan->soal) ? $userWwnLolos->penugasan->soal : '' }}
+                                                            <td>{{ isset($userWwnLolos->penugasan->soal) ? $userWwnLolos->penugasan->soal : '' }}
                                                             </td>
                                                         </tr>
                                                     @endforeach

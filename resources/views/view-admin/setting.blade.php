@@ -1,18 +1,16 @@
 @extends('view-admin.layouts.app')
 @section('titlepage')
-    <title>Dashboard Beasiswa Sariraya</title>
+    <title>Pengaturan Beasiswa Sariraya</title>
 @endsection
 @section('title')
-    <h4 class="m-0 p-0">Dashboard</h4>
+    <h4 class="m-0 p-0">Pengaturan</h4>
 @endsection
 @section('content')
     <div class="container-fluid px-3">
         <!-- Main content -->
         <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    Edit Admin
-                </div>
+            <p class="h3 font-weight-bold mb-3">Data Admin</p>
+            <div class="card rounded-md myshadow">
                 <div class="card-body">
                     <form method="POST" action="{{ route('pengguna.update', Auth::user()->id) }}"
                         enctype="multipart/form-data">
@@ -32,7 +30,7 @@
                             <div class="col-md-9">
                                 <div class="row mb-3">
                                     <label for="picture"
-                                        class="col-md-4 col-form-label text-right">{{ __('Foto Profil') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Foto Profil') }}</label>
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <div class="custom-file">
@@ -45,7 +43,8 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="name" class="col-md-4 col-form-label text-right">{{ __('Name') }}</label>
+                                    <label for="name"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="name" type="text"
@@ -62,7 +61,7 @@
 
                                 <div class="row mb-3">
                                     <label for="email"
-                                        class="col-md-4 col-form-label text-right">{{ __('E-Mail Address') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="email" type="email"
@@ -79,7 +78,7 @@
 
                                 <div class="row mb-3">
                                     <label for="password"
-                                        class="col-md-4 col-form-label text-right">{{ __('Password') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="password" type="password"
@@ -96,7 +95,7 @@
 
                                 <div class="row mb-3">
                                     <label for="password-confirm"
-                                        class="col-md-4 col-form-label text-right">{{ __('Confirm Password') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="password-confirm" type="password" class="form-control"
@@ -107,7 +106,8 @@
 
                                 <div class=" row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn  btn-outline-primary rounded-pill"><i
+                                                class="fa-solid fa-floppy-disk"></i>&nbsp;
                                             {{ __('Simpan') }}
                                         </button>
                                     </div>
@@ -120,12 +120,29 @@
         </div>
 
         <div class="col-12 mt-5">
-            <form id="formResetBeasiswa" method="POST" action="{{ route('reset.beasiswa') }}">
-                @csrf
-                <a type="button" id="resetBeasiswaAlert" class="btn btn-dark text-nowrap pr-3 mb-3 text-danger">
-                    <i class="fa-solid fa-recycle"></i>&nbsp; Reset Penerimaan Beasiswa
-                </a>
-            </form>
+            <p class="h3 font-weight-bold mb-3">Reset Penerimaan Beasiswa</p>
+            <div class="card rounded-md myshadow">
+                <div class="card-body">
+                    <p class="font-weight-bold">Apa yang akan terjadi?</p>
+                    <ul class="mb-3" style="padding-left: 1rem;">
+                        <li>Seluruh data Pengguna akan dihapus.</li>
+                        <li>Seluruh data Administrasi, Wawancara, dan Penugasan akan dihapus.</li>
+                        <li>Seluruh data Periode Beasiswa akan dihapus.</li>
+                        <li>Data akun Admin akan di atur ulang seperti awal (Default).<br>Default Email:
+                            admin@gmail.com<br>Default Password: <span id="passwordText"
+                                style="cursor: pointer">********</span></li>
+
+
+                    </ul>
+                    <form id="formResetBeasiswa" method="POST" action="{{ route('reset.beasiswa') }}">
+                        @csrf
+                        <a type="button" id="resetBeasiswaAlert"
+                            class="btn btn-outline-danger text-nowrap pr-3 rounded-pill">
+                            <i class="fa-solid fa-recycle"></i>&nbsp; Reset Penerimaan Beasiswa
+                        </a>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <script>
@@ -183,5 +200,16 @@
                     imgPreview.src = oFREvent.target.result;
                 }
             }
+        </script>
+
+        <script>
+            document.getElementById("passwordText").addEventListener("click", function(e) {
+                // element.classList.toggle("dark-mode");
+                if (e.target.textContent === "********") {
+                    e.target.textContent = "12345678";
+                } else {
+                    e.target.textContent = "********";
+                }
+            });
         </script>
     @endsection

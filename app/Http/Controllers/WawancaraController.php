@@ -65,7 +65,7 @@ class WawancaraController extends Controller
         $periodeOpenned = Periode::where('name', '=', $name)->first();
         $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->pluck('id');
         // dd($administrasiOpenned);
-        $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->filter(request(['search']))->paginate(1)->withQueryString();
+        $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->filter(request(['search']))->orderBy('jadwal_wwn', 'asc')->paginate(1)->withQueryString();
         return view('view-admin.wawancara.nilai-wawancara', compact('getTanggalSekarang', 'periodeOpenned', 'wawancaraOpenned', 'getAllPeriode'));
     }
 
@@ -77,7 +77,8 @@ class WawancaraController extends Controller
         $wawancaraSelected->status_wwn = $request->status_wwn;
         $wawancaraSelected->catatan = $request->catatan;
         $wawancaraSelected->save();
-        Alert::success('Wawancara ' . $wawancaraSelected->administrasi->user->name . ' sudah di Perbarui', 'Data telah tersimpan.');
+        toast('Wawancara ' . $wawancaraSelected->administrasi->user->name . ' sudah di Perbarui', 'success');
+        // Alert::success('Wawancara ' . $wawancaraSelected->administrasi->user->name . ' sudah di Perbarui', 'Data telah tersimpan.');
         if ($request->status_wwn == 'lolos') {
             if (isset($wawancaraSelected->penugasan->id)) {
                 $penugasan = Penugasan::where('wawancara_id', '=', $wawancaraSelected->id)->first();
@@ -90,13 +91,15 @@ class WawancaraController extends Controller
                     'soal' => $request['soal'],
                 ]);
             }
-            Alert::success('Wawancara ' . $wawancaraSelected->administrasi->user->name . ' sudah di Nilai', 'Data telah tersimpan.');
+            toast('Wawancara ' . $wawancaraSelected->administrasi->user->name . ' sudah di Nilai', 'success');
+            // Alert::success('Wawancara ' . $wawancaraSelected->administrasi->user->name . ' sudah di Nilai', 'Data telah tersimpan.');
         } elseif ($request->status_wwn == 'gagal') {
             if (isset($wawancaraSelected->penugasan->id)) {
                 $penugasan = Penugasan::where('wawancara_id', '=', $wawancaraSelected->id)->first();
                 $penugasan->delete();
             }
-            Alert::success('Wawancara ' . $wawancaraSelected->administrasi->user->name . ' sudah di Nilai', 'Data telah tersimpan.');
+            toast('Wawancara ' . $wawancaraSelected->administrasi->user->name . ' sudah di Nilai', 'success');
+            // Alert::success('Wawancara ' . $wawancaraSelected->administrasi->user->name . ' sudah di Nilai', 'Data telah tersimpan.');
         }
 
         return redirect()->back();
