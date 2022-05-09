@@ -53,7 +53,7 @@
                 <a href="{{ route('index.periode') }}"
                     class="nav-link {{ url()->current() === route('index.periode') ? 'active' : null }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Atur Periode
+                    <p>Tambah / Hapus
                     </p>
                 </a>
             </li>

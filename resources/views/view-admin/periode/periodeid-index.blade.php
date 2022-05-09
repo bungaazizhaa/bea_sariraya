@@ -216,6 +216,7 @@
                                     <th>No</th>
                                     {{-- <th>Foto</th> --}}
                                     <th>Nama</th>
+                                    <th>Nomor</th>
                                     <th>Email</th>
                                     <th>Status Adm</th>
                                     {{-- <th>Update Adm</th> --}}
@@ -241,14 +242,15 @@
                                             <td><a class="text-light"
                                                     href="{{ route('pengguna.show', $userAdm->user->id) }}">{{ $userAdm->user->name }}</a>
                                             </td>
+                                            <td>{{ $userAdm->no_pendaftaran }}</td>
                                             <td>{{ $userAdm->user->email }}</td>
                                             <td>
-                                                <form id="editFormNilaiAdm{{ $userAdm->user->id }}"
+                                                <form target="_blank" id="editFormNilaiAdm{{ $userAdm->no_pendaftaran }}"
                                                     action="{{ route('nilai.adm', $periodeOpenned->name) }}">
                                                     <input type="text" hidden aria-label="Recipient's username"
                                                         name="search" value="{{ $userAdm->no_pendaftaran }}" autofocus>
                                                     <div style="cursor: pointer;"
-                                                        onclick="document.getElementById('editFormNilaiAdm{{ $userAdm->user->id }}').submit();"
+                                                        onclick="document.getElementById('editFormNilaiAdm{{ $userAdm->no_pendaftaran }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
                                                         {{ isset($userAdm->status_adm) && isset($userAdm->wawancara->jadwal_wwn) && $userAdm->status_adm == 'lolos' ? 'badge-success' : '' }}
                                                         {{ isset($userAdm->status_adm) && $userAdm->status_adm == 'gagal' ? 'badge-danger' : '' }}
@@ -258,12 +260,12 @@
                                                 </form>
                                                 {{-- <td>{{ $userAdm->updated_at->translatedFormat('d F Y H:i') }}</td> --}}
                                             <td>
-                                                <form id="editFormNilaiWwn{{ $userAdm->user->id }}"
+                                                <form target="_blank" id="editFormNilaiWwn{{ $userAdm->no_pendaftaran }}"
                                                     action="{{ route('nilai.wwn', $periodeOpenned->name) }}">
                                                     <input type="text" hidden aria-label="Recipient's username"
                                                         name="search" value="{{ $userAdm->no_pendaftaran }}" autofocus>
                                                     <div style="cursor: pointer;"
-                                                        onclick="document.getElementById('editFormNilaiWwn{{ $userAdm->user->id }}').submit();"
+                                                        onclick="document.getElementById('editFormNilaiWwn{{ $userAdm->no_pendaftaran }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
                                                     {{ isset($userAdm->wawancara->status_wwn) && isset($userAdm->wawancara->penugasan->soal) && $userAdm->wawancara->status_wwn == 'lolos' ? 'badge-success' : '' }}
                                                     {{ isset($userAdm->wawancara->status_wwn) && $userAdm->wawancara->status_wwn == 'gagal' ? 'badge-danger' : '' }}
@@ -275,12 +277,12 @@
                                             {{-- <td>{{ isset($userAdm->wawancara->updated_at) ? $userAdm->wawancara->updated_at->translatedFormat('d F Y H:i') : '-' }}
                                             </td> --}}
                                             <td>
-                                                <form id="editFormNilaiPng{{ $userAdm->user->id }}"
+                                                <form target="_blank" id="editFormNilaiPng{{ $userAdm->no_pendaftaran }}"
                                                     action="{{ route('nilai.png', $periodeOpenned->name) }}">
                                                     <input type="text" hidden aria-label="Recipient's username"
                                                         name="search" value="{{ $userAdm->no_pendaftaran }}" autofocus>
                                                     <div style="cursor: pointer;"
-                                                        onclick="document.getElementById('editFormNilaiPng{{ $userAdm->user->id }}').submit();"
+                                                        onclick="document.getElementById('editFormNilaiPng{{ $userAdm->no_pendaftaran }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
                                                     {{ isset($userAdm->wawancara->penugasan->status_png) && $userAdm->wawancara->penugasan->status_png == 'lolos' ? 'badge-success' : '' }}
                                                     {{ isset($userAdm->wawancara->penugasan->status_png) && $userAdm->wawancara->penugasan->status_png == 'gagal' ? 'badge-danger' : '' }}

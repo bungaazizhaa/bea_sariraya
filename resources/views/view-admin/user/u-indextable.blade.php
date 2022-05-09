@@ -56,8 +56,10 @@
                                                 </td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
-                                                <td>{{ $user->univ->nama_universitas }}</td>
-                                                <td>{{ $user->prodi->nama_prodi }}</td>
+                                                <td>{{ $user->role == 'mahasiswa' ? $user->univ->nama_universitas : '-' }}
+                                                </td>
+                                                <td>{{ $user->role == 'mahasiswa' ? $user->prodi->nama_prodi : '-' }}
+                                                </td>
                                                 <td>{{ $user->created_at->translatedFormat('d F Y H:i') }}</td>
                                                 <td>{{ $user->updated_at->translatedFormat('d F Y H:i') }}</td>
                                                 <td class="text-nowrap">
