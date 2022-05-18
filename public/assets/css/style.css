@@ -154,6 +154,49 @@ body {
     background-repeat: no-repeat;
 }
 
+.logo-img {
+    position: absolute;
+    background-repeat: no-repeat;
+}
+
+.logo-img img{
+    margin-top: 30px;
+    width: 40%;
+}
+
+.logo {
+    position: fixed;
+    background-repeat: no-repeat;
+}
+
+.logo img{
+    width: 25%;
+    margin-top: -200px;
+}
+
+/*Login*/
+
+.logo2 {
+    position: absolute;
+    background-repeat: no-repeat;
+}
+
+.logo2 img{
+    width: 40%;
+    margin-top: 30px;
+}
+
+
+.logo-login {
+    position: fixed;
+    background-repeat: no-repeat;
+}
+
+.logo-login img{
+    width: 25%;
+    margin-top: -50px;
+}
+
 .row-kontak {
     margin-top: 2%;
 }
@@ -167,5 +210,5 @@ body {
 }
 
 .row-kontak1 {
-    margin-top: 10%;
+    margin-top: 13%;
 }
