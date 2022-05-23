@@ -40,3 +40,9 @@ body {
     border-radius: 18px;
     cursor: pointer;
 }
+
+/* Profil */
+
+.kotakprofil{
+    border-radius: 100%;
+}

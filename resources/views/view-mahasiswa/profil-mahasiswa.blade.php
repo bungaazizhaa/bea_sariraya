@@ -78,12 +78,12 @@
     <!-- Main content -->
     <div class="row">
         <div class="col-lg-4 pr-md-0">
-            <div class="alert alert-dark rounded-md myshadow mb-3">
+            <div class="alert alert-dark myshadow mb-3 kotakprofil">
                 <div class="mb-3 pt-1 mx-auto rounded-top-md">
                     <span class="h5 ">Foto</span>
                     @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
                         <span>
-                            <button type="button" id="tombolEditFoto" class="float-left btn btn-sm btn-outline-secondary float-right" data-toggle="modal" data-target="#editFotoModal">
+                            <button type="button" id="tombolEditFoto" class="float-left btn btn-sm btn-success float-right" data-toggle="modal" data-target="#editFotoModal">
                                 Upload Foto
                             </button>
                         </span>
@@ -110,7 +110,7 @@
                     <span class="h5 ">Data Diri</span>
                     @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
                         <span>
-                            <button id="tombolEditProfil" type="button" class="float-right btn btn-sm btn-outline-secondary float-right" data-toggle="modal" data-target="#editProfil">
+                            <button id="tombolEditProfil" type="button" class="float-right btn btn-sm btn-success float-right" data-toggle="modal" data-target="#editProfil">
                                 Ubah Data
                             </button>
                         </span>
@@ -217,8 +217,8 @@
                         </script>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Save changes</button>
                     </div>
                 </form>
             </div>
@@ -331,8 +331,8 @@
                     </div>
 
                     <div class="modal-footer p-0 pt-3">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Save changes</button>
                     </div>
                 </form>
             </div>

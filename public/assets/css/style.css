@@ -212,3 +212,22 @@ body {
 .row-kontak1 {
     margin-top: 13%;
 }
+
+
+.datadiri input{
+    border-radius: 30px;
+}
+
+.btnsubmit{
+    border-radius: 500%;
+    height: 50px;
+    width: 150px;
+    font-size: 25px;
+    font-weight: 5px;
+
+    background-color: #42d12c;
+    color: white;
+
+    box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}

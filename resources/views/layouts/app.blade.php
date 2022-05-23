@@ -9,13 +9,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="icon" href="{{ asset('assets/images/bunga2.png') }}" type="image/x-icon">
 
     <!-- Scripts -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
@@ -42,16 +43,26 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container d-flex justify-content-between">
+                <a class="logo" href="#">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="" width="80px">
+                </a>
+                <!-- 
                 <a class="navbar-brand me-auto" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mr-0 mr-md-4 pr-md-0"><a class="nav-link  pr-3 pr-md-2" href="">Administrasi</a>
+                        </li>
+                        <li class="nav-item mr-0 mr-md-4 pr-md-0"><a class="nav-link  pr-3 pr-md-2" href="">Profil</a>
+                        </li>
                         {{-- <li class="nav-item mb-1" id="waktu">
                             <p class="text-center m-0 p-0 mt-2">Waktu Sekarang</p>
                             <p class="text-center m-0 p-0 mt-0" id="tgl">Hari, 00 Bulan 0000 - 00:00:00</p>
