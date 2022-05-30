@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-0">
+<div class="container mt-0 test">
 
     @if (session('status'))
     <div class="alert alert-success" role="alert">
@@ -78,7 +78,7 @@
     <!-- Main content -->
     <div class="row">
         <div class="col-lg-4 pr-md-0">
-            <div class="alert alert-dark myshadow mb-3 kotakprofil">
+            <div class="alert alert-secondary myshadow mb-3 kotakprofil">
                 <div class="mb-3 pt-1 mx-auto rounded-top-md">
                     <span class="h5 ">Foto</span>
                     @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
@@ -90,7 +90,7 @@
                         @endif
                 </div>
                 <!-- /.card-header -->
-                <div class="alert alert-secondary  d-flex mx-auto flex-column pt-2 pb-0">
+                <div class="alert   d-flex mx-auto flex-column pt-2 pb-0">
                     <div class="mx-auto mb-2">
                         <img src="/pictures/{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}" class="rounded" alt="User Image" height="280px" width="210px">
                     </div>
@@ -105,7 +105,7 @@
 
 
         <div class="col-lg-8">
-            <div class="alert alert-dark rounded-md myshadow mb-3">
+            <div class="alert alert-secondary rounded-md myshadow mb-3">
                 <div class="mb-3 pt-1 mx-auto rounded-top-md">
                     <span class="h5 ">Data Diri</span>
                     @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
@@ -118,7 +118,7 @@
                 </div><!-- /.card-header -->
                 <!-- Table row -->
                 <div class="row px-3">
-                    <div class="col-12 alert alert-secondary table-responsive">
+                    <div class="col-12 alert table-responsive">
                         <table class="table mb-0">
                             <tbody>
                                 <tr>

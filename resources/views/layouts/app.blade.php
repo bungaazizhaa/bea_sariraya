@@ -16,7 +16,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
@@ -59,9 +59,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mr-0 mr-md-4 pr-md-0"><a class="nav-link  pr-3 pr-md-2" href="">Administrasi</a>
+                        <li class="nav-item mr-0 mr-md-4 pr-md-0 test"><a class="nav-link  pr-3 pr-md-2" href="">Administrasi</a>
                         </li>
-                        <li class="nav-item mr-0 mr-md-4 pr-md-0"><a class="nav-link  pr-3 pr-md-2" href="">Profil</a>
+                        <li class="nav-item mr-0 mr-md-4 pr-md-0 test"><a class="nav-link  pr-3 pr-md-2" href="">Profil</a>
                         </li>
                         {{-- <li class="nav-item mb-1" id="waktu">
                             <p class="text-center m-0 p-0 mt-2">Waktu Sekarang</p>
@@ -81,7 +81,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto ml-md-0">
+                    <ul class="navbar-nav ml-auto ml-md-0 test">
 
                         <!-- Authentication Links -->
                         @guest

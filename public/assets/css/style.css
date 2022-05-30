@@ -1,7 +1,7 @@
 html,
 body {
     height: 100%;
-    font-family: Poppins;
+    font-family: Montserrat;
     font-style: normal;
     color: #000000;
     scroll-behavior: smooth;
@@ -219,15 +219,21 @@ body {
 }
 
 .btnsubmit{
-    border-radius: 500%;
-    height: 50px;
-    width: 150px;
-    font-size: 25px;
+    border-radius: 30px;
+    height: 40px;
+    width: 100px;
+    font-size: 15px;
     font-weight: 5px;
 
     background-color: #42d12c;
     color: white;
+    border-color: #42d12c;
 
     box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.2);
     cursor: pointer;
+}
+
+.test {
+    
+    font-family: Montserrat;
 }

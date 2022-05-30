@@ -1,0 +1,53 @@
+html,
+body {
+    height: 100%;
+    font-family: Poppins;
+    font-style: normal;
+    color: #000000;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Banner */
+.banner img{
+    width:550px;
+}
+
+.tomboldaftar {
+    padding-top: 500px;
+    justify-content: center;
+    font-weight: bolder;
+}
+
+.tomboldaftar p{
+    font-weight: bolder;
+}
+
+
+.tombol {
+    height: 40px;
+    font-size: 18px;
+    font-weight: 5px;
+    margin: 0px;
+    background-color: #42d12c;
+    color: white;
+    border-radius: 18px;
+    cursor: pointer;
+}
+
+/* Profil */
+
+.kotakprofil{
+    border-radius: 100%;
+}
+
+.test {
+    
+    font-family: Montserrat;
+}
