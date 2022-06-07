@@ -145,7 +145,7 @@
 </body>
 
 <!-- Footer -->
-<footer class="pt-3 pt-3 pb-1 border-top bg-dark">
+<footer class="pt-3 pt-3 pb-1 border-top bg-dark footer1">
     <div class="text-center bg-dark text-white">
         <p>&copy; Sariraya 2022</p>
     </div>
