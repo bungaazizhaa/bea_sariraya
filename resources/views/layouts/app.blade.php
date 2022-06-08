@@ -59,7 +59,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mr-0 mr-md-4 pr-md-0 test"><a class="nav-link  pr-3 pr-md-2" href="">Administrasi</a>
+                        <li class="nav-item mr-0 mr-md-4 pr-md-0 test"><a class="nav-link  pr-3 pr-md-2" href="">Tahap Saat Ini</a>
                         </li>
                         <li class="nav-item mr-0 mr-md-4 pr-md-0 test"><a class="nav-link  pr-3 pr-md-2" href="">Profil</a>
                         </li>
