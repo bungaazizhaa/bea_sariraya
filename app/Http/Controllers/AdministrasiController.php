@@ -307,6 +307,7 @@ class AdministrasiController extends Controller
                 'semester' => $request['semester'],
                 'ipk' => $request['ipk'],
                 'keahlian' => $request['keahlian'],
+                'alamat' => $request['alamat'],
                 'file_cv' => $request['file_cv'],
                 'file_esai' => $request['file_esai'],
                 'file_portofolio' => $request['file_portofolio'],

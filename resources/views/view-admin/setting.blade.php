@@ -136,10 +136,9 @@
                     </ul>
                     <form id="formResetBeasiswa" method="POST" action="{{ route('reset.beasiswa') }}">
                         @csrf
-                        <a type="button" id="resetBeasiswaAlert"
-                            class="btn btn-outline-danger text-nowrap pr-3 rounded-pill">
+                        <button id="resetBeasiswaAlert" class="btn btn-outline-danger text-nowrap pr-3 rounded-pill">
                             <i class="fa-solid fa-recycle"></i>&nbsp; Reset Penerimaan Beasiswa
-                        </a>
+                        </button>
                     </form>
                 </div>
             </div>

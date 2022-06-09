@@ -46,7 +46,7 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        return view('auth.login', compact('getPeriodeAktif'));
+        return view('Auth.login', compact('getPeriodeAktif'));
     }
 
     protected function authenticated(Request $request, $user)
@@ -58,13 +58,7 @@ class LoginController extends Controller
             $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
             if (isset($getPeriodeAktif) && isset(Auth::user()->picture)) {
                 Alert::success('Login Berhasil.', 'Anda Login sebagai ' . Auth::user()->name);
-                if ($getPeriodeAktif->status_adm == null) {
-                    return redirect(route('tahap.administrasi'));
-                } elseif ($getPeriodeAktif->status_adm == "Selesai") {
-                    return redirect(route('tahap.wawancara'));
-                } elseif ($getPeriodeAktif->status_adm == "Selesai" && $getPeriodeAktif->status_wwn == "Selesai") {
-                    return redirect(route('tahap.penugasan'));
-                }
+                return redirect(route('tahap.administrasi'));
             } elseif (isset($getPeriodeAktif) && !isset(Auth::user()->picture)) {
                 return redirect(route('profil.mahasiswa'));
             } else {

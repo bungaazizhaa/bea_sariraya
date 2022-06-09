@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Periode;
+use App\Models\Penugasan;
 use App\Models\Wawancara;
 use App\Models\Administrasi;
-use App\Models\Penugasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class WawancaraController extends Controller
@@ -20,8 +21,10 @@ class WawancaraController extends Controller
 
     public function index()
     {
-        $info = '';
-        return view('view-mahasiswa.wawancara.w-index', compact('info'));
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
+        $tanggal_wawancara = $getAdministrasiUser->wawancara->jadwal_wwn;
+        return view('view-mahasiswa.wawancara.w-index', compact('tanggal_wawancara', 'getAdministrasiUser'));
     }
 
     /**

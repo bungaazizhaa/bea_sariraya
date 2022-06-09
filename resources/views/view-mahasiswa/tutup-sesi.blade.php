@@ -1,32 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+@section('content')
+    <div class="container mt-0 test">
 
-<style>
-    .text-center {
-        text-align: center
-    }
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
 
-</style>
+        <h2 class="text-gray-200 mt-2 mt-md-5">{{ $info }}</h2>
 
-<body class="text-center">
-    <h1 class="text-gray-200">{{ $info }}</h1>
-    @isset($tglpengumuman)
-        <h2 class="text-gray-200">Hasil Akan Diumumkan Pada Tanggal :</h2>
-        <h1>{{ \Carbon\Carbon::parse($tglpengumuman)->isoFormat('dddd, D MMMM Y') }}</h1>
-        <h3>( Di Jam Kerja )</h3>
-    @endisset
-    @auth
-        <a href="{{ url('/my-profile') }}" class="btn-sm text-gray-700 dark:text-gray-500 underline">Kembali ke Profil
-            Anda</a>
-    @endauth
-    {{-- <h3>{{ \Carbon\Carbon::parse($getPeriodeAktif->tp_adm)->diffForHumans() }}</h3> --}}
-</body>
+        @isset($tglpengumuman)
+            <p class="h4 mt-5 text-gray-200">Hasil Akan Diumumkan pada Hari :</p>
+            <p class="h3 font-weight-bold">{{ \Carbon\Carbon::parse($tglpengumuman)->isoFormat('dddd, D MMMM Y') }}</p>
+            <p class="h4 mb-4">di Jam Kerja.</p>
+        @endisset
 
-</html>
+        @auth
+            <a href="{{ url('/my-profile') }}" class="btn btn-outline-secondary mt-3 mb-4 mb-md-3"><i
+                    class="fa-solid fa-angle-left"></i>
+                Kembali ke
+                Profil Anda</a>
+        @endauth
+    </div>
+@endsection

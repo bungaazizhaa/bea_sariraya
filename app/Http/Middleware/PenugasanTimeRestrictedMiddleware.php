@@ -32,10 +32,13 @@ class PenugasanTimeRestrictedMiddleware
             return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));
         }
         if ($getPeriodeAktif->status_wwn == 'Selesai' && $statusWwnUser != 'lolos') {
-            return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));
+            return response(view('view-mahasiswa.wawancara.w-pengumumangagal', compact('getPeriodeAktif')));
         }
-        if (isset(Auth::user()->picture) && $getPeriodeAktif->status_png == null) {
-            if ($getTanggalSekarang < $getPeriodeAktif->tm_png->format('Y-m-d')) { //Sesi Belum Dibuka
+        if ($getPeriodeAktif->status_png == null) {
+            if (!isset(Auth::user()->picture)) {
+                Alert::warning('Isi Foto Profil Terlebih Dahulu.', 'Ukuran Pas Foto 3x4.');
+                return redirect(route('profil.mahasiswa'));
+            } elseif ($getTanggalSekarang < $getPeriodeAktif->tm_png->format('Y-m-d')) { //Sesi Belum Dibuka
                 $info = 'Tahap Penugasan Belum Dibuka.';
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif')));
             } elseif ($getTanggalSekarang > $getPeriodeAktif->ta_png->format('Y-m-d') &&  isset($statusAdmUser) ? $statusAdmUser == 'lolos' : '' && $statusWwnUser == 'lolos') { //Sesi Sudah Ditutup

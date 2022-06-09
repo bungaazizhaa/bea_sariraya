@@ -26,8 +26,12 @@ class PenugasanController extends Controller
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
         $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
-        $getPenugasanUser = $getAdministrasiUser->wawancara->penugasan;
-        return view('view-mahasiswa.penugasan.p-index', compact('info', 'getTanggalSekarang', 'getPeriodeAktif', 'getAdministrasiUser', 'getPenugasanUser'));
+        if (isset($getAdministrasiUser->wawancara)) {
+            $getPenugasanUser = $getAdministrasiUser->wawancara->penugasan;
+            return view('view-mahasiswa.penugasan.p-index', compact('info', 'getTanggalSekarang', 'getPeriodeAktif', 'getAdministrasiUser', 'getPenugasanUser'));
+        } else {
+            return view('view-mahasiswa.penugasan.p-index', compact('info', 'getTanggalSekarang', 'getPeriodeAktif', 'getAdministrasiUser'));
+        }
     }
 
     /**
@@ -114,7 +118,7 @@ class PenugasanController extends Controller
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
 
         $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
-        // dd($getAdministrasiUser);
+
         $getPenugasanUser = $getAdministrasiUser->wawancara->penugasan;
         $id = $getPenugasanUser->id;
 

@@ -39,6 +39,7 @@
                             <div class="col-md-8">
                                 <input autocomplete="off" spellcheck="false" type="text" id="group_wa" name="group_wa"
                                     spellcheck="false" class="form-control my-2 my-md-0"
+                                    placeholder="Pastikan dimulai dari 'https://...'"
                                     value="{{ $periodeOpenned->group_wa }}">
                             </div>
                             <div class="col-md-2">

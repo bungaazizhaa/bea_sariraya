@@ -31,7 +31,10 @@ class WawancaraTimeRestrictedMiddleware
             return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));
         }
         if ($getPeriodeAktif->status_wwn == null) { //Status Wawancara Belum Selesai && User Lolos Adm
-            if ($getTanggalSekarang < $getPeriodeAktif->tm_wwn->format('Y-m-d')) { //Sesi Belum Dibuka
+            if (!isset(Auth::user()->picture)) {
+                Alert::warning('Isi Foto Profil Terlebih Dahulu.', 'Ukuran Pas Foto 3x4.');
+                return redirect(route('profil.mahasiswa'));
+            } elseif ($getTanggalSekarang < $getPeriodeAktif->tm_wwn->format('Y-m-d')) { //Sesi Belum Dibuka
                 $info = 'Tahap Wawancara Belum Dibuka.';
                 return response(view('view-mahasiswa.tutup-sesi', compact('info', 'getPeriodeAktif')));
             } elseif ($getTanggalSekarang > $getPeriodeAktif->ta_wwn && $statusAdmUser == 'lolos') { //Sesi Sudah Ditutup
@@ -41,7 +44,7 @@ class WawancaraTimeRestrictedMiddleware
             }
         } elseif (isset($getAdministrasiUser) && $getPeriodeAktif->status_wwn == 'Selesai' && $getTanggalSekarang > $getPeriodeAktif->ta_wwn->format('Y-m-d') && $getTanggalSekarang < $getPeriodeAktif->tm_png->format('Y-m-d') && $statusAdmUser == 'lolos') { //Wawancara Selesai & Belum memasuki Penugasan & User Lolos Adm
             if (isset($getAdministrasiUser->wawancara->status_wwn) && $statusWwnUser === 'lolos') {
-                return response(view('view-mahasiswa.wawancara.w-pengumumanlolos', compact('getPeriodeAktif')));
+                return response(view('view-mahasiswa.wawancara.w-pengumumanlolos', compact('getPeriodeAktif', 'getAdministrasiUser')));
             } elseif (!isset($getAdministrasiUser->wawancara->status_wwn) || $statusWwnUser != 'lolos') {
                 return response(view('view-mahasiswa.wawancara.w-pengumumangagal', compact('getPeriodeAktif')));
             }

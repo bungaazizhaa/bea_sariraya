@@ -43,6 +43,54 @@
         </style>
     </noscript>
 
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <div class="container d-flex justify-content-between">
+            <a class="logoo" href="#">
+                <img src="{{ asset('assets/images/logo.png') }}" alt="" width="80px">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto my-2 my-md-0">
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto ml-md-0 test">
+
+                        <!-- Authentication Links -->
+                        @auth
+                            <li class="nav-item mr-0 mr-md-4 pr-md-0 test"><a class="nav-link  pr-3 pr-md-2"
+                                    href="{{ url('/my-profile') }}">Profil</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endauth
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Akhir Navbar -->
+
     <div id="main-content" class="container-fluid">
         <h1 class="text-center mt-5">Tahap Penugasan</h1>
         @if (isset($getPenugasanUser))
@@ -284,7 +332,7 @@
                             });
                         </script>
                     </div>
-                    <div class="fixed-bottom text-center">
+                    <div class="fixed-bottom text-center w-25 mx-auto">
                         <button type="button" id="tombolEdit" class="btn btn-xl m-3 btn-secondary"
                             onclick="izinkanEdit();">Ubah Jawaban Tugas</button>
                         <div id="tombolSimpan" style="display: none;">

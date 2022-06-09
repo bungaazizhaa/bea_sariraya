@@ -25,7 +25,7 @@ use App\Http\Controllers\PeriodeController;
 Route::get('/', [HomeController::class, 'indexLandingPage'])->name('landing');
 
 //TODO: ================= ROUTE SEMENTARA =================
-Route::view('/_login', '_login');
+// Route::view('/_login', '_login');
 
 //TODO: ================= ROUTE HOME MAHASISWA =================
 Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa', 'verified'])->group(function () {
