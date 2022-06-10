@@ -27,10 +27,11 @@ class WawancaraTimeRestrictedMiddleware
         isset($getAdministrasiUser) ? $statusAdmUser = $getAdministrasiUser->status_adm : ''; //TODO: kondisi user yang diambil dari database
         isset($getAdministrasiUser->wawancara->status_wwn) ? $statusWwnUser = $getAdministrasiUser->wawancara->status_wwn : ''; //TODO: kondisi user yang diambil dari database
         //=========== TAHAP WAWANCARA ===========
-        if ($getPeriodeAktif->status_adm == 'Selesai' && $statusAdmUser != 'lolos') {
+        if (!isset(Auth::user()->picture) && $getTanggalSekarang > $getPeriodeAktif->ta_adm) {
             return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));
-        }
-        if ($getPeriodeAktif->status_wwn == null) { //Status Wawancara Belum Selesai && User Lolos Adm
+        } elseif ($getPeriodeAktif->status_adm == 'Selesai' && $statusAdmUser != 'lolos') {
+            return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));
+        } elseif ($getPeriodeAktif->status_wwn == null) { //Status Wawancara Belum Selesai && User Lolos Adm
             if (!isset(Auth::user()->picture)) {
                 Alert::warning('Isi Foto Profil Terlebih Dahulu.', 'Ukuran Pas Foto 3x4.');
                 return redirect(route('profil.mahasiswa'));

@@ -30,375 +30,383 @@
 </head>
 
 <body>
-    @include('sweetalert::alert')
-    <noscript>
-        <h2 class="text-center">JavaScript is disabled!
-            Please enable JavaScript in your web browser!</h2>
+    <div class="test">
 
-        <style type="text/css">
-            #main-content {
-                display: none;
-            }
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container d-flex justify-content-between">
+                <a class="logoo" href="#">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="" width="80px">
+                </a>
 
-        </style>
-    </noscript>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container d-flex justify-content-between">
-            <a class="logoo" href="#">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="" width="80px">
-            </a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto my-2 my-md-0">
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ml-md-auto ml-0 test">
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto my-2 my-md-0">
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto ml-md-0 test">
-
-                        <!-- Authentication Links -->
-                        @auth
-                            <li class="nav-item mr-0 mr-md-4 pr-md-0 test"><a class="nav-link  pr-3 pr-md-2"
-                                    href="{{ url('/my-profile') }}">Profil</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }}
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                            <!-- Authentication Links -->
+                            @auth
+                                <li class="nav-item mr-0 mr-md-4 pr-md-0 test"><a class="nav-link  pr-3 pr-md-2"
+                                        href="{{ url('/my-profile') }}">Profil</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ Auth::user()->name }}
                                     </a>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endauth
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endauth
+                        </ul>
                     </ul>
-                </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-    <!-- Akhir Navbar -->
+        </nav>
+        <!-- Akhir Navbar -->
 
-    <div id="main-content" class="container-fluid">
-        <h1 class="text-center mt-5">Tahap Penugasan</h1>
-        @if (isset($getPenugasanUser))
-            <p class="text-center mb-1">Data Anda disimpan pada : <span
-                    class="text-nowrap">{{ $getPenugasanUser->updated_at->diffForHumans() }}</span>
-            </p>
-        @endif
-        <input id="user_id" hidden type="text" class="form-control @error('user_id') is-invalid @enderror"
-            user_id="user_id" value="{{ Auth::user()->id }}" autocomplete="user_id">
 
-        <input id="periode_id" hidden type="text" class="form-control @error('periode_id') is-invalid @enderror"
-            periode_id="periode_id" value="{{ $getPeriodeAktif->id }}" autocomplete="periode_id">
 
-        <div class="row d-flex justify-content-center my-5 mx-1">
-            <div class="col-md-8 alert alert-info text-center" role="alert">
-                Halaman ini ditutup dalam waktu
-                <span id="countdownAdm" class="font-weight-bold text-nowrap"></span>
-            </div>
+        <noscript>
+            <h2 class="text-center">JavaScript is disabled!
+                Please enable JavaScript in your web browser!</h2>
 
-            <script>
-                function submitWwn() {
-                    $("#wwnForm").submit();
+            <style type="text/css">
+                #main-content {
+                    display: none;
                 }
-                countdown.setLabels(
-                    ' Milidetik| Detik| Menit| Jam| Hari| Minggu| Bulan| Tahun| Dekade| Abad| Ribu',
-                    ' Milidetik| Detik| Menit| Jam| Hari| Minggu| Bulan| Tahun| Dekade| Abad| Ribu',
-                    ', ',
-                    ', ',
-                    'Sekarang!');
-                var ta_wwn = '{{ $getPeriodeAktif->ta_png }}';
-                var then = moment(ta_wwn, 'YYYY-MM-DD').add(1, 'days').locale('id');
-                (function timerLoop() {
-                    $("#countdownAdm").text(countdown(then).toString());
-                    if (countdown(then).toString() === 'Sekarang!') {
-                        cancelAnimationFrame(timerLoop);
-                        setTimeout(submitWwn, 990)
-                    } else {
-                        requestAnimationFrame(timerLoop);
+            </style>
+        </noscript>
+        @include('sweetalert::alert')
+        <div id="main-content" class="container-fluid ">
+            <h1 class="text-center mt-3 test"> <b>BEASISWA SARIRAYA JAPAN 2022</b> </h1>
+            <h1 class="text-center mt-3 test">Tahap Penugasan</h1>
+            <hr class="container" style="width:65vw;" />
+            @if (isset($getPenugasanUser))
+                <p class="text-center mb-1">Data Anda disimpan pada : <span
+                        class="text-nowrap">{{ $getPenugasanUser->updated_at->diffForHumans() }}</span>
+                </p>
+            @endif
+            <input id="user_id" hidden type="text" class="form-control @error('user_id') is-invalid @enderror"
+                user_id="user_id" value="{{ Auth::user()->id }}" autocomplete="user_id">
+
+            <input id="periode_id" hidden type="text" class="form-control @error('periode_id') is-invalid @enderror"
+                periode_id="periode_id" value="{{ $getPeriodeAktif->id }}" autocomplete="periode_id">
+
+            <div class="row d-flex justify-content-center my-5 mx-1">
+                <div class="col-md-8 alert alert-info text-center" role="alert">
+                    Halaman ini ditutup dalam waktu
+                    <span id="countdownAdm" class="font-weight-bold text-nowrap"></span>
+                </div>
+
+                <script>
+                    function submitWwn() {
+                        $("#wwnForm").submit();
                     }
-                })();
-            </script>
-            {{-- ============== DATA DIRI ============== --}}
-            <div class="col-md-8 mb-5 px-0">
-                <div class="card">
-                    <div class="card-header h4">
-                        Data Diri
-                    </div>
-                    <div class="card-body">
+                    countdown.setLabels(
+                        ' Milidetik| Detik| Menit| Jam| Hari| Minggu| Bulan| Tahun| Dekade| Abad| Ribu',
+                        ' Milidetik| Detik| Menit| Jam| Hari| Minggu| Bulan| Tahun| Dekade| Abad| Ribu',
+                        ', ',
+                        ', ',
+                        'Sekarang!');
+                    var ta_wwn = '{{ $getPeriodeAktif->ta_png }}';
+                    var then = moment(ta_wwn, 'YYYY-MM-DD').add(1, 'days').locale('id');
+                    (function timerLoop() {
+                        $("#countdownAdm").text(countdown(then).toString());
+                        if (countdown(then).toString() === 'Sekarang!') {
+                            cancelAnimationFrame(timerLoop);
+                            setTimeout(submitWwn, 990)
+                        } else {
+                            requestAnimationFrame(timerLoop);
+                        }
+                    })();
+                </script>
+                {{-- ============== DATA DIRI ============== --}}
+                <div class="col-md-8 mb-5 px-0">
+                    <div class="card">
+                        <div class="card-header h4">
+                            Data Diri
+                        </div>
+                        <div class="card-body">
 
-                        @if (isset($getPenugasanUser))
-                            <div class="row mb-3">
-                                <label for="no_pendaftaran"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('No Pendaftaran') }}</label>
+                            @if (isset($getPenugasanUser))
+                                <div class="row mb-3">
+                                    <label for="no_pendaftaran"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('No Pendaftaran') }}</label>
 
-                                <div class="col-md-6">
-                                    {{-- <input id="no_pendaftaran" type="hidden"
+                                    <div class="col-md-6">
+                                        {{-- <input id="no_pendaftaran" type="hidden"
                                         class="form-control @error('no_pendaftaran') is-invalid @enderror"
                                         name="no_pendaftaran"
                                         value="{{ old('no_pendaftaran', strtoupper($getPeriodeAktif->id . uniqid())) }}"
                                         autocomplete="no_pendaftaran" > --}}
-                                    <input id="no_pendaftaran" type="text" disabled
-                                        class="form-control @error('no_pendaftaran') is-invalid @enderror"
-                                        name="no_pendaftaran"
-                                        value="{{ $getPenugasanUser->wawancara->administrasi->no_pendaftaran }}"
-                                        autocomplete="no_pendaftaran">
+                                        <input id="no_pendaftaran" type="text" disabled
+                                            class="form-control @error('no_pendaftaran') is-invalid @enderror"
+                                            name="no_pendaftaran"
+                                            value="{{ $getPenugasanUser->wawancara->administrasi->no_pendaftaran }}"
+                                            autocomplete="no_pendaftaran">
 
-                                    @error('no_pendaftaran')
+                                        @error('no_pendaftaran')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="row mb-3">
+                                <label for="name"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
+
+                                <div class="col-md-6">
+
+                                    <input id="name" type="text" disabled
+                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name', Auth::user()->name) }}" autocomplete="name">
+
+                                    @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                             </div>
-                        @endif
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
+                            <div class="row mb-3">
+                                <label for="nim"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
 
-                            <div class="col-md-6">
+                                <div class="col-md-6">
+                                    <input id="nim" type="text" disabled
+                                        class="form-control @error('nim') is-invalid @enderror" name="nim"
+                                        value="{{ old('nim', Auth::user()->nim) }}" autocomplete="nim">
 
-                                <input id="name" type="text" disabled
-                                    class="form-control @error('name') is-invalid @enderror" name="name"
-                                    value="{{ old('name', Auth::user()->name) }}" autocomplete="name">
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    @error('nim')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row mb-3">
-                            <label for="nim" class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
+                            <div class="row mb-3">
+                                <label for="univ_id"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Perguruan Tinggi') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="nim" type="text" disabled
-                                    class="form-control @error('nim') is-invalid @enderror" name="nim"
-                                    value="{{ old('nim', Auth::user()->nim) }}" autocomplete="nim">
+                                <div class="col-md-6">
+                                    <input id="univ_id" type="text" disabled
+                                        class="form-control @error('univ_id') is-invalid @enderror" name="univ_id"
+                                        value="{{ old('univ_id', Auth::user()->univ->nama_universitas) }}"
+                                        autocomplete="univ_id">
 
-                                @error('nim')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    @error('univ_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row mb-3">
-                            <label for="univ_id"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Perguruan Tinggi') }}</label>
+                            <div class="row mb-3">
+                                <label for="prodi_id"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Program Studi') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="univ_id" type="text" disabled
-                                    class="form-control @error('univ_id') is-invalid @enderror" name="univ_id"
-                                    value="{{ old('univ_id', Auth::user()->univ->nama_universitas) }}"
-                                    autocomplete="univ_id">
+                                <div class="col-md-6">
+                                    <input id="prodi_id" type="text" disabled
+                                        class="form-control @error('prodi_id') is-invalid @enderror" name="prodi_id"
+                                        value="{{ old('prodi_id', Auth::user()->prodi->nama_prodi) }}"
+                                        autocomplete="prodi_id">
 
-                                @error('univ_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="prodi_id"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Program Studi') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="prodi_id" type="text" disabled
-                                    class="form-control @error('prodi_id') is-invalid @enderror" name="prodi_id"
-                                    value="{{ old('prodi_id', Auth::user()->prodi->nama_prodi) }}"
-                                    autocomplete="prodi_id">
-
-                                @error('prodi_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    @error('prodi_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {{-- ============== JAWABAN TUGAS ============== --}}
-            <div class="col-md-8 mb-5 px-0">
-                <div class="card">
-                    <div class="card-header h4">
-                        Tugas Anda!
-                    </div>
-                    <div class="card-body">
-                        <form id="pngForm" method="POST" action="{{ route('update.penugasan') }}"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <div class="row mb-3">
-                                <label for="field_jawaban" class="col-12 col-form-label">{{ __('Soal :') }}</label>
+                {{-- ============== JAWABAN TUGAS ============== --}}
+                <div class="col-md-8 mb-5 px-0">
+                    <div class="card">
+                        <div class="card-header h4">
+                            Tugas Anda!
+                        </div>
+                        <div class="card-body">
+                            <form id="pngForm" method="POST" action="{{ route('update.penugasan') }}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="row mb-3">
+                                    <label for="field_jawaban"
+                                        class="col-12 col-form-label">{{ __('Soal :') }}</label>
 
-                                <div class="col-12">
-                                    <strong>{{ $getPenugasanUser->soal }}</strong>
+                                    <div class="col-12">
+                                        <strong>{{ $getPenugasanUser->soal }}</strong>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="row mb-3">
-                                <label for="field_jawaban"
-                                    class="col-12 col-form-label">{{ __('Kolom Jawaban :') }}</label>
+                                <div class="row mb-3">
+                                    <label for="field_jawaban"
+                                        class="col-12 col-form-label">{{ __('Kolom Jawaban :') }}</label>
 
-                                <div class="col-12">
-                                    <textarea id="field_jawaban" type="text" disabled onkeyup="textAreaAdjust(this)" style="overflow:hidden; font-size:15pt"
-                                        class="form-control editable @error('field_jawaban') is-invalid @enderror"
-                                        name="field_jawaban" autocomplete="field_jawaban"
-                                        placeholder="Isi disini jika Jawaban Tugas berupa Uraian Kata.">{{ old('field_jawaban', $getAdministrasiUser->wawancara->penugasan->field_jawaban) }}</textarea>
+                                    <div class="col-12">
+                                        <textarea id="field_jawaban" type="text" disabled onkeyup="textAreaAdjust(this)" style="overflow:hidden; font-size:15pt"
+                                            class="form-control editable @error('field_jawaban') is-invalid @enderror" name="field_jawaban"
+                                            autocomplete="field_jawaban" placeholder="Isi disini jika Jawaban Tugas berupa Uraian Kata.">{{ old('field_jawaban', $getAdministrasiUser->wawancara->penugasan->field_jawaban) }}</textarea>
 
-                                    @error('field_jawaban')
-                                        <div class="text-danger small" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                        @error('field_jawaban')
+                                            <div class="text-danger small" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <script>
+                                        function textAreaAdjust(element) {
+                                            element.style.height = "1px";
+                                            element.style.height = (25 + element.scrollHeight) + "px";
+                                        }
+                                        $(document).ready(function() {
+                                            var element = document.getElementById("field_jawaban");
+                                            textAreaAdjust(element);
+                                        });
+                                    </script>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="file_jawaban" class="col-12 col-form-label">Unggah
+                                        File :</label>
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input editable" disabled
+                                                    id="file_jawaban" name="file_jawaban"
+                                                    value="{{ old('file_jawaban', $getPenugasanUser->file_jawaban) }}">
+                                                <label class="custom-file-label" for="file_jawaban">Pilih File</label>
+                                            </div>
                                         </div>
-                                    @enderror
+                                        @error('file_jawaban')
+                                            <div class="text-danger small" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
+                                    </div>
                                 </div>
-
-                                <script>
-                                    function textAreaAdjust(element) {
-                                        element.style.height = "1px";
-                                        element.style.height = (25 + element.scrollHeight) + "px";
+                            </form>
+                            @if (isset($getPenugasanUser->file_jawaban))
+                                <div class="row mb-3">
+                                    <label for="file_jawaban" class="col-12 col-form-label">File Tugas Tersimpan
+                                        :</label>
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            <a class="btn btn-primary" target="_blank"
+                                                href={{ asset($getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/' . $getPenugasanUser->file_jawaban) }}>View</a>
+                                            <form id="deleteFj" method="post" class="ml-3"
+                                                action="{{ route('filejawaban.destroy', $getPenugasanUser->id) }}">
+                                                @csrf
+                                                <button form="deleteFj" type="submit"
+                                                    class="btn btn-outline-danger">Delete
+                                                    File</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                            <script type="text/javascript">
+                                $('.custom-file input').change(function(e) {
+                                    var files = [];
+                                    for (var i = 0; i < $(this)[0].files.length; i++) {
+                                        files.push($(this)[0].files[i].name);
                                     }
-                                    $(document).ready(function() {
-                                        var element = document.getElementById("field_jawaban");
-                                        textAreaAdjust(element);
-                                    });
-                                </script>
+                                    $(this).next('.custom-file-label').html(files.join(', '));
+                                });
+                            </script>
+                        </div>
+                        <div class="fixed-bottom text-center w-25 mx-auto">
+                            <button type="button" id="tombolEdit" class="btn btn-xl m-3 btn-secondary"
+                                onclick="izinkanEdit();">Ubah Jawaban Tugas</button>
+                            <div id="tombolSimpan" style="display: none;">
+                                <button form="pngForm" type="submit" class="btn btn-xl m-3 btn-primary">
+                                    Simpan
+                                    Perubahan
+                                </button>
                             </div>
-
-                            <div class="row mb-3">
-                                <label for="file_jawaban" class="col-12 col-form-label">Unggah
-                                    File :</label>
-                                <div class="col-12">
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input editable" disabled
-                                                id="file_jawaban" name="file_jawaban"
-                                                value="{{ old('file_jawaban', $getPenugasanUser->file_jawaban) }}">
-                                            <label class="custom-file-label" for="file_jawaban">Pilih File</label>
-                                        </div>
-                                    </div>
-                                    @error('file_jawaban')
-                                        <div class="text-danger small" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </form>
-                        @if (isset($getPenugasanUser->file_jawaban))
-                            <div class="row mb-3">
-                                <label for="file_jawaban" class="col-12 col-form-label">File Tugas Tersimpan :</label>
-                                <div class="col-12">
-                                    <div class="input-group">
-                                        <a class="btn btn-primary" target="_blank"
-                                            href={{ asset($getPeriodeAktif->name . '/' . $getAdministrasiUser->user->id . '/' . $getPenugasanUser->file_jawaban) }}>View</a>
-                                        <form id="deleteFj" method="post" class="ml-3"
-                                            action="{{ route('filejawaban.destroy', $getPenugasanUser->id) }}">
-                                            @csrf
-                                            <button form="deleteFj" type="submit" class="btn btn-outline-danger">Delete
-                                                File</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                        <script type="text/javascript">
-                            $('.custom-file input').change(function(e) {
-                                var files = [];
-                                for (var i = 0; i < $(this)[0].files.length; i++) {
-                                    files.push($(this)[0].files[i].name);
-                                }
-                                $(this).next('.custom-file-label').html(files.join(', '));
-                            });
-                        </script>
-                    </div>
-                    <div class="fixed-bottom text-center w-25 mx-auto">
-                        <button type="button" id="tombolEdit" class="btn btn-xl m-3 btn-secondary"
-                            onclick="izinkanEdit();">Ubah Jawaban Tugas</button>
-                        <div id="tombolSimpan" style="display: none;">
-                            <button form="pngForm" type="submit" class="btn btn-xl m-3 btn-primary">
-                                Simpan
-                                Perubahan
-                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
-    </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+        </script>
 
-    <script>
-        $(document).ready(function() {
-            today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
-                .getDate());
-            $('.datepicker').datepicker({
-                format: 'yyyy-mm-dd',
-                uiLibrary: 'bootstrap4',
-                iconsLibrary: 'fontawesome',
-                showRightIcon: false,
-                maxDate: today,
-                modal: true,
-                autoclose: true,
-                footer: true
-            });
-        });
-    </script>
-
-    @if (!isset($getPenugasanUser))
         <script>
-            $(document).ready(function() {});
-            document.querySelectorAll('.editable').forEach(b => b.removeAttribute('disabled'));
-        </script>
-    @endif
-
-    <script>
-        function izinkanEdit() {
-            var $tombolSimpan = $("#tombolSimpan");
-            var $tombolEdit = document.getElementById("tombolEdit");
-            document.querySelectorAll('.editable').forEach(b => b.toggleAttribute('disabled'));
-            $tombolSimpan.css("display", $tombolSimpan.css("display") === 'none' ? 'inline' : 'none');
-            $tombolEdit.innerHTML = ($tombolEdit.innerHTML ===
-                'Ubah Jawaban Tugas' ? 'Batalkan' : 'Ubah Jawaban Tugas');
-            if ($tombolEdit.innerHTML === 'Ubah Jawaban Tugas') {
-                location.reload();
-            }
-        }
-    </script>
-
-    @if (count($errors) > 0 && isset($getPenugasanUser))
-        <script type="text/javascript">
             $(document).ready(function() {
-                izinkanEdit();
+                today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
+                    .getDate());
+                $('.datepicker').datepicker({
+                    format: 'yyyy-mm-dd',
+                    uiLibrary: 'bootstrap4',
+                    iconsLibrary: 'fontawesome',
+                    showRightIcon: false,
+                    maxDate: today,
+                    modal: true,
+                    autoclose: true,
+                    footer: true
+                });
             });
         </script>
-    @endif
+
+        @if (!isset($getPenugasanUser))
+            <script>
+                $(document).ready(function() {});
+                document.querySelectorAll('.editable').forEach(b => b.removeAttribute('disabled'));
+            </script>
+        @endif
+
+        <script>
+            function izinkanEdit() {
+                var $tombolSimpan = $("#tombolSimpan");
+                var $tombolEdit = document.getElementById("tombolEdit");
+                document.querySelectorAll('.editable').forEach(b => b.toggleAttribute('disabled'));
+                $tombolSimpan.css("display", $tombolSimpan.css("display") === 'none' ? 'inline' : 'none');
+                $tombolEdit.innerHTML = ($tombolEdit.innerHTML ===
+                    'Ubah Jawaban Tugas' ? 'Batalkan' : 'Ubah Jawaban Tugas');
+                if ($tombolEdit.innerHTML === 'Ubah Jawaban Tugas') {
+                    location.reload();
+                }
+            }
+        </script>
+
+        @if (count($errors) > 0 && isset($getPenugasanUser))
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    izinkanEdit();
+                });
+            </script>
+        @endif
 </body>
 
 </html>

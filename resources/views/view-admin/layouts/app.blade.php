@@ -34,25 +34,17 @@
     <script src="{{ asset('admin-lte') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- DataTables  & Plugins -->
     <script src="{{ asset('admin-lte') }}/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('admin-lte') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js">
-    </script>
-    <script src="{{ asset('admin-lte') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js">
-    </script>
-    <script src="{{ asset('admin-lte') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js">
-    </script>
-    <script src="{{ asset('admin-lte') }}/plugins/datatables-buttons/js/dataTables.buttons.min.js">
-    </script>
-    <script src="{{ asset('admin-lte') }}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js">
-    </script>
+    <script src="{{ asset('admin-lte') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('admin-lte') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('admin-lte') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{ asset('admin-lte') }}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('admin-lte') }}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
     <script src="{{ asset('admin-lte') }}/plugins/jszip/jszip.min.js"></script>
     <script src="{{ asset('admin-lte') }}/plugins/pdfmake/pdfmake.min.js"></script>
     <script src="{{ asset('admin-lte') }}/plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="{{ asset('admin-lte') }}/plugins/datatables-buttons/js/buttons.html5.min.js">
-    </script>
-    <script src="{{ asset('admin-lte') }}/plugins/datatables-buttons/js/buttons.print.min.js">
-    </script>
-    <script src="{{ asset('admin-lte') }}/plugins/datatables-buttons/js/buttons.colVis.min.js">
-    </script>
+    <script src="{{ asset('admin-lte') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="{{ asset('admin-lte') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="{{ asset('admin-lte') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('admin-lte') }}/dist/js/adminlte.min.js"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
@@ -60,8 +52,7 @@
     <!-- SelectPicker -->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     {{-- <script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script> --}}
 
     {{-- Date Picker --}}
@@ -71,6 +62,12 @@
     {{-- Jangan Dihapus --}}
     <script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script>
     <script src="{{ asset('assets/js/countdown.min.js') }}"></script>
+
+
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
 </head>
 
 {{-- <body class="hold-transition sidebar-mini layout-fixed"> --}}
@@ -170,6 +167,7 @@
     <!-- ./wrapper -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 
 </html>

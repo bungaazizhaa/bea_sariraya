@@ -25,32 +25,7 @@
                 </button>
             </div>
         </div>
-        {{-- Input Group WA --}}
-        <div class="row">
-            <div class="col-12 mb-3">
-                <form id="groupwaForm" method="POST" action="{{ route('groupwaupdate.periode', $periodeOpenned->name) }}">
-                    @csrf
-                    <div
-                        class="rounded myshadow {{ isset($periodeOpenned->group_wa) ? 'bg-selesai' : 'bg-secondary' }} h-100">
-                        <div class="row p-3 p-md-2">
-                            <div class="col">
-                                <p class="h5 pl-md-2 pt-1">Grup WhatsApp :</p>
-                            </div>
-                            <div class="col-md-8">
-                                <input autocomplete="off" spellcheck="false" type="text" id="group_wa" name="group_wa"
-                                    spellcheck="false" class="form-control my-2 my-md-0"
-                                    placeholder="Pastikan dimulai dari 'https://...'"
-                                    value="{{ $periodeOpenned->group_wa }}">
-                            </div>
-                            <div class="col-md-2">
-                                <button type="submit" class="rounded myshadow btn d-flex ml-auto btn-dark">Perbarui Link
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+
         <div class="row">
             <div class="col-md-4">
                 <div
@@ -198,6 +173,107 @@
                 </div>
             </div>
         </div>
+
+        {{-- Input Group WA --}}
+        <div class="row">
+            <div class="col-12 mb-3">
+                <form id="groupwaForm" method="POST"
+                    action="{{ route('groupwaupdate.periode', $periodeOpenned->name) }}">
+                    @csrf
+                    <div
+                        class="rounded myshadow {{ isset($periodeOpenned->group_wa) ? 'bg-selesai' : 'bg-secondary' }} h-100">
+                        <div class="row p-3 p-md-2">
+                            <div class="col">
+                                <p class="h5 pl-md-2 pt-1">Grup WhatsApp :</p>
+                            </div>
+                            <div class="col-md-8">
+                                <input autocomplete="off" type="text" id="group_wa" name="group_wa" spellcheck="false"
+                                    class="form-control my-2 my-md-0" placeholder="Pastikan dimulai dari 'https://...'"
+                                    value="{{ $periodeOpenned->group_wa }}">
+                                <small>Isi berupa Link atau tautan dari Grup WhatsApp yang nantinya akan ditampilkan pada
+                                    halaman
+                                    Pengumuman Akhir di Akun Peserta Beasiswa.</small>
+                            </div>
+
+                            <div class="col-md-2">
+                                <button type="submit" class="rounded myshadow btn float-right btn-dark"><i
+                                        class="fa-solid fa-floppy-disk"> </i> Simpan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {{-- Input Teknis Wwn --}}
+        <div class="row">
+            <div class="col-12 mb-3">
+                <form id="tekniswwnForm" method="POST"
+                    action="{{ route('tekniswwnupdate.periode', $periodeOpenned->name) }}">
+                    @csrf
+                    <div
+                        class="rounded myshadow {{ isset($periodeOpenned->group_wa) ? 'bg-selesai' : 'bg-secondary' }} h-100">
+                        <div class="row p-3 p-md-2">
+                            <div class="col">
+                                <p class="h5 pl-md-2 pt-1">Teknis Wawancara :</p>
+                            </div>
+                            <div class="col-md-8">
+                                <style>
+                                    .note-editable {
+                                        color: #0C5B80 !important;
+                                        background-color: #D1ECF1 !important;
+                                        margin: 1.25rem !important;
+                                        border-radius: 0.25rem !important;
+                                        border: 1px solid #BEE5EB !important;
+                                        font-family: Montserrat !important;
+                                        padding-bottom: 0 !important;
+                                    }
+                                </style>
+                                <textarea autocomplete="off" id="summernote" name="teknis_wwn" spellcheck="false" class="my-2 my-md-0 mb-0"
+                                    style="margin-bottom: 0!important;">{!! $periodeOpenned->teknis_wwn !!}</textarea>
+                                <small>Isi berupa Tata cara melakukan wawancara yang nantinya akan
+                                    ditampilkan pada halaman
+                                    Pengumuman Lolos Wawancara di Akun Peserta Beasiswa.</small>
+                            </div>
+
+                            <div class="col-md-2">
+                                <button type="submit" class="rounded myshadow btn float-right btn-dark"><i
+                                        class="fa-solid fa-floppy-disk"> </i> Simpan
+                                </button>
+                                <a href="/preview-tekniswwn" target="_blank"
+                                    class="rounded myshadow btn float-right btn-outline-primary mr-3 mr-md-0 mt-0 mt-md-3"><i
+                                        class="fa-solid fa-eye"></i> Preview
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <script>
+            $(document).ready(function() {
+                $('#summernote').summernote({
+                    placeholder: '<p style="text-align: center; padding: 1.25rem;"><b>Teknis Wawancara...</b></p>',
+                    tabsize: 2,
+                    minHeight: 100,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link']],
+                        ['view', ['fullscreen', 'codeview', 'help']]
+                    ],
+                    spellCheck: false,
+                    disableGrammar: false,
+                    // airMode: true,
+
+                });
+            });
+        </script>
 
         <div class="row">
             <div class="col-12">
@@ -585,7 +661,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                         </div>
                     </form>
                 </div>

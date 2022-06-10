@@ -28,13 +28,14 @@ class PenugasanTimeRestrictedMiddleware
         isset($getAdministrasiUser->wawancara->status_wwn) ? $statusWwnUser = $getAdministrasiUser->wawancara->status_wwn : $statusWwnUser = ''; //TODO: kondisi user yang diambil dari database
         // $statusAdmUser = "lolos"; //kondisi user yang diambil dari database
         // $statusWwnUser = "lolos"; //kondisi user yang diambil dari database
-        if ($getPeriodeAktif->status_adm == 'Selesai' && $statusAdmUser != 'lolos') {
+
+        if (!isset(Auth::user()->picture) && $getTanggalSekarang > $getPeriodeAktif->ta_adm) {
             return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));
-        }
-        if ($getPeriodeAktif->status_wwn == 'Selesai' && $statusWwnUser != 'lolos') {
+        } elseif ($getPeriodeAktif->status_adm == 'Selesai' && $statusAdmUser != 'lolos') {
+            return response(view('view-mahasiswa.administrasi.a-pengumumangagal', compact('getPeriodeAktif')));
+        } elseif ($getPeriodeAktif->status_wwn == 'Selesai' && $statusWwnUser != 'lolos') {
             return response(view('view-mahasiswa.wawancara.w-pengumumangagal', compact('getPeriodeAktif')));
-        }
-        if ($getPeriodeAktif->status_png == null) {
+        } elseif ($getPeriodeAktif->status_png == null) {
             if (!isset(Auth::user()->picture)) {
                 Alert::warning('Isi Foto Profil Terlebih Dahulu.', 'Ukuran Pas Foto 3x4.');
                 return redirect(route('profil.mahasiswa'));

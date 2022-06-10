@@ -49,6 +49,19 @@ class HomeController extends Controller
         return view('landing-page', compact('getPeriodeAktif', 'getTanggalSekarang'));
     }
 
+    public function previewTeknisWwn()
+    {
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        return view('view-admin.preview-tekniswwn', compact('getPeriodeAktif'));
+    }
+
+    public function panduanAplikasi()
+    {
+        $getAllPeriode = Periode::all();
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        return view('view-admin.panduan-aplikasi', compact('getPeriodeAktif', 'getAllPeriode'));
+    }
+
     public function indexAdmin()
     {
         $getAllUser = User::all();

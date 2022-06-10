@@ -386,10 +386,10 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="catatan" class="col-md-4 col-form-label text-md-right">Catatan</label>
+                                        <label for="catatan" class="col-md-4 col-form-label text-md-right">Catatan
+                                            Administrasi</label>
                                         <div class="col-md-8">
-                                            <textarea id="catatan" name="catatan" class="form-control selectpicker"
-                                                title="Status Administrasi">{{ old('catatan', $admUser->catatan) }}</textarea>
+                                            <textarea id="catatan" name="catatan" class="form-control selectpicker" title="Status Administrasi">{{ old('catatan', $admUser->catatan) }}</textarea>
                                         </div>
 
                                         @error('catatan')

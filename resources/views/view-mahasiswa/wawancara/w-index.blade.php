@@ -24,87 +24,109 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/images') }}">
 
-    {{-- Font Awesome --}}
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('admin-lte') }}/plugins/fontawesome-free/css/all.min.css">
+    <script src="https://kit.fontawesome.com/637f4baacf.js" crossorigin="anonymous"></script>
 
 
 </head>
 
 <body class=" d-flex flex-column" style="min-height: calc(100vh - 60px);">
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container d-flex justify-content-between">
-            <a class="logoo" href="#">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="" width="80px">
-            </a>
+    <div class="test">
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container d-flex justify-content-between">
+                <a class="logoo" href="#">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="" width="80px">
+                </a>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto my-2 my-md-0">
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto ml-md-0 test">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                        <!-- Authentication Links -->
-                        @auth
-                            <li class="nav-item mr-0 mr-md-4 pr-md-0 test"><a class="nav-link  pr-3 pr-md-2"
-                                    href="{{ url('/my-profile') }}">Profil</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }}
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto my-2 my-md-0">
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ml-md-auto ml-0 test">
+
+                            <!-- Authentication Links -->
+                            @auth
+                                <li class="nav-item mr-0 mr-md-4 pr-md-0 test"><a class="nav-link  pr-3 pr-md-2"
+                                        href="{{ url('/my-profile') }}">Profil</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ Auth::user()->name }}
                                     </a>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endauth
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endauth
+                        </ul>
                     </ul>
-                </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-    <!-- Akhir Navbar -->
+        </nav>
+        <!-- Akhir Navbar -->
 
-    <div class="container">
-        <div class="text-center">
-            @include('sweetalert::alert')
+        <noscript>
+            <h2 class="text-center">JavaScript is disabled!
+                Please enable JavaScript in your web browser!</h2>
 
-            <h1 class="text-center mt-5 test"> <b>BEASISWA SARIRAYA JAPAN 2022</b> </h1>
-
-            <p class="h5 pt-2 pt-md-4">Lakukan Wawancara pada hari :</p>
-            <p class="h4 pt-3 font-weight-bold">
+            <style type="text/css">
+                #main-content {
+                    display: none;
+                }
+            </style>
+        </noscript>
+        @include('sweetalert::alert')
+        <div id="main-content" class="container-fluid ">
+            <h1 class="text-center mt-3 test"> <b>BEASISWA SARIRAYA JAPAN 2022</b> </h1>
+            <h1 class="text-center mt-3 test">Tahap Wawancara</h1>
+            <hr class="container" style="width:65vw;" />
+            <p class="text-center h5 pt-2 pt-md-4">Lakukan Wawancara pada:</p>
+            <p class="text-center h4 pt-3 font-weight-bold">
                 {{ \Carbon\Carbon::parse($tanggal_wawancara)->translatedFormat('l, d F Y') }}</p>
-            <p class="h4 mb-2 font-weight-bold">
+            <p class="text-center h4 mb-2 font-weight-bold">
                 Pukul {{ \Carbon\Carbon::parse($tanggal_wawancara)->translatedFormat('H:i') . ' WIB' }}</p>
             <br>
+
+            <div class="d-flex justify-content-center">
+                <div class="alert alert-info pb-0">{!! $getPeriodeAktif->teknis_wwn !!}</div>
+            </div>
+
+            @auth
+                <div class="d-flex justify-content-center">
+                    <a href="{{ url('/my-profile') }}" class="btn btn-outline-secondary mb-4 mt-3"><i
+                            class="fa-solid fa-angle-left"></i>
+                        Kembali ke
+                        Profil Anda</a>
+                </div>
+            @endauth
         </div>
-    </div>
 
 
-    <!-- Footer -->
-    <footer class="pt-3 pt-3 pb-1 border-top bg-dark mt-auto">
-        <div class="text-center bg-dark text-white">
-            <p>&copy; Sariraya 2022</p>
-        </div>
-    </footer>
+        <!-- Footer -->
+        <footer class="pt-3 pt-3 pb-1 border-top bg-dark mt-auto">
+            <div class="text-center bg-dark text-white">
+                <p>&copy; Sariraya 2022</p>
+            </div>
+        </footer>
 </body>
 
 </html>

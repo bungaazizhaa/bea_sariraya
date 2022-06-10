@@ -12,7 +12,6 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/images') }}">
     {{-- Bootstrap 4 --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -53,9 +52,34 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto my-2 my-md-0">
-                        <li class="nav-item mr-0 mr-md-4 pr-md-0 test"><a class="nav-link  pr-3 pr-md-2"
-                                href="/my-profile">Profil</a>
-                        </li>
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ml-md-auto ml-0 test">
+
+                            <!-- Authentication Links -->
+                            @auth
+                                <li class="nav-item mr-0 mr-md-4 pr-md-0 test"><a class="nav-link  pr-3 pr-md-2"
+                                        href="{{ url('/my-profile') }}">Profil</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endauth
+                        </ul>
                     </ul>
                 </div>
             </div>
@@ -72,14 +96,13 @@
                 #main-content {
                     display: none;
                 }
-
             </style>
         </noscript>
         @include('sweetalert::alert')
         <div id="main-content" class="container-fluid ">
             <h1 class="text-center mt-3 test"> <b>BEASISWA SARIRAYA JAPAN 2022</b> </h1>
-            <hr class="container" style="width:65vw;" />
             <h1 class="text-center mt-3 test">Tahap Administrasi</h1>
+            <hr class="container" style="width:65vw;" />
 
 
             <form id="admForm" method="POST" action="{{ route('update.administrasi') }}"

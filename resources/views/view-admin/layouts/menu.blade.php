@@ -76,4 +76,11 @@
             <p class="text-nowrap">Pengaturan</p>
         </a>
     </li>
+    <li class="nav-item mb-1">
+        <a href="{{ route('panduan.aplikasi') }}"
+            class="nav-link {{ Request::segment(1) === 'panduan-aplikasi' ? 'active' : null }}">
+            <i class="nav-icon fa-solid fa-circle-info"></i>
+            <p class="text-nowrap">Panduan Aplikasi</p>
+        </a>
+    </li>
 @endif

@@ -39,6 +39,7 @@ class CreatePeriodesTable extends Migration
 
             $table->enum('status', ['aktif', 'nonaktif'])->default('nonaktif');
             $table->string('group_wa')->nullable();
+            $table->text('teknis_wwn')->default('<p style="text-align: center;"><b>Teknis Wawancara :</b></p><ol><li style="text-align: left;"><span style="font-size: 1rem;">Wawancara dilaksanakan pada waktu yang telah ditentukan diatas.</span><span style="text-align: center; font-size: 1rem;">Wawancara dilaksanakan melalui aplikasi Zoom Meeting.<br></span>ID Meeting : akfemfdcx<br>Password : 1234568<br><a href="http://contohlinkmeeting.com" target="_blank">Link Meeting</a><br></li><li style="text-align: left;">Peserta berpakaian sopan.</li><li style="text-align: left;">Tidak terlambat.</li></ol>')->nullable();
             $table->timestamps();
         });
     }

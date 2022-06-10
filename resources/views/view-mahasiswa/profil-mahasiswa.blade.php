@@ -159,19 +159,19 @@
                                     <tr>
                                         <td>Email Terverifikasi</td>
                                         <td>:</td>
-                                        <td>{{ Auth::user()->email_verified_at == '' ? '' : Auth::user()->email_verified_at->isoFormat('dddd, D MMMM Y - hh:mm:ss') }}
+                                        <td>{{ Auth::user()->email_verified_at == '' ? '' : Auth::user()->email_verified_at->translatedFormat('l, d F Y - H:i:s') }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Akun Dibuat</td>
                                         <td>:</td>
-                                        <td>{{ Auth::user()->created_at == '' ? '' : Auth::user()->created_at->isoFormat('dddd, D MMMM Y - hh:mm:ss') }}
+                                        <td>{{ Auth::user()->created_at == '' ? '' : Auth::user()->created_at->translatedFormat('l, d F Y - H:i:s') }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Akun Diperbarui</td>
                                         <td>:</td>
-                                        <td>{{ Auth::user()->updated_at == '' ? '' : Auth::user()->updated_at->isoFormat('dddd, D MMMM Y - hh:mm:ss') }}
+                                        <td>{{ Auth::user()->updated_at == '' ? '' : Auth::user()->updated_at->translatedFormat('l, d F Y - H:i:s') }}
                                         </td>
                                     </tr>
                                 </tbody>

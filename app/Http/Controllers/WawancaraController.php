@@ -24,7 +24,7 @@ class WawancaraController extends Controller
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
         $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
         $tanggal_wawancara = $getAdministrasiUser->wawancara->jadwal_wwn;
-        return view('view-mahasiswa.wawancara.w-index', compact('tanggal_wawancara', 'getAdministrasiUser'));
+        return view('view-mahasiswa.wawancara.w-index', compact('tanggal_wawancara', 'getAdministrasiUser', 'getPeriodeAktif'));
     }
 
     /**

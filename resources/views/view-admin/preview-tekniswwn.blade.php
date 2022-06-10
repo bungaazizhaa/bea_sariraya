@@ -66,7 +66,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -88,7 +88,7 @@
         <div>
             <h1 class="mt-4 test text-center"> <b>BEASISWA SARIRAYA JAPAN 2022</b> </h1>
 
-            <h1 class="mt-3 h2 text-center">Pengumuman Tahap Administrasi</h1>
+            <h1 class="mt-3 h2 text-center">Preview Pengumuman Tahap Administrasi</h1>
 
             <div class="alert alert-success mt-4 teksalert text-center" role="alert">
                 <strong>SELAMAT ! ANDA LOLOS TAHAP ADMINISTRASI <br>
@@ -97,9 +97,9 @@
 
             <p class="h5 pt-2 pt-md-4 text-center">Berikut adalah jadwal wawancara Anda :</p>
             <p class="h4 pt-3 font-weight-bold text-center">
-                {{ \Carbon\Carbon::parse($tanggal_wawancara)->translatedFormat('l, d F Y') }}</p>
+                Selasa, 14 Juni 2022</p>
             <p class="h4 mb-2 font-weight-bold text-center">
-                {{ \Carbon\Carbon::parse($tanggal_wawancara)->translatedFormat('H:i') . ' WIB' }}</p>
+                Pukul 17:50 WIB</p>
             <br>
 
             <div class="d-flex justify-content-center">

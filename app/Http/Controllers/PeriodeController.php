@@ -145,6 +145,10 @@ class PeriodeController extends Controller
     public function umumkanAdm($name)
     {
         $periodeSelected = Periode::where('name', '=', $name)->first();
+        if ($periodeSelected->teknis_wwn == null) {
+            Alert::error('Gagal! Mohon isi Teknis Wawancara ' . ucfirst($periodeSelected->name) . ' terlebih Dahulu! ', 'Terimakasih.');
+            return back();
+        }
         $periodeSelected->status_adm = 'Selesai';
         $periodeSelected->ts_adm = now();
         $periodeSelected->save();
@@ -188,6 +192,18 @@ class PeriodeController extends Controller
         $periodeSelected->group_wa = $request->group_wa;
         $periodeSelected->save();
         Alert::success('Link Group WhatsApp ' . ucfirst($periodeSelected->name) . ' sudah Diperbarui.', 'Data Tersimpan.');
+        return redirect(route('periode', $name));
+    }
+
+    public function tekniswwnUpdate(Request $request, $name)
+    {
+        $periodeSelected = Periode::where('name', '=', $name)->first();
+        $periodeSelected->teknis_wwn = $request->teknis_wwn;
+        if ($request == '') {
+            $periodeSelected->teknis_wwn = null;
+        }
+        $periodeSelected->save();
+        Alert::success('Teknis Wawancara ' . ucfirst($periodeSelected->name) . ' sudah Diperbarui.', 'Data Tersimpan.');
         return redirect(route('periode', $name));
     }
 

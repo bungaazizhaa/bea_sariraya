@@ -47,6 +47,7 @@
     {{-- Jangan Dihapus --}}
     <script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script>
     <script src="{{ asset('assets/js/countdown.min.js') }}"></script>
+
 </head>
 
 <body class=" d-flex flex-column test" style="min-height: calc(100vh - 60px);">
@@ -117,7 +118,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -163,6 +164,7 @@
             @endif
         });
     </script>
+
 
 </body>
 
