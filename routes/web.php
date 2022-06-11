@@ -84,12 +84,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
 
 if ($getPeriodeAktif == null) {  //Jika Tidak ada periode Aktif
-    Auth::routes(['register' => false, 'verify' => true]);
+    Auth::routes(['register' => true, 'verify' => true]);
 } else { //Jika ada periode Aktif
     $getTanggalAkhirAdministrasi = $getPeriodeAktif->ta_adm;
     $getTanggalSekarang = Carbon::now()->format('Y-m-d');
     if ($getTanggalSekarang > $getTanggalAkhirAdministrasi) { //dan Jika Sekarang sudah melewati Tanggal Akhir Administrasi
-        Auth::routes(['register' => false, 'verify' => true]); //Tutup Registrasi
+        Auth::routes(['register' => true, 'verify' => true]); //Tutup Registrasi
     } else { //Jika Sekarang Belum melewati Tanggal Akhir Administrasi, Bisa Register, Bisa Update
         Auth::routes(['verify' => true]);
     }
