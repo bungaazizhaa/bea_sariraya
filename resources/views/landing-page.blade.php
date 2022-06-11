@@ -64,7 +64,7 @@
                 <center>
                     <h2><b> Timeline Beasiswa</b></h2>
                     <div class="row mb-lg-2 mb-lg-5 mx-lg-5 mx-sm-2 my-sm-2">
-                        <div class="col-sm-4 mt-3">
+                        <div class="col-sm-3 mt-3">
                             <div class="card mycard1 text-center">
                                 <img class="card-img-top" src="{{ asset('assets/images/1.png') }}" alt="Card image cap">
                                 <div class="card-body">
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 mt-3">
+                        <div class="col-sm-3 mt-3">
                             <div class="card mycard1 text-center">
                                 <img class="card-img-top" src="{{ asset('assets/images/2.png') }}" alt="Card image cap">
                                 <div class="card-body">
@@ -82,7 +82,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 mt-3">
+                        <div class="col-sm-3 mt-3">
                             <div class="card mycard1 text-center">
                                 <img class="card-img-top" src="{{ asset('assets/images/3.png') }}" alt="Card image cap">
                                 <div class="card-body">
@@ -91,9 +91,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mb-lg-2 mb-lg-5 mx-lg-5 mx-sm-2 my-sm-2">
-                        <div class="col-sm-4 mt-3">
+                        <div class="col-sm-3 mt-3">
                             <div class="card mycard1 text-center">
                                 <img class="card-img-top" src="{{ asset('assets/images/4.png') }}" alt="Card image cap">
                                 <div class="card-body">
@@ -102,7 +100,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 mt-3">
+                    </div>
+                    <div class="row mb-lg-2 mb-lg-5 mx-lg-5 mx-sm-2 my-sm-2">
+                        <div class="col-sm-3 mt-3">
                             <div class="card mycard1 text-center">
                                 <img class="card-img-top" src="{{ asset('assets/images/5.png') }}" alt="Card image cap">
                                 <div class="card-body">
@@ -111,7 +111,25 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 mt-3">
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/7.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Seleksi Penugasan</h5>
+                                    <p>27 Februari 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/8.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pengumuman Hasil Seleksi Penugasan</h5>
+                                    <p>27 Februari 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 mt-3">
                             <div class="card mycard1 text-center">
                                 <img class="card-img-top" src="{{ asset('assets/images/6.png') }}" alt="Card image cap">
                                 <div class="card-body">
