@@ -116,7 +116,7 @@
                                 <img class="card-img-top" src="{{ asset('assets/images/7.png') }}" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">Seleksi Penugasan</h5>
-                                    <p>27 Februari 2022</p>
+                                    <p>28 Februari 2022</p>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                                 <img class="card-img-top" src="{{ asset('assets/images/8.png') }}" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">Pengumuman Hasil Seleksi Penugasan</h5>
-                                    <p>27 Februari 2022</p>
+                                    <p>30 Februari 2022</p>
                                 </div>
                             </div>
                         </div>
