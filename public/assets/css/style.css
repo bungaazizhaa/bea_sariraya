@@ -250,7 +250,7 @@ body {
 }
 
 .salam{
-    margin-top: 5%;
+    margin-top: 6%;
 }
 
 .footer1{
@@ -258,4 +258,9 @@ body {
             bottom: 0;
             width: 100%;
             height: 50px;
+}
+
+.pengumuman {
+    margin-top: 100px;
+    color: #ffffff;
 }
