@@ -84,7 +84,7 @@
                     <span class="h5 ">Foto</span>
                     @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
                         <span>
-                            <button type="button" id="tombolEditFoto" class="float-left btn btn-sm btn-success float-right" data-toggle="modal" data-target="#editFotoModal">
+                            <button type="button" id="tombolEditFoto" class="float-left btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#editFotoModal">
                                 Upload Foto
                             </button>
                         </span>
@@ -111,7 +111,7 @@
                     <span class="h5 ">Data Diri</span>
                     @if (Route::has('register') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm)
                         <span>
-                            <button id="tombolEditProfil" type="button" class="float-right btn btn-sm btn-success float-right" data-toggle="modal" data-target="#editProfil">
+                            <button id="tombolEditProfil" type="button" class="float-right btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#editProfil">
                                 Ubah Data
                             </button>
                         </span>

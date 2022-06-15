@@ -36,6 +36,239 @@
                     Sariraya.
                 </center>
             </div>
+            <!-- Section Timeline -->
+            <div class="timeline">
+                <center>
+                    <h2><b> Timeline Beasiswa</b></h2>
+                    <div class="row mb-lg-2 mb-lg-5 mx-lg-5 mx-sm-2 my-sm-2">
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/1.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pendaftaran</h5>
+                                    <p>1 Januari - 31 Januari 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/2.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Seleksi Administrasi</h5>
+                                    <p>1 Februari - 10 Februari 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/3.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pengumuman Hasil Seleksi Administrasi</h5>
+                                    <p>12 Februari 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/4.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Seleksi Wawancara</h5>
+                                    <p>15 Februari - 21 Februari 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-lg-2 mb-lg-5 mx-lg-5 mx-sm-2 my-sm-2">
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/5.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pengumuman Hasil Seleksi Wawancara</h5>
+                                    <p>27 Februari 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/7.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Seleksi Penugasan</h5>
+                                    <p>28 Februari 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/8.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pengumuman Hasil Seleksi Penugasan</h5>
+                                    <p>30 Februari 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/6.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pemberian Beasiswa</h5>
+                                    <p>Maret - Agustus 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+            <!-- Akhir Section Timeline -->
+
+            <!-- Section Apa Itu Beasiswa Sariraya -->
+            <div class="beasariraya">
+                <center>
+                    <h2><b>Apa Itu Beasiswa Sariraya</b> </h2>
+                </center>
+                <div class="row sariraya">
+                    <div class="col-lg-6 foto">
+                        <img src="{{ asset('assets/images/pos1.jpeg') }}" alt="" class="img-fluid" />
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Beasiswa Sariraya Japan adalah beasiswa yang diberikan oleh perusahaan Sariraya Co., Ltd
+                            bagi
+                            mahasiswa berprestasi yang memenuhi kriteria, sebagai bentuk tanggung jawab sosial
+                            perusahaan.</p>
+                        <p>Persyaratan: <br>
+                            - Warga Negara Indonesia <br>
+                            - Mahasiswa S1/D4 minimal semester 6 Perguruan Tinggi di Indonesia yang terakreditasi
+                            minimal B dengan program studi
+                            (akreditasi minimal B): <br>
+                            - Desain Komunikasi Visual <br>
+                            - Desain Grafis, Teknik Informatika <br>
+                            - Teknologi Informasi <br>
+                            - Sistem Informasi <br>
+                            - Sistem Komputer <br>
+                            - Ilmu Komputer <br>
+                            - Manajemen Pemasaran
+                            - Seni Rupa <br>
+                            - IPK minimal 3.0 (skala 4.0) <br>
+                            - Memiliki kemampuan pengembangan website dan/atau desain grafis
+                        </p>
+                    </div>
+                </div>
+                <center>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card mycard1 bea">
+                                <h5 class="text-center"> Keuntungan Beasiswa :</h5>
+                                <p class="text-left">- Uang saku Rp500,000 per bulan selama 1 semester. <br>
+                                    - Business Coaching bersama CEO Sariraya Co., Ltd. <br>
+                                    - Mentoring beasiswa luar negeri. <br>
+                                    - Pengembangan diri dan karakter.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-6">
+                            <div class="card mycard1 text-left bea">
+                                <h5 class="text-center">Syarat Administrasi :</h5>
+                                <p>- Scan Kartu Tanda Mahasiswa <br>
+                                    - Scan Transkrip Nilai <br>
+                                    - Portofolio pengembangan website dan/atau desain grafis <br>
+                                    - Esai 1000 kata: Strategi Pemanfaatan Peluang Pasar Produk Halal di Jepang</p>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+            <!-- Akhir Section Apa Itu Beasiswa Sariraya -->
+
+            <!-- Section Sariraya -->
+            <div class="tentangsariraya">
+                <center>
+                    <h2> <b>Tentang Sariraya</b> </h2>
+                </center>
+                <div class="row sariraya">
+                    <div class="col-lg-6">
+                        <p>Sariraya Co., Ltd merupakan sebuah perusahaan Indonesia yang menjadi pioneer bisnis
+                            makanan
+                            Halal di Jepang sejak tahun 2005.
+                            <br> Saat ini Sariraya Co., Ltd telah memiliki beberapa unit usaha
+                            di antaranya :
+                            <br> produksi tempe, bakso halal dan sambal pecel,toko retail produk-produk makanan
+                            halal
+                            japanhalal_net , restoran halal, Halal Fried Chicken sariraya.hfcjapan , Halal Pizza
+                            Station
+                            pizzastation.jp dan impor serta distribusi produk halal dari berbagai negara terutama
+                            Asia
+                            Tenggara khususnya Indonesia ke Jepang.
+                        </p>
+                        <p>Cek untuk informasi lebih lanjut mengenai perusahaan di website resmi Sariraya Co., Ltd
+                            <a href="http://sariraya.com"> (Sariraya.com)</a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-6 foto">
+                        <img src="{{ asset('assets/images/sariraya.png') }}" alt="" class="img-fluid" />
+                    </div>
+                </div>
+            </div>
+            <!-- Akhir Section Sariraya -->
+
+            <!-- Section FAQ -->
+            <div class="faq">
+                <center>
+                    <h2> <b>FAQ</b> </h2>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card mycard text-left bea">
+                                <h5>Q : Apakah beasiswa ini berlaku untuk semua jurusan ?</h5>
+                                <p>A : Mohon maaf, tidak bisa. Beasiswa ini hanya terbuka bagi mahasiswa jurusan
+                                    tersebut saja.
+                                </p>
+
+                                <h5>Q : Apakah beasiswa ini terbuka untuk alumni / yang sudah lulus ?</h5>
+                                <p>A : Tidak, beasiswa ini hanya diperuntukkan bagi Mahasiswa S1/D4 yang masih aktif
+                                    kuliah minimal di semester 6.</p>
+
+                                <h5>Q : Dimana saya akan mengetahui pengumuman kelulusan di setiap seleksi ?</h5>
+                                <p>A : Pengumuman akan diberitahuan melalui website ini, dan pastikan anda sudah
+                                    login
+                                    terlebih dahulu untuk melihat status kelulusan anda</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="card mycard text-left bea">
+                                <h5>Q : Apakah pendaftaran beasiswa ini berbayar ?</h5>
+                                <p>A :Tidak, beasiswa ini tidak dipungut biaya apapun (gratis).</p>
+
+                                <h5>Q : Apakah ada ketentuan dalam penulisan esai untuk syarat beasiswa ini ?</h5>
+                                <p>A : Tidak ada ketentuan khusus, yang penting formatnya rapi dan terbaca jelas,
+                                    konten
+                                    sesuai tema dan jumlah kata maksimal 1000 kata saja.</p>
+
+                                <h5>Q : Kemana saya harus menghubungi apabila ada hal yang ingin saya tanyakan ?
+                                </h5>
+                                <p>A : Anda bisa menghubungi kontak person di bawah ini dan juga mengunjungi
+                                    instagram
+                                    sariraya untuk mendapatkan info terupdate mengenai beasiswa</p>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+            <!-- Akhir Section FAQ -->
+
+            <!-- Section Kontak -->
+            <div class="kontak">
+                <center>
+                    <h2><b>Contact Person</b> </h2>
+                    <p>WhatsApp: +81-70-1304-5868</p>
+                    <p>Email: info@sariraya.com</p>
+                </center>
+            </div>
+            <!-- Akhir Section Kontak -->
+
+            <!-- KALAU ADA BEASISWA AKTIF -->
+
             @else
             <!-- Section Tombol Pendaftaran -->
             <div class="tomboldaftar">
@@ -43,7 +276,7 @@
                     <p class="mt-4">Klik tombol di bawah ini untuk mengakses pendaftaran</p>
                     @guest
                     @if (Route::has('login'))
-                    <a class="btn btn-outline-secondary rounded-pill" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="btn btn-success rounded-pill" href="{{ route('login') }}">{{ __('Login') }}</a>
                     @endif
 
                     @if (Route::has('register') && isset($getPeriodeAktif) ? !$getPeriodeAktif->status_adm == 'Selesai' : '')
@@ -271,8 +504,8 @@
                                 <h5>Q : Kemana saya harus menghubungi apabila ada hal yang ingin saya tanyakan ?
                                 </h5>
                                 <p>A : Anda bisa menghubungi kontak person di bawah ini dan juga mengunjungi
-                                    instagram
-                                    sariraya untuk mendapatkan info terupdate mengenai beasiswa</p>
+                                    media sosial sariraya yaitu instagram
+                                    untuk mendapatkan info terupdate beasiswa ini</p>
                             </div>
                         </div>
                     </div>
