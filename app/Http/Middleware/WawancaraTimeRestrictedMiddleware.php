@@ -22,6 +22,10 @@ class WawancaraTimeRestrictedMiddleware
     public function handle(Request $request, Closure $next)
     {
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        if ($getPeriodeAktif == null) {
+            Alert::info('Maaf! Saat ini Tidak Ada Program Beasiswa.', 'Terimakasih.');
+            return redirect(route('landing'));
+        }
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
         isset($getAdministrasiUser) ? $statusAdmUser = $getAdministrasiUser->status_adm : ''; //TODO: kondisi user yang diambil dari database

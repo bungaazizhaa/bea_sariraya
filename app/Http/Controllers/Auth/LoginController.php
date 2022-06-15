@@ -46,6 +46,9 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        if ($getPeriodeAktif == null && Auth::user() ? "Auth::user()->role == 'mahasiswa'" : "") {
+            auth()->logout();
+        }
         return view('Auth.login', compact('getPeriodeAktif'));
     }
 

@@ -39,7 +39,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container d-flex justify-content-between">
-            <a class="logoo" href="#">
+            <a class="logoo" href="/">
                 <img src="{{ asset('assets/images/logo.png') }}" alt="" width="80px">
             </a>
 
@@ -66,7 +66,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -86,13 +86,13 @@
     @include('sweetalert::alert')
     <div class="container">
         <div class="text-center">
-            <h1 class="mt-4 test"> <b>BEASISWA SARIRAYA JAPAN 2022</b> </h1>
+            <h1 class="mt-4 test"> <b>BEASISWA SARIRAYA JAPAN {{ strtoupper($getPeriodeAktif->name) }}</b> </h1>
 
             <h1 class="mt-3 h2">Pengumuman Tahap Wawancara</h1>
 
             <div class="alert alert-success mt-4 teksalert" role="alert">
                 <strong>SELAMAT ! ANDA LOLOS TAHAP WAWANCARA <br>
-                    BEASISWA SARIRAYA JAPAN 2022</strong>
+                    BEASISWA SARIRAYA JAPAN {{ strtoupper($getPeriodeAktif->name) }}</strong>
             </div>
 
             <p>Soal untuk Tahap Penugasan Anda :</p>

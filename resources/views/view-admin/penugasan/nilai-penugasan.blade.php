@@ -398,8 +398,7 @@
                                         <label for="field_jawaban" class="col-md-4 col-form-label text-md-right">Jawaban
                                             Penugasan</label>
                                         <div class="col-md-8">
-                                            <textarea disabled
-                                                class="form-control @error('field_jawaban') is-invalid @enderror">{{ isset($pngUser->field_jawaban) ? $pngUser->field_jawaban : '-' }}</textarea>
+                                            <textarea disabled class="form-control @error('field_jawaban') is-invalid @enderror">{{ isset($pngUser->field_jawaban) ? $pngUser->field_jawaban : '-' }}</textarea>
                                         </div>
                                     </div>
                                     @if (isset($pngUser->file_jawaban))
@@ -450,8 +449,7 @@
                                             class="col-md-4 col-form-label text-md-right">Catatan
                                             Penugasan</label>
                                         <div class="col-md-8">
-                                            <textarea spellcheck="false" id="catatan" name="catatan" class="form-control"
-                                                title="Status Administrasi">{{ old('catatan', $pngUser->catatan) }}</textarea>
+                                            <textarea spellcheck="false" id="catatan" name="catatan" class="form-control" title="Status Administrasi">{{ old('catatan', $pngUser->catatan) }}</textarea>
                                         </div>
 
                                         @error('catatan')
@@ -482,7 +480,7 @@
             @endforeach
         @else
             <div class="m-2 mt-3">
-                Tidak ada Mahasiswa yang Lolos Seleksi Wawancara.
+                Tidak ada Mahasiswa.
             </div>
         @endif
     </div>

@@ -36,23 +36,40 @@ class PeriodeController extends Controller
         $getAllPeriode = Periode::all();
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $periodeOpenned = Periode::where('name', '=', $name)->first();
-        $getAdministrasiUser = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->get();
-        $getAllAdmLolos = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '=', 'lolos')
-            // ->whereHas('wawancara', function ($q) {
-            //     return $q->where('jadwal_wwn', '!=', $this->string = '');
-            // })
+        $getAdministrasiUser = Administrasi::with('user')->where('periode_id', '=', $periodeOpenned->id_periode)
+            ->leftJoin('wawancaras', 'wawancaras.administrasi_id', '=', 'administrasis.id')
+            ->leftJoin('penugasans', 'penugasans.wawancara_id', '=', 'wawancaras.id')
+            ->leftJoin('users', 'users.id', '=', 'administrasis.user_id')
+            ->leftJoin('univs', 'univs.id', '=', 'users.univ_id')
+            ->leftJoin('prodis', 'prodis.id', '=', 'users.prodi_id')
             ->get();
-        $getAllAdmGagal = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '!=', 'lolos')->get();
-        $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->pluck('id');
-        $getAllWwnLolos = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->where('status_wwn', '=', 'lolos')
-            // ->whereHas('penugasan', function ($q) {
-            //     return $q->where('soal', '!=', $this->string = '');
-            // })
+        $getAllAdmLolos = Administrasi::with('user')->where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '=', 'lolos')
+            ->leftJoin('wawancaras', 'wawancaras.administrasi_id', '=', 'administrasis.id')
+            ->leftJoin('users', 'users.id', '=', 'administrasis.user_id')
+            ->orderBy('jadwal_wwn', 'asc')->get();
+        $getAllAdmGagal = Administrasi::with('user')->where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '!=', 'lolos')
+            ->leftJoin('users', 'users.id', '=', 'administrasis.user_id')->get();
+        $administrasiOpenned = Administrasi::with('user')->where('periode_id', '=', $periodeOpenned->id_periode)->pluck('id');
+        $getAllWwnLolos = Wawancara::with('user')->whereIn('administrasi_id', $administrasiOpenned)->where('status_wwn', '=', 'lolos')
+            ->leftJoin('administrasis', 'administrasis.id', '=', 'wawancaras.administrasi_id')
+            ->leftJoin('users', 'users.id', '=', 'administrasis.user_id')
+            ->leftJoin('penugasans', 'penugasans.wawancara_id', '=', 'wawancaras.id')
             ->get();
-        $getAllWwnGagal = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->where('status_wwn', '=', 'gagal')->get();
-        $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->pluck('id');
-        $getAllPngLolos = Penugasan::whereIn('wawancara_id', $wawancaraOpenned)->where('status_png', '=', 'lolos')->get();
-        $getAllPngGagal = Penugasan::whereIn('wawancara_id', $wawancaraOpenned)->where('status_png', '=', 'gagal')->get();
+        $getAllWwnGagal = Wawancara::with('user')->whereIn('administrasi_id', $administrasiOpenned)->where('status_wwn', '=', 'gagal')
+            ->leftJoin('administrasis', 'administrasis.id', '=', 'wawancaras.administrasi_id')
+            ->leftJoin('users', 'users.id', '=', 'administrasis.user_id')
+            ->get();
+        $wawancaraOpenned = Wawancara::with('user')->whereIn('administrasi_id', $administrasiOpenned)->pluck('id');
+        $getAllPngLolos = Penugasan::whereIn('wawancara_id', $wawancaraOpenned)->where('status_png', '=', 'lolos')
+            ->leftJoin('wawancaras', 'wawancaras.id', '=', 'penugasans.wawancara_id')
+            ->leftJoin('administrasis', 'wawancaras.administrasi_id', '=', 'administrasis.id')
+            ->leftJoin('users', 'users.id', '=', 'administrasis.user_id')
+            ->get();
+        $getAllPngGagal = Penugasan::whereIn('wawancara_id', $wawancaraOpenned)->where('status_png', '=', 'gagal')
+            ->leftJoin('wawancaras', 'wawancaras.id', '=', 'penugasans.wawancara_id')
+            ->leftJoin('administrasis', 'wawancaras.administrasi_id', '=', 'administrasis.id')
+            ->leftJoin('users', 'users.id', '=', 'administrasis.user_id')
+            ->get();
         return view('view-admin.periode.periodeid-index', compact('periodeOpenned', 'getAllUniv', 'getAllPeriode', 'getTanggalSekarang', 'getAllAdmLolos', 'getAllAdmGagal', 'getAllWwnLolos', 'getAllWwnGagal', 'getAllPngLolos', 'getAllPngGagal', 'getAdministrasiUser'));
     }
 
@@ -149,6 +166,7 @@ class PeriodeController extends Controller
             Alert::error('Gagal! Mohon isi Teknis Wawancara ' . ucfirst($periodeSelected->name) . ' terlebih Dahulu! ', 'Terimakasih.');
             return back();
         }
+
         $periodeSelected->status_adm = 'Selesai';
         $periodeSelected->ts_adm = now();
         $periodeSelected->save();

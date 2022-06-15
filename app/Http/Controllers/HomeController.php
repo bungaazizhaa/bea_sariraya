@@ -91,6 +91,9 @@ class HomeController extends Controller
         $getAllUniv = Univ::all();
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        if ($getPeriodeAktif == null && Auth::user()->role == 'mahasiswa') {
+            auth()->logout();
+        }
         $getUserLoggedIn = Auth::user();
         return view('view-mahasiswa.profil-mahasiswa', compact('getUserLoggedIn', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv'));
     }

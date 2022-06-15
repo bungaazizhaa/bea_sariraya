@@ -39,7 +39,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container d-flex justify-content-between">
-            <a class="logoo" href="#">
+            <a class="logoo" href="/">
                 <img src="{{ asset('assets/images/logo.png') }}" alt="" width="80px">
             </a>
 
@@ -66,7 +66,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -86,13 +86,14 @@
     @include('sweetalert::alert')
     <div class="container">
         <div>
-            <h1 class="mt-4 test text-center"> <b>BEASISWA SARIRAYA JAPAN 2022</b> </h1>
+            <h1 class="mt-4 test text-center"> <b>BEASISWA SARIRAYA JAPAN {{ strtoupper($getPeriodeAktif->name) }}</b>
+            </h1>
 
             <h1 class="mt-3 h2 text-center">Pengumuman Tahap Administrasi</h1>
 
             <div class="alert alert-success mt-4 teksalert text-center" role="alert">
                 <strong>SELAMAT ! ANDA LOLOS TAHAP ADMINISTRASI <br>
-                    BEASISWA SARIRAYA JAPAN 2022</strong>
+                    BEASISWA SARIRAYA JAPAN {{ strtoupper($getPeriodeAktif->name) }}</strong>
             </div>
 
             <p class="h5 pt-2 pt-md-4 text-center">Berikut adalah jadwal wawancara Anda :</p>
@@ -103,7 +104,7 @@
             <br>
 
             <div class="d-flex justify-content-center">
-                <div class="alert alert-info pb-0">{!! $getPeriodeAktif->teknis_wwn !!}</div>
+                <div class="alert alert-info pb-0 col-md-6">{!! $getPeriodeAktif->teknis_wwn !!}</div>
             </div>
 
             <p class="text-center">Jika ada kendala hubungi kontak

@@ -86,7 +86,8 @@
                                     <button type="submit" class="btn tombol px-4">Login</button>
                                 </div>
                                 <p class="font-weight-normal mt-3 mb-0">Belum punya akun ? <a
-                                        href="{{ route('register') }}">Register disini.</a></p>
+                                        href="{{ Route::has('register') ? 'route("register")' : '' }}">Register
+                                        disini.</a></p>
                             </center>
 
                         </form>

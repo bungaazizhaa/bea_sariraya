@@ -17,6 +17,6 @@ class Univ extends Model
 
     public function User()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class, 'univ_id');
     }
 }

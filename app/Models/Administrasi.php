@@ -13,6 +13,7 @@ class Administrasi extends Model
 
     protected $dates = [
         'tanggal_lahir',
+        'jadwal_wwn',
     ];
 
     protected $guarded = [
@@ -42,7 +43,7 @@ class Administrasi extends Model
 
     public function Periode()
     {
-        return $this->belongsTo(Periode::class, 'periode_id');
+        return $this->hasOne(Periode::class, 'id_periode', 'periode_id');
     }
 
     public function Wawancara()

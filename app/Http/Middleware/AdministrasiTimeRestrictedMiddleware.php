@@ -23,6 +23,10 @@ class AdministrasiTimeRestrictedMiddleware
     {
 
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        if ($getPeriodeAktif == null) {
+            Alert::info('Maaf! Saat ini Tidak Ada Program Beasiswa.', 'Terimakasih.');
+            return redirect(route('landing'));
+        }
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();
         isset($getAdministrasiUser) ? $statusUserAdm = $getAdministrasiUser->status_adm : '';

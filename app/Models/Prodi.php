@@ -17,6 +17,6 @@ class Prodi extends Model
 
     public function User()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class, 'prodi_id');
     }
 }

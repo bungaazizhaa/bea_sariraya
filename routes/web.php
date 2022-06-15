@@ -10,6 +10,8 @@ use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\WawancaraController;
 use App\Http\Controllers\AdministrasiController;
 use App\Http\Controllers\PeriodeController;
+use App\Models\User;
+use Illuminate\Support\Facades\Schema;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,15 +83,20 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/profil-admin', [HomeController::class, 'indexProfilAdmin'])->name('profil.admin');
 });
 
-$getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+
+if (Schema::hasTable('periodes')) {
+    $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+} else {
+    $getPeriodeAktif = null;
+}
 
 if ($getPeriodeAktif == null) {  //Jika Tidak ada periode Aktif
-    Auth::routes(['register' => true, 'verify' => true]);
-} else { //Jika ada periode Aktif
+    Auth::routes(['register' => false, 'verify' => true]);
+} elseif (isset($getPeriodeAktif)) { //Jika ada periode Aktif
     $getTanggalAkhirAdministrasi = $getPeriodeAktif->ta_adm;
     $getTanggalSekarang = Carbon::now()->format('Y-m-d');
     if ($getTanggalSekarang > $getTanggalAkhirAdministrasi) { //dan Jika Sekarang sudah melewati Tanggal Akhir Administrasi
-        Auth::routes(['register' => true, 'verify' => true]); //Tutup Registrasi
+        Auth::routes(['register' => false, 'verify' => true]); //Tutup Registrasi
     } else { //Jika Sekarang Belum melewati Tanggal Akhir Administrasi, Bisa Register, Bisa Update
         Auth::routes(['verify' => true]);
     }

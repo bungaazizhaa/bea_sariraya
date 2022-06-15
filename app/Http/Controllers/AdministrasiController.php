@@ -314,7 +314,7 @@ class AdministrasiController extends Controller
                 'file_ktm' => $request['file_ktm'],
                 'file_transkrip' => $request['file_transkrip'],
                 'no_wa' => $request['no_wa'],
-                'instragram' => $request['instragram'],
+                'instagram' => $request['instagram'],
                 'facebook' => $request['facebook'],
             ]);
             $getAdministrasiUser = Administrasi::where('user_id', '=', Auth::user()->id)->where('periode_id', '=', $getPeriodeAktif->id_periode)->first();

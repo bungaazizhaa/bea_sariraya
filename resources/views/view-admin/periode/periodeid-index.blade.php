@@ -212,7 +212,7 @@
                     action="{{ route('tekniswwnupdate.periode', $periodeOpenned->name) }}">
                     @csrf
                     <div
-                        class="rounded myshadow {{ isset($periodeOpenned->group_wa) ? 'bg-selesai' : 'bg-secondary' }} h-100">
+                        class="rounded myshadow {{ isset($periodeOpenned->teknis_wwn) ? 'bg-selesai' : 'bg-secondary' }} h-100">
                         <div class="row p-3 p-md-2">
                             <div class="col">
                                 <p class="h5 pl-md-2 pt-1">Teknis Wawancara :</p>
@@ -317,10 +317,10 @@
                                                     class="rounded" alt="User Image" height="120px" width="90px">
                                             </td> --}}
                                             <td><a class="text-light"
-                                                    href="{{ route('pengguna.show', $userAdm->user->id) }}">{{ $userAdm->user->name }}</a>
+                                                    href="{{ route('pengguna.show', $userAdm->id) }}">{{ $userAdm->name }}</a>
                                             </td>
                                             <td>{{ $userAdm->no_pendaftaran }}</td>
-                                            <td>{{ $userAdm->user->email }}</td>
+                                            <td>{{ $userAdm->email }}</td>
                                             <td>
                                                 <form target="_blank" id="editFormNilaiAdm{{ $userAdm->no_pendaftaran }}"
                                                     action="{{ route('nilai.adm', $periodeOpenned->name) }}">
@@ -329,10 +329,10 @@
                                                     <div style="cursor: pointer;"
                                                         onclick="document.getElementById('editFormNilaiAdm{{ $userAdm->no_pendaftaran }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
-                                                        {{ isset($userAdm->status_adm) && isset($userAdm->wawancara->jadwal_wwn) && $userAdm->status_adm == 'lolos' ? 'badge-success' : '' }}
+                                                        {{ isset($userAdm->status_adm) && isset($userAdm->jadwal_wwn) && $userAdm->status_adm == 'lolos' ? 'badge-success' : '' }}
                                                         {{ isset($userAdm->status_adm) && $userAdm->status_adm == 'gagal' ? 'badge-danger' : '' }}
-                                                        {{ !isset($userAdm->status_adm) || !isset($userAdm->wawancara->jadwal_wwn) ? 'badge-secondary' : '' }}">
-                                                        {{ isset($userAdm->status_adm) ? ucfirst($userAdm->status_adm) . ' Adm' : 'Unset' }}
+                                                        {{ !isset($userAdm->status_adm) || !isset($userAdm->jadwal_wwn) ? 'badge-secondary' : '' }}">
+                                                        {{ isset($userAdm->status_adm) ? ucfirst($userAdm->status_adm) . '_Adm' : 'Unset' }}
                                                     </div>
                                                 </form>
                                                 {{-- <td>{{ $userAdm->updated_at->translatedFormat('d F Y H:i') }}</td> --}}
@@ -344,15 +344,13 @@
                                                     <div style="cursor: pointer;"
                                                         onclick="document.getElementById('editFormNilaiWwn{{ $userAdm->no_pendaftaran }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
-                                                    {{ isset($userAdm->wawancara->status_wwn) && isset($userAdm->wawancara->penugasan->soal) && $userAdm->wawancara->status_wwn == 'lolos' ? 'badge-success' : '' }}
-                                                    {{ isset($userAdm->wawancara->status_wwn) && $userAdm->wawancara->status_wwn == 'gagal' ? 'badge-danger' : '' }}
-                                                    {{ !isset($userAdm->wawancara->status_wwn) || !isset($userAdm->wawancara->penugasan->soal) ? 'badge-secondary' : '' }}">
-                                                        {{ isset($userAdm->wawancara->status_wwn) ? ucfirst($userAdm->wawancara->status_wwn) . ' Wwn' : 'Unset' }}
+                                                    {{ isset($userAdm->status_wwn) && isset($userAdm->soal) && $userAdm->status_wwn == 'lolos' ? 'badge-success' : '' }}
+                                                    {{ isset($userAdm->status_wwn) && $userAdm->status_wwn == 'gagal' ? 'badge-danger' : '' }}
+                                                    {{ !isset($userAdm->status_wwn) || !isset($userAdm->soal) ? 'badge-secondary' : '' }}">
+                                                        {{ isset($userAdm->status_wwn) ? ucfirst($userAdm->status_wwn) . '_Wwn' : 'Unset' }}
                                                     </div>
                                                 </form>
                                             </td>
-                                            {{-- <td>{{ isset($userAdm->wawancara->updated_at) ? $userAdm->wawancara->updated_at->translatedFormat('d F Y H:i') : '-' }}
-                                            </td> --}}
                                             <td>
                                                 <form target="_blank" id="editFormNilaiPng{{ $userAdm->no_pendaftaran }}"
                                                     action="{{ route('nilai.png', $periodeOpenned->name) }}">
@@ -361,20 +359,18 @@
                                                     <div style="cursor: pointer;"
                                                         onclick="document.getElementById('editFormNilaiPng{{ $userAdm->no_pendaftaran }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
-                                                    {{ isset($userAdm->wawancara->penugasan->status_png) && $userAdm->wawancara->penugasan->status_png == 'lolos' ? 'badge-success' : '' }}
-                                                    {{ isset($userAdm->wawancara->penugasan->status_png) && $userAdm->wawancara->penugasan->status_png == 'gagal' ? 'badge-danger' : '' }}
-                                                    {{ !isset($userAdm->wawancara->penugasan->status_png) ? 'badge-secondary' : '' }}">
-                                                        {{ isset($userAdm->wawancara->penugasan->status_png) ? ucfirst($userAdm->wawancara->penugasan->status_png) . ' Png' : 'Unset' }}
+                                                    {{ isset($userAdm->status_png) && $userAdm->status_png == 'lolos' ? 'badge-success' : '' }}
+                                                    {{ isset($userAdm->status_png) && $userAdm->status_png == 'gagal' ? 'badge-danger' : '' }}
+                                                    {{ !isset($userAdm->status_png) ? 'badge-secondary' : '' }}">
+                                                        {{ isset($userAdm->status_png) ? ucfirst($userAdm->status_png) . '_Png' : 'Unset' }}
                                                     </div>
                                                 </form>
                                             </td>
-                                            {{-- <td>{{ isset($userAdm->wawancara->penugasan->updated_at) ? $userAdm->wawancara->penugasan->updated_at->translatedFormat('d F Y H:i') : '-' }}
-                                            </td> --}}
                                             <td>{{ isset($userAdm->keahlian) ? $userAdm->keahlian : '-' }}</td>
-                                            <td>{{ isset($userAdm->wawancara->jadwal_wwn) ? $userAdm->wawancara->jadwal_wwn->translatedFormat('d M Y - H:i') . ' WIB' : '-' }}
+                                            <td>{{ isset($userAdm->jadwal_wwn) ? $userAdm->jadwal_wwn->translatedFormat('d M Y - H:i') . ' WIB' : '-' }}
                                             </td>
-                                            <td>{{ $userAdm->user->univ->nama_universitas }}</td>
-                                            <td>{{ $userAdm->user->prodi->nama_prodi }}</td>
+                                            <td>{{ $userAdm->nama_universitas }}</td>
+                                            <td>{{ $userAdm->nama_prodi }}</td>
                                         </tr>
                                     @endforeach
                                 @endif
@@ -706,9 +702,11 @@
                                                     @foreach ($getAllAdmLolos as $userAdmLolos)
                                                         <tr>
                                                             <th scope="row">{{ $i++ }}</th>
-                                                            <td>{{ $userAdmLolos->user->name }}</td>
-                                                            <td>{{ $userAdmLolos->user->email }}</td>
-                                                            <td>{{ isset($userAdmLolos->wawancara->jadwal_wwn) ? $userAdmLolos->wawancara->jadwal_wwn->translatedFormat('d F Y - H:i') : '' }}
+                                                            <td style="cursor: pointer;"
+                                                                onclick="document.getElementById('editFormNilaiAdm{{ $userAdmLolos->no_pendaftaran }}').submit();">
+                                                                {{ $userAdmLolos->name }}</td>
+                                                            <td>{{ $userAdmLolos->email }}</td>
+                                                            <td>{{ isset($userAdmLolos->jadwal_wwn) ? $userAdmLolos->jadwal_wwn->translatedFormat('d F Y - H:i') : '' }}
                                                                 WIB
                                                             </td>
                                                         </tr>
@@ -742,8 +740,8 @@
                                                 @foreach ($getAllAdmGagal as $userAdmGagal)
                                                     <tr>
                                                         <th scope="row">{{ $i++ }}</th>
-                                                        <td>{{ $userAdmGagal->user->name }}</td>
-                                                        <td>{{ $userAdmGagal->user->email }}</td>
+                                                        <td>{{ $userAdmGagal->name }}</td>
+                                                        <td>{{ $userAdmGagal->email }}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -805,11 +803,13 @@
                                                     @foreach ($getAllWwnLolos as $userWwnLolos)
                                                         <tr>
                                                             <th scope="row">{{ $i++ }}</th>
-                                                            <td>{{ $userWwnLolos->administrasi->user->name }}
+                                                            <td style="cursor: pointer;"
+                                                                onclick="document.getElementById('editFormNilaiWwn{{ $userWwnLolos->no_pendaftaran }}').submit();">
+                                                                {{ $userWwnLolos->name }}
                                                             </td>
-                                                            <td>{{ $userWwnLolos->administrasi->user->email }}
+                                                            <td>{{ $userWwnLolos->email }}
                                                             </td>
-                                                            <td>{{ isset($userWwnLolos->penugasan->soal) ? $userWwnLolos->penugasan->soal : '' }}
+                                                            <td>{{ isset($userWwnLolos->soal) ? $userWwnLolos->soal : '' }}
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -842,9 +842,9 @@
                                                 @foreach ($getAllWwnGagal as $userWwnGagal)
                                                     <tr>
                                                         <th scope="row">{{ $i++ }}</th>
-                                                        <td>{{ $userWwnGagal->administrasi->user->name }}
+                                                        <td>{{ $userWwnGagal->name }}
                                                         </td>
-                                                        <td>{{ $userWwnGagal->administrasi->user->email }}
+                                                        <td>{{ $userWwnGagal->email }}
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -907,9 +907,11 @@
                                                     @foreach ($getAllPngLolos as $userPngLolos)
                                                         <tr>
                                                             <th scope="row">{{ $i++ }}</th>
-                                                            <td>{{ $userPngLolos->wawancara->administrasi->user->name }}
+                                                            <td style="cursor: pointer;"
+                                                                onclick="document.getElementById('editFormNilaiPng{{ $userPngLolos->no_pendaftaran }}').submit();">
+                                                                {{ $userPngLolos->name }}
                                                             </td>
-                                                            <td>{{ $userPngLolos->wawancara->administrasi->user->email }}
+                                                            <td>{{ $userPngLolos->email }}
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -943,9 +945,9 @@
                                                     @foreach ($getAllPngGagal as $userPngGagal)
                                                         <tr>
                                                             <th scope="row">{{ $i++ }}</th>
-                                                            <td>{{ $userPngGagal->wawancara->administrasi->user->name }}
+                                                            <td>{{ $userPngGagal->name }}
                                                             </td>
-                                                            <td>{{ $userPngGagal->wawancara->administrasi->user->email }}
+                                                            <td>{{ $userPngGagal->email }}
                                                             </td>
                                                         </tr>
                                                     @endforeach

@@ -36,8 +36,8 @@
                                         kanan atas.
                                         <br>- Isi ID dengan format "<b class="text-info">X</b>" dan Nama Periode dengan
                                         format
-                                        "<b class="text-info">batch-X</b>", dan <b>X</b>
-                                        adalah berupa Angka.
+                                        "<b class="text-info">batch-X</b>". <b>X</b>
+                                        adalah Angka.
                                         <br>- Isi Seluruh Tanggal dengan benar.
                                         <br>- Contoh Pengisian:
                                         <br><br>
@@ -132,7 +132,11 @@
                                     </a>
                                 </div>
                                 <div id="collapseB1" class="collapse hide" data-parent="#accordion2">
-                                    <div class="card-body">...
+                                    <div class="card-body">
+                                        - Link Registrasi Peserta :<br>
+                                        - <a href="{{ url('/register') }}">{{ url('/register') }}</a><br>
+                                        - Peserta melakukan Registrasi pada saat Periode
+                                        diaktifkan sampai dengan Penutupan Tahap Administrasi.
                                         <br>
                                     </div>
                                 </div>
@@ -146,7 +150,19 @@
                                     </a>
                                 </div>
                                 <div id="collapseB2" class="collapse hide" data-parent="#accordion2">
-                                    <div class="card-body">...
+                                    <div class="card-body">
+                                        - Selama tahap Administrasi berlangsung, Peserta yang belum memiliki akun masih
+                                        dapat melakukan Registrasi.<br>
+                                        - Selama tahap Administrasi berlangsung, Admin hanya menunggu hingga tahap
+                                        Administrasi Ditutup.<br>
+                                        - Mahasiswa yang telah mengisi Administrasi Akan muncul pada Tabel Pendaftar.<br>
+                                        - Lihat Gambar Berikut.
+                                        <br>
+                                        <div class="text-center" style="max-height:400px">
+                                            <img src="{{ asset('assets/images/panduan/list-administrasi.png') }}"
+                                                class="img-fluid border border-secondary"
+                                                alt="Membuat Periode Beasiswa Baru" style="max-height: 400px">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -18,8 +18,8 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'nim' => '21120' . $this->faker->unique()->randomNumber(9, true),
-            'univ_id' => mt_rand(1, 3),
-            'prodi_id' => mt_rand(1, 3),
+            'univ_id' => mt_rand(1, 40),
+            'prodi_id' => mt_rand(1, 11),
             'email' => $this->faker->unique()->freeEmail(),
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'), // password

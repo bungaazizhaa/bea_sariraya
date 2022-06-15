@@ -21,66 +21,66 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Periode::create(
-            [
-                'id_periode' => '1',
-                'name' => 'batch-1',
-                'tm_adm' => '2021-01-23',
-                'ta_adm' => '2021-01-26',
-                'tp_adm' => '2021-01-30',
-                'status_adm' => 'Selesai',
-                'ts_adm' => '2021-01-30 16:00:01',
-                'tm_wwn' => '2021-02-10',
-                'ta_wwn' => '2021-02-20',
-                'tp_wwn' => '2021-02-25',
-                'status_wwn' => 'Selesai',
-                'ts_wwn' => '2021-02-25 16:00:01',
-                'tm_png' => '2021-03-05',
-                'ta_png' => '2021-03-15',
-                'tp_png' => '2021-03-20',
-                'status_png' => 'Selesai',
-                'ts_png' => '2021-03-20 16:00:01',
-            ],
-        );
-        Periode::create(
-            [
-                'id_periode' => '2',
-                'name' => 'batch-2',
-                'tm_adm' => '2022-04-26',
-                'ta_adm' => '2022-04-29',
-                'tp_adm' => '2022-04-30',
-                'status_adm' => null,
-                'ts_adm' => null,
-                'tm_wwn' => '2022-05-10',
-                'ta_wwn' => '2022-05-20',
-                'tp_wwn' => '2022-05-25',
-                'status_wwn' => null,
-                'ts_wwn' => null,
-                'tm_png' => '2022-06-05',
-                'ta_png' => '2022-06-15',
-                'tp_png' => '2022-06-20',
-                'status_png' => null,
-                'ts_png' => null,
-                'status' => 'aktif',
-            ],
-        );
+        // Periode::create(
+        //     [
+        //         'id_periode' => '1',
+        //         'name' => 'batch-1',
+        //         'tm_adm' => '2021-01-23',
+        //         'ta_adm' => '2021-01-26',
+        //         'tp_adm' => '2021-01-30',
+        //         'status_adm' => 'Selesai',
+        //         'ts_adm' => '2021-01-30 16:00:01',
+        //         'tm_wwn' => '2021-02-10',
+        //         'ta_wwn' => '2021-02-20',
+        //         'tp_wwn' => '2021-02-25',
+        //         'status_wwn' => 'Selesai',
+        //         'ts_wwn' => '2021-02-25 16:00:01',
+        //         'tm_png' => '2021-03-05',
+        //         'ta_png' => '2021-03-15',
+        //         'tp_png' => '2021-03-20',
+        //         'status_png' => 'Selesai',
+        //         'ts_png' => '2021-03-20 16:00:01',
+        //     ],
+        // );
+        // Periode::create(
+        //     [
+        //         'id_periode' => '2',
+        //         'name' => 'batch-2',
+        //         'tm_adm' => '2022-04-26',
+        //         'ta_adm' => '2022-04-29',
+        //         'tp_adm' => '2022-04-30',
+        //         'status_adm' => null,
+        //         'ts_adm' => null,
+        //         'tm_wwn' => '2022-05-10',
+        //         'ta_wwn' => '2022-05-20',
+        //         'tp_wwn' => '2022-05-25',
+        //         'status_wwn' => null,
+        //         'ts_wwn' => null,
+        //         'tm_png' => '2022-06-05',
+        //         'ta_png' => '2022-06-15',
+        //         'tp_png' => '2022-06-20',
+        //         'status_png' => null,
+        //         'ts_png' => null,
+        //         'status' => 'aktif',
+        //     ],
+        // );
         Periode::create(
             [
                 'id_periode' => '3',
                 'name' => 'batch-3',
-                'tm_adm' => '2023-04-23',
-                'ta_adm' => '2023-04-26',
-                'tp_adm' => '2023-04-30',
+                'tm_adm' => '2022-06-16',
+                'ta_adm' => '2022-06-18',
+                'tp_adm' => '2022-06-20',
                 'status_adm' => null,
                 'ts_adm' => null,
-                'tm_wwn' => '2023-05-10',
-                'ta_wwn' => '2023-05-20',
-                'tp_wwn' => '2023-05-25',
+                'tm_wwn' => '2022-07-02',
+                'ta_wwn' => '2022-07-04',
+                'tp_wwn' => '2022-07-06',
                 'status_wwn' => null,
                 'ts_wwn' => null,
-                'tm_png' => '2023-06-05',
-                'ta_png' => '2023-06-15',
-                'tp_png' => '2023-06-20',
+                'tm_png' => '2022-07-08',
+                'ta_png' => '2022-07-10',
+                'tp_png' => '2022-07-12',
                 'status_png' => null,
                 'ts_png' => null,
             ],
@@ -141,9 +141,9 @@ class DatabaseSeeder extends Seeder
         User::create(
             [
                 'role' => 'admin',
-                'nim' => '000',
-                'univ_id' => '1',
-                'prodi_id' => '1',
+                'nim' => null,
+                'univ_id' => null,
+                'prodi_id' => null,
                 'name' => 'Administrator',
                 'picture' => null,
                 'email_verified_at' => now(),
@@ -166,7 +166,7 @@ class DatabaseSeeder extends Seeder
                 'remember_token' => Str::random(10),
             ]
         );
-        User::factory(100)->create();
-        Administrasi::factory(100)->create();
+        User::factory(15)->create();
+        Administrasi::factory(15)->create();
     }
 }

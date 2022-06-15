@@ -400,8 +400,7 @@
                                         <label for="catatan" class="col-md-4 col-form-label text-md-right">Catatan
                                             Wawancara</label>
                                         <div class="col-md-8">
-                                            <textarea id="catatan" name="catatan" class="form-control selectpicker"
-                                                title="Status Administrasi">{{ old('catatan', $wwnUser->catatan) }}</textarea>
+                                            <textarea id="catatan" name="catatan" class="form-control selectpicker" title="Status Administrasi">{{ old('catatan', $wwnUser->catatan) }}</textarea>
                                         </div>
 
                                         @error('catatan')
@@ -433,7 +432,7 @@
             @endforeach
         @else
             <div class="m-2 mt-3">
-                Tidak ada Mahasiswa yang Lolos Seleksi Administrasi.
+                Tidak ada Mahasiswa.
             </div>
         @endif
     </div>
