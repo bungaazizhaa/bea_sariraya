@@ -68,7 +68,7 @@
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
 
@@ -582,93 +582,88 @@
                                 </div>
                             </div>
                         @else
-                            <<<<<<< Updated upstream <div class="text-center mt-4">
+                            <div class="text-center mt-4">
+                                <br>
                                 <button type="submit" class="btn btn-success">Submit</button>
+                                <br><br><small>Anda dapat mengubahnya kembali<br>(jika dan hanya jika waktu masih
+                                    tersedia).</small>
+                            </div>
+                        @endif
                     </div>
-                    =======
-                    <div class="text-center mt-4">
-                        <br>
-                        <button type="submit" class="btn btn-success">Submit</button>
-                        <br><br><small>Anda dapat mengubahnya kembali<br>(jika dan hanya jika waktu masih
-                            tersedia).</small>
-                    </div>
-                    >>>>>>> Stashed changes
-                    @endif
                 </div>
+            </form>
         </div>
-        </form>
-    </div>
 
-    <!-- Footer -->
-    <footer class="pt-3 pt-3 pb-1 border-top bg-dark">
-        <div class="text-center bg-dark text-white">
-            <p>&copy; Sariraya 2022</p>
-        </div>
-    </footer>
+        <!-- Footer -->
+        <footer class="pt-3 pt-3 pb-1 border-top bg-dark">
+            <div class="text-center bg-dark text-white">
+                <p>&copy; Sariraya 2022</p>
+            </div>
+        </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
-    </script>
-
-    {{-- Browse Show Name --}}
-    <script type="text/javascript">
-        $('.custom-file input').change(function(e) {
-            var files = [];
-            for (var i = 0; i < $(this)[0].files.length; i++) {
-                files.push($(this)[0].files[i].name);
-            }
-            $(this).next('.custom-file-label').html(files.join(', '));
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
-                .getDate());
-            $('.datepicker').datepicker({
-                format: 'yyyy-mm-dd',
-                uiLibrary: 'bootstrap4',
-                iconsLibrary: 'fontawesome',
-                showRightIcon: false,
-                maxDate: today,
-                modal: true,
-                autoclose: true,
-                footer: true
-            });
-        });
-    </script>
-
-    @if (!isset($getAdministrasiUser))
-        <script>
-            $(document).ready(function() {});
-            document.querySelectorAll('.editable').forEach(b => b.removeAttribute('disabled'));
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
         </script>
-    @endif
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+        </script>
 
-    <script>
-        function izinkanEdit() {
-            var $tombolSimpan = $("#tombolSimpan");
-            var $tombolEdit = document.getElementById("tombolEdit");
-            document.querySelectorAll('.editable').forEach(b => b.toggleAttribute('disabled'));
-            $tombolSimpan.css("display", $tombolSimpan.css("display") === 'none' ? 'inline' : 'none');
-            $tombolEdit.innerHTML = ($tombolEdit.innerHTML ===
-                'Ubah Data' ? 'Batalkan' : 'Ubah Data');
-            if ($tombolEdit.innerHTML === 'Ubah Data') {
-                location.reload();
-            }
-        }
-    </script>
-
-    @if (count($errors) > 0 && isset($getAdministrasiUser))
+        {{-- Browse Show Name --}}
         <script type="text/javascript">
-            $(document).ready(function() {
-                izinkanEdit();
+            $('.custom-file input').change(function(e) {
+                var files = [];
+                for (var i = 0; i < $(this)[0].files.length; i++) {
+                    files.push($(this)[0].files[i].name);
+                }
+                $(this).next('.custom-file-label').html(files.join(', '));
             });
         </script>
-    @endif
+
+        <script>
+            $(document).ready(function() {
+                today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
+                    .getDate());
+                $('.datepicker').datepicker({
+                    format: 'yyyy-mm-dd',
+                    uiLibrary: 'bootstrap4',
+                    iconsLibrary: 'fontawesome',
+                    showRightIcon: false,
+                    maxDate: today,
+                    modal: true,
+                    autoclose: true,
+                    footer: true
+                });
+            });
+        </script>
+
+        @if (!isset($getAdministrasiUser))
+            <script>
+                $(document).ready(function() {});
+                document.querySelectorAll('.editable').forEach(b => b.removeAttribute('disabled'));
+            </script>
+        @endif
+
+        <script>
+            function izinkanEdit() {
+                var $tombolSimpan = $("#tombolSimpan");
+                var $tombolEdit = document.getElementById("tombolEdit");
+                document.querySelectorAll('.editable').forEach(b => b.toggleAttribute('disabled'));
+                $tombolSimpan.css("display", $tombolSimpan.css("display") === 'none' ? 'inline' : 'none');
+                $tombolEdit.innerHTML = ($tombolEdit.innerHTML ===
+                    'Ubah Data' ? 'Batalkan' : 'Ubah Data');
+                if ($tombolEdit.innerHTML === 'Ubah Data') {
+                    location.reload();
+                }
+            }
+        </script>
+
+        @if (count($errors) > 0 && isset($getAdministrasiUser))
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    izinkanEdit();
+                });
+            </script>
+        @endif
 
     </div>
 </body>
