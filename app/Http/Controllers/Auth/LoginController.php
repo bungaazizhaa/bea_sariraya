@@ -49,7 +49,7 @@ class LoginController extends Controller
         if ($getPeriodeAktif == null && Auth::user() ? "Auth::user()->role == 'mahasiswa'" : "") {
             auth()->logout();
         }
-        return view('Auth.login', compact('getPeriodeAktif'));
+        return view('auth.login', compact('getPeriodeAktif'));
     }
 
     protected function authenticated(Request $request, $user)
