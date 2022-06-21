@@ -7,8 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Landing Page</title>
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-            integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -31,122 +30,113 @@
         <div class="container">
             @if ($getPeriodeAktif == null)
             @else
-                <!-- Section Tombol Pendaftaran -->
-                <div class="tomboldaftar">
-                    <center>
-                        <p class="mt-4">Klik tombol di bawah ini untuk mengakses pendaftaran</p>
-                        @guest
-                            @if (Route::has('login'))
-                                <a class="btn btn-success rounded-pill" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            @endif
+            <!-- Section Tombol Pendaftaran -->
+            <div class="tomboldaftar">
+                <center>
+                    <p class="mt-4">Klik tombol di bawah ini untuk mengakses pendaftaran</p>
+                    @guest
+                    @if (Route::has('login'))
+                    <a class="btn btn-success rounded-pill" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    @endif
 
-                            @if (Route::has('register') && isset($getPeriodeAktif) ? !$getPeriodeAktif->status_adm == 'Selesai' : '')
-                                <a class="btn btn-success rounded-pill"
-                                    href="{{ route('register') }}">{{ __('Register') }}</a>
-                            @endif
-                        @else
-                            <a class="btn btn-outline-success rounded-pill "
-                                href="{{ Auth::user()->role == 'admin' ? '/dashboard' : '/my-profile' }}">
-                                {{ Auth::user()->name }}
-                            </a>
-                        @endguest
-                        </ul>
-                    </center>
-                </div>
-                <!-- Akhir Section Tombol Pendaftaran -->
+                    @if (Route::has('register') && isset($getPeriodeAktif) ? !$getPeriodeAktif->status_adm == 'Selesai' : '')
+                    <a class="btn btn-success rounded-pill" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    @endif
+                    @else
+                    <a class="btn btn-outline-success rounded-pill " href="{{ Auth::user()->role == 'admin' ? '/dashboard' : '/my-profile' }}">
+                        {{ Auth::user()->name }}
+                    </a>
+                    @endguest
+                    </ul>
+                </center>
+            </div>
+            <!-- Akhir Section Tombol Pendaftaran -->
             @endif
             <!-- Section Timeline -->
             <div class="timeline">
                 <center>
                     <h2><b> Timeline Beasiswa</b></h2>
                     @if ($getPeriodeAktif == null)
-                        <div class=" py-1 my-2 p-md-0 m-md-0">
-                            <center class="text-gray-200 h4 pt-4 mt-4 mb-5 pb-3"> Maaf. Saat ini sedang tidak ada Program
-                                Penerimaan Beasiswa
-                                Sariraya.
-                            </center>
-                        </div>
+                    <div class=" py-1 my-2 p-md-0 m-md-0">
+                        <center class="text-gray-200 h4 pt-4 mt-4 mb-5 pb-3"> Maaf. Saat ini sedang tidak ada Program
+                            Penerimaan Beasiswa
+                            Sariraya.
+                        </center>
+                    </div>
                     @else
-                        <div class="row mb-lg-2 mx-lg-5 mx-sm-2 my-sm-2">
-                            <div class="col-sm-3 mt-3">
-                                <div class="card mycard1 text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/1.png') }}"
-                                        alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Pendaftaran & Submit Administrasi</h5>
-                                        <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tm_adm->translatedFormat('d F Y - ') . $getPeriodeAktif->ta_adm->translatedFormat('d F Y') : '-' }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 mt-3">
-                                <div class="card mycard1 text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/3.png') }}"
-                                        alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Pengumuman Hasil Seleksi Administrasi</h5>
-                                        <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tp_adm->translatedFormat('d F Y') : '-' }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 mt-3">
-                                <div class="card mycard1 text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/4.png') }}"
-                                        alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Seleksi Wawancara</h5>
-                                        <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tm_wwn->translatedFormat('d F Y - ') . $getPeriodeAktif->ta_wwn->translatedFormat('d F Y') : '-' }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 mt-3">
-                                <div class="card mycard1 text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/5.png') }}"
-                                        alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Pengumuman Hasil Seleksi Wawancara</h5>
-                                        <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tp_wwn->translatedFormat('d F Y') : '-' }}
-                                        </p>
-                                    </div>
+                    <div class="row mb-lg-2 mx-lg-5 mx-sm-2 my-sm-2">
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/1.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pendaftaran & Submit Administrasi</h5>
+                                    <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tm_adm->translatedFormat('d F Y - ') . $getPeriodeAktif->ta_adm->translatedFormat('d F Y') : '-' }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-lg-2 mb-lg-5 mx-lg-5 mx-sm-2 my-sm-2 d-flex justify-content-center">
-                            <div class="col-sm-3 mt-3">
-                                <div class="card mycard1 text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/7.png') }}"
-                                        alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Submit Penugasan</h5>
-                                        <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tm_png->translatedFormat('d F Y - ') . $getPeriodeAktif->ta_png->translatedFormat('d F Y') : '-' }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 mt-3">
-                                <div class="card mycard1 text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/8.png') }}"
-                                        alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Pengumuman Akhir</h5>
-                                        <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tp_png->translatedFormat('d F Y') : '-' }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 mt-3">
-                                <div class="card mycard1 text-center mb-md-0 mb-5">
-                                    <img class="card-img-top" src="{{ asset('assets/images/6.png') }}"
-                                        alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Pemberian Beasiswa</h5>
-                                        <p>{{ $getPeriodeAktif == null ? '-' : 'Maret - Agustus 2022' }}</p>
-                                    </div>
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/3.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pengumuman Hasil Seleksi Administrasi</h5>
+                                    <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tp_adm->translatedFormat('d F Y') : '-' }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/4.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Seleksi Wawancara</h5>
+                                    <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tm_wwn->translatedFormat('d F Y - ') . $getPeriodeAktif->ta_wwn->translatedFormat('d F Y') : '-' }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/5.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pengumuman Hasil Seleksi Wawancara</h5>
+                                    <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tp_wwn->translatedFormat('d F Y') : '-' }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-lg-2 mb-lg-5 mx-lg-5 mx-sm-2 my-sm-2 d-flex justify-content-center">
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/7.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Submit Penugasan</h5>
+                                    <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tm_png->translatedFormat('d F Y - ') . $getPeriodeAktif->ta_png->translatedFormat('d F Y') : '-' }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/9.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pengumuman Akhir</h5>
+                                    <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tp_png->translatedFormat('d F Y') : '-' }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 mt-3">
+                            <div class="card mycard1 text-center mb-md-0 mb-5">
+                                <img class="card-img-top" src="{{ asset('assets/images/6.png') }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pemberian Beasiswa</h5>
+                                    <p>{{ $getPeriodeAktif == null ? '-' : 'Maret - Agustus 2022' }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @endif
                 </center>
             </div>
@@ -263,14 +253,14 @@
                                 <h5>Q : Dimana saya akan mengetahui pengumuman kelulusan di setiap seleksi ?</h5>
                                 <p>A : Pengumuman akan diberitahuan melalui website ini, dan pastikan anda sudah
                                     login
-                                    terlebih dahulu untuk melihat status kelulusan anda</p>
+                                    terlebih dahulu untuk melihat status kelulusan anda.</p>
                             </div>
                         </div>
 
                         <div class="col-lg-6">
                             <div class="card mycard text-left bea">
                                 <h5>Q : Apakah pendaftaran beasiswa ini berbayar ?</h5>
-                                <p>A :Tidak, beasiswa ini tidak dipungut biaya apapun (gratis).</p>
+                                <p>A : Tidak, beasiswa ini tidak dipungut biaya apapun (gratis).</p>
 
                                 <h5>Q : Apakah ada ketentuan dalam penulisan esai untuk syarat beasiswa ini ?</h5>
                                 <p>A : Tidak ada ketentuan khusus, yang penting formatnya rapi dan terbaca jelas,
@@ -281,7 +271,7 @@
                                 </h5>
                                 <p>A : Anda bisa menghubungi kontak person di bawah ini dan juga mengunjungi
                                     media sosial sariraya yaitu instagram
-                                    untuk mendapatkan info terupdate beasiswa ini</p>
+                                    untuk mendapatkan info terupdate mengenai Beasiswa Sariraya ini.</p>
                             </div>
                         </div>
                     </div>
