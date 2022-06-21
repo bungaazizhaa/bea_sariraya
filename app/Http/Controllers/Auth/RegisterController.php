@@ -50,7 +50,7 @@ class RegisterController extends Controller
     {
         $getAllProdi = Prodi::all();
         $getAllUniv = Univ::all();
-        return view('Auth.register', compact('getAllProdi', 'getAllUniv'));
+        return view('auth.register', compact('getAllProdi', 'getAllUniv'));
     }
 
     /**
