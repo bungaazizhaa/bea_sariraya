@@ -76,16 +76,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function scopeFilter($query, array $filters)
     {
-
-        // $query->when($filters['search'] ?? false, function ($query, $search) {
-        //     return $query->where(function ($query) use ($search) {
-        //         $query->where('name', 'like', '%' . $search . '%')
-        //             ->orWhere('role', 'like', '%' . $search . '%')
-        //             ->orWhere('email', 'like', '%' . $search . '%')
-        //             ->orWhere('created_at', 'like', '%' . $search . '%');
-        //     });
-        // });
-
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return $query->where(function ($query) use ($search) {
                 $query->where('name', 'LIKE', '%' . $search . '%')
@@ -99,10 +89,5 @@ class User extends Authenticatable implements MustVerifyEmail
                     });
             });
         });
-    }
-
-    public function scopeFilters($query, $search)
-    {
-        $query->where('nama_universitas', 'like', '%' . $search . '%');
     }
 }

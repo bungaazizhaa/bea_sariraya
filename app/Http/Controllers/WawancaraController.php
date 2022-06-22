@@ -27,40 +27,6 @@ class WawancaraController extends Controller
         return view('view-mahasiswa.wawancara.w-index', compact('tanggal_wawancara', 'getAdministrasiUser', 'getPeriodeAktif'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-
-
     public function nilaiWwn($name)
     {
         $getAllPeriode = Periode::all();
@@ -71,8 +37,6 @@ class WawancaraController extends Controller
         $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->filter(request(['search']))->orderBy('jadwal_wwn', 'asc')->paginate(1)->withQueryString();
         return view('view-admin.wawancara.nilai-wawancara', compact('getTanggalSekarang', 'periodeOpenned', 'wawancaraOpenned', 'getAllPeriode'));
     }
-
-
 
     public function updatenilaiWwn(Request $request, $id)
     {
@@ -106,39 +70,5 @@ class WawancaraController extends Controller
         }
 
         return redirect()->back();
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

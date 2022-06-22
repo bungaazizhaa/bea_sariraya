@@ -75,7 +75,7 @@
                                         <div class="text-center" style="max-height:400px">
                                             <img src="{{ asset('assets/images/panduan/melengkapi-periode.png') }}"
                                                 class="img-fluid border border-secondary"
-                                                alt="Membuat Periode Beasiswa Baru" style="max-height: 400px">
+                                                alt="Screenshot Melengkapi Periode" style="max-height: 400px">
                                         </div>
                                     </div>
                                 </div>
@@ -105,7 +105,7 @@
                                         <div class="text-center" style="max-height:400px">
                                             <img src="{{ asset('assets/images/panduan/mengaktifkan-periode.png') }}"
                                                 class="img-fluid border border-secondary"
-                                                alt="Membuat Periode Beasiswa Baru" style="max-height: 400px">
+                                                alt="Screenshot Mengaktifkan Periode" style="max-height: 400px">
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +161,7 @@
                                         <div class="text-center" style="max-height:400px">
                                             <img src="{{ asset('assets/images/panduan/list-administrasi.png') }}"
                                                 class="img-fluid border border-secondary"
-                                                alt="Membuat Periode Beasiswa Baru" style="max-height: 400px">
+                                                alt="Screenshot List Pendaftar / Peserta" style="max-height: 400px">
                                         </div>
                                     </div>
                                 </div>
@@ -175,7 +175,18 @@
                                 </div>
                                 <div id="collapseB3" class="collapse hide" data-parent="#accordion2">
                                     <div class="card-body">
-                                        ...
+                                        - Setelah Sesi Administrasi di Tutup, Tombol penilaian Administrasi akan muncul.<br>
+                                        - Admin menekan tombol tersebut untuk menuju halaman Penilaian.<br>
+                                        - Admin melakukan penilaian peserta dan menyimpannya satu persatu.<br>
+                                        - Admin dapat menambahkan catatan tentang apapun kedalam kolom catatan disetiap
+                                        peserta untuk keperluan Admin.<br>
+                                        - Peserta tidak dapat melihat catatan tersebut.<br>
+                                        <br>
+                                        <div class="text-center" style="max-height:400px">
+                                            <img src="{{ asset('assets/images/panduan/nilaiadm.png') }}"
+                                                class="img-fluid border border-secondary"
+                                                alt="Screenshot Tombol Penilaian Administrasi" style="max-height: 400px">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -189,47 +200,44 @@
                                 </div>
                                 <div id="collapseB4" class="collapse hide" data-parent="#accordion2">
                                     <div class="card-body">
-                                        ...
+                                        - Tombol untuk mengumumkan Administrasi akan muncul ketika Tanggal hari ini =
+                                        Tanggal Pengumuman Administrasi. <br>
+                                        - Tekan tombol untuk melihat daftar peserta yang lolos dan yang tidak lolos.<br>
+                                        - Sebelum menekan Tombol "Selesai & Kirim", pastikan data peserta dan jadwal
+                                        wawancara sudah benar, serta Teknis Wawancara telah diisi dengan benar.<br>
+                                        <br>
+                                        <div class="text-center" style="max-height:400px">
+                                            <img src="{{ asset('assets/images/panduan/umumkanadm.png') }}"
+                                                class="img-fluid border border-secondary"
+                                                alt="Screenshot Tombol Umumkan Administrasi" style="max-height: 400px">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="card rounded-md myshadow">
                                 <div class="card-header rounded-bottom-md p-0">
                                     <a class="h6 d-block w-100 p-3 text-white mb-0" data-toggle="collapse"
                                         href="#collapseB5">
                                         <span class="text-success">Tahap Wawancara</span> - Peserta dan Admin Melakukan
-                                        Kegiatan Wawancara
+                                        Kegiatan Wawancara Sekaligus Menilai
                                     </a>
                                 </div>
                                 <div id="collapseB5" class="collapse hide" data-parent="#accordion2">
                                     <div class="card-body">
-                                        ...
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card rounded-md myshadow">
-                                <div class="card-header rounded-bottom-md p-0">
-                                    <a class="h6 d-block w-100 p-3 text-white mb-0" data-toggle="collapse"
-                                        href="#collapseB6">
-                                        <span class="text-success">Tahap Wawancara</span> - Admin Menilai Wawancara
-                                    </a>
-                                </div>
-                                <div id="collapseB6" class="collapse hide" data-parent="#accordion2">
-                                    <div class="card-body">
-                                        ...
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card rounded-md myshadow">
-                                <div class="card-header rounded-bottom-md p-0">
-                                    <a class="h6 d-block w-100 p-3 text-white mb-0" data-toggle="collapse"
-                                        href="#collapseB6">
-                                        <span class="text-success">Tahap Wawancara</span> - Admin Mengumumkan Wawancara
-                                    </a>
-                                </div>
-                                <div id="collapseB6" class="collapse hide" data-parent="#accordion2">
-                                    <div class="card-body">
-                                        ...
+                                        - Wawancara dilakukan pada saat sesi Wawancara telah dimulai.<br>
+                                        - Ketika peserta login, peserta akan melihat jadwal wawancara dan teknis pelaksanaan
+                                        yang sudah diberikan.<br>
+                                        - Saat wawancara berlangsung, pada saat itu juga Admin mengakses halaman Penilaian
+                                        Wawancara untuk menilai peserta yang sedang diwawancarai.<br>
+                                        - Admin dapat memberikan catatan pada setiap peserta.<br>
+                                        - Catatan Wawancara tidak dapat dilihat oleh peserta.<br>
+                                        <br>
+                                        <div class="text-center" style="max-height:400px">
+                                            <img src="{{ asset('assets/images/panduan/nilaiwwn.png') }}"
+                                                class="img-fluid border border-secondary"
+                                                alt="Screenshot Tombol Penilaian Wawancara" style="max-height: 400px">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -237,13 +245,22 @@
                                 <div class="card-header rounded-bottom-md p-0">
                                     <a class="h6 d-block w-100 p-3 text-white mb-0" data-toggle="collapse"
                                         href="#collapseB7">
-                                        <span class="text-primary">Tahap Penugasan</span> - Peserta Mengisi Formulir
-                                        Penugasan
+                                        <span class="text-success">Tahap Wawancara</span> - Admin Mengumumkan Wawancara
                                     </a>
                                 </div>
                                 <div id="collapseB7" class="collapse hide" data-parent="#accordion2">
                                     <div class="card-body">
-                                        ...
+                                        - Tombol untuk mengumumkan Wawancara akan muncul ketika Tanggal hari ini =
+                                        Tanggal Pengumuman Wawancara. <br>
+                                        - Tekan tombol untuk melihat daftar peserta yang lolos dan yang tidak lolos.<br>
+                                        - Sebelum menekan Tombol "Selesai & Kirim", pastikan data peserta dan soal sudah
+                                        benar.<br>
+                                        <br>
+                                        <div class="text-center" style="max-height:400px">
+                                            <img src="{{ asset('assets/images/panduan/umumkanwwn.png') }}"
+                                                class="img-fluid border border-secondary"
+                                                alt="Screenshot Tombol Umumkan Wawancara" style="max-height: 400px">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -251,12 +268,16 @@
                                 <div class="card-header rounded-bottom-md p-0">
                                     <a class="h6 d-block w-100 p-3 text-white mb-0" data-toggle="collapse"
                                         href="#collapseB8">
-                                        <span class="text-primary">Tahap Penugasan</span> - Admin Menilai Penugasan
+                                        <span class="text-primary">Tahap Penugasan</span> - Peserta Mengisi Formulir
+                                        Penugasan
                                     </a>
                                 </div>
                                 <div id="collapseB8" class="collapse hide" data-parent="#accordion2">
                                     <div class="card-body">
-                                        ...
+                                        - Peserta dapat mengisi / mengupload tugas ketika Tahap Penugasan dimulai.<br>
+                                        - Selama tahap Penugasan berlangsung, Admin hanya menunggu hingga tahap
+                                        Penugasan Ditutup.<br>
+                                        <br>
                                     </div>
                                 </div>
                             </div>
@@ -264,13 +285,47 @@
                                 <div class="card-header rounded-bottom-md p-0">
                                     <a class="h6 d-block w-100 p-3 text-white mb-0" data-toggle="collapse"
                                         href="#collapseB9">
-                                        <span class="text-primary">Tahap Penugasan</span> - Admin Mengumumkan Penugasan
-                                        (Final)
+                                        <span class="text-primary">Tahap Penugasan</span> - Admin Menilai Penugasan
                                     </a>
                                 </div>
                                 <div id="collapseB9" class="collapse hide" data-parent="#accordion2">
                                     <div class="card-body">
-                                        ...
+                                        - Setelah Sesi Penugasan di Tutup, Tombol penilaian Penugasan akan muncul.<br>
+                                        - Admin menekan tombol tersebut untuk menuju halaman Penilaian.<br>
+                                        - Admin melakukan penilaian peserta dan menyimpannya satu persatu.<br>
+                                        - Admin dapat menambahkan catatan tentang apapun ke dalam kolom catatan disetiap
+                                        peserta untuk keperluan Admin.<br>
+                                        - Peserta tidak dapat melihat catatan tersebut.<br>
+                                        <br>
+                                        <div class="text-center" style="max-height:400px">
+                                            <img src="{{ asset('assets/images/panduan/nilaipng.png') }}"
+                                                class="img-fluid border border-secondary"
+                                                alt="Screenshot Tombol Menilai Penugasan" style="max-height: 400px">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card rounded-md myshadow">
+                                <div class="card-header rounded-bottom-md p-0">
+                                    <a class="h6 d-block w-100 p-3 text-white mb-0" data-toggle="collapse"
+                                        href="#collapseB10">
+                                        <span class="text-primary">Tahap Penugasan</span> - Admin Mengumumkan Penugasan
+                                        (Final)
+                                    </a>
+                                </div>
+                                <div id="collapseB10" class="collapse hide" data-parent="#accordion2">
+                                    <div class="card-body">
+                                        - Tombol untuk mengumumkan Penugasan akan muncul ketika Tanggal hari ini =
+                                        Tanggal Pengumuman Penugasan. <br>
+                                        - Tekan tombol untuk melihat daftar peserta yang lolos dan yang tidak lolos.<br>
+                                        - Sebelum menekan Tombol "Selesai & Kirim", pastikan data peserta dan Link Group
+                                        Whatsapp sudah terisi.<br>
+                                        <br>
+                                        <div class="text-center" style="max-height:400px">
+                                            <img src="{{ asset('assets/images/panduan/umumkanpng.png') }}"
+                                                class="img-fluid border border-secondary"
+                                                alt="Screenshot Tombol Umumkan Penugasan" style="max-height: 400px">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

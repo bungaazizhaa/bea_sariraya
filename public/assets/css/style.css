@@ -50,18 +50,7 @@ body {
     padding-top: 50px;
 }
 
-.mycard1 {
-    border-radius: 30px;
-    border: none;
-    box-shadow: 1px 29px 52px -42px rgba(0, 0, 0, 0.52);
-    -webkit-box-shadow: 1px 29px 52px -42px rgba(0, 0, 0, 0.52);
-    -moz-box-shadow: 1px 29px 52px -42px rgba(0, 0, 0, 0.52);
-    transition: transform 0.3s;
-    border: 1px solid #f0f0f0;
-    height: 260px;
-}
-
-.mycard1:hover {
+.whitecard:hover {
     transform: translate(5px);
     box-shadow: 1px 29px 75px -32px rgba(0, 0, 0, 0.46);
     -webkit-box-shadow: 1px 29px 75px -32px rgba(0, 0, 0, 0.46);
@@ -84,13 +73,24 @@ body {
     -moz-box-shadow: 1px 29px 75px -32px rgba(0, 0, 0, 0.46);
 }
 
-.mycard1 img {
+.whitecard {
+    border-radius: 30px;
+    border: none;
+    width: 100%;
+    box-shadow: 1px 29px 52px -42px rgba(0, 0, 0, 0.52);
+    -webkit-box-shadow: 1px 29px 52px -42px rgba(0, 0, 0, 0.52);
+    -moz-box-shadow: 1px 29px 52px -42px rgba(0, 0, 0, 0.52);
+    transition: transform 0.3s;
+    border: 1px solid #f0f0f0;
+}
+
+.whitecard img {
     width: 100px;
     margin: 0 auto;
     padding-top: 20px;
 }
 
-.mycard1 h5 {
+.whitecard h5 {
     font-size: 100%;
     font-weight: bold;
 }
@@ -98,6 +98,7 @@ body {
 .mycard h5 {
     font-size: 100%;
     font-weight: bold;
+    line-height: 2rem;
 }
 /* Apa itu Bea Sariraya*/
 .sariraya {
@@ -117,11 +118,11 @@ body {
 
 .bea {
     background-color: #fdfdfd;
-    padding: 30px;
     /* width: 500px; */
     text-align: center;
     border: 1px solid #f0f0f0;
     line-height: 2rem;
+    min-height: max-content;
 }
 
 /* Tentang Sariraya */
