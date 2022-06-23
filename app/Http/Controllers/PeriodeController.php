@@ -74,16 +74,6 @@ class PeriodeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -143,10 +133,6 @@ class PeriodeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -154,55 +140,6 @@ class PeriodeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
-
-    public function umumkanAdm($name)
-    {
-        $periodeSelected = Periode::where('name', '=', $name)->first();
-        if ($periodeSelected->teknis_wwn == null) {
-            Alert::error('Gagal! Mohon isi Teknis Wawancara ' . ucfirst($periodeSelected->name) . ' terlebih Dahulu! ', 'Terimakasih.');
-            return back();
-        }
-
-        $periodeSelected->status_adm = 'Selesai';
-        $periodeSelected->ts_adm = now();
-        $periodeSelected->save();
-
-        Alert::success('Tahap Administrasi ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Selanjutnya adalah Tahap Wawancara.');
-        return redirect(route('periode', $name));
-        // 
-    }
-
-    public function umumkanWwn($name)
-    {
-        $periodeSelected = Periode::where('name', '=', $name)->first();
-        $periodeSelected->status_wwn = 'Selesai';
-        $periodeSelected->ts_wwn = now();
-        $periodeSelected->save();
-
-        Alert::success('Tahap Wawancara ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Selanjutnya adalah Tahap Penugasan.');
-        return redirect(route('periode', $name));
-        // 
-    }
-
-    public function umumkanPng($name)
-    {
-        $periodeSelected = Periode::where('name', '=', $name)->first();
-        if ($periodeSelected->group_wa == null) {
-            Alert::error('Gagal! Mohon isi link Group WhatsApp ' . ucfirst($periodeSelected->name) . ' terlebih Dahulu! ', 'Terimakasih.');
-            return back();
-        }
-        $periodeSelected->status_png = 'Selesai';
-        $periodeSelected->ts_png = now();
-        $periodeSelected->save();
-
-        Alert::success('Tahap Penugasan ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Selanjutnya adalah menunggu Mahasiswa bergabung ke Group WhatsApp.');
-        return redirect(route('periode', $name));
-        // 
-    }
 
     public function groupwaUpdate(Request $request, $name)
     {

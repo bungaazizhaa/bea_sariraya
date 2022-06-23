@@ -62,9 +62,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/{name}/detail-periode', [PeriodeController::class, 'indexPeriodeById'])->name('periode'); //detail-periode
     Route::post('/{name}/destroy-periode', [PeriodeController::class, 'destroy'])->name('destroy.periode'); //menghapus-periode
     Route::post('/{name}/update-periode', [PeriodeController::class, 'update'])->name('update.periode');
-    // Route::post('/{name}/administrasi/umumkan', [PeriodeController::class, 'umumkanAdm'])->name('umumkan.adm'); //Set status_adm Selesai di Periode
-    // Route::post('/{name}/wawancara/umumkan', [PeriodeController::class, 'umumkanWwn'])->name('umumkan.wwn'); //Set status_adm Selesai di Periode
-    // Route::post('/{name}/penugasan/umumkan', [PeriodeController::class, 'umumkanPng'])->name('umumkan.png'); //Set status_adm Selesai di Periode
     //todo: Send Email Pengumuman
     Route::post('/{name}/administrasi/umumkanemail', [EmailController::class, 'sendEmailAdministrasi'])->name('umumkanemail.adm'); //Set status_adm Selesai di Periode
     Route::post('/{name}/wawancara/umumkanemail', [EmailController::class, 'sendEmailWawancara'])->name('umumkanemail.wwn'); //Set status_wwn Selesai di Periode
