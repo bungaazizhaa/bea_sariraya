@@ -277,7 +277,7 @@
                                                                     style="padding-bottom:10px;padding-left:5px;padding-right:5px;padding-top:5px;text-align:center;">
                                                                     <div align="center">
                                                                         <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://127.0.0.1:8000/tahap-administrasi" style="height:44px;width:182px;v-text-anchor:middle;" arcsize="14%" strokeweight="0.75pt" strokecolor="#3AAD2A" fillcolor="#3aad2a"><w:anchorlock/><v:textbox inset="0px,0px,0px,0px"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:16px"><![endif]--><a
-                                                                            href="http://127.0.0.1:8000/tahap-administrasi"
+                                                                            href="{{ url('tahap-wawancara') }}"
                                                                             target="_blank"
                                                                             style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#ad2a2a;border-radius:6px;width:auto;border-top:1px solid #ad2a2a;font-weight:400;border-right:1px solid #ad2a2a;border-bottom:1px solid #ad2a2a;border-left:1px solid #ad2a2a;padding-top:5px;padding-bottom:5px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;"><span
                                                                                 style="padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;letter-spacing:normal;"><span
