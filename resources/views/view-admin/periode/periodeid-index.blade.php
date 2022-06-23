@@ -187,8 +187,9 @@
                                 <p class="h5 pl-md-2 pt-1">Grup WhatsApp :</p>
                             </div>
                             <div class="col-md-8">
-                                <input autocomplete="off" type="text" id="group_wa" name="group_wa" spellcheck="false"
-                                    class="form-control my-2 my-md-0" placeholder="Pastikan dimulai dari 'https://...'"
+                                <input autocomplete="off" type="text" id="group_wa" name="group_wa"
+                                    spellcheck="false" class="form-control my-2 my-md-0"
+                                    placeholder="Pastikan dimulai dari 'https://...'"
                                     value="{{ $periodeOpenned->group_wa }}">
                                 <small>Isi berupa Link atau tautan dari Grup WhatsApp yang nantinya akan ditampilkan pada
                                     halaman
@@ -322,10 +323,12 @@
                                             <td>{{ $userAdm->no_pendaftaran }}</td>
                                             <td>{{ $userAdm->email }}</td>
                                             <td>
-                                                <form target="_blank" id="editFormNilaiAdm{{ $userAdm->no_pendaftaran }}"
+                                                <form target="_blank"
+                                                    id="editFormNilaiAdm{{ $userAdm->no_pendaftaran }}"
                                                     action="{{ route('nilai.adm', $periodeOpenned->name) }}">
                                                     <input type="text" hidden aria-label="Recipient's username"
-                                                        name="search" value="{{ $userAdm->no_pendaftaran }}" autofocus>
+                                                        name="search" value="{{ $userAdm->no_pendaftaran }}"
+                                                        autofocus>
                                                     <div style="cursor: pointer;"
                                                         onclick="document.getElementById('editFormNilaiAdm{{ $userAdm->no_pendaftaran }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
@@ -337,10 +340,12 @@
                                                 </form>
                                                 {{-- <td>{{ $userAdm->updated_at->translatedFormat('d F Y H:i') }}</td> --}}
                                             <td>
-                                                <form target="_blank" id="editFormNilaiWwn{{ $userAdm->no_pendaftaran }}"
+                                                <form target="_blank"
+                                                    id="editFormNilaiWwn{{ $userAdm->no_pendaftaran }}"
                                                     action="{{ route('nilai.wwn', $periodeOpenned->name) }}">
                                                     <input type="text" hidden aria-label="Recipient's username"
-                                                        name="search" value="{{ $userAdm->no_pendaftaran }}" autofocus>
+                                                        name="search" value="{{ $userAdm->no_pendaftaran }}"
+                                                        autofocus>
                                                     <div style="cursor: pointer;"
                                                         onclick="document.getElementById('editFormNilaiWwn{{ $userAdm->no_pendaftaran }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
@@ -352,10 +357,12 @@
                                                 </form>
                                             </td>
                                             <td>
-                                                <form target="_blank" id="editFormNilaiPng{{ $userAdm->no_pendaftaran }}"
+                                                <form target="_blank"
+                                                    id="editFormNilaiPng{{ $userAdm->no_pendaftaran }}"
                                                     action="{{ route('nilai.png', $periodeOpenned->name) }}">
                                                     <input type="text" hidden aria-label="Recipient's username"
-                                                        name="search" value="{{ $userAdm->no_pendaftaran }}" autofocus>
+                                                        name="search" value="{{ $userAdm->no_pendaftaran }}"
+                                                        autofocus>
                                                     <div style="cursor: pointer;"
                                                         onclick="document.getElementById('editFormNilaiPng{{ $userAdm->no_pendaftaran }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
@@ -392,7 +399,8 @@
             aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <form id="periodeForm" method="POST" action="{{ route('update.periode', $periodeOpenned->name) }}">
+                    <form id="periodeForm" method="POST"
+                        action="{{ route('update.periode', $periodeOpenned->name) }}">
                         @csrf
                         <div class="modal-header h4 text-center">
                             <p class="mb-0 w-100">Form Edit Periode</p>
@@ -421,8 +429,8 @@
                                             <label for="name" class="col col-form-label text-md-right">Nama Periode
                                                 :</label>
                                             <div class="col-12 col-md-10">
-                                                <input autocomplete="off" spellcheck="false" id="name" name="name"
-                                                    value="{{ old('name', $periodeOpenned->name) }}"
+                                                <input autocomplete="off" spellcheck="false" id="name"
+                                                    name="name" value="{{ old('name', $periodeOpenned->name) }}"
                                                     class="form-control">
                                                 @error('name')
                                                     <span class="small text-danger" role="alert">
@@ -469,8 +477,8 @@
                                         <hr style="border-color:#ffffff88">
                                         <p class="mb-1">Tanggal Mulai :</p>
                                         <input autocomplete="off" spellcheck="false" id="tm_adm" type="tm_adm"
-                                            class="datepicker"
-                                            class="form-control @error('tm_adm') is-invalid @enderror" name="tm_adm"
+                                            class="datepicker" class="form-control @error('tm_adm') is-invalid @enderror"
+                                            name="tm_adm"
                                             value="{{ old('tm_adm', $periodeOpenned->tm_adm->format('d F Y')) }}"
                                             required autofocus>
 
@@ -481,8 +489,8 @@
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Akhir :</p>
                                         <input autocomplete="off" spellcheck="false" id="ta_adm" type="ta_adm"
-                                            class="datepicker"
-                                            class="form-control @error('ta_adm') is-invalid @enderror" name="ta_adm"
+                                            class="datepicker" class="form-control @error('ta_adm') is-invalid @enderror"
+                                            name="ta_adm"
                                             value="{{ old('ta_adm', $periodeOpenned->ta_adm->format('d F Y')) }}"
                                             required autofocus>
 
@@ -493,8 +501,8 @@
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
                                         <input autocomplete="off" spellcheck="false" id="tp_adm" type="tp_adm"
-                                            class="datepicker"
-                                            class="form-control @error('tp_adm') is-invalid @enderror" name="tp_adm"
+                                            class="datepicker" class="form-control @error('tp_adm') is-invalid @enderror"
+                                            name="tp_adm"
                                             value="{{ old('tp_adm', $periodeOpenned->tp_adm->format('d F Y')) }}"
                                             required autofocus>
 
@@ -535,8 +543,8 @@
                                         <hr style="border-color:#ffffff88">
                                         <p class="mb-1">Tanggal Mulai :</p>
                                         <input autocomplete="off" spellcheck="false" id="tm_wwn" type="tm_wwn"
-                                            class="datepicker"
-                                            class="form-control @error('tm_wwn') is-invalid @enderror" name="tm_wwn"
+                                            class="datepicker" class="form-control @error('tm_wwn') is-invalid @enderror"
+                                            name="tm_wwn"
                                             value="{{ old('tm_wwn', $periodeOpenned->tm_wwn->format('d F Y')) }}"
                                             required autofocus>
 
@@ -547,8 +555,8 @@
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Akhir :</p>
                                         <input autocomplete="off" spellcheck="false" id="ta_wwn" type="ta_wwn"
-                                            class="datepicker"
-                                            class="form-control @error('ta_wwn') is-invalid @enderror" name="ta_wwn"
+                                            class="datepicker" class="form-control @error('ta_wwn') is-invalid @enderror"
+                                            name="ta_wwn"
                                             value="{{ old('ta_wwn', $periodeOpenned->ta_wwn->format('d F Y')) }}"
                                             required autofocus>
 
@@ -559,8 +567,8 @@
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
                                         <input autocomplete="off" spellcheck="false" id="tp_wwn" type="tp_wwn"
-                                            class="datepicker"
-                                            class="form-control @error('tp_wwn') is-invalid @enderror" name="tp_wwn"
+                                            class="datepicker" class="form-control @error('tp_wwn') is-invalid @enderror"
+                                            name="tp_wwn"
                                             value="{{ old('tp_wwn', $periodeOpenned->tp_wwn->format('d F Y')) }}"
                                             required autofocus>
 
@@ -601,8 +609,8 @@
                                         <hr style="border-color:#ffffff88">
                                         <p class="mb-1">Tanggal Mulai :</p>
                                         <input autocomplete="off" spellcheck="false" id="tm_png" type="tm_png"
-                                            class="datepicker"
-                                            class="form-control @error('tm_png') is-invalid @enderror" name="tm_png"
+                                            class="datepicker" class="form-control @error('tm_png') is-invalid @enderror"
+                                            name="tm_png"
                                             value="{{ old('tm_png', $periodeOpenned->tm_png->format('d F Y')) }}"
                                             required autofocus>
 
@@ -613,8 +621,8 @@
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Akhir :</p>
                                         <input autocomplete="off" spellcheck="false" id="ta_png" type="ta_png"
-                                            class="datepicker"
-                                            class="form-control @error('ta_png') is-invalid @enderror" name="ta_png"
+                                            class="datepicker" class="form-control @error('ta_png') is-invalid @enderror"
+                                            name="ta_png"
                                             value="{{ old('ta_png', $periodeOpenned->ta_png->format('d F Y')) }}"
                                             required autofocus>
 
@@ -625,8 +633,8 @@
                                         @enderror
                                         <p class="mb-1 mt-2">Tanggal Pengumuman :</p>
                                         <input autocomplete="off" spellcheck="false" id="tp_png" type="tp_png"
-                                            class="datepicker"
-                                            class="form-control @error('tp_png') is-invalid @enderror" name="tp_png"
+                                            class="datepicker" class="form-control @error('tp_png') is-invalid @enderror"
+                                            name="tp_png"
                                             value="{{ old('tp_png', $periodeOpenned->tp_png->format('d F Y')) }}"
                                             required autofocus>
 
@@ -673,7 +681,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form id="pengumumanAdmForm" method="POST"
-                        action="{{ route('umumkan.adm', $periodeOpenned->name) }}">
+                        action="{{ route('umumkanemail.adm', $periodeOpenned->name) }}">
                         @csrf
                         <div class="modal-header h4 text-center">
                             <div class="modal-title w-100">Umumkan Tahap Administrasi</div>
@@ -777,7 +785,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form id="pengumumanWwnForm" method="POST"
-                        action="{{ route('umumkan.wwn', $periodeOpenned->name) }}">
+                        action="{{ route('umumkanemail.wwn', $periodeOpenned->name) }}">
                         @csrf
                         <div class="modal-body pb-0">
                             <div class="row">
@@ -882,7 +890,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form id="pengumumanPngForm" method="POST"
-                        action="{{ route('umumkan.png', $periodeOpenned->name) }}">
+                        action="{{ route('umumkanemail.png', $periodeOpenned->name) }}">
                         @csrf
                         <div class="modal-body pb-0">
                             <div class="row">

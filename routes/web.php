@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\WawancaraController;
 use App\Http\Controllers\AdministrasiController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\PeriodeController;
 use App\Models\User;
 use Illuminate\Support\Facades\Schema;
@@ -41,9 +42,9 @@ Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa', 'verified
     // Route::get('/my-administrasi', [AdministrasiController::class, 'detailAdm'])->name('detail.adm');
 });
 
-Route::get('/tahap-administrasi', [AdministrasiController::class, 'index'])->name('tahap.administrasi')->middleware('periode.timerestricted', 'administrasi.timerestricted', 'auth', 'verified');
-Route::get('/tahap-wawancara', [WawancaraController::class, 'index'])->name('tahap.wawancara')->middleware('periode.timerestricted', 'wawancara.timerestricted', 'auth', 'verified');
-Route::get('/tahap-penugasan', [PenugasanController::class, 'index'])->name('tahap.penugasan')->middleware('periode.timerestricted', 'penugasan.timerestricted', 'auth', 'verified');
+Route::get('/tahap-administrasi', [AdministrasiController::class, 'index'])->name('tahap.administrasi')->middleware('auth', 'verified', 'role:mahasiswa', 'periode.timerestricted', 'administrasi.timerestricted');
+Route::get('/tahap-wawancara', [WawancaraController::class, 'index'])->name('tahap.wawancara')->middleware('auth', 'verified', 'role:mahasiswa', 'periode.timerestricted', 'wawancara.timerestricted');
+Route::get('/tahap-penugasan', [PenugasanController::class, 'index'])->name('tahap.penugasan')->middleware('auth', 'verified', 'role:mahasiswa', 'periode.timerestricted', 'penugasan.timerestricted');
 
 //TODO: ================= ROUTE HOME ADMIN =================
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -61,9 +62,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/{name}/detail-periode', [PeriodeController::class, 'indexPeriodeById'])->name('periode'); //detail-periode
     Route::post('/{name}/destroy-periode', [PeriodeController::class, 'destroy'])->name('destroy.periode'); //menghapus-periode
     Route::post('/{name}/update-periode', [PeriodeController::class, 'update'])->name('update.periode');
-    Route::post('/{name}/administrasi/umumkan', [PeriodeController::class, 'umumkanAdm'])->name('umumkan.adm'); //Set status_adm Selesai di Periode
-    Route::post('/{name}/wawancara/umumkan', [PeriodeController::class, 'umumkanWwn'])->name('umumkan.wwn'); //Set status_adm Selesai di Periode
-    Route::post('/{name}/penugasan/umumkan', [PeriodeController::class, 'umumkanPng'])->name('umumkan.png'); //Set status_adm Selesai di Periode
+    // Route::post('/{name}/administrasi/umumkan', [PeriodeController::class, 'umumkanAdm'])->name('umumkan.adm'); //Set status_adm Selesai di Periode
+    // Route::post('/{name}/wawancara/umumkan', [PeriodeController::class, 'umumkanWwn'])->name('umumkan.wwn'); //Set status_adm Selesai di Periode
+    // Route::post('/{name}/penugasan/umumkan', [PeriodeController::class, 'umumkanPng'])->name('umumkan.png'); //Set status_adm Selesai di Periode
+    //todo: Send Email Pengumuman
+    Route::post('/{name}/administrasi/umumkanemail', [EmailController::class, 'sendEmailAdministrasi'])->name('umumkanemail.adm'); //Set status_adm Selesai di Periode
+    Route::post('/{name}/wawancara/umumkanemail', [EmailController::class, 'sendEmailWawancara'])->name('umumkanemail.wwn'); //Set status_wwn Selesai di Periode
+    Route::post('/{name}/penugasan/umumkanemail', [EmailController::class, 'sendEmailPenugasan'])->name('umumkanemail.png'); //Set status_png Selesai di Periode
     //Administrasi
     Route::get('/{name}/nilai-administrasi', [AdministrasiController::class, 'nilaiAdm'])->name('nilai.adm'); //halaman nilai adm
     Route::post('/update-nilai-administrasi/{id}', [AdministrasiController::class, 'updatenilaiAdm'])->name('updatenilai.adm'); //menyimpan penilaian adm
