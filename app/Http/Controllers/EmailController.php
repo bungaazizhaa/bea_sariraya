@@ -40,21 +40,16 @@ class EmailController extends Controller
                 ->leftJoin('univs', 'univs.id', '=', 'users.univ_id')
                 ->leftJoin('prodis', 'prodis.id', '=', 'users.prodi_id')
                 ->orderBy('jadwal_wwn', 'asc')->get();
-            $count = 0;
-            $minutes = 0;
+
             foreach ($getAdministrasiUser as $userAdm) {
                 $mail_data = [
                     'name' => $name,
                     'data' => $userAdm,
                     'periode' => $periodeOpenned
                 ];
-                if ($count % 25 === 0) {
-                    $minutes = $minutes + 2;
-                }
                 $delay = DB::table('jobs')->count() * 10;
                 $job = (new SendAdmJob($mail_data))
-                    ->delay(Carbon::now()->addMinutes($minutes)->addSeconds($delay));
-                $count++;
+                    ->delay(Carbon::now()->addSeconds($delay));
                 dispatch($job);
             }
             Alert::success('Tahap Administrasi ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Email sedang dikirim. Selanjutnya adalah Tahap Wawancara.');
@@ -84,21 +79,16 @@ class EmailController extends Controller
                 ->leftJoin('univs', 'univs.id', '=', 'users.univ_id')
                 ->leftJoin('prodis', 'prodis.id', '=', 'users.prodi_id')
                 ->orderBy('jadwal_wwn', 'asc')->get();
-            $count = 0;
-            $minutes = 0;
+
             foreach ($getWawancaraUser as $userWwn) {
                 $mail_data = [
                     'name' => $name,
                     'data' => $userWwn,
                     'periode' => $periodeOpenned
                 ];
-                if ($count % 10 === 0) {
-                    $minutes = $minutes + 2;
-                }
                 $delay = DB::table('jobs')->count() * 10;
                 $job = (new SendWwnJob($mail_data))
-                    ->delay(Carbon::now()->addMinutes($minutes)->addSeconds($delay));
-                $count++;
+                    ->delay(Carbon::now()->addSeconds($delay));
                 dispatch($job);
             }
             Alert::success('Tahap Wawancara ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Email sedang dikirim. Selanjutnya adalah Tahap Penugasan.');
@@ -132,21 +122,16 @@ class EmailController extends Controller
                 ->leftJoin('univs', 'univs.id', '=', 'users.univ_id')
                 ->leftJoin('prodis', 'prodis.id', '=', 'users.prodi_id')
                 ->get();
-            $count = 0;
-            $minutes = 0;
+
             foreach ($getPenugasanUser as $userPng) {
                 $mail_data = [
                     'name' => $name,
                     'data' => $userPng,
                     'periode' => $periodeOpenned
                 ];
-                if ($count % 5 === 0) {
-                    $minutes = $minutes + 2;
-                }
                 $delay = DB::table('jobs')->count() * 10;
                 $job = (new SendPngJob($mail_data))
-                    ->delay(Carbon::now()->addMinutes($minutes)->addSeconds($delay));
-                $count++;
+                    ->delay(Carbon::now()->addSeconds($delay));
                 dispatch($job);
             }
             Alert::success('Tahap Penugasan ' . ucfirst($periodeSelected->name) . ' sudah Diumumkan.', 'Email sedang dikirim. Selanjutnya menunggu peserta untuk bergabung dengan Group Whatsapp');
