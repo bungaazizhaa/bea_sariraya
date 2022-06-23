@@ -46,6 +46,7 @@ class EmailController extends Controller
                 $mail_data = [
                     'name' => $name,
                     'data' => $userAdm,
+                    'periode' => $periodeOpenned
                 ];
                 if ($count % 25 === 0) {
                     $minutes = $minutes + 2;

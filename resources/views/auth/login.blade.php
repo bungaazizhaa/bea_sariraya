@@ -53,9 +53,9 @@
                             </center>
                             <div class="form-group">
                                 <input id="email" type="email" style="padding: 20px"
-                                    class="form-control rounded-pill @error('email') is-invalid @enderror" name="email"
-                                    value="{{ old('email') }}" placeholder="Email" required autocomplete="email"
-                                    autofocus>
+                                    class="form-control rounded-pill @error('email') is-invalid @enderror"
+                                    name="email" value="{{ old('email') }}" placeholder="Email" required
+                                    autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -85,9 +85,11 @@
                                 <div class="button-submit my-3">
                                     <button type="submit" class="btn tombol px-4">Login</button>
                                 </div>
-                                <p class="font-weight-normal mt-3 mb-0">Belum punya akun ? <a
-                                        href="{{ Route::has('register') ? 'route("register")' : '' }}">Register
-                                        disini.</a></p>
+                                @if (Route::has('register'))
+                                    <p class="font-weight-normal mt-3 mb-0">Belum punya akun ? <a
+                                            href="{{ route('register') }}">Register
+                                            disini.</a></p>
+                                @endif
                             </center>
 
                         </form>

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('sweetalert::alert')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -14,12 +15,12 @@
                             </div>
                         @endif
 
-                        Sebelum melanjutkan, harap periksa tautan verifikasi di email Anda.
+                        Silahkan cek Kotak Masuk email Anda, dan lakukan verifikasi Email.<br>
                         Jika Anda tidak menerima email,
                         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
-                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">klik di sini untuk meminta
-                                ulang</button>.
+                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">Kirim Ulang Email Verifikasi
+                            </button>.
                         </form>
                     </div>
                 </div>
