@@ -99,7 +99,7 @@ if ($getPeriodeAktif == null) {  //Jika Tidak ada periode Aktif
     $getTanggalSekarang = Carbon::now()->format('Y-m-d');
     if ($getTanggalSekarang > $getTanggalAkhirAdministrasi) { //dan Jika Sekarang sudah melewati Tanggal Akhir Administrasi
         Auth::routes(['register' => false, 'verify' => true]); //Tutup Registrasi
-    } elseif ($getTanggalSekarang <= $getTanggalAkhirAdministrasi) { //Jika Sekarang Belum melewati Tanggal Akhir Administrasi, Bisa Register, Bisa Update
+    } else { //Jika Sekarang Belum melewati Tanggal Akhir Administrasi, Bisa Register, Bisa Update
         Auth::routes(['register' => true, 'verify' => true]);
     }
 }
