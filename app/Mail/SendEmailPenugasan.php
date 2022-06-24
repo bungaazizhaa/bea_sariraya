@@ -33,7 +33,6 @@ class SendEmailPenugasan extends Mailable
 
         return $this
             ->subject('Pengumuman Akhir Beasiswa Sariraya')
-            ->cc('alvin.alvrahesta.dev@gmail.com')
             ->view('emails.emailPng');
     }
 }

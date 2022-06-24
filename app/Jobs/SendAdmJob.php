@@ -14,10 +14,12 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
+use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 class SendAdmJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use IsMonitored;
     protected $mail_data;
     public $timeout = 600; // 10 menit
     /**
@@ -44,6 +46,7 @@ class SendAdmJob implements ShouldQueue
     {
         $userAdm = $this->mail_data['data'];
         $periode = $this->mail_data['periode'];
+        $this->queueData([$userAdm->email]);
         Mail::to($userAdm->email)->send(new SendEmailAdministrasi($userAdm, $periode));
     }
 }

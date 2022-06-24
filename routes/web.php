@@ -83,6 +83,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('admin/data-pengguna/update/{id}', [UserController::class, 'update'])->name('pengguna.update');
     // Home
     Route::get('/profil-admin', [HomeController::class, 'indexProfilAdmin'])->name('profil.admin');
+
+    Route::prefix('progres')->group(function () {
+        Route::queueMonitor();
+    });
 });
 
 

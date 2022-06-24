@@ -10,10 +10,12 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
+use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 class SendPngJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use IsMonitored;
     protected $mail_data;
     public $timeout = 600; // 10 menit
     /**
@@ -33,8 +35,9 @@ class SendPngJob implements ShouldQueue
      */
     public function handle()
     {
-        $userAdm = $this->mail_data['data'];
+        $userPng = $this->mail_data['data'];
         $periode = $this->mail_data['periode'];
-        Mail::to($userAdm->email)->send(new SendEmailPenugasan($userAdm, $periode));
+        $this->queueData([$userPng->email]);
+        Mail::to($userPng->email)->send(new SendEmailPenugasan($userPng, $periode));
     }
 }

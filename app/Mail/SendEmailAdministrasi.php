@@ -33,7 +33,6 @@ class SendEmailAdministrasi extends Mailable
 
         return $this
             ->subject('Pengumuman Administrasi Beasiswa Sariraya')
-            ->cc('alvin.alvrahesta.dev@gmail.com')
             ->view('emails.emailAdm');
     }
 }

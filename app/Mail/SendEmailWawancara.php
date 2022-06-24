@@ -34,7 +34,6 @@ class SendEmailWawancara extends Mailable
 
         return $this
             ->subject('Pengumuman Wawancara Beasiswa Sariraya')
-            ->cc('alvin.alvrahesta.dev@gmail.com')
             ->view('emails.emailWwn');
     }
 }
