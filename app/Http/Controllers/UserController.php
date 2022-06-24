@@ -173,7 +173,7 @@ class UserController extends Controller
         if (is_dir(public_path($path))) {
             File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
         } else {
-            mkdir(public_path($path));
+            File::makeDirectory(public_path($path), 0777, true, true);
             File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
         }
         if ($upload) {
