@@ -46,7 +46,7 @@ class SendAdmJob implements ShouldQueue
     {
         $userAdm = $this->mail_data['data'];
         $periode = $this->mail_data['periode'];
-        $this->queueData([$userAdm->email]);
+        $this->queueData([$userAdm->email, $userAdm->name, $userAdm->nama_universitas, $userAdm->nama_prodi, $userAdm->status_adm]);
         Mail::to($userAdm->email)->send(new SendEmailAdministrasi($userAdm, $periode));
     }
 }

@@ -37,7 +37,7 @@ class SendWwnJob implements ShouldQueue
     {
         $userWwn = $this->mail_data['data'];
         $periode = $this->mail_data['periode'];
-        $this->queueData([$userWwn->email]);
+        $this->queueData([$userWwn->email, $userWwn->name, $userWwn->nama_universitas, $userWwn->nama_prodi, $userWwn->status_wwn]);
         Mail::to($userWwn->email)->send(new SendEmailWawancara($userWwn, $periode));
     }
 }

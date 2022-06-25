@@ -37,7 +37,7 @@ class SendPngJob implements ShouldQueue
     {
         $userPng = $this->mail_data['data'];
         $periode = $this->mail_data['periode'];
-        $this->queueData([$userPng->email]);
+        $this->queueData([$userPng->email, $userPng->name, $userPng->nama_universitas, $userPng->nama_prodi, $userPng->status_png]);
         Mail::to($userPng->email)->send(new SendEmailPenugasan($userPng, $periode));
     }
 }
