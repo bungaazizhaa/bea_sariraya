@@ -47,7 +47,7 @@ class EmailController extends Controller
                     'data' => $userAdm,
                     'periode' => $periodeOpenned
                 ];
-                $delay = DB::table('jobs')->count() * 4;
+                $delay = DB::table('jobs')->count() * 1;
                 $job = (new SendAdmJob($mail_data))
                     ->delay(Carbon::now()->addSeconds($delay));
                 dispatch($job);
@@ -86,7 +86,7 @@ class EmailController extends Controller
                     'data' => $userWwn,
                     'periode' => $periodeOpenned
                 ];
-                $delay = DB::table('jobs')->count() * 4;
+                $delay = DB::table('jobs')->count() * 1;
                 $job = (new SendWwnJob($mail_data))
                     ->delay(Carbon::now()->addSeconds($delay));
                 dispatch($job);
@@ -129,7 +129,7 @@ class EmailController extends Controller
                     'data' => $userPng,
                     'periode' => $periodeOpenned
                 ];
-                $delay = DB::table('jobs')->count() * 4;
+                $delay = DB::table('jobs')->count() * 1;
                 $job = (new SendPngJob($mail_data))
                     ->delay(Carbon::now()->addSeconds($delay));
                 dispatch($job);
