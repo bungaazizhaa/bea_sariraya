@@ -161,10 +161,11 @@
                                                 <td class="column column-1" width="100%"
                                                     style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-left: 0px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
                                                     <table class="paragraph_block" width="100%" border="0"
-                                                        cellpadding="10" cellspacing="0" role="presentation"
+                                                        cellpadding="0" cellspacing="0" role="presentation"
                                                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
                                                         <tr>
-                                                            <td>
+                                                            <td
+                                                                style="padding-bottom:10px;padding-left:10px;padding-right:10px;">
                                                                 <div
                                                                     style="color:#000000;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:150%;text-align:justify;mso-line-height-alt:24px;">
                                                                     <p style="margin: 0; margin-bottom: 16px;">Dear
@@ -224,7 +225,7 @@
                                                                 <td
                                                                     style="padding-bottom:10px;padding-left:5px;padding-right:5px;padding-top:5px;text-align:center;">
                                                                     <div align="center">
-                                                                        <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ url('tahap-wawancara') }}" style="height:44px;width:182px;v-text-anchor:middle;" arcsize="14%" strokeweight="0.75pt" strokecolor="#3AAD2A"><w:anchorlock/><v:textbox inset="0px,0px,0px,0px"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:16px"><![endif]--><a
+                                                                        <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ url('tahap-wawancara') }}" style="height:44px;width:182px;v-text-anchor:middle;" arcsize="14%" strokeweight="0.75pt" strokecolor="#3AAD2A" fillcolor="#3aad2a"><w:anchorlock/><v:textbox inset="0px,0px,0px,0px"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:16px"><![endif]--><a
                                                                             href="{{ url('tahap-wawancara') }}"
                                                                             target="_blank"
                                                                             style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#3aad2a;border-radius:6px;width:auto;border-top:1px solid #3AAD2A;font-weight:400;border-right:1px solid #3AAD2A;border-bottom:1px solid #3AAD2A;border-left:1px solid #3AAD2A;padding-top:5px;padding-bottom:5px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;"><span
@@ -276,7 +277,7 @@
                                                                 <td
                                                                     style="padding-bottom:10px;padding-left:5px;padding-right:5px;padding-top:5px;text-align:center;">
                                                                     <div align="center">
-                                                                        <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ url('tahap-wawancara') }}" style="height:44px;width:182px;v-text-anchor:middle;" arcsize="14%" strokeweight="0.75pt" strokecolor="#3AAD2A"><w:anchorlock/><v:textbox inset="0px,0px,0px,0px"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:16px"><![endif]--><a
+                                                                        <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ url('tahap-wawancara') }}" style="height:44px;width:182px;v-text-anchor:middle;" arcsize="14%" strokeweight="0.75pt" strokecolor="#ad2a2a" fillcolor="#ad2a2a"><w:anchorlock/><v:textbox inset="0px,0px,0px,0px"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:16px"><![endif]--><a
                                                                             href="{{ url('tahap-wawancara') }}"
                                                                             target="_blank"
                                                                             style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#ad2a2a;border-radius:6px;width:auto;border-top:1px solid #ad2a2a;font-weight:400;border-right:1px solid #ad2a2a;border-bottom:1px solid #ad2a2a;border-left:1px solid #ad2a2a;padding-top:5px;padding-bottom:5px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;"><span
@@ -304,10 +305,8 @@
                                                         </table>
                                                     @endif
                                                     <table class="divider_block" width="100%" border="0"
-                                                        cellpadding="10" cellspacing="0"
-                                                        role="presentation
-                                                        style="mso-table-lspace:
-                                                        0pt; mso-table-rspace: 0pt;">
+                                                        cellpadding="10" cellspacing="0" role="presentation"
+                                                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                                                         <tr>
                                                             <td>
                                                                 <div align="center">
