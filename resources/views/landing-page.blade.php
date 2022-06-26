@@ -37,7 +37,8 @@
                         <p class="mt-4">Klik tombol di bawah ini untuk mengakses pendaftaran</p>
                         @guest
                             @if (Route::has('login'))
-                                <a class="btn btn-success rounded-pill" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="btn btn-success rounded-pill"
+                                    href="{{ route('login') }}">{{ __('Login') }}</a>
                             @endif
 
                             @if (Route::has('register') && isset($getPeriodeAktif) ? !$getPeriodeAktif->status_adm == 'Selesai' : '')
@@ -61,14 +62,15 @@
                     <h2><b> Timeline Beasiswa</b></h2>
                     @if ($getPeriodeAktif == null)
                         <div class=" py-1 my-2 p-md-0 m-md-0">
-                            <center class="text-gray-200 h4 pt-4 mt-4 mb-5 pb-3"> Maaf. Saat ini sedang tidak ada Program
+                            <center class="text-gray-200 h4 pt-4 mt-4 mb-5 pb-3"> Maaf. Saat ini sedang tidak ada
+                                Program
                                 Penerimaan Beasiswa
                                 Sariraya.
                             </center>
                         </div>
                     @else
                         <div class="row mb-lg-2 mx-lg-5 mx-sm-2 my-sm-2">
-                            <div class="col-sm-3 mt-3 d-flex align-items-stretch">
+                            <div class="col-sm-6 col-lg-3 mt-3 d-flex align-items-stretch">
                                 <div class="card whitecard text-center">
                                     <img class="card-img-top" src="{{ asset('assets/images/1.png') }}"
                                         alt="Card image cap">
@@ -79,7 +81,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3 mt-3 pb-0 d-flex align-items-stretch">
+                            <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
                                 <div class="card whitecard text-center">
                                     <img class="card-img-top" src="{{ asset('assets/images/3.png') }}"
                                         alt="Card image cap">
@@ -90,7 +92,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3 mt-3 pb-0 d-flex align-items-stretch">
+                            <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
                                 <div class="card whitecard text-center">
                                     <img class="card-img-top" src="{{ asset('assets/images/4.png') }}"
                                         alt="Card image cap">
@@ -101,7 +103,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3 mt-3 pb-0 d-flex align-items-stretch">
+                            <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
                                 <div class="card whitecard text-center">
                                     <img class="card-img-top" src="{{ asset('assets/images/5.png') }}"
                                         alt="Card image cap">
@@ -114,7 +116,7 @@
                             </div>
                         </div>
                         <div class="row mb-lg-2 mb-lg-5 mx-lg-5 mx-sm-2 my-sm-2 d-flex justify-content-center">
-                            <div class="col-sm-3 mt-3 pb-0 d-flex align-items-stretch">
+                            <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
                                 <div class="card whitecard text-center">
                                     <img class="card-img-top" src="{{ asset('assets/images/7.png') }}"
                                         alt="Card image cap">
@@ -125,7 +127,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3 mt-3 pb-0 d-flex align-items-stretch">
+                            <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
                                 <div class="card whitecard text-center">
                                     <img class="card-img-top" src="{{ asset('assets/images/9.png') }}"
                                         alt="Card image cap">
@@ -136,7 +138,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3 mt-3 pb-0 d-flex align-items-stretch">
+                            <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
                                 <div class="card whitecard text-center mb-md-0 mb-5">
                                     <img class="card-img-top" src="{{ asset('assets/images/6.png') }}"
                                         alt="Card image cap">
@@ -159,7 +161,8 @@
                 </center>
                 <div class="row sariraya">
                     <div class="col-lg-6 foto">
-                        <img src="{{ asset('assets/images/pos1.jpeg') }}" alt="" class="img-fluid mt-1 mb-4" />
+                        <img src="{{ asset('assets/images/pos1.jpeg') }}" alt=""
+                            class="img-fluid mt-1 mb-4" />
                     </div>
                     <div class="col-lg-6">
                         <div class="mx-3">
@@ -242,7 +245,8 @@
                     </div>
 
                     <div class="col-lg-6 foto">
-                        <img src="{{ asset('assets/images/sariraya.png') }}" alt="" class="img-fluid mt-1" />
+                        <img src="{{ asset('assets/images/sariraya.png') }}" alt=""
+                            class="img-fluid mt-1" />
                     </div>
                 </div>
             </div>
