@@ -54,20 +54,20 @@
             <div class="text-center col-12 pl-lg-0 col-lg-12 text-lg-left text-center my-auto">
                 <center>
                     <div class="pengumuman">
-                        <h1 class="mt-4 test"> <b>BEASISWA SARIRAYA JAPAN
+                        <h1 class="mt-4 h2 test"> <b>BEASISWA SARIRAYA JAPAN
                                 {{ strtoupper($getPeriodeAktif->name) }}</b> </h1>
 
-                        <h1 class="mt-3 h2">Pengumuman Tahap Penugasan</h1>
+                        <h1 class="mt-3 h3 h2">Pengumuman Final</h1>
 
                         <div class="alert alert-danger mt-4 teksalert" role="alert">
-                            <strong>MAAF ! ANDA TIDAK LOLOS<br>
-                                BEASISWA SARIRAYA JAPAN {{ strtoupper($getPeriodeAktif->name) }}</strong>
+                            <strong>Maaf {{ ucfirst(Auth::user()->name) }}! Anda Tidak Lolos Seleksi<br>
+                                Beasiswa Sariraya Japan {{ ucfirst($getPeriodeAktif->name) }}</strong>
                         </div>
 
-                        <h4>Jangan patah semangat dan terus mencoba ! <br>
-                            “Karena kegagalan adalah keberhasilan yang tertunda”</h4>
-                        <div class="salam">
-                            <p>Salam, panitia Beasiswa Sariraya Japan {{ strtoupper($getPeriodeAktif->name) }}</p>
+                        <h5 class="mt-md-5">Jangan patah semangat dan terus mencoba !</h5>
+                        <h5>“Karena kegagalan adalah keberhasilan yang tertunda”</h5>
+                        <div class="mt-4 mt-md-5">
+                            <p>Salam, panitia Beasiswa Sariraya Japan {{ ucfirst($getPeriodeAktif->name) }}</p>
                             <p>Terimakasih sudah berpartisipasi.</p>
                         </div>
                         @auth

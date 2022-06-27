@@ -59,7 +59,8 @@
             <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <div onclick="location.href='{{ route('periode', isset($getPeriodeAktif->name) ? $getPeriodeAktif->name : '') }}'"
-                    class="small-box rounded-md" style="height: 118px;">
+                    class="{{ isset($getPeriodeAktif->name) ? 'bg-selesai' : '' }} small-box rounded-md"
+                    style="height: 118px;">
                     <div class="inner">
                         <h3 class="mb-1 {{ isset($getPeriodeAktif->name) ? 'mt-2' : 'mt-3' }}"
                             style="{{ isset($getPeriodeAktif->name) ? '' : 'font-size: 28px!important;' }}">
@@ -143,7 +144,8 @@
                 <div class="col-12">
                     <div class="bg-dark rounded-md d-flex justify-content-center flex-column" style="height: 200px">
                         <div class="text-center">
-                            Anda belum membuat Periode.
+                            Anda belum membuat Periode. <a href="/periode">Tambah Periode <i
+                                    class="fa-solid fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>

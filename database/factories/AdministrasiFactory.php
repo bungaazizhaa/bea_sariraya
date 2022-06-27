@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Periode;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -15,9 +16,11 @@ class AdministrasiFactory extends Factory
      */
     public function definition()
     {
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        $id = IdGenerator::generate(['table' => 'administrasis', 'field' => 'no_pendaftaran', 'reset_on_prefix_change' => true, 'length' => 7, 'prefix' => 'B' . $getPeriodeAktif->id_periode . '-']);
         static $no = 2;
         return [
-            'no_pendaftaran' => IdGenerator::generate(['table' => 'administrasis', 'field' => 'no_pendaftaran', 'length' => 10, 'prefix' => 'B' . mt_rand(1, 3) . '-' . mt_rand(1, 5) . '-' . mt_rand(10000, 99999)]),
+            'no_pendaftaran' => $id,
             // 'user_id' => mt_rand(2, 5),
             'user_id' => $no++,
             // 'periode_id' => mt_rand(1, 3),

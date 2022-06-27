@@ -134,6 +134,8 @@
                                             <p class="h5 mb-0 font-weight-bold">
                                                 Tahap Administrasi
                                             </p>
+                                            <small class="text-warning">Rentang waktu dibuat relatif lama,</small><br>
+                                            <small>untuk menunggu partisipan beasiswa melakukan pendaftaran.</small>
                                         </div>
                                     </div>
                                     </p>
@@ -148,6 +150,7 @@
                                             <strong>{{ $message }}</strong>
                                         </div>
                                     @enderror
+
                                     <p class="mb-1 mt-2">Tanggal Akhir :</p>
                                     <input autocomplete="off" id="ta_adm" type="ta_adm" class="datepicker"
                                         class="form-control @error('ta_adm') is-invalid @enderror" name="ta_adm"
@@ -178,6 +181,10 @@
                                             <p class="h5 mb-0 font-weight-bold">
                                                 Tahap Wawancara
                                             </p>
+                                            <small class="text-warning">Rentang waktu relatif singkat.</small><br>
+                                            <small>
+                                                Hanya beberapa hari untuk
+                                                keberlangsungan wawancara.</small>
                                         </div>
                                     </div>
                                     </p>
@@ -222,6 +229,9 @@
                                             <p class="h5 mb-0 font-weight-bold">
                                                 Tahap Penugasan
                                             </p>
+                                            <small class="text-warning">Rentang waktu relatif singkat.</small><br>
+                                            <small>Hanya beberapa hari yang sekiranya
+                                                cukup untuk mengerjakan tugas.</small>
                                         </div>
                                     </div>
                                     </p>

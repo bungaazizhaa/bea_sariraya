@@ -70,7 +70,7 @@
         </ul>
     </li>
     <li class="nav-item mb-1">
-        <a href="/progres" class="nav-link">
+        <a href="/progres" class="nav-link" target="_blank">
             <i class="nav-icon fa-solid fa-envelope-circle-check"></i>
             <p class="text-nowrap">Email Progress</p>
         </a>

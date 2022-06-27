@@ -202,9 +202,15 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <div class="card-body rounded-bottom-md">
-                                <img class="img-preview mb-2 d-flex mx-auto" alt="" width="210px" height="280px"
+                        <div class="modal-body pb-0 pt-2">
+                            <div class="card-body rounded-bottom-md py-0">
+                                <div class="mb-3 text-center alert alert-info p-1">
+                                    <small>Format Pas Foto: <span class="font-weight-bold"> .jpg, .png, </span>atau <span
+                                            class="font-weight-bold">.jpeg</span></small><br>
+                                    <small>Maksimal ukuran file: <span class="font-weight-bold">1024KB
+                                        </span>atau <span class="font-weight-bold">1MB</span></small>
+                                </div>
+                                <img class="img-preview mb-3 d-flex mx-auto" alt="" width="210px" height="280px"
                                     style="max-width: 210px; max-height:280px">
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
@@ -226,8 +232,8 @@
                             </script>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success">Save changes</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-success">Upload</button>
                         </div>
                     </form>
                 </div>
@@ -252,9 +258,9 @@
                                 class="col-md-4 col-form-label text-md-right">{{ __('Nama Lengkap') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="name" value="{{ old('name', Auth::user()->name) }}" autocomplete="name"
-                                    autofocus>
+                                <input id="name" type="text"
+                                    class="form-control @error('name') is-invalid @enderror" name="name"
+                                    value="{{ old('name', Auth::user()->name) }}" autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -266,11 +272,13 @@
 
 
                         <div class="row mb-3">
-                            <label for="nim" class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
+                            <label for="nim"
+                                class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nim" type="text" class="form-control @error('nim') is-invalid @enderror"
-                                    name="nim" value="{{ old('nim', Auth::user()->nim) }}" autocomplete="nim" autofocus>
+                                <input id="nim" type="text"
+                                    class="form-control @error('nim') is-invalid @enderror" name="nim"
+                                    value="{{ old('nim', Auth::user()->nim) }}" autocomplete="nim" autofocus>
 
                                 @error('nim')
                                     <span class="invalid-feedback" role="alert">
@@ -285,11 +293,12 @@
                                 class="col-md-4 col-form-label text-md-right">{{ __('Asal Perguruan Tinggi') }}</label>
 
                             <div class="col-md-6">
-                                <select id="univ_id" name="univ_id" class="form-control select" data-live-search="true"
-                                    onchange="univLainnya(this);">
+                                <select id="univ_id" name="univ_id" class="form-control select"
+                                    data-live-search="true" onchange="univLainnya(this);">
                                     <option value="0" disabled selected>--- Pilih ---
                                     </option>
-                                    <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">--- Isi yang
+                                    <option {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">--- Isi
+                                        yang
                                         Lain
                                         ---
                                     </option>

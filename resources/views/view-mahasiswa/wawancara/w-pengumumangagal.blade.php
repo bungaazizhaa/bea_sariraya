@@ -63,7 +63,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }}
+                                    {{ ucfirst(Auth::user()->name) }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -72,8 +72,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -88,19 +87,19 @@
     @include('sweetalert::alert')
     <div class="container">
         <div class="text-center">
-            <h1 class="mt-4 test"> <b>BEASISWA SARIRAYA JAPAN {{ strtoupper($getPeriodeAktif->name) }}</b> </h1>
+            <h1 class="mt-4 h2 test"> <b>BEASISWA SARIRAYA JAPAN {{ strtoupper($getPeriodeAktif->name) }}</b> </h1>
 
-            <h1 class="mt-3 h2">Pengumuman Tahap Wawancara</h1>
+            <h1 class="mt-3 h3 h2">Pengumuman Tahap Wawancara</h1>
 
             <div class="alert alert-danger mt-4 teksalert" role="alert">
-                <strong>MAAF ! ANDA TIDAK LOLOS TAHAP WAWANCARA <br>
-                    BEASISWA SARIRAYA JAPAN {{ strtoupper($getPeriodeAktif->name) }}</strong>
+                <strong>Maaf {{ ucfirst(Auth::user()->name) }}! Anda Tidak Lolos Tahap Wawancara <br>
+                    Beasiswa Sariraya Japan {{ ucfirst($getPeriodeAktif->name) }}</strong>
             </div>
 
-            <h4>Jangan patah semangat dan terus mencoba ! <br>
-                “Karena kegagalan adalah keberhasilan yang tertunda”</h4>
-            <div class="salam">
-                <p>Salam, panitia Beasiswa Sariraya Japan {{ strtoupper($getPeriodeAktif->name) }}</p>
+            <h5 class="mt-md-5">Jangan patah semangat dan terus mencoba !</h5>
+            <h5>“Karena kegagalan adalah keberhasilan yang tertunda”</h5>
+            <div class="mt-4 mt-md-5">
+                <p>Salam, panitia Beasiswa Sariraya Japan {{ ucfirst($getPeriodeAktif->name) }}</p>
                 <p>Terimakasih sudah berpartisipasi.</p>
             </div>
             @auth

@@ -50,14 +50,14 @@
             <div class="text-center col-12 pl-lg-0 col-lg-12 text-lg-left text-center my-auto">
                 <center>
                     <div class="pengumuman">
-                        <h1 class="mt-4 test"> <b>BEASISWA SARIRAYA JAPAN
+                        <h1 class="mt-4 h2 test"> <b>BEASISWA SARIRAYA JAPAN
                                 {{ strtoupper($getPeriodeAktif->name) }}</b> </h1>
 
-                        <h1 class="mt-3 h2">Pengumuman Akhir</h1>
+                        <h1 class="mt-3 h3">Pengumuman Akhir</h1>
 
                         <div class="alert alert-success mt-4 teksalert" role="alert">
-                            <strong>SELAMAT ! ANDA DITERIMA PADA PROGRAM <br>
-                                BEASISWA SARIRAYA JAPAN {{ strtoupper($getPeriodeAktif->name) }}</strong>
+                            <strong>Selamat {{ ucfirst(Auth::user()->name) }}! Anda Diterima Pada Program <br>
+                                Beasiswa Sariraya Japan {{ ucfirst($getPeriodeAktif->name) }}</strong>
                         </div>
 
                         <p class="h5 pt-2 pt-md-2">Berikut adalah link untuk masuk ke Grup WhatsApp :</p>

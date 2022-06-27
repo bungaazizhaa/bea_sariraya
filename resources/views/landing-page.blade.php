@@ -191,7 +191,7 @@
                 </div>
                 <center>
                     <div class="row">
-                        <div class="col-lg-6 d-flex align-items-stretch justify-content-end">
+                        <div class="col-md-6 d-flex align-items-stretch justify-content-end">
                             <div class="card whitecard bea mb-4 mb-md-0 px-4 pt-4">
                                 <h5 class="text-center"> Keuntungan Beasiswa :</h5>
                                 <p class="text-left">- Uang saku Rp500,000 per bulan selama 1 semester. <br>
@@ -203,7 +203,7 @@
                         </div>
 
 
-                        <div class="col-lg-6 d-flex align-items-stretch">
+                        <div class="col-md-6 d-flex align-items-stretch">
                             <div class="card whitecard bea text-left px-4 pt-4">
                                 <h5 class="text-center">Syarat Administrasi :</h5>
                                 <p>- Scan Kartu Tanda Mahasiswa <br>
@@ -257,7 +257,7 @@
                 <center>
                     <h2 class="mb-4"> <b>FAQ</b> </h2>
                     <div class="row">
-                        <div class="col-lg-6 d-flex align-items-stretch">
+                        <div class="col-md-6 d-flex align-items-stretch">
                             <div class="card mycard text-left bea mb-4 mb-md-0 px-4 pt-4 pb-0">
                                 <h5>Q : Apakah beasiswa ini berlaku untuk semua jurusan ?</h5>
                                 <p>A : Mohon maaf, tidak bisa. Beasiswa ini hanya terbuka bagi mahasiswa jurusan
@@ -275,7 +275,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-6 d-flex align-items-stretch">
+                        <div class="col-md-6 d-flex align-items-stretch">
                             <div class="card mycard text-left bea px-4 pt-4 pb-0">
                                 <h5>Q : Apakah pendaftaran beasiswa ini berbayar ?</h5>
                                 <p>A : Tidak, beasiswa ini tidak dipungut biaya apapun (gratis).</p>

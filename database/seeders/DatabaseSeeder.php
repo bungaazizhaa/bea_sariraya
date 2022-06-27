@@ -64,27 +64,28 @@ class DatabaseSeeder extends Seeder
         //         'status' => 'aktif',
         //     ],
         // );
-        Periode::create(
-            [
-                'id_periode' => '3',
-                'name' => 'batch-3',
-                'tm_adm' => '2022-06-16',
-                'ta_adm' => '2022-06-18',
-                'tp_adm' => '2022-06-20',
-                'status_adm' => null,
-                'ts_adm' => null,
-                'tm_wwn' => '2022-07-02',
-                'ta_wwn' => '2022-07-04',
-                'tp_wwn' => '2022-07-06',
-                'status_wwn' => null,
-                'ts_wwn' => null,
-                'tm_png' => '2022-07-08',
-                'ta_png' => '2022-07-10',
-                'tp_png' => '2022-07-12',
-                'status_png' => null,
-                'ts_png' => null,
-            ],
-        );
+        // Periode::create(
+        //     [
+        //         'id_periode' => '2',
+        //         'name' => 'batch-2',
+        //         'tm_adm' => '2022-06-16',
+        //         'ta_adm' => '2022-06-27',
+        //         'tp_adm' => '2022-06-28',
+        //         'status_adm' => null,
+        //         'ts_adm' => null,
+        //         'tm_wwn' => '2022-07-02',
+        //         'ta_wwn' => '2022-07-04',
+        //         'tp_wwn' => '2022-07-06',
+        //         'status_wwn' => null,
+        //         'ts_wwn' => null,
+        //         'tm_png' => '2022-07-08',
+        //         'ta_png' => '2022-07-10',
+        //         'tp_png' => '2022-07-12',
+        //         'status_png' => null,
+        //         'ts_png' => null,
+        //         'status' => 'aktif'
+        //     ],
+        // );
 
         Univ::create(['nama_universitas' => 'Institut Pertanian Bogor',],);
         Univ::create(['nama_universitas' => 'Institut Teknologi Bandung',],);
@@ -145,7 +146,7 @@ class DatabaseSeeder extends Seeder
                 'univ_id' => null,
                 'prodi_id' => null,
                 'name' => 'Administrator',
-                'picture' => null,
+                'picture' => 'admin.png',
                 'email_verified_at' => now(),
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('12345678'),
@@ -153,20 +154,20 @@ class DatabaseSeeder extends Seeder
             ],
         );
 
-        User::create(
-            [
-                'name' => 'Alvin Alvrahesta',
-                'nim' => '21120118120025',
-                'univ_id' => '1',
-                'prodi_id' => '1',
-                'picture' => null,
-                'email_verified_at' => now(),
-                'email' => 'alvin.alvrahesta@gmail.com',
-                'password' => Hash::make('12345678'),
-                'remember_token' => Str::random(10),
-            ]
-        );
-        User::factory(15)->create();
-        Administrasi::factory(15)->create();
+        // User::create(
+        //     [
+        //         'name' => 'Alvin Alvrahesta',
+        //         'nim' => '21120118120025',
+        //         'univ_id' => '1',
+        //         'prodi_id' => '1',
+        //         'picture' => null,
+        //         'email_verified_at' => now(),
+        //         'email' => 'alvin.alvrahesta@gmail.com',
+        //         'password' => Hash::make('12345678'),
+        //         'remember_token' => Str::random(10),
+        //     ]
+        // );
+        // User::factory(5)->create();
+        // Administrasi::factory(15)->create();
     }
 }

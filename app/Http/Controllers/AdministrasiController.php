@@ -245,7 +245,7 @@ class AdministrasiController extends Controller
         } else {
 
             Administrasi::create([
-                'no_pendaftaran' => IdGenerator::generate(['table' => 'administrasis', 'field' => 'no_pendaftaran', 'length' => 10, 'prefix' => 'B' . $getPeriodeAktif->id_periode . '-' . $request->user()->id . '-']),
+                'no_pendaftaran' => IdGenerator::generate(['table' => 'administrasis', 'field' => 'no_pendaftaran', 'reset_on_prefix_change' => true, 'length' => 7, 'prefix' => 'B' . $getPeriodeAktif->id_periode . '-']),
                 'user_id' => Auth::user()->id,
                 'periode_id' => $getPeriodeAktif->id_periode,
                 'tempat_lahir' => $request['tempat_lahir'],

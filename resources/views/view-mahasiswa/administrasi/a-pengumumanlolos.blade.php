@@ -61,7 +61,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }}
+                                    {{ ucfirst(Auth::user()->name) }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -70,8 +70,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -86,14 +85,15 @@
     @include('sweetalert::alert')
     <div class="container">
         <div>
-            <h1 class="mt-4 test text-center"> <b>BEASISWA SARIRAYA JAPAN {{ strtoupper($getPeriodeAktif->name) }}</b>
+            <h1 class="mt-4 h2 test text-center"> <b>BEASISWA SARIRAYA JAPAN
+                    {{ strtoupper($getPeriodeAktif->name) }}</b>
             </h1>
 
-            <h1 class="mt-3 h2 text-center">Pengumuman Tahap Administrasi</h1>
+            <h1 class="mt-3 h3 text-center">Pengumuman Tahap Administrasi</h1>
 
             <div class="alert alert-success mt-4 teksalert text-center" role="alert">
-                <strong>SELAMAT ! ANDA LOLOS TAHAP ADMINISTRASI <br>
-                    BEASISWA SARIRAYA JAPAN {{ strtoupper($getPeriodeAktif->name) }}</strong>
+                <strong>Selamat {{ ucfirst(Auth::user()->name) }}! Anda Lolos Tahap Administrasi <br>
+                    Beasiswa Sariraya Japan {{ ucfirst($getPeriodeAktif->name) }}</strong>
             </div>
 
             <p class="h5 pt-2 pt-md-4 text-center">Berikut adalah jadwal wawancara Anda :</p>
