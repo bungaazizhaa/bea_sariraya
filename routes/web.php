@@ -28,30 +28,6 @@ use Stevebauman\Location\Facades\Location;
 
 Route::get('/', [HomeController::class, 'indexLandingPage'])->name('landing');
 
-Route::get('/ip', function () {
-    $checkLocation = geoip()->getLocation(isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']));
-    $user = User::where('id', '=', Auth::user()->id)->first();
-    $user->info_login = $checkLocation['city'] . ', ' . $checkLocation['state_name'] . ', ' . $checkLocation['country'] . ' (' . $checkLocation['ip'] . ')';
-    $user->save();
-});
-Route::get('/ip2', function () {
-    if ($checkLocation = Location::get(isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']))) {
-        $user = User::where('id', '=', Auth::user()->id)->first();
-        $user->info_login = $checkLocation['cityName'] . ', ' . $checkLocation['regionName'] . ', ' . $checkLocation['countryName'] . ' (' . $checkLocation['ip'] . ')';
-        $user->save();
-    } else {
-        // Failed retrieving position.
-    }
-});
-Route::get('/ddip', function () {
-    $checkLocation = geoip()->getLocation(isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']));
-    dd($checkLocation);
-});
-Route::get('/ddip2', function () {
-    $checkLocation = Location::get(isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']));
-    dd($checkLocation);
-});
-
 //TODO: ================= ROUTE HOME MAHASISWA =================
 Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa', 'verified'])->group(function () {
     Route::get('/my-profile', [HomeController::class, 'indexMahasiswa'])->name('profil.mahasiswa');
