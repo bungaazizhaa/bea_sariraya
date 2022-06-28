@@ -14,7 +14,7 @@
         <div class="container-fluid">
             <!-- Main content -->
             <div class="row justify-content-end">
-                <div class="col-12 col-md-6 d-flex justify-content-end">
+                <div class="col-12 col-xl-6 d-flex justify-content-end">
                     <form action="/admin/data-pengguna" class=" w-100">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Cari Nama, atau data yang lainnya."
@@ -36,7 +36,7 @@
             <div class="row">
                 @if ($getUser->count())
                     @foreach ($getUser as $user)
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-xl-6">
                             <div class="card rounded-md myshadow user-box">
                                 <div class="row px-2">
                                     <img src="/pictures/{{ $user->picture == '' ? 'noimg.png' : $user->picture }}"
