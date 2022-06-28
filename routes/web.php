@@ -27,6 +27,17 @@ use Illuminate\Support\Facades\Schema;
 
 Route::get('/', [HomeController::class, 'indexLandingPage'])->name('landing');
 
+Route::get('/ip', function () {
+    $checkLocation = geoip()->getLocation(strval($_SERVER['REMOTE_ADDR']));
+    $user = User::where('id', '=', Auth::user()->id)->first();
+    $user->info_login = $checkLocation['city'] . ', ' . $checkLocation['state_name'] . ', ' . $checkLocation['country'] . ' (' . $checkLocation['ip'] . ')';
+    $user->save();
+});
+Route::get('/ddip', function () {
+    $checkLocation = geoip()->getLocation(strval($_SERVER['REMOTE_ADDR']));
+    dd($checkLocation);
+});
+
 //TODO: ================= ROUTE HOME MAHASISWA =================
 Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa', 'verified'])->group(function () {
     Route::get('/my-profile', [HomeController::class, 'indexMahasiswa'])->name('profil.mahasiswa');
