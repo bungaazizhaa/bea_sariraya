@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -92,6 +93,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $checkLocation = geoip()->getLocation($_SERVER['REMOTE_ADDR']);
         Alert::success('Registrasi Berhasil.', 'Silahkan lengkapi data Anda!');
         if ($data['univ_id'] == "other") {
             $getUniv = Univ::where('nama_universitas', '=', $data['Input_Universitas'])->first();
@@ -104,6 +106,7 @@ class RegisterController extends Controller
                     'prodi_id' => $data['prodi_id'],
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
+                    'info_login' => $checkLocation->city . ', ' . $checkLocation->state_name . ', ' . $checkLocation->country . ' (' . $checkLocation->ip . ')',
                 ]);
             } else {
                 Univ::create([
@@ -117,6 +120,7 @@ class RegisterController extends Controller
                     'prodi_id' => $data['prodi_id'],
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
+                    'info_login' => $checkLocation->city . ', ' . $checkLocation->state_name . ', ' . $checkLocation->country . ' (' . $checkLocation->ip . ')',
                 ]);
             }
         } else {
@@ -127,6 +131,7 @@ class RegisterController extends Controller
                 'prodi_id' => $data['prodi_id'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
+                'info_login' => $checkLocation->city . ', ' . $checkLocation->state_name . ', ' . $checkLocation->country . ' (' . $checkLocation->ip . ')',
             ]);
         }
     }

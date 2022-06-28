@@ -18,7 +18,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "realrashid/sweet-alert": "^5.0",
-        "romanzipp/laravel-queue-monitor": "^2.3"
+        "romanzipp/laravel-queue-monitor": "^2.3",
+        "torann/geoip": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

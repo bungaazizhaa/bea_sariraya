@@ -6,9 +6,12 @@ use App\Models\Periode;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use RealRashid\SweetAlert\Facades\Alert;
+use Torann\GeoIP\Support\HttpClient;
+use Torann\GeoIP\Services\AbstractService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -54,6 +57,10 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        $checkLocation = geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+        $user = User::where('id', '=', Auth::user()->id)->first();
+        $user->info_login = $checkLocation->city . ', ' . $checkLocation->state_name . ', ' . $checkLocation->country . ' (' . $checkLocation->ip . ')';
+        $user->save();
         if (Auth::user()->role === 'admin') {
             Alert::success('Login Berhasil.', 'Anda Login sebagai ' . Auth::user()->name . " (" . Auth::user()->role . ").");
             return redirect(route('admin'));

@@ -21,7 +21,8 @@
                                 aria-label="Recipient's username" aria-describedby="basic-addon2" name="search"
                                 value="{{ request('search') }}" autofocus>
                             <div class="input-group-append">
-                                <button class="btn btn-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i>
+                                <button class="btn btn-secondary" type="submit"><i
+                                        class="fa-solid fa-magnifying-glass"></i>
                                     Search</button>
                             </div>
                         </div>
@@ -65,16 +66,23 @@
                                         </p> --}}
                                     </ul>
                                 </div>
-                                <div class="card-footer rounded-bottom-md p-2 d-flex">
-                                    <div class="mb-0 mr-2"><span><small><span class="text-muted"> Created at :
-                                                </span>{{ $user->created_at->translatedFormat('d M Y - H:i:s') }}</small></span>
+                                <div class="card-footer rounded-bottom-md p-2 pt-0">
+                                    <div class="mb-0 mr-2 w-100 text-truncate">
+                                        <small class="text-truncate w-100 text-muted">
+                                            Lokasi Login :
+                                            {{ $user->info_login }}</small>
                                     </div>
-                                    <div class="mr-0 ml-auto">
-                                        @if ($user->role == 'mahasiswa')
-                                            <a href="{{ route('pengguna.show', $user->id) }}" id="showUser"
-                                                class="btn btn-xs rounded bg-dark text-info px-3 mr-2">Detail
-                                            </a>
-                                            {{-- <a href="{{ route('pengguna.edit', $user->id) }}" id="editUserAlert"
+                                    <div class="d-flex">
+                                        <div>
+                                            <span><small class="text-muted">Mendaftar pada
+                                                    {{ $user->created_at->translatedFormat('d M Y - H:i.') }}</small></span>
+                                        </div>
+                                        <div class="mr-0 ml-auto">
+                                            @if ($user->role == 'mahasiswa')
+                                                <a href="{{ route('pengguna.show', $user->id) }}" id="showUser"
+                                                    class="btn btn-xs rounded bg-dark text-info px-3 mr-2">Detail
+                                                </a>
+                                                {{-- <a href="{{ route('pengguna.edit', $user->id) }}" id="editUserAlert"
                                             class="btn btn-xs rounded bg-dark text-warning">
                                             Edit
                                         </a>
@@ -82,11 +90,12 @@
                                             data-id="{{ $pengguna->id }}" data-toggle="modal">
                                             Edit
                                         </button> --}}
-                                            <a href="" id="deleteUserAlert" data-id="{{ $user->id }}"
-                                                data-name="{{ $user->name }}"
-                                                class="btn btn-xs rounded bg-dark text-danger">Hapus
-                                            </a>
-                                        @endif
+                                                <a href="" id="deleteUserAlert" data-id="{{ $user->id }}"
+                                                    data-name="{{ $user->name }}"
+                                                    class="btn btn-xs rounded bg-dark text-danger">Hapus
+                                                </a>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
