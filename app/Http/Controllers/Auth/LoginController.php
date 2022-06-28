@@ -57,7 +57,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        $checkLocation = geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+        $checkLocation = geoip()->getLocation(strval($_SERVER['REMOTE_ADDR']));
         $user = User::where('id', '=', Auth::user()->id)->first();
         $user->info_login = $checkLocation['city'] . ', ' . $checkLocation['state_name'] . ', ' . $checkLocation['country'] . ' (' . $checkLocation['ip'] . ')';
         $user->save();
