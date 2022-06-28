@@ -19,6 +19,7 @@
         "laravel/ui": "^3.4",
         "realrashid/sweet-alert": "^5.0",
         "romanzipp/laravel-queue-monitor": "^2.3",
+        "stevebauman/location": "^6.5",
         "torann/geoip": "^3.0"
     },
     "require-dev": {
