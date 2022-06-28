@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Beasiswa Sariraya</title>
-
+    <meta name="description"
+        content="Bergabung dan Daftarkan diri Anda pada Program Beasiswa Sariraya yang diadakan oleh perusahaan Sariraya Co., Ltd.">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
@@ -17,7 +18,14 @@
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/images') }}"> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="icon" href="{{ asset('assets/images/bunga2.png') }}" type="image/x-icon">
+    {{-- ICON WEBSITE --}}
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -61,8 +69,9 @@
                                 <p class="h4 mb-4">Register</p>
                             </div>
                             <div class="form-group">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus
+                                <input id="name" type="text"
+                                    class="form-control @error('name') is-invalid @enderror" name="name"
+                                    value="{{ old('name') }}" required autocomplete="name" autofocus
                                     placeholder="Nama Lengkap">
 
                                 @error('name')
@@ -72,9 +81,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input id="nim" type="text" class="form-control @error('nim') is-invalid @enderror"
-                                    name="nim" value="{{ old('nim') }}" required autocomplete="nim" autofocus
-                                    placeholder="NIM">
+                                <input id="nim" type="text"
+                                    class="form-control @error('nim') is-invalid @enderror" name="nim"
+                                    value="{{ old('nim') }}" required autocomplete="nim" autofocus placeholder="NIM">
 
                                 @error('nim')
                                     <span class="invalid-feedback" role="alert">
@@ -146,9 +155,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" required autocomplete="email"
-                                    placeholder="Email">
+                                <input id="email" type="email"
+                                    class="form-control @error('email') is-invalid @enderror" name="email"
+                                    value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

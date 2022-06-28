@@ -5,7 +5,9 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Landing Page</title>
+        <meta name="description"
+            content="Beasiswa Sariraya Japan adalah beasiswa yang diberikan oleh perusahaan Sariraya Co., Ltd bagi mahasiswa berprestasi yang memenuhi kriteria, sebagai bentuk tanggung jawab sosial perusahaan.">
+        <title>Beasiswa Sariraya Japan</title>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
             integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -16,15 +18,21 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <link rel="icon" href="{{ asset('assets/images/bunga2.png') }}" type="image/x-icon">
-
+        {{-- ICON WEBSITE --}}
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
     </head>
 
     <body>
         @include('sweetalert::alert')
         <!-- Banner -->
         <div class="banner">
-            <img src="{{ asset('assets/images/banner.png') }}" alt="">
+            <img src="{{ asset('assets/images/banner.png') }}" alt="Banner Beasiswa Sariraya" width="100vw">
         </div>
         <!-- Akhir Banner -->
 
@@ -72,7 +80,7 @@
                         <div class="row mb-lg-2 mx-lg-5 mx-sm-2 my-sm-2">
                             <div class="col-sm-6 col-lg-3 mt-3 d-flex align-items-stretch">
                                 <div class="card whitecard text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/1.png') }}"
+                                    <img class="card-img-top" src="{{ asset('assets/images/1.png') }}" width="100px"
                                         alt="Card image cap">
                                     <div class="card-body pb-0">
                                         <h5 class="card-title">Pendaftaran & Submit Administrasi</h5>
@@ -83,7 +91,7 @@
                             </div>
                             <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
                                 <div class="card whitecard text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/3.png') }}"
+                                    <img class="card-img-top" src="{{ asset('assets/images/3.png') }}" width="100px"
                                         alt="Card image cap">
                                     <div class="card-body pb-0">
                                         <h5 class="card-title">Pengumuman Hasil Seleksi Administrasi</h5>
@@ -94,8 +102,8 @@
                             </div>
                             <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
                                 <div class="card whitecard text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/4.png') }}"
-                                        alt="Card image cap">
+                                    <img class="card-img-top" src="{{ asset('assets/images/4.png') }}" width="100px"
+                                        alt="Icon Orang">
                                     <div class="card-body pb-0">
                                         <h5 class="card-title">Seleksi Wawancara</h5>
                                         <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tm_wwn->translatedFormat('d F Y - ') . $getPeriodeAktif->ta_wwn->translatedFormat('d F Y') : '-' }}
@@ -105,8 +113,8 @@
                             </div>
                             <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
                                 <div class="card whitecard text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/5.png') }}"
-                                        alt="Card image cap">
+                                    <img class="card-img-top" src="{{ asset('assets/images/5.png') }}" width="100px"
+                                        alt="Icon Pengumuman Orang">
                                     <div class="card-body pb-0">
                                         <h5 class="card-title">Pengumuman Hasil Seleksi Wawancara</h5>
                                         <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tp_wwn->translatedFormat('d F Y') : '-' }}
@@ -118,8 +126,8 @@
                         <div class="row mb-lg-2 mb-lg-5 mx-lg-5 mx-sm-2 my-sm-2 d-flex justify-content-center">
                             <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
                                 <div class="card whitecard text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/7.png') }}"
-                                        alt="Card image cap">
+                                    <img class="card-img-top" src="{{ asset('assets/images/7.png') }}" width="100px"
+                                        alt="Icon Submit Pendaftaran">
                                     <div class="card-body pb-0">
                                         <h5 class="card-title">Submit Penugasan</h5>
                                         <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tm_png->translatedFormat('d F Y - ') . $getPeriodeAktif->ta_png->translatedFormat('d F Y') : '-' }}
@@ -130,7 +138,7 @@
                             <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
                                 <div class="card whitecard text-center">
                                     <img class="card-img-top" src="{{ asset('assets/images/9.png') }}"
-                                        alt="Card image cap">
+                                        width="100px" alt="Card image cap">
                                     <div class="card-body pb-0">
                                         <h5 class="card-title">Pengumuman Akhir</h5>
                                         <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tp_png->translatedFormat('d F Y') : '-' }}
@@ -141,7 +149,7 @@
                             <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
                                 <div class="card whitecard text-center mb-md-0 mb-5">
                                     <img class="card-img-top" src="{{ asset('assets/images/6.png') }}"
-                                        alt="Card image cap">
+                                        width="100px" alt="Card image cap">
                                     <div class="card-body pb-0">
                                         <h5 class="card-title">Pemberian Beasiswa</h5>
                                         <p>{{ $getPeriodeAktif == null ? '-' : 'Maret - Agustus 2022' }}</p>
@@ -161,8 +169,8 @@
                 </center>
                 <div class="row sariraya">
                     <div class="col-lg-6 foto">
-                        <img src="{{ asset('assets/images/pos1.jpeg') }}" alt=""
-                            class="img-fluid mt-1 mb-4" />
+                        <img src="{{ asset('assets/images/pos1.jpeg') }}" alt="Post Beasiswa Sariraya"
+                            width="90%" class="img-fluid mt-1 mb-4" />
                     </div>
                     <div class="col-lg-6">
                         <div class="mx-3">

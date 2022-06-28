@@ -91,11 +91,14 @@ class HomeController extends Controller
         $getAllUniv = Univ::all();
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        $getAdministrasiUser = Administrasi::with('user')->where('periode_id', '=', $getPeriodeAktif->id_periode)
+            ->where('user_id', '=', Auth::user()->id)
+            ->first();
         if ($getPeriodeAktif == null && Auth::user()->role == 'mahasiswa') {
             auth()->logout();
         }
         $getUserLoggedIn = Auth::user();
-        return view('view-mahasiswa.profil-mahasiswa', compact('getUserLoggedIn', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv'));
+        return view('view-mahasiswa.profil-mahasiswa', compact('getUserLoggedIn', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAdministrasiUser'));
     }
 
     public function resetBeasiswa()
@@ -122,7 +125,7 @@ class HomeController extends Controller
             }
         }
 
-        $getAllUser = User::all();
+        $getAllUser = User::where('role', '!=', 'admin')->get();
         foreach ($getAllUser as $user) {
             if (count($getAllUser) > 0) {
                 $file = 'pictures/' . $user->picture;

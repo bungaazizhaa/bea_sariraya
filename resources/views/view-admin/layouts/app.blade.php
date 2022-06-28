@@ -7,7 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @yield('titlepage')
 
-    <link rel="icon" href="{{ asset('assets') }}/images/bunga2.png">
+    {{-- ICON WEBSITE --}}
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -105,7 +112,8 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <div class="user-image img-circle image-previewer elevation-2" alt="User Image" style="background-image: url('/pictures/{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}'); background-size: cover; background-position: center top; width: 36px;
+                        <div class="user-image img-circle image-previewer elevation-2" alt="User Image"
+                            style="background-image: url('/pictures/{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}'); background-size: cover; background-position: center top; width: 36px;
                             height: 36px;">
                         </div>
                         <span class="d-none d-lg-inline ml-2">{{ Auth::user()->name }}</span>
@@ -114,7 +122,8 @@
                         <!-- User image -->
                         <li class="user-header">
                             <div class="row d-flex justify-content-center m-2">
-                                <div class="user-image img-circle image-previewer myshadow" alt="User Image" style="background-image: url('/pictures/{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}'); background-size: cover; background-position: center top; width: 100px;
+                                <div class="user-image img-circle image-previewer myshadow" alt="User Image"
+                                    style="background-image: url('/pictures/{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}'); background-size: cover; background-position: center top; width: 100px;
                                     height: 100px;">
                                 </div>
                             </div>
@@ -133,8 +142,7 @@
                                     class="fas fa-sign-out-alt"></i>
                                 Sign out
                             </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                class="d-none">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
                         </li>

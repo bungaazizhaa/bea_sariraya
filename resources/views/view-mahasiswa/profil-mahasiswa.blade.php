@@ -73,6 +73,12 @@
                         </a>
                     @endif
                 </div>
+                @if (isset($getAdministrasiUser))
+                    <div>
+                        Nomor Pendaftaran Anda: <span
+                            class="font-weight-bold">{{ $getAdministrasiUser->no_pendaftaran }}</span>
+                    </div>
+                @endif
             </div>
         </div>
 

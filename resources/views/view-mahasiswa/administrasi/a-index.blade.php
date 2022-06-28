@@ -6,7 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tahap Administrasi</title>
-    <link rel="icon" href="{{ asset('assets/images/bunga2.png') }}" type="image/x-icon">
+    {{-- ICON WEBSITE --}}
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
@@ -45,8 +52,9 @@
                     <img src="{{ asset('assets/images/logo.png') }}" alt="" width="80px">
                 </a>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -113,11 +121,13 @@
                             class="text-nowrap">{{ $getAdministrasiUser->updated_at->diffForHumans() }}</span>
                     </p>
                 @endif
-                <input id="user_id" hidden type="text" class="form-control @error('user_id') is-invalid @enderror"
-                    user_id="user_id" value="{{ Auth::user()->id }}" autocomplete="user_id">
+                <input id="user_id" hidden type="text"
+                    class="form-control @error('user_id') is-invalid @enderror" user_id="user_id"
+                    value="{{ Auth::user()->id }}" autocomplete="user_id">
 
-                <input id="periode_id" hidden type="text" class="form-control @error('periode_id') is-invalid @enderror"
-                    periode_id="periode_id" value="{{ $getPeriodeAktif->id }}" autocomplete="periode_id">
+                <input id="periode_id" hidden type="text"
+                    class="form-control @error('periode_id') is-invalid @enderror" periode_id="periode_id"
+                    value="{{ $getPeriodeAktif->id }}" autocomplete="periode_id">
 
                 <div class="row d-flex justify-content-center my-5 mx-1">
                     <div class="col-md-8 alert alert-info text-center" role="alert">
@@ -193,7 +203,8 @@
                             <div class="card-body">
                                 <div class="row mb-3 datadiri">
                                     <label for="tempat_lahir"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Tempat Lahir') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Tempat Lahir') }}<span
+                                            class="text-danger"> *</span></label>
 
                                     <div class="col-md-6">
                                         <input id="tempat_lahir" type="text"
@@ -212,7 +223,8 @@
 
                                 <div class="row mb-3 datadiri">
                                     <label for="tanggal_lahir"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Lahir') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Lahir') }}<span
+                                            class="text-danger"> *</span></label>
 
                                     <div class="col-md-6">
                                         <input autocomplete="off" id="tanggal_lahir" type="text"
@@ -229,7 +241,8 @@
 
                                 <div class="row mb-3 datadiri">
                                     <label for="semester"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Semester') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Semester') }}<span
+                                            class="text-danger"> *</span></label>
 
                                     <div class="col-md-6">
                                         <input id="semester" type="text" spellcheck="false"
@@ -248,7 +261,8 @@
 
                                 <div class="row mb-3 datadiri">
                                     <label for="ipk"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('IPK') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('IPK') }}<span
+                                            class="text-danger"> *</span></label>
 
                                     <div class="col-md-6">
                                         <input id="ipk" type="text"
@@ -267,7 +281,8 @@
 
                                 <div class="row mb-3 datadiri">
                                     <label for="keahlian"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Keahlian') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Keahlian') }}<span
+                                            class="text-danger"> *</span></label>
 
                                     <div class="col-md-6">
                                         <input id="keahlian" type="text" spellcheck="false"
@@ -285,7 +300,8 @@
                                 </div>
                                 <div class="row mb-3 datadiri">
                                     <label for="alamat"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Alamat') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Alamat') }}<span
+                                            class="text-danger"> *</span></label>
 
                                     <div class="col-md-6">
                                         <input id="alamat" type="text" spellcheck="false"
@@ -317,7 +333,8 @@
                                         5MB</span>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="file_cv" class="col-md-4 col-form-label text-md-right">File CV</label>
+                                    <label for="file_cv" class="col-md-4 col-form-label text-md-right">File
+                                        CV<span class="text-danger"> *</span></label>
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <div class="custom-file berkas">
@@ -353,7 +370,7 @@
                                 @endif
                                 <div class="row mb-3">
                                     <label for="file_esai" class="col-md-4 col-form-label text-md-right">File
-                                        Esai</label>
+                                        Esai<span class="text-danger"> *</span></label>
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <div class="custom-file">
@@ -426,7 +443,7 @@
 
                                 <div class="row mb-3">
                                     <label for="file_ktm" class="col-md-4 col-form-label text-md-right">File
-                                        KTM</label>
+                                        KTM<span class="text-danger"> *</span></label>
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <div class="custom-file">
@@ -463,7 +480,7 @@
 
                                 <div class="row mb-3">
                                     <label for="file_transkrip" class="col-md-4 col-form-label text-md-right">File
-                                        Transkrip</label>
+                                        Transkrip<span class="text-danger"> *</span></label>
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <div class="custom-file">
@@ -513,14 +530,15 @@
 
                                 <div class="row mb-3 datadiri">
                                     <label for="no_wa"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Nomor WhatsApp') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Nomor WhatsApp') }}<span
+                                            class="text-danger"> *</span></label>
 
                                     <div class="col-md-6">
                                         <input id="no_wa" type="text" spellcheck="false"
                                             class="form-control editable {{ isset($getAdministrasiUser->no_wa) ? 'font-weight-bold' : '' }} @error('no_wa') is-invalid @enderror"
                                             name="no_wa" disabled
                                             value="{{ old('no_wa', isset($getAdministrasiUser) ? $getAdministrasiUser->no_wa : '') }}"
-                                            autocomplete="no_wa" placeholder="">
+                                            autocomplete="no_wa" placeholder="08XXXXXXXX">
 
                                         @error('no_wa')
                                             <span class="invalid-feedback" role="alert">
@@ -539,7 +557,7 @@
                                             class="form-control editable {{ isset($getAdministrasiUser->instagram) ? 'font-weight-bold' : '' }} @error('instagram') is-invalid @enderror"
                                             name="instagram" disabled
                                             value="{{ old('instagram', isset($getAdministrasiUser) ? $getAdministrasiUser->instagram : '') }}"
-                                            autocomplete="instagram" placeholder="">
+                                            autocomplete="instagram" placeholder="Username Instagram">
 
                                         @error('instagram')
                                             <span class="invalid-feedback" role="alert">
@@ -557,7 +575,7 @@
                                             class="form-control editable {{ isset($getAdministrasiUser->facebook) ? 'font-weight-bold' : '' }} @error('facebook') is-invalid @enderror"
                                             name="facebook" disabled
                                             value="{{ old('facebook', isset($getAdministrasiUser) ? $getAdministrasiUser->facebook : '') }}"
-                                            autocomplete="facebook" placeholder="">
+                                            autocomplete="facebook" placeholder="Nama Facebook">
 
                                         @error('facebook')
                                             <span class="invalid-feedback" role="alert">
@@ -602,10 +620,10 @@
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
-                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
-                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
         </script>
 
         {{-- Browse Show Name --}}

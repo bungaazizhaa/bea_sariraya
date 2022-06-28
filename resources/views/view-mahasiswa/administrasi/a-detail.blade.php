@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tahap Administrasi</title>
+    {{-- ICON WEBSITE --}}
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     {{-- Bootstrap 4 --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -24,7 +32,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/images') }}">
 
     <!-- SelectPicker -->
     <link rel="stylesheet"
@@ -80,8 +87,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -110,7 +116,8 @@
         <h1 class="text-center mt-3 test">Tahap Administrasi</h1>
 
 
-        <form id="admForm" method="POST" action="{{ route('update.administrasi') }}" enctype="multipart/form-data">
+        <form id="admForm" method="POST" action="{{ route('update.administrasi') }}"
+            enctype="multipart/form-data">
             @csrf
             @if (isset($getAdministrasiUser))
                 <hr class="container" style="width:65vw;" />
@@ -121,8 +128,9 @@
             <input id="user_id" hidden type="text" class="form-control @error('user_id') is-invalid @enderror"
                 user_id="user_id" value="{{ Auth::user()->id }}" autocomplete="user_id">
 
-            <input id="periode_id" hidden type="text" class="form-control @error('periode_id') is-invalid @enderror"
-                periode_id="periode_id" value="{{ $getPeriodeAktif->id }}" autocomplete="periode_id">
+            <input id="periode_id" hidden type="text"
+                class="form-control @error('periode_id') is-invalid @enderror" periode_id="periode_id"
+                value="{{ $getPeriodeAktif->id }}" autocomplete="periode_id">
 
 
             <div class="row d-flex justify-content-center my-5 mx-1">
@@ -147,7 +155,8 @@
                                 autocomplete="no_pendaftaran" > --}}
                                         <input id="no_pendaftaran" type="text" disabled
                                             class="form-control @error('no_pendaftaran') is-invalid @enderror"
-                                            name="no_pendaftaran" value="{{ $getAdministrasiUser->no_pendaftaran }}"
+                                            name="no_pendaftaran"
+                                            value="{{ $getAdministrasiUser->no_pendaftaran }}"
                                             autocomplete="no_pendaftaran">
 
                                         @error('no_pendaftaran')
@@ -291,8 +300,8 @@
 
                                 <div class="col-md-6">
                                     <input id="ipk" type="text"
-                                        class="form-control editable @error('ipk') is-invalid @enderror" name="ipk"
-                                        spellcheck="false" disabled
+                                        class="form-control editable @error('ipk') is-invalid @enderror"
+                                        name="ipk" spellcheck="false" disabled
                                         value="{{ old('ipk', isset($getAdministrasiUser) ? $getAdministrasiUser->ipk : '') }}"
                                         autocomplete="ipk" required>
 
