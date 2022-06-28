@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\Univ;
 use App\Models\User;
 use App\Models\Periode;
+use App\Models\Statistic;
 use App\Models\Wawancara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +47,7 @@ class HomeController extends Controller
     {
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        Statistic::where('name', '=', 'Landing Page')->first()->increment('views');
         return view('landing-page', compact('getPeriodeAktif', 'getTanggalSekarang'));
     }
 

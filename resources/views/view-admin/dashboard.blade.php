@@ -9,9 +9,22 @@
     <div class="container-fluid px-3">
         <!-- Main content -->
         <div class="row">
+            <div class="col-12 col-xs-6 col-md-6 col-xl-3">
+                <!-- small box -->
+                <div class="bg-dark rounded mb-3 p-2 pt-1" style="height: 45px;">
+                    <div>
+                        <p class="ml-2 d-flex">
+                            Pengunjung Landing Page &nbsp;<span
+                                class="border border-info rounded px-2 py-1 h-100 ml-auto h6 font-weight-bold">{{ $pengunjung = DB::table('statistics')->where('name', '=', 'Landing Page')->first()->views }}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div onclick="location.href='{{ route('data.pengguna') }}'" class="small-box rounded-md"
+                <div onclick="location.href='{{ route('data.pengguna') }}'" class="small-box rounded-md myshadow"
                     style="height: 118px;">
                     <div class="inner">
                         <h3 class="mb-1 mt-2">{{ count($getAllUser->where('role', '=', 'mahasiswa')) }} Akun</h3>
@@ -26,7 +39,7 @@
             </div>
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div onclick="location.href='{{ route('index.periode') }}'" class="small-box rounded-md"
+                <div onclick="location.href='{{ route('index.periode') }}'" class="small-box rounded-md myshadow"
                     style="height: 118px;">
                     <div class="inner">
                         <h3 class="mb-1 mt-2">{{ count($getAllPeriode) }} Periode</h3>
@@ -41,7 +54,7 @@
             </div>
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div onclick="location.href='{{ route('index.periode') }}'" class="small-box rounded-md"
+                <div onclick="location.href='{{ route('index.periode') }}'" class="small-box rounded-md myshadow"
                     style="height: 118px;">
                     <div class="inner">
                         <h3 class="mb-1 mt-2">{{ count($getAllPeriode->where('status_png', '=', 'Selesai')) }}
@@ -59,7 +72,7 @@
             <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <div onclick="location.href='{{ route('periode', isset($getPeriodeAktif->name) ? $getPeriodeAktif->name : '') }}'"
-                    class="{{ isset($getPeriodeAktif->name) ? 'bg-selesai' : '' }} small-box rounded-md"
+                    class="{{ isset($getPeriodeAktif->name) ? 'bg-selesai' : '' }} small-box rounded-md myshadow"
                     style="height: 118px;">
                     <div class="inner">
                         <h3 class="mb-1 {{ isset($getPeriodeAktif->name) ? 'mt-2' : 'mt-3' }}"
@@ -144,7 +157,7 @@
                 <div class="col-12">
                     <div class="bg-dark rounded-md d-flex justify-content-center flex-column" style="height: 200px">
                         <div class="text-center">
-                            Anda belum membuat Periode. <a href="/periode">Tambah Periode <i
+                            Anda belum membuat Periode.<br><a href="/periode">Tambah Periode <i
                                     class="fa-solid fa-angle-right"></i></a>
                         </div>
                     </div>
