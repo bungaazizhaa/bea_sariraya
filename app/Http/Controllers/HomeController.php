@@ -151,18 +151,18 @@ class HomeController extends Controller
         User::create(
             [
                 'role' => 'admin',
-                'nim' => '000',
-                'univ_id' => '1',
-                'prodi_id' => '1',
+                'nim' => null,
+                'univ_id' => null,
+                'prodi_id' => null,
                 'name' => 'Administrator',
-                'picture' => null,
+                'picture' => 'admin.png',
                 'email_verified_at' => now(),
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('12345678'),
                 'remember_token' => '',
             ],
         );
-        Alert::html('Beasiswa Berhasil Direset. Semua Data Telah Terhapus.', " Username Admin = admin@gmail.com ", 'success');
+        Alert::html('Beasiswa Berhasil Direset. Semua Data Telah Terhapus.', " Username Admin = admin@gmail.com<br>Demi keamanan, segera ubah password default Anda di menu Pengaturan.", 'success');
         return redirect(route('admin'));
     }
 }
