@@ -201,7 +201,7 @@
                     <div class="row">
                         <div class="col-md-6 d-flex align-items-stretch justify-content-end">
                             <div class="card whitecard bea mb-4 mb-md-0 px-4 pt-4">
-                                <h5 class="text-center"> Keuntungan Beasiswa :</h5>
+                                <p class="h6 font-weight-bold text-center"> Keuntungan Beasiswa :</p>
                                 <p class="text-left">- Uang saku Rp500,000 per bulan selama 1 semester. <br>
                                     - Business Coaching bersama CEO Sariraya Co., Ltd. <br>
                                     - Mentoring beasiswa luar negeri. <br>
@@ -213,7 +213,7 @@
 
                         <div class="col-md-6 d-flex align-items-stretch">
                             <div class="card whitecard bea text-left px-4 pt-4">
-                                <h5 class="text-center">Syarat Administrasi :</h5>
+                                <p class="h6 font-weight-bold text-center">Syarat Administrasi :</p>
                                 <p>- Scan Kartu Tanda Mahasiswa <br>
                                     - Scan Transkrip Nilai <br>
                                     - Portofolio pengembangan website dan/atau desain grafis <br>
@@ -267,16 +267,22 @@
                     <div class="row">
                         <div class="col-md-6 d-flex align-items-stretch">
                             <div class="card mycard text-left bea mb-4 mb-md-0 px-4 pt-4 pb-0">
-                                <h5>Q : Apakah beasiswa ini berlaku untuk semua jurusan ?</h5>
+                                <p class="h6 font-weight-bold" style="line-height: 2rem">Q : Apakah beasiswa ini
+                                    berlaku untuk semua jurusan ?
+                                </p>
                                 <p>A : Mohon maaf, tidak bisa. Beasiswa ini hanya terbuka bagi mahasiswa jurusan
                                     tersebut saja.
                                 </p>
 
-                                <h5>Q : Apakah beasiswa ini terbuka untuk alumni / yang sudah lulus ?</h5>
+                                <p class="h6 font-weight-bold" style="line-height: 2rem">Q : Apakah beasiswa ini
+                                    terbuka untuk alumni / yang
+                                    sudah lulus ?</p>
                                 <p>A : Tidak, beasiswa ini hanya diperuntukkan bagi Mahasiswa S1/D4 yang masih aktif
                                     kuliah minimal di semester 6.</p>
 
-                                <h5>Q : Dimana saya akan mengetahui pengumuman kelulusan di setiap seleksi ?</h5>
+                                <p class="h6 font-weight-bold" style="line-height: 2rem">Q : Dimana saya akan
+                                    mengetahui pengumuman kelulusan di
+                                    setiap seleksi ?</p>
                                 <p>A : Pengumuman akan diberitahuan melalui website ini, dan pastikan anda sudah
                                     login
                                     terlebih dahulu untuk melihat status kelulusan anda.</p>
@@ -285,16 +291,21 @@
 
                         <div class="col-md-6 d-flex align-items-stretch">
                             <div class="card mycard text-left bea px-4 pt-4 pb-0">
-                                <h5>Q : Apakah pendaftaran beasiswa ini berbayar ?</h5>
+                                <p class="h6 font-weight-bold" style="line-height: 2rem">Q : Apakah pendaftaran
+                                    beasiswa ini berbayar ?</p>
                                 <p>A : Tidak, beasiswa ini tidak dipungut biaya apapun (gratis).</p>
 
-                                <h5>Q : Apakah ada ketentuan dalam penulisan esai untuk syarat beasiswa ini ?</h5>
+                                <p class="h6 font-weight-bold" style="line-height: 2rem">Q : Apakah ada ketentuan
+                                    dalam penulisan esai untuk
+                                    syarat beasiswa ini ?</p>
                                 <p>A : Tidak ada ketentuan khusus, yang penting formatnya rapi dan terbaca jelas,
                                     konten
                                     sesuai tema dan jumlah kata maksimal 1000 kata saja.</p>
 
-                                <h5>Q : Kemana saya harus menghubungi apabila ada hal yang ingin saya tanyakan ?
-                                </h5>
+                                <p class="h6 font-weight-bold" style="line-height: 2rem">Q : Kemana saya harus
+                                    menghubungi apabila ada hal yang
+                                    ingin saya tanyakan ?
+                                </p>
                                 <p>A : Anda bisa menghubungi kontak person di bawah ini dan juga mengunjungi
                                     media sosial sariraya yaitu instagram
                                     untuk mendapatkan info terupdate mengenai Beasiswa Sariraya ini.</p>
