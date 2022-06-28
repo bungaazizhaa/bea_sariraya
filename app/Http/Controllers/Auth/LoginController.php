@@ -59,7 +59,7 @@ class LoginController extends Controller
     {
         $checkLocation = geoip()->getLocation($_SERVER['REMOTE_ADDR']);
         $user = User::where('id', '=', Auth::user()->id)->first();
-        $user->info_login = $checkLocation->city . ', ' . $checkLocation->state_name . ', ' . $checkLocation->country . ' (' . $checkLocation->ip . ')';
+        $user->info_login = $checkLocation['city'] . ', ' . $checkLocation['state_name'] . ', ' . $checkLocation['country'] . ' (' . $checkLocation['ip'] . ')';
         $user->save();
         if (Auth::user()->role === 'admin') {
             Alert::success('Login Berhasil.', 'Anda Login sebagai ' . Auth::user()->name . " (" . Auth::user()->role . ").");

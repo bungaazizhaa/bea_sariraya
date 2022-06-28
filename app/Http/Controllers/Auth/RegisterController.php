@@ -106,7 +106,7 @@ class RegisterController extends Controller
                     'prodi_id' => $data['prodi_id'],
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
-                    'info_login' => $checkLocation->city . ', ' . $checkLocation->state_name . ', ' . $checkLocation->country . ' (' . $checkLocation->ip . ')',
+                    'info_login' => $checkLocation['city'] . ', ' . $checkLocation['state_name'] . ', ' . $checkLocation['country'] . ' (' . $checkLocation['ip'] . ')',
                 ]);
             } else {
                 Univ::create([
@@ -120,7 +120,7 @@ class RegisterController extends Controller
                     'prodi_id' => $data['prodi_id'],
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
-                    'info_login' => $checkLocation->city . ', ' . $checkLocation->state_name . ', ' . $checkLocation->country . ' (' . $checkLocation->ip . ')',
+                    'info_login' => $checkLocation['city'] . ', ' . $checkLocation['state_name'] . ', ' . $checkLocation['country'] . ' (' . $checkLocation['ip'] . ')',
                 ]);
             }
         } else {
@@ -131,7 +131,7 @@ class RegisterController extends Controller
                 'prodi_id' => $data['prodi_id'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
-                'info_login' => $checkLocation->city . ', ' . $checkLocation->state_name . ', ' . $checkLocation->country . ' (' . $checkLocation->ip . ')',
+                'info_login' => $checkLocation['city'] . ', ' . $checkLocation['state_name'] . ', ' . $checkLocation['country'] . ' (' . $checkLocation['ip'] . ')',
             ]);
         }
     }
