@@ -112,7 +112,7 @@ return [
     |
     */
 
-    'cache' => 'some',
+    'cache' => 'all',
 
     /*
     |--------------------------------------------------------------------------
@@ -136,7 +136,7 @@ return [
     |
     */
 
-    'cache_expires' => 120,
+    'cache_expires' => 30,
 
     /*
     |--------------------------------------------------------------------------
@@ -148,18 +148,18 @@ return [
     */
 
     'default_location' => [
-        'ip' => '127.0.0.0',
+        'ip' => '-',
         'iso_code' => 'US',
-        'country' => 'United States',
-        'city' => 'New Haven',
+        'country' => 'Negara(?)',
+        'city' => 'Kota(?)',
         'state' => 'CT',
-        'state_name' => 'Connecticut',
+        'state_name' => 'Region(?)',
         'postal_code' => '06510',
         'lat' => 41.31,
         'lon' => -72.92,
         'timezone' => 'America/New_York',
         'continent' => 'NA',
-        'default' => false,
+        'default' => true,
         'currency' => 'USD',
     ],
 

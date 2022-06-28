@@ -93,7 +93,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $checkLocation = geoip()->getLocation(strval($_SERVER['REMOTE_ADDR']));
+        $checkLocation = geoip()->getLocation(isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']));
         Alert::success('Registrasi Berhasil.', 'Silahkan lengkapi data Anda!');
         if ($data['univ_id'] == "other") {
             $getUniv = Univ::where('nama_universitas', '=', $data['Input_Universitas'])->first();
