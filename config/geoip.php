@@ -124,8 +124,8 @@ return [
     |
     */
 
-    'cache_tags' => ['torann-geoip-location'],
-    // 'cache_tags' => [],
+    // 'cache_tags' => ['torann-geoip-location'],
+    'cache_tags' => [],
 
     /*
     |--------------------------------------------------------------------------
@@ -159,7 +159,7 @@ return [
         'lon' => -72.92,
         'timezone' => 'America/New_York',
         'continent' => 'NA',
-        'default' => false,
+        'default' => true,
         'currency' => 'USD',
     ],
 
