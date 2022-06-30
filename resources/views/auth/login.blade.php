@@ -107,7 +107,7 @@
             </div>
         </div>
 
-        <div class="logo-login">
+        <div class="logo-login d-none d-lg-block">
             <img src="{{ asset('assets/images/awardee.png') }}" alt="">
         </div>
 

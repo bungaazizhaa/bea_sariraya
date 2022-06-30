@@ -195,7 +195,7 @@
                 </div>
             </div>
         </div>
-        <div class="logo">
+        <div class="logo d-none d-lg-block">
             <img src="{{ asset('assets/images/awardee.png') }}" alt="">
         </div>
     </div>
