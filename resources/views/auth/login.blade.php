@@ -29,10 +29,16 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('admin-lte') }}/plugins/fontawesome-free/css/all.min.css">
     <script src="https://kit.fontawesome.com/637f4baacf.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            min-width: 100vw;
+            min-height: 100vh;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="banner-regist" style="background-image: url('{{ asset('assets/images/bg.png') }}')"> </div>
+    <div class="banner-regist " style="background-image: url('{{ asset('assets/images/bg.png') }}')"> </div>
 
     <div class="container">
         <div class="logo2">

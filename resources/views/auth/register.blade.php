@@ -34,6 +34,12 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js" defer></script>
+    <style>
+        body {
+            min-width: 100vw;
+            min-height: 100vh;
+        }
+    </style>
 </head>
 
 <body>
@@ -41,8 +47,8 @@
     <div class="banner-regist" style="background-image: url('{{ asset('assets/images/bg.png') }}')"> </div>
 
     <div class="container">
-        <div class="logo-img">
-            <img src="{{ asset('assets/images/logo.png') }}" alt="">
+        <div class="logo-img mt-1">
+            <img class=" mt-0 mt-lg-4" src="{{ asset('assets/images/logo.png') }}" alt="">
         </div>
 
 
@@ -54,7 +60,7 @@
             <div class="col-12 pl-lg-0 col-lg-6 text-lg-left text-center d-flex my-auto">
                 <div class="welcom mt-5 mt-lg-0 mb-lg-5 mx-auto">
                     <p>Pendaftaran Beasiswa Sariraya Japan 2022</p>
-                    <h1>SUDAH DIBUKA</h1>
+                    <h1 class="text-white">Sudah Dibuka</h1>
                 </div>
 
 
