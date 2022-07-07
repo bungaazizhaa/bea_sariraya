@@ -101,7 +101,7 @@
                     <!-- /.card-header -->
                     <div class="alert   d-flex mx-auto flex-column pt-2 pb-0">
                         <div class="mx-auto mb-2">
-                            <img src="/pictures/{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}"
+                            <img src="{{ asset('pictures') . '/' }}{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}"
                                 class="rounded" alt="User Image" height="280px" width="210px">
                         </div>
                         @error('Foto')

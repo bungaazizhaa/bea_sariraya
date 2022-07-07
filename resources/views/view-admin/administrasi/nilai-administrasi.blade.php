@@ -68,7 +68,7 @@
                                 <div class="row">
                                     <div class="col-md-3 text-center text-md-left px-3">
                                         <div>
-                                            <img src="/pictures/{{ $admUser->user->picture == '' ? 'noimg.png' : $admUser->user->picture }}"
+                                            <img src="{{ asset('pictures') . '/' }}{{ $admUser->user->picture == '' ? 'noimg.png' : $admUser->user->picture }}"
                                                 class="rounded" alt="User Image" height="200px" width="150px">
                                         </div>
                                     </div>
@@ -79,32 +79,32 @@
                                                 Nama</label>
 
                                             <div class="col-md-8 mb-3">
-                                                <input id="nama" type="text" disabled class="form-control" name="nama"
-                                                    value="{{ $admUser->user->name }}">
+                                                <input id="nama" type="text" disabled class="form-control"
+                                                    name="nama" value="{{ $admUser->user->name }}">
                                             </div>
                                             <label for="univ" class="col-md-4 col-form-label text-md-right h5"
                                                 style="font-size:16px">
                                                 Perguruan Tinggi</label>
 
                                             <div class="col-md-8 mb-3">
-                                                <input id="univ" type="text" disabled class="form-control" name="univ"
-                                                    value="{{ $admUser->user->univ->nama_universitas }}">
+                                                <input id="univ" type="text" disabled class="form-control"
+                                                    name="univ" value="{{ $admUser->user->univ->nama_universitas }}">
                                             </div>
                                             <label for="prodi" class="col-md-4 col-form-label text-md-right h5"
                                                 style="font-size:16px">
                                                 Program Studi</label>
 
                                             <div class="col-md-8 mb-3">
-                                                <input id="prodi" type="text" disabled class="form-control" name="prodi"
-                                                    value="{{ $admUser->user->prodi->nama_prodi }}">
+                                                <input id="prodi" type="text" disabled class="form-control"
+                                                    name="prodi" value="{{ $admUser->user->prodi->nama_prodi }}">
                                             </div>
                                             <label for="prodi" class="col-md-4 col-form-label text-md-right h5"
                                                 style="font-size:16px">
                                                 Email</label>
 
                                             <div class="col-md-8">
-                                                <input id="prodi" type="text" disabled class="form-control" name="prodi"
-                                                    value="{{ $admUser->user->email }}">
+                                                <input id="prodi" type="text" disabled class="form-control"
+                                                    name="prodi" value="{{ $admUser->user->email }}">
                                             </div>
                                         </div>
                                     </div>
@@ -137,8 +137,8 @@
                                         class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="nim" type="text" disabled class="form-control" name="nim"
-                                            value="{{ $admUser->user->nim }}">
+                                        <input id="nim" type="text" disabled class="form-control"
+                                            name="nim" value="{{ $admUser->user->nim }}">
                                     </div>
                                 </div>
 
@@ -158,8 +158,8 @@
                                         class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Lahir') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="tanggal_lahir" type="text" class="form-control" name="tanggal_lahir"
-                                            spellcheck="false" disabled
+                                        <input id="tanggal_lahir" type="text" class="form-control"
+                                            name="tanggal_lahir" spellcheck="false" disabled
                                             value="{{ isset($admUser->tanggal_lahir) ? $admUser->tanggal_lahir->translatedFormat('d F Y') : '' }}">
                                     </div>
                                 </div>
@@ -180,8 +180,8 @@
                                         class="col-md-4 col-form-label text-md-right">{{ __('IPK') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="ipk" type="text" class="form-control" name="ipk" spellcheck="false"
-                                            disabled value="{{ $admUser->ipk }}">
+                                        <input id="ipk" type="text" class="form-control" name="ipk"
+                                            spellcheck="false" disabled value="{{ $admUser->ipk }}">
                                     </div>
                                 </div>
 

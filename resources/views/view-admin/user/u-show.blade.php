@@ -17,7 +17,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body d-flex mx-auto">
-                            <img src="/pictures/{{ $getUser->picture == '' ? 'noimg.png' : $getUser->picture }}"
+                            <img src="{{ asset('pictures') . '/' }}{{ $getUser->picture == '' ? 'noimg.png' : $getUser->picture }}"
                                 class="rounded img-fluid image-previewer" alt="User Image" height="400px" width="300px">
                         </div>
                         <!-- /.card-body -->

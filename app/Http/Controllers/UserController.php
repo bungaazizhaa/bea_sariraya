@@ -157,7 +157,6 @@ class UserController extends Controller
         if ($validator->fails()) {
             $error = $validator->errors();
             $error = json_decode($error, true);
-            var_dump($error);
             Alert::error('Foto Gagal Diupload.', '' . $error['Foto'][0]);
         }
 

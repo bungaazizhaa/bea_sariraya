@@ -19,7 +19,7 @@
                             <div class="col-md-3">
                                 <div class="row mb-3">
                                     <div class="mx-auto mb-2">
-                                        <img src="/pictures/{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}"
+                                        <img src="{{ asset('pictures') . '/' }}{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}"
                                             class="rounded img-preview" alt="User Image" height="240px" width="180px">
                                     </div>
                                     @error('Foto')
@@ -34,8 +34,8 @@
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="Foto" name="Foto"
-                                                    onchange="previewImage()" value="{{ old('Foto') }}">
+                                                <input type="file" class="custom-file-input" id="Foto"
+                                                    name="Foto" onchange="previewImage()" value="{{ old('Foto') }}">
                                                 <label class="custom-file-label" for="Foto">Pilih
                                                     File</label>
                                             </div>
@@ -66,7 +66,8 @@
                                     <div class="col-md-6">
                                         <input id="email" type="email"
                                             class="form-control @error('email') is-invalid @enderror" name="email"
-                                            value="{{ old('email', Auth::user()->email) }}" required autocomplete="email">
+                                            value="{{ old('email', Auth::user()->email) }}" required
+                                            autocomplete="email">
 
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">

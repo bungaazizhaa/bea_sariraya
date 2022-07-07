@@ -68,7 +68,7 @@
                                 <div class="row">
                                     <div class="col-md-3 text-center text-md-left px-3">
                                         <div>
-                                            <img src="/pictures/{{ $wwnUser->administrasi->user->picture == '' ? 'noimg.png' : $wwnUser->administrasi->user->picture }}"
+                                            <img src="{{ asset('pictures') . '/' }}{{ $wwnUser->administrasi->user->picture == '' ? 'noimg.png' : $wwnUser->administrasi->user->picture }}"
                                                 class="rounded" alt="User Image" height="200px" width="150px">
                                         </div>
                                     </div>
@@ -79,15 +79,16 @@
                                                 Nama</label>
 
                                             <div class="col-md-8 mb-3">
-                                                <input id="nama" type="text" disabled class="form-control" name="nama"
-                                                    value="{{ $wwnUser->administrasi->user->name }}">
+                                                <input id="nama" type="text" disabled class="form-control"
+                                                    name="nama" value="{{ $wwnUser->administrasi->user->name }}">
                                             </div>
                                             <label for="univ" class="col-md-4 col-form-label text-md-right h5"
                                                 style="font-size:16px">
                                                 Perguruan Tinggi</label>
 
                                             <div class="col-md-8 mb-3">
-                                                <input id="univ" type="text" disabled class="form-control" name="univ"
+                                                <input id="univ" type="text" disabled class="form-control"
+                                                    name="univ"
                                                     value="{{ $wwnUser->administrasi->user->univ->nama_universitas }}">
                                             </div>
                                             <label for="prodi" class="col-md-4 col-form-label text-md-right h5"
@@ -95,7 +96,8 @@
                                                 Program Studi</label>
 
                                             <div class="col-md-8 mb-3">
-                                                <input id="prodi" type="text" disabled class="form-control" name="prodi"
+                                                <input id="prodi" type="text" disabled class="form-control"
+                                                    name="prodi"
                                                     value="{{ $wwnUser->administrasi->user->prodi->nama_prodi }}">
                                             </div>
                                             <label for="prodi" class="col-md-4 col-form-label text-md-right h5"
@@ -103,8 +105,8 @@
                                                 Email</label>
 
                                             <div class="col-md-8">
-                                                <input id="prodi" type="text" disabled class="form-control" name="prodi"
-                                                    value="{{ $wwnUser->administrasi->user->email }}">
+                                                <input id="prodi" type="text" disabled class="form-control"
+                                                    name="prodi" value="{{ $wwnUser->administrasi->user->email }}">
                                             </div>
                                         </div>
                                     </div>
@@ -138,8 +140,8 @@
                                         class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="nim" type="text" disabled class="form-control" name="nim"
-                                            value="{{ $wwnUser->administrasi->user->nim }}">
+                                        <input id="nim" type="text" disabled class="form-control"
+                                            name="nim" value="{{ $wwnUser->administrasi->user->nim }}">
                                     </div>
                                 </div>
 
@@ -159,8 +161,8 @@
                                         class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Lahir') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="tanggal_lahir" type="text" class="form-control" name="tanggal_lahir"
-                                            spellcheck="false" disabled
+                                        <input id="tanggal_lahir" type="text" class="form-control"
+                                            name="tanggal_lahir" spellcheck="false" disabled
                                             value="{{ $wwnUser->administrasi->tanggal_lahir->translatedFormat('d F Y') }}">
                                     </div>
                                 </div>
@@ -181,8 +183,8 @@
                                         class="col-md-4 col-form-label text-md-right">{{ __('IPK') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="ipk" type="text" class="form-control" name="ipk" spellcheck="false"
-                                            disabled value="{{ $wwnUser->administrasi->ipk }}">
+                                        <input id="ipk" type="text" class="form-control" name="ipk"
+                                            spellcheck="false" disabled value="{{ $wwnUser->administrasi->ipk }}">
                                     </div>
                                 </div>
 
@@ -301,7 +303,8 @@
 
                                     <div class="col-md-6">
                                         <input id="instagram" type="text" class="form-control" name="instagram"
-                                            spellcheck="false" disabled value="{{ $wwnUser->administrasi->instagram }}">
+                                            spellcheck="false" disabled
+                                            value="{{ $wwnUser->administrasi->instagram }}">
                                     </div>
                                 </div>
 
@@ -384,8 +387,8 @@
                                                 Penugasan</label>
                                             <div class="col-md-8">
                                                 <input autocomplete="off" id="soal" type="soal"
-                                                    class="form-control @error('soal') is-invalid @enderror" name="soal"
-                                                    required spellcheck="false"
+                                                    class="form-control @error('soal') is-invalid @enderror"
+                                                    name="soal" required spellcheck="false"
                                                     value="{{ old('soal', isset($wwnUser->penugasan->soal) ? $wwnUser->penugasan->soal : '') }}">
 
                                                 @error('soal')

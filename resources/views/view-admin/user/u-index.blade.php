@@ -39,7 +39,7 @@
                         <div class="col-12 col-xl-6">
                             <div class="card rounded-md myshadow user-box">
                                 <div class="row px-2">
-                                    <img src="/pictures/{{ $user->picture == '' ? 'noimg.png' : $user->picture }}"
+                                    <img src="{{ asset('pictures') . '/' }}{{ $user->picture == '' ? 'noimg.png' : $user->picture }}"
                                         onclick="location.href='{{ route('pengguna.show', $user->id) }}'"
                                         class="rounded-md image-previewer m-2" alt="User Image" width="120px"
                                         height="160px">

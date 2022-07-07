@@ -297,11 +297,11 @@
                                     <th>Nomor</th>
                                     <th>Email</th>
                                     <th>Status Adm</th>
-                                    {{-- <th>Update Adm</th> --}}
                                     <th>Status Wwn</th>
-                                    {{-- <th>Update Wwn</th> --}}
                                     <th>Status Png</th>
-                                    {{-- <th>Update Png</th> --}}
+                                    <th>Catatan Adm</th>
+                                    <th>Catatan Wwn</th>
+                                    <th>Catatan Png</th>
                                     <th>Keahlian</th>
                                     <th>Jadwal Wawancara</th>
                                     <th>Perguruan Tinggi</th>
@@ -314,9 +314,7 @@
                                     @foreach ($getAdministrasiUser as $userAdm)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-                                            {{-- <td><img src="/pictures/{{ $userAdm->user->picture == '' ? 'noimg.png' : $userAdm->user->picture }}"
-                                                    class="rounded" alt="User Image" height="120px" width="90px">
-                                            </td> --}}
+
                                             <td><a class="text-light"
                                                     href="{{ route('pengguna.show', $userAdm->id) }}">{{ $userAdm->name }}</a>
                                             </td>
@@ -338,7 +336,8 @@
                                                         {{ isset($userAdm->status_adm) ? ucfirst($userAdm->status_adm) . '_Adm' : 'Unset' }}
                                                     </div>
                                                 </form>
-                                                {{-- <td>{{ $userAdm->updated_at->translatedFormat('d F Y H:i') }}</td> --}}
+                                            </td>
+
                                             <td>
                                                 <form target="_blank"
                                                     id="editFormNilaiWwn{{ $userAdm->no_pendaftaran }}"
@@ -355,6 +354,7 @@
                                                         {{ isset($userAdm->status_wwn) ? ucfirst($userAdm->status_wwn) . '_Wwn' : 'Unset' }}
                                                     </div>
                                                 </form>
+
                                             </td>
                                             <td>
                                                 <form target="_blank"
@@ -372,6 +372,11 @@
                                                         {{ isset($userAdm->status_png) ? ucfirst($userAdm->status_png) . '_Png' : 'Unset' }}
                                                     </div>
                                                 </form>
+                                            </td>
+                                            <td>{{ isset($userAdm->catatan) ? $userAdm->catatan : '-' }}</td>
+                                            <td>{{ isset($userAdm->wawancara->catatan) ? $userAdm->wawancara->catatan : '-' }}
+                                            </td>
+                                            <td>{{ isset($userAdm->wawancara->penugasan->catatan) ? $userAdm->wawancara->penugasan->catatan : '-' }}
                                             </td>
                                             <td>{{ isset($userAdm->keahlian) ? $userAdm->keahlian : '-' }}</td>
                                             <td>{{ isset($userAdm->jadwal_wwn) ? $userAdm->jadwal_wwn->translatedFormat('d M Y - H:i') . ' WIB' : '-' }}

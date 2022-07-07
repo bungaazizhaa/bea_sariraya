@@ -52,6 +52,11 @@
                             @if (Route::has('register') && isset($getPeriodeAktif) ? !$getPeriodeAktif->status_adm == 'Selesai' : '')
                                 <a class="btn btn-success rounded-pill"
                                     href="{{ route('register') }}">{{ __('Register') }}</a>
+                            @else
+                                <div class="mt-3">
+                                    <small class="text-danger">Tahap Administrasi berakhir, Registrasi Akun telah
+                                        ditutup.</small>
+                                </div>
                             @endif
                         @else
                             <a class="btn btn-outline-success rounded-pill "

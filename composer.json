@@ -54,10 +54,6 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ],
-        "warmup": [
-            "@php artisan config:cache",
-            "@php artisan view:cache"
         ]
     },
     "extra": {
@@ -66,6 +62,10 @@
         }
     },
     "config": {
+        "platform": {
+            "php": "7.4.28"
+        },
+        "platform-check": false,
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true

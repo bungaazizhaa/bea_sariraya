@@ -51,7 +51,7 @@
                                             <tr>
                                                 <td>{{ $i++ }}</td>
                                                 <td>{{ $user->id }}</td>
-                                                <td><img src="/pictures/{{ $user->picture == '' ? 'noimg.png' : $user->picture }}"
+                                                <td><img src="{{ asset('pictures') . '/' }}{{ $user->picture == '' ? 'noimg.png' : $user->picture }}"
                                                         class="rounded" alt="User Image" height="120px" width="90px">
                                                 </td>
                                                 <td>{{ $user->name }}</td>
@@ -67,8 +67,8 @@
                                                         <a href="{{ route('pengguna.show', $user->id) }}" id="showUser"
                                                             class="btn btn-xs btn-primary rounded">Detail
                                                         </a>
-                                                        <a href="" id="deleteUserAlert" data-id="{{ $user->id }}"
-                                                            data-name="{{ $user->name }}"
+                                                        <a href="" id="deleteUserAlert"
+                                                            data-id="{{ $user->id }}" data-name="{{ $user->name }}"
                                                             class="btn btn-xs btn-danger rounded ml-2">Hapus
                                                         </a>
                                                     @endif
