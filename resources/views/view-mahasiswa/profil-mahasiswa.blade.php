@@ -221,7 +221,8 @@
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="Foto" name="Foto"
-                                            onchange="previewImage()" value="{{ old('Foto') }}">
+                                            accept="image/jpg, image/jpeg, image/png" onchange="previewImage()"
+                                            value="{{ old('Foto') }}">
                                         <label class="custom-file-label" for="Foto">Pilih
                                             File</label>
                                     </div>

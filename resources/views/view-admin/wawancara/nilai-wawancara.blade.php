@@ -163,7 +163,7 @@
                                     <div class="col-md-6">
                                         <input id="tanggal_lahir" type="text" class="form-control"
                                             name="tanggal_lahir" spellcheck="false" disabled
-                                            value="{{ $wwnUser->administrasi->tanggal_lahir->translatedFormat('d F Y') }}">
+                                            value="{{ isset($wwnUser->administrasi->tanggal_lahir) ? $wwnUser->administrasi->tanggal_lahir->translatedFormat('d F Y') : '' }}">
                                     </div>
                                 </div>
 

@@ -685,101 +685,121 @@
             aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <form id="pengumumanAdmForm" method="POST"
-                        action="{{ route('umumkanemail.adm', $periodeOpenned->name) }}">
-                        @csrf
-                        <div class="modal-header h4 text-center">
-                            <div class="modal-title w-100">Umumkan Tahap Administrasi</div>
-                        </div>
-                        <div class="modal-body pb-0">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
-                                        <p class="p-3 h5 bg-success mt-3">Daftar Mahasiswa yang
-                                            Menerima Pengumuman
-                                            Lolos :
-                                        </p>
-                                        {{-- <hr style="border-color:#ffffff"> --}}
-                                        <table class="table table-responsive table-borderless text-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">No</th>
-                                                    <th scope="col">Nama</th>
-                                                    <th scope="col">Email</th>
-                                                    <th scope="col">Jadwal Wawancara</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @if ($getAllAdmLolos != null || $getAllAdmGagal != null)
-                                                    <?php $i = 1; ?>
-                                                    @foreach ($getAllAdmLolos as $userAdmLolos)
-                                                        <tr>
-                                                            <th scope="row">{{ $i++ }}</th>
-                                                            <td style="cursor: pointer;"
-                                                                onclick="document.getElementById('editFormNilaiAdm{{ $userAdmLolos->no_pendaftaran }}').submit();">
-                                                                {{ $userAdmLolos->name }}</td>
-                                                            <td>{{ $userAdmLolos->email }}</td>
-                                                            <td>{{ isset($userAdmLolos->jadwal_wwn) ? $userAdmLolos->jadwal_wwn->translatedFormat('d F Y - H:i') : '' }}
-                                                                WIB
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
-                                                    <div>
-                                                        Peserta Lolos / Gagal Belum Ada.
-                                                    </div>
+                    <div class="modal-header h4 text-center">
+                        <div class="modal-title w-100">Umumkan Tahap Administrasi</div>
+                    </div>
+                    <div class="modal-body pb-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
+                                    <p class="p-3 h5 bg-success mt-3">Daftar Mahasiswa yang
+                                        Menerima Pengumuman
+                                        Lolos :
+                                    </p>
+                                    {{-- <hr style="border-color:#ffffff"> --}}
+                                    <table class="table table-responsive table-borderless text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Jadwal Wawancara</th>
+                                                @if (isset($periodeOpenned->status_adm))
+                                                    <th scope="col">Aksi</th>
                                                 @endif
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
-                                        <p class="p-3 h5 bg-danger mt-3">Daftar Mahasiswa yang Menerima
-                                            Pengumuman
-                                            Gagal :
-                                        </p>
-                                        {{-- <hr style="border-color:#ffffff"> --}}
-                                        <table class="table table-responsive table-borderless text-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">No</th>
-                                                    <th scope="col">Nama</th>
-                                                    <th scope="col">Email</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if ($getAllAdmLolos != null || $getAllAdmGagal != null)
                                                 <?php $i = 1; ?>
-                                                @foreach ($getAllAdmGagal as $userAdmGagal)
+                                                @foreach ($getAllAdmLolos as $userAdmLolos)
                                                     <tr>
                                                         <th scope="row">{{ $i++ }}</th>
-                                                        <td>{{ $userAdmGagal->name }}</td>
-                                                        <td>{{ $userAdmGagal->email }}</td>
+                                                        <td style="cursor: pointer;"
+                                                            onclick="document.getElementById('editFormNilaiAdm{{ $userAdmLolos->no_pendaftaran }}').submit();">
+                                                            {{ $userAdmLolos->name }}</td>
+                                                        <td>{{ $userAdmLolos->email }}</td>
+                                                        <td>{{ isset($userAdmLolos->jadwal_wwn) ? $userAdmLolos->jadwal_wwn->translatedFormat('d F Y - H:i') : '' }}
+                                                            WIB
+                                                        </td>
+                                                        @if (isset($periodeOpenned->status_adm))
+                                                            <th scope="col"><a target="_blank"
+                                                                    href="{{ route('umumkanemail.admmanual', [$periodeOpenned->name, $userAdmLolos->email]) }}"
+                                                                    class="btn btn-xs btn-outline-primary">Kirim
+                                                                    Pengumuman</a>
+                                                            </th>
+                                                        @endif
                                                     </tr>
                                                 @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                            @else
+                                                <div>
+                                                    Peserta Lolos / Gagal Belum Ada.
+                                                </div>
+                                            @endif
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <div class="row">
-                                {{--  --}}
+                            <div class="col-12">
+                                <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
+                                    <p class="p-3 h5 bg-danger mt-3">Daftar Mahasiswa yang Menerima
+                                        Pengumuman
+                                        Gagal :
+                                    </p>
+                                    {{-- <hr style="border-color:#ffffff"> --}}
+                                    <table class="table table-responsive table-borderless text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Email</th>
+                                                @if (isset($periodeOpenned->status_adm))
+                                                    <th scope="col">Aksi</th>
+                                                @endif
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            @foreach ($getAllAdmGagal as $userAdmGagal)
+                                                <tr>
+                                                    <th scope="row">{{ $i++ }}</th>
+                                                    <td>{{ $userAdmGagal->name }}</td>
+                                                    <td>{{ $userAdmGagal->email }}</td>
+                                                    @if (isset($periodeOpenned->status_adm))
+                                                        <th scope="col"><a target="_blank"
+                                                                href="{{ route('umumkanemail.admmanual', [$periodeOpenned->name, $userAdmGagal->email]) }}"
+                                                                class="btn btn-xs btn-outline-primary">Kirim
+                                                                Pengumuman</a>
+                                                        </th>
+                                                    @endif
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
-                            @if (isset($periodeOpenned->status_adm))
-                                Telah Diumumkan pada
-                                {{ isset($periodeOpenned->ts_adm) ? $periodeOpenned->ts_adm->translatedFormat('d F Y - H:i') : '' }}.
-                            @else
-                                <div class="text-right">
-                                    <p class="m-0 p-0 small">Tandai Tahap Administrasi Telah Selesai.</p>
-                                    <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
-                                </div>
+                        <div class="row">
+                            {{--  --}}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
+                        @if (isset($periodeOpenned->status_adm))
+                            Telah Diumumkan pada
+                            {{ isset($periodeOpenned->ts_adm) ? $periodeOpenned->ts_adm->translatedFormat('d F Y - H:i') : '' }}.
+                        @else
+                            <div class="text-right">
+                                <p class="m-0 p-0 small">Tandai Tahap Administrasi Telah Selesai.</p>
+                                <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
+                            </div>
+                            <form id="pengumumanAdmForm" method="POST"
+                                action="{{ route('umumkanemail.adm', $periodeOpenned->name) }}">
+                                @csrf
                                 <button type="submit" class="btn btn-primary">Selesai & Kirim</button>
-                            @endif
-                        </div>
-                    </form>
+                            </form>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -789,101 +809,124 @@
             aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <form id="pengumumanWwnForm" method="POST"
-                        action="{{ route('umumkanemail.wwn', $periodeOpenned->name) }}">
-                        @csrf
-                        <div class="modal-body pb-0">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
-                                        <p class="p-3 h5 bg-success mt-3">Daftar Mahasiswa yang
-                                            Menerima Pengumuman
-                                            Lolos :
-                                        </p>
-                                        {{-- <hr style="border-color:#ffffff"> --}}
-                                        <table class="table table-responsive table-borderless text-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">No</th>
-                                                    <th scope="col">Nama</th>
-                                                    <th scope="col">Email</th>
-                                                    <th scope="col">Soal</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 1; ?>
-                                                @if ($getAllWwnLolos != null || $getAllWwnGagal != null)
-                                                    @foreach ($getAllWwnLolos as $userWwnLolos)
-                                                        <tr>
-                                                            <th scope="row">{{ $i++ }}</th>
-                                                            <td style="cursor: pointer;"
-                                                                onclick="document.getElementById('editFormNilaiWwn{{ $userWwnLolos->no_pendaftaran }}').submit();">
-                                                                {{ $userWwnLolos->name }}
-                                                            </td>
-                                                            <td>{{ $userWwnLolos->email }}
-                                                            </td>
-                                                            <td>{{ isset($userWwnLolos->soal) ? $userWwnLolos->soal : '' }}
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
-                                                    <div>
-                                                        Peserta Lolos / Gagal Belum Ada.
-                                                    </div>
+                    <div class="modal-header h4 text-center">
+                        <div class="modal-title w-100">Umumkan Tahap Wawancara</div>
+                    </div>
+                    <div class="modal-body pb-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
+                                    <p class="p-3 h5 bg-success mt-3">Daftar Mahasiswa yang
+                                        Menerima Pengumuman
+                                        Lolos :
+                                    </p>
+                                    {{-- <hr style="border-color:#ffffff"> --}}
+                                    <table class="table table-responsive table-borderless text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Soal</th>
+                                                @if (isset($periodeOpenned->status_wwn))
+                                                    <th scope="col">Aksi</th>
                                                 @endif
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
-                                        <p class="p-3 h5 bg-danger mt-3">Daftar Mahasiswa yang Menerima
-                                            Pengumuman
-                                            Gagal :
-                                        </p>
-                                        {{-- <hr style="border-color:#ffffff"> --}}
-                                        <table class="table table-responsive table-borderless text-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">No</th>
-                                                    <th scope="col">Nama</th>
-                                                    <th scope="col">Email</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 1; ?>
-                                                @foreach ($getAllWwnGagal as $userWwnGagal)
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            @if ($getAllWwnLolos != null || $getAllWwnGagal != null)
+                                                @foreach ($getAllWwnLolos as $userWwnLolos)
                                                     <tr>
                                                         <th scope="row">{{ $i++ }}</th>
-                                                        <td>{{ $userWwnGagal->name }}
+                                                        <td style="cursor: pointer;"
+                                                            onclick="document.getElementById('editFormNilaiWwn{{ $userWwnLolos->no_pendaftaran }}').submit();">
+                                                            {{ $userWwnLolos->name }}
                                                         </td>
-                                                        <td>{{ $userWwnGagal->email }}
+                                                        <td>{{ $userWwnLolos->email }}
                                                         </td>
+                                                        <td>{{ isset($userWwnLolos->soal) ? $userWwnLolos->soal : '' }}
+                                                        </td>
+                                                        @if (isset($periodeOpenned->status_wwn))
+                                                            <th scope="col"><a target="_blank"
+                                                                    href="{{ route('umumkanemail.wwnmanual', [$periodeOpenned->name, $userWwnLolos->email]) }}"
+                                                                    class="btn btn-xs btn-outline-primary">Kirim
+                                                                    Pengumuman</a>
+                                                            </th>
+                                                        @endif
                                                     </tr>
                                                 @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                            @else
+                                                <div>
+                                                    Peserta Lolos / Gagal Belum Ada.
+                                                </div>
+                                            @endif
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <div class="row">
-                                {{--  --}}
+                            <div class="col-12">
+                                <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
+                                    <p class="p-3 h5 bg-danger mt-3">Daftar Mahasiswa yang Menerima
+                                        Pengumuman
+                                        Gagal :
+                                    </p>
+                                    {{-- <hr style="border-color:#ffffff"> --}}
+                                    <table class="table table-responsive table-borderless text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Email</th>
+                                                @if (isset($periodeOpenned->status_wwn))
+                                                    <th scope="col">Aksi</th>
+                                                @endif
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            @foreach ($getAllWwnGagal as $userWwnGagal)
+                                                <tr>
+                                                    <th scope="row">{{ $i++ }}</th>
+                                                    <td>{{ $userWwnGagal->name }}
+                                                    </td>
+                                                    <td>{{ $userWwnGagal->email }}
+                                                    </td>
+                                                    @if (isset($periodeOpenned->status_wwn))
+                                                        <th scope="col"><a target="_blank"
+                                                                href="{{ route('umumkanemail.wwnmanual', [$periodeOpenned->name, $userWwnGagal->email]) }}"
+                                                                class="btn btn-xs btn-outline-primary">Kirim
+                                                                Pengumuman</a>
+                                                        </th>
+                                                    @endif
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
-                            @if (isset($periodeOpenned->status_wwn))
-                                Telah Diumumkan pada
-                                {{ isset($periodeOpenned->ts_wwn) ? $periodeOpenned->ts_wwn->translatedFormat('d F Y - H:i') : '' }}.
-                            @else
-                                <div class="text-right">
-                                    <p class="m-0 p-0 small">Tandai Tahap Wawancara Telah Selesai.</p>
-                                    <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
-                                </div>
+                        <div class="row">
+                            {{--  --}}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
+                        @if (isset($periodeOpenned->status_wwn))
+                            Telah Diumumkan pada
+                            {{ isset($periodeOpenned->ts_wwn) ? $periodeOpenned->ts_wwn->translatedFormat('d F Y - H:i') : '' }}.
+                        @else
+                            <div class="text-right">
+                                <p class="m-0 p-0 small">Tandai Tahap Wawancara Telah Selesai.</p>
+                                <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
+                            </div>
+                            <form id="pengumumanWwnForm" method="POST"
+                                action="{{ route('umumkanemail.wwn', $periodeOpenned->name) }}">
+                                @csrf
                                 <button type="submit" class="btn btn-primary">Selesai & Kirim</button>
-                            @endif
-                        </div>
-                    </form>
+                            </form>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -894,100 +937,123 @@
             aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <form id="pengumumanPngForm" method="POST"
-                        action="{{ route('umumkanemail.png', $periodeOpenned->name) }}">
-                        @csrf
-                        <div class="modal-body pb-0">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
-                                        <p class="p-3 h5 bg-success mt-3">Daftar Mahasiswa yang
-                                            Menerima Pengumuman
-                                            Lolos :
-                                        </p>
-                                        {{-- <hr style="border-color:#ffffff"> --}}
-                                        <table class="table table-responsive table-borderless text-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">No</th>
-                                                    <th scope="col">Nama</th>
-                                                    <th scope="col">Email</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 1; ?>
-                                                @if ($getAllPngLolos != null || $getAllPngGagal != null)
-                                                    @foreach ($getAllPngLolos as $userPngLolos)
-                                                        <tr>
-                                                            <th scope="row">{{ $i++ }}</th>
-                                                            <td style="cursor: pointer;"
-                                                                onclick="document.getElementById('editFormNilaiPng{{ $userPngLolos->no_pendaftaran }}').submit();">
-                                                                {{ $userPngLolos->name }}
-                                                            </td>
-                                                            <td>{{ $userPngLolos->email }}
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
-                                                    <div>
-                                                        Peserta Lolos / Gagal Belum Ada.
-                                                    </div>
+                    <div class="modal-header h4 text-center">
+                        <div class="modal-title w-100">Umumkan Tahap Akhir</div>
+                    </div>
+                    <div class="modal-body pb-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
+                                    <p class="p-3 h5 bg-success mt-3">Daftar Mahasiswa yang
+                                        Menerima Pengumuman
+                                        Lolos :
+                                    </p>
+                                    {{-- <hr style="border-color:#ffffff"> --}}
+                                    <table class="table table-responsive table-borderless text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Email</th>
+                                                @if (isset($periodeOpenned->status_png))
+                                                    <th scope="col">Aksi</th>
                                                 @endif
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
-                                        <p class="p-3 h5 bg-danger mt-3">Daftar Mahasiswa yang Menerima
-                                            Pengumuman
-                                            Gagal :
-                                        </p>
-                                        {{-- <hr style="border-color:#ffffff"> --}}
-                                        <table class="table table-responsive table-borderless text-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">No</th>
-                                                    <th scope="col">Nama</th>
-                                                    <th scope="col">Email</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 1; ?>
-                                                @if ($getAllPngLolos != null || $getAllPngGagal != null)
-                                                    @foreach ($getAllPngGagal as $userPngGagal)
-                                                        <tr>
-                                                            <th scope="row">{{ $i++ }}</th>
-                                                            <td>{{ $userPngGagal->name }}
-                                                            </td>
-                                                            <td>{{ $userPngGagal->email }}
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @endif
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            @if ($getAllPngLolos != null || $getAllPngGagal != null)
+                                                @foreach ($getAllPngLolos as $userPngLolos)
+                                                    <tr>
+                                                        <th scope="row">{{ $i++ }}</th>
+                                                        <td style="cursor: pointer;"
+                                                            onclick="document.getElementById('editFormNilaiPng{{ $userPngLolos->no_pendaftaran }}').submit();">
+                                                            {{ $userPngLolos->name }}
+                                                        </td>
+                                                        <td>{{ $userPngLolos->email }}
+                                                        </td>
+                                                        @if (isset($periodeOpenned->status_png))
+                                                            <th scope="col"><a target="_blank"
+                                                                    href="{{ route('umumkanemail.pngmanual', [$periodeOpenned->name, $userPngLolos->email]) }}"
+                                                                    class="btn btn-xs btn-outline-primary">Kirim
+                                                                    Pengumuman</a>
+                                                            </th>
+                                                        @endif
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <div>
+                                                    Peserta Lolos / Gagal Belum Ada.
+                                                </div>
+                                            @endif
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <div class="row">
-                                {{--  --}}
+                            <div class="col-12">
+                                <div class="bg-dark py-md-1 pb-3 px-3 mb-3">
+                                    <p class="p-3 h5 bg-danger mt-3">Daftar Mahasiswa yang Menerima
+                                        Pengumuman
+                                        Gagal :
+                                    </p>
+                                    {{-- <hr style="border-color:#ffffff"> --}}
+                                    <table class="table table-responsive table-borderless text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Email</th>
+                                                @if (isset($periodeOpenned->status_png))
+                                                    <th scope="col">Aksi</th>
+                                                @endif
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            @if ($getAllPngLolos != null || $getAllPngGagal != null)
+                                                @foreach ($getAllPngGagal as $userPngGagal)
+                                                    <tr>
+                                                        <th scope="row">{{ $i++ }}</th>
+                                                        <td>{{ $userPngGagal->name }}
+                                                        </td>
+                                                        <td>{{ $userPngGagal->email }}
+                                                        </td>
+                                                        @if (isset($periodeOpenned->status_png))
+                                                            <th scope="col"><a target="_blank"
+                                                                    href="{{ route('umumkanemail.pngmanual', [$periodeOpenned->name, $userPngGagal->email]) }}"
+                                                                    class="btn btn-xs btn-outline-primary">Kirim
+                                                                    Pengumuman</a>
+                                                            </th>
+                                                        @endif
+                                                    </tr>
+                                                @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
-                            @if (isset($periodeOpenned->status_png))
-                                Telah Diumumkan pada
-                                {{ isset($periodeOpenned->ts_png) ? $periodeOpenned->ts_png->translatedFormat('d F Y - H:i') : '' }}.
-                            @else
-                                <div class="text-right">
-                                    <p class="m-0 p-0 small">Tandai Tahap Penugasan Telah Selesai.</p>
-                                    <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
-                                </div>
+                        <div class="row">
+                            {{--  --}}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
+                        @if (isset($periodeOpenned->status_png))
+                            Telah Diumumkan pada
+                            {{ isset($periodeOpenned->ts_png) ? $periodeOpenned->ts_png->translatedFormat('d F Y - H:i') : '' }}.
+                        @else
+                            <div class="text-right">
+                                <p class="m-0 p-0 small">Tandai Tahap Penugasan Telah Selesai.</p>
+                                <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
+                            </div>
+                            <form id="pengumumanPngForm" method="POST"
+                                action="{{ route('umumkanemail.png', $periodeOpenned->name) }}">
+                                @csrf
                                 <button type="submit" class="btn btn-primary">Selesai & Kirim</button>
-                            @endif
-                        </div>
-                    </form>
+                            </form>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

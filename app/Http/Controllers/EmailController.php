@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Jobs\SendAdmJob;
 use App\Jobs\SendPngJob;
 use App\Jobs\SendWwnJob;
+use App\Mail\SendEmailAdministrasi;
+use App\Mail\SendEmailPenugasan;
+use App\Mail\SendEmailWawancara;
 use App\Models\Administrasi;
 use App\Models\Penugasan;
 use App\Models\Periode;
@@ -140,5 +143,64 @@ class EmailController extends Controller
             Alert::error('Tahap Penugasan ' . ucfirst($periodeSelected->name) . ' Gagal Diumumkan.', 'Cek data kembali.');
             return redirect(route('periode', $name));
         }
+    }
+
+    public function sendEmailAdmManual($name, $emailTujuan)
+    {
+        $periode = Periode::where('name', '=', $name)->first();
+
+        $userAdm = Administrasi::with('user')->where('periode_id', '=', $periode->id_periode)
+            ->leftJoin('users', 'users.id', '=', 'administrasis.user_id')
+            ->where('email', '=', $emailTujuan)
+            ->leftJoin('wawancaras', 'wawancaras.administrasi_id', '=', 'administrasis.id')
+            ->leftJoin('penugasans', 'penugasans.wawancara_id', '=', 'wawancaras.id')
+            ->leftJoin('univs', 'univs.id', '=', 'users.univ_id')
+            ->leftJoin('prodis', 'prodis.id', '=', 'users.prodi_id')
+            ->orderBy('jadwal_wwn', 'asc')->first();
+
+        Mail::to($userAdm->email)->send(new SendEmailAdministrasi($userAdm, $periode));
+
+        Alert::success('Berhasil!', 'Email Pengumuman Administrasi Telah dikirimkan ke email ' . $userAdm->email . ' dengan Status Peserta: ' . ucfirst($userAdm->status_adm) . '.')->autoClose(false);
+        return view('emails.emailAdmPreview', compact('userAdm', 'periode'));
+    }
+
+    public function sendEmailWwnManual($name, $emailTujuan)
+    {
+        $periode = Periode::where('name', '=', $name)->first();
+
+        $userWwn = Administrasi::with('user')->where('periode_id', '=', $periode->id_periode)
+            ->where('status_adm', '=', 'lolos')
+            ->leftJoin('users', 'users.id', '=', 'administrasis.user_id')
+            ->where('email', '=', $emailTujuan)
+            ->leftJoin('wawancaras', 'wawancaras.administrasi_id', '=', 'administrasis.id')
+            ->leftJoin('penugasans', 'penugasans.wawancara_id', '=', 'wawancaras.id')
+            ->leftJoin('univs', 'univs.id', '=', 'users.univ_id')
+            ->leftJoin('prodis', 'prodis.id', '=', 'users.prodi_id')
+            ->orderBy('jadwal_wwn', 'asc')->first();
+
+        Mail::to($userWwn->email)->send(new SendEmailWawancara($userWwn, $periode));
+
+        Alert::success('Berhasil!', 'Email Pengumuman Wawancara Telah dikirimkan ke email ' . $userWwn->email . ' dengan Status Peserta: ' . ucfirst($userWwn->status_wwn) . '.')->autoClose(false);
+        return view('emails.emailWwnPreview', compact('userWwn', 'periode'));
+    }
+
+    public function sendEmailPngManual($name, $emailTujuan)
+    {
+        $periode = Periode::where('name', '=', $name)->first();
+
+        $userPng = Administrasi::with('user')->where('periode_id', '=', $periode->id_periode)
+            ->where('status_wwn', '=', 'lolos')
+            ->leftJoin('users', 'users.id', '=', 'administrasis.user_id')
+            ->where('email', '=', $emailTujuan)
+            ->leftJoin('wawancaras', 'wawancaras.administrasi_id', '=', 'administrasis.id')
+            ->leftJoin('penugasans', 'penugasans.wawancara_id', '=', 'wawancaras.id')
+            ->leftJoin('univs', 'univs.id', '=', 'users.univ_id')
+            ->leftJoin('prodis', 'prodis.id', '=', 'users.prodi_id')
+            ->first();
+
+        Mail::to($userPng->email)->send(new SendEmailPenugasan($userPng, $periode));
+
+        Alert::success('Berhasil!', 'Email Pengumuman Penugasan Telah dikirimkan ke email ' . $userPng->email . ' dengan Status Peserta: ' . ucfirst($userPng->status_png) . '.')->autoClose(false);
+        return view('emails.emailPngPreview', compact('userPng', 'periode'));
     }
 }

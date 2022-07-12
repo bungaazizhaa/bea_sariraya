@@ -63,6 +63,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/{name}/administrasi/umumkanemail', [EmailController::class, 'sendEmailAdministrasi'])->name('umumkanemail.adm'); //Set status_adm Selesai di Periode
     Route::post('/{name}/wawancara/umumkanemail', [EmailController::class, 'sendEmailWawancara'])->name('umumkanemail.wwn'); //Set status_wwn Selesai di Periode
     Route::post('/{name}/penugasan/umumkanemail', [EmailController::class, 'sendEmailPenugasan'])->name('umumkanemail.png'); //Set status_png Selesai di Periode
+    Route::get('/{name}/administrasi/umumkanemail/{emailTujuan}', [EmailController::class, 'sendEmailAdmManual'])->name('umumkanemail.admmanual'); //Set status_adm Selesai di Periode
+    Route::get('/{name}/wawancara/umumkanemail/{emailTujuan}', [EmailController::class, 'sendEmailWwnManual'])->name('umumkanemail.wwnmanual'); //Set status_wwn Selesai di Periode
+    Route::get('/{name}/penugasan/umumkanemail/{emailTujuan}', [EmailController::class, 'sendEmailPngManual'])->name('umumkanemail.pngmanual'); //Set status_png Selesai di Periode
     //Administrasi
     Route::get('/{name}/nilai-administrasi', [AdministrasiController::class, 'nilaiAdm'])->name('nilai.adm'); //halaman nilai adm
     Route::post('/update-nilai-administrasi/{id}', [AdministrasiController::class, 'updatenilaiAdm'])->name('updatenilai.adm'); //menyimpan penilaian adm
