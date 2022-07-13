@@ -69,7 +69,7 @@ class PenugasanController extends Controller
 
         $validator = Validator::make($request->all(), [
             'field_jawaban' => 'string|nullable',
-            'file_jawaban' => 'mimes:jpeg,png,jpg,pdf|max:5120|nullable'
+            'file_jawaban' => 'mimes:jpeg,png,jpg,pdf|max:2048|nullable'
         ]);
 
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();

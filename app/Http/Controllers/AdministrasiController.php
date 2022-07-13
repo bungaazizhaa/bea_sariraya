@@ -122,11 +122,11 @@ class AdministrasiController extends Controller
             'ipk' => 'numeric|between:0,4.00|nullable',
             'keahlian' => 'string|max:255|nullable',
             'alamat' => 'string|max:255|nullable',
-            'file_cv' => 'mimes:pdf,png,jpg,pdf|max:5120|nullable',
-            'file_esai' => 'mimes:jpeg,png,jpg,pdf|max:5120|nullable',
-            'file_portofolio' => 'mimes:jpeg,png,jpg,pdf|max:5120|nullable',
-            'file_ktm' => 'mimes:jpeg,png,jpg,pdf|max:5120|nullable',
-            'file_transkrip' => 'mimes:jpeg,png,jpg,pdf|max:5120|nullable',
+            'file_cv' => 'mimes:jpeg,png,jpg,pdf|max:2048|nullable',
+            'file_esai' => 'mimes:jpeg,png,jpg,pdf|max:1024|nullable',
+            'file_portofolio' => 'mimes:jpeg,png,jpg,pdf|max:2048|nullable',
+            'file_ktm' => 'mimes:jpeg,png,jpg,pdf|max:1024|nullable',
+            'file_transkrip' => 'mimes:jpeg,png,jpg,pdf|max:1024|nullable',
             'no_wa' => 'string|max:255|nullable',
             'instagram' => 'string|max:255|nullable',
             'facebook' => 'string|max:255|nullable',
@@ -164,7 +164,7 @@ class AdministrasiController extends Controller
 
                     $getAdministrasiUser = Administrasi::find($id)->update(['file_cv' => $new_file_name]);
                 } else {
-                    Alert::error('Gagal Upload!', 'Data Administrasi Gagal Disimpan.');
+                    Alert::error('Gagal menyimpan. Cek kesalahan Pengisian.', 'Tips: Upload file satu-persatu untuk mencegah koneksi timeout.');
                     return back();
                 }
             }
@@ -181,7 +181,7 @@ class AdministrasiController extends Controller
 
                     $getAdministrasiUser = Administrasi::find($id)->update(['file_esai' => $new_file_name]);
                 } else {
-                    Alert::error('Gagal Upload!', 'Data Administrasi Gagal Disimpan.');
+                    Alert::error('Gagal menyimpan. Cek kesalahan Pengisian.', 'Tips: Upload file satu-persatu untuk mencegah koneksi timeout.');
                     return back();
                 }
             }
@@ -198,7 +198,7 @@ class AdministrasiController extends Controller
 
                     $getAdministrasiUser = Administrasi::find($id)->update(['file_portofolio' => $new_file_name]);
                 } else {
-                    Alert::error('Gagal Upload!', 'Data Administrasi Gagal Disimpan.');
+                    Alert::error('Gagal menyimpan. Cek kesalahan Pengisian.', 'Tips: Upload file satu-persatu untuk mencegah koneksi timeout.');
                     return back();
                 }
             }
@@ -215,7 +215,7 @@ class AdministrasiController extends Controller
 
                     $getAdministrasiUser = Administrasi::find($id)->update(['file_ktm' => $new_file_name]);
                 } else {
-                    Alert::error('Gagal Upload!', 'Data Administrasi Gagal Disimpan.');
+                    Alert::error('Gagal menyimpan. Cek kesalahan Pengisian.', 'Tips: Upload file satu-persatu untuk mencegah koneksi timeout.');
                     return back();
                 }
             }
@@ -232,7 +232,7 @@ class AdministrasiController extends Controller
 
                     $getAdministrasiUser = Administrasi::find($id)->update(['file_transkrip' => $new_file_name]);
                 } else {
-                    Alert::error('Gagal Upload!', 'Data Administrasi Gagal Disimpan.');
+                    Alert::error('Gagal menyimpan. Cek kesalahan Pengisian.', 'Tips: Upload file satu-persatu untuk mencegah koneksi timeout.');
                     return back();
                 }
             }

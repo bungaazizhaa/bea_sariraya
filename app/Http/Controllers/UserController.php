@@ -152,7 +152,7 @@ class UserController extends Controller
     public function uploadFoto(Request $request)
     {
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        $validator = Validator::make($request->all(), ['Foto' => 'required|mimes:jpeg,png,jpg|max:1024']);
+        $validator = Validator::make($request->all(), ['Foto' => 'required|mimes:jpeg,png,jpg|max:512']);
 
         if ($validator->fails()) {
             $error = $validator->errors();
@@ -161,7 +161,7 @@ class UserController extends Controller
         }
 
         $validated = $request->validate([
-            'Foto' => 'required|mimes:jpeg,png,jpg|max:1024',
+            'Foto' => 'required|mimes:jpeg,png,jpg|max:512',
         ]);
 
         $path = $getPeriodeAktif->name . '/' . $request->user()->id . '/';

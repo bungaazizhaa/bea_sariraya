@@ -329,8 +329,7 @@
                             <div class="card-body">
                                 <div class="alert alert-info text-center">
                                     Format yang diizinkan: <span class="font-weight-bold">.jpeg, .png, .jpg,
-                                        .pdf.</span><br>Ukuran Maksimal Setiap File: <span class="font-weight-bold">
-                                        5MB</span>
+                                        .pdf.</span>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="file_cv" class="col-md-4 col-form-label text-md-right">File
@@ -343,7 +342,8 @@
                                                     disabled id="file_cv" name="file_cv"
                                                     accept="application/pdf, image/jpg, image/jpeg, image/png"
                                                     value="{{ old('file_cv', isset($getAdministrasiUser) ? $getAdministrasiUser->file_cv : '') }}">
-                                                <label class="custom-file-label" for="file_cv">...</label>
+                                                <label class="custom-file-label" for="file_cv">Maks.
+                                                    2MB</label>
                                             </div>
                                         </div>
                                         @error('file_cv')
@@ -376,9 +376,11 @@
                                             <div class="custom-file">
                                                 <input type="file"
                                                     class="custom-file-input editable {{ isset($getAdministrasiUser->file_esai) ? 'font-weight-bold' : '' }}"
-                                                    disabled id="file_esai" name="file_esai" accept="application/pdf"
+                                                    disabled id="file_esai" name="file_esai"
+                                                    accept="application/pdf, image/jpg, image/jpeg, image/png"
                                                     value="{{ old('file_esai', isset($getAdministrasiUser) ? $getAdministrasiUser->file_esai : '') }}">
-                                                <label class="custom-file-label" for="file_esai">...</label>
+                                                <label class="custom-file-label" for="file_esai">Maks.
+                                                    1MB</label>
                                             </div>
                                         </div>
                                         @error('file_esai')
@@ -415,7 +417,8 @@
                                                     disabled id="file_portofolio" name="file_portofolio"
                                                     accept="application/pdf, image/jpg, image/jpeg, image/png"
                                                     value="{{ old('file_portofolio', isset($getAdministrasiUser) ? $getAdministrasiUser->file_portofolio : '') }}">
-                                                <label class="custom-file-label" for="file_portofolio">...</label>
+                                                <label class="custom-file-label" for="file_portofolio">Maks.
+                                                    2MB</label>
                                             </div>
                                         </div>
                                         @error('file_portofolio')
@@ -452,7 +455,8 @@
                                                     disabled id="file_ktm" name="file_ktm"
                                                     accept="application/pdf, image/jpg, image/jpeg, image/png"
                                                     value="{{ old('file_ktm', isset($getAdministrasiUser) ? $getAdministrasiUser->file_ktm : '') }}">
-                                                <label class="custom-file-label" for="file_ktm">...</label>
+                                                <label class="custom-file-label" for="file_ktm">Maks.
+                                                    1MB</label>
                                             </div>
                                         </div>
                                         @error('file_ktm')
@@ -489,7 +493,8 @@
                                                     disabled id="file_transkrip" name="file_transkrip"
                                                     accept="application/pdf, image/jpg, image/jpeg, image/png"
                                                     value="{{ old('file_transkrip', isset($getAdministrasiUser) ? $getAdministrasiUser->file_transkrip : '') }}">
-                                                <label class="custom-file-label" for="file_transkrip">...</label>
+                                                <label class="custom-file-label" for="file_transkrip">Maks.
+                                                    1MB</label>
                                             </div>
                                         </div>
                                         @error('file_transkrip')

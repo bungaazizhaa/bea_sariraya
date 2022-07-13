@@ -213,8 +213,8 @@
                                 <div class="mb-3 text-center alert alert-info p-1">
                                     <small>Format Pas Foto: <span class="font-weight-bold"> .jpg, .png, </span>atau <span
                                             class="font-weight-bold">.jpeg</span></small><br>
-                                    <small>Maksimal ukuran file: <span class="font-weight-bold">1024KB
-                                        </span>atau <span class="font-weight-bold">1MB</span></small>
+                                    <small>Maksimal ukuran file: <span class="font-weight-bold">512KB
+                                        </span></small>
                                 </div>
                                 <img class="img-preview mb-3 d-flex mx-auto" alt="" width="210px" height="280px"
                                     style="max-width: 210px; max-height:280px">
