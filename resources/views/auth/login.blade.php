@@ -41,9 +41,9 @@
     <div class="banner-regist " style="background-image: url('{{ asset('assets/images/bg.png') }}')"> </div>
 
     <div class="container">
-        <div class="logo2">
+        <a class="logo2" href="/">
             <img src="{{ asset('assets/images/logo.png') }}" alt="">
-        </div>
+        </a>
     </div>
     <div class="container">
 

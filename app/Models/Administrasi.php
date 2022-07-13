@@ -14,6 +14,8 @@ class Administrasi extends Model
     protected $dates = [
         'tanggal_lahir',
         'jadwal_wwn',
+        'email_sent_at',
+        'adm_email_at',
     ];
 
     protected $guarded = [

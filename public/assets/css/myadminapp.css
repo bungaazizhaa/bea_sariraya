@@ -180,6 +180,11 @@ ion-icon {
     background-color: #f27474 !important;
 }
 
+th > a.btn-email:hover {
+    color: #298ce9!important;
+    border-color:#298ce9!important;
+}
+
 /* .swal2-confirm {
     background-color: #00bc8c !important;
     border-radius: 30px !important;

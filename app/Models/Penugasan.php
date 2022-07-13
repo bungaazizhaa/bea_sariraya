@@ -11,6 +11,11 @@ class Penugasan extends Model
 
     public $table = "penugasans";
 
+    protected $dates = [
+        'email_sent_at',
+        'png_email_at',
+    ];
+
     protected $guarded = [
         'id',
     ];

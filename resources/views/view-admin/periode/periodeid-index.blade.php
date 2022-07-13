@@ -704,9 +704,7 @@
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Jadwal Wawancara</th>
-                                                @if (isset($periodeOpenned->status_adm))
-                                                    <th scope="col">Aksi</th>
-                                                @endif
+                                                <th scope="col">Kirim Email</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -723,10 +721,19 @@
                                                             WIB
                                                         </td>
                                                         @if (isset($periodeOpenned->status_adm))
-                                                            <th scope="col"><a target="_blank"
-                                                                    href="{{ route('umumkanemail.admmanual', [$periodeOpenned->name, $userAdmLolos->email]) }}"
-                                                                    class="btn btn-xs btn-outline-primary">Kirim
-                                                                    Pengumuman</a>
+                                                            <th scope="col">
+                                                                <small>
+                                                                    {{ isset($userAdmLolos->adm_email_at) ? $userAdmLolos->adm_email_at->diffForHumans() . '. ' : '' }}
+                                                                </small>
+                                                                <a target="_blank"
+                                                                    href="{{ route('umumkanemail.adm', [$periodeOpenned->name, $userAdmLolos->user_id]) }}"
+                                                                    class="{{ isset($userAdmLolos->adm_email_at) ? 'small' : 'btn btn-email btn-xs btn-outline-primary' }} font-weight-normal">Kirimkan
+                                                                    {{ isset($userAdmLolos->adm_email_at) ? 'Ulang.' : '' }}</a>
+                                                            </th>
+                                                        @else
+                                                            <th scope="col"><button
+                                                                    class="btn-email btn btn-xs btn-outline-disabled text-muted"
+                                                                    disabled>Status belum Selesai</button>
                                                             </th>
                                                         @endif
                                                     </tr>
@@ -753,9 +760,7 @@
                                                 <th scope="col">No</th>
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">Email</th>
-                                                @if (isset($periodeOpenned->status_adm))
-                                                    <th scope="col">Aksi</th>
-                                                @endif
+                                                <th scope="col">Kirim Email</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -766,10 +771,19 @@
                                                     <td>{{ $userAdmGagal->name }}</td>
                                                     <td>{{ $userAdmGagal->email }}</td>
                                                     @if (isset($periodeOpenned->status_adm))
-                                                        <th scope="col"><a target="_blank"
-                                                                href="{{ route('umumkanemail.admmanual', [$periodeOpenned->name, $userAdmGagal->email]) }}"
-                                                                class="btn btn-xs btn-outline-primary">Kirim
-                                                                Pengumuman</a>
+                                                        <th scope="col">
+                                                            <small>
+                                                                {{ isset($userAdmGagal->adm_email_at) ? $userAdmGagal->adm_email_at->diffForHumans() . '. ' : '' }}
+                                                            </small>
+                                                            <a target="_blank"
+                                                                href="{{ route('umumkanemail.adm', [$periodeOpenned->name, $userAdmGagal->user_id]) }}"
+                                                                class="{{ isset($userAdmGagal->adm_email_at) ? 'small' : 'btn btn-email btn-xs btn-outline-primary' }} font-weight-normal">Kirimkan
+                                                                {{ isset($userAdmGagal->adm_email_at) ? 'Ulang.' : '' }}</a>
+                                                        </th>
+                                                    @else
+                                                        <th scope="col"><button
+                                                                class="btn-email btn btn-xs btn-outline-disabled text-muted"
+                                                                disabled>Status belum Selesai</button>
                                                         </th>
                                                     @endif
                                                 </tr>
@@ -790,13 +804,13 @@
                             {{ isset($periodeOpenned->ts_adm) ? $periodeOpenned->ts_adm->translatedFormat('d F Y - H:i') : '' }}.
                         @else
                             <div class="text-right">
-                                <p class="m-0 p-0 small">Tandai Tahap Administrasi Telah Selesai.</p>
-                                <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
+                                <p class="m-0 p-0 small">Atur Status Tahap Administrasi</p>
+                                <p class="m-0 p-0 small">menjadi telah Selesai.</p>
                             </div>
                             <form id="pengumumanAdmForm" method="POST"
-                                action="{{ route('umumkanemail.adm', $periodeOpenned->name) }}">
+                                action="{{ route('setselesai.adm', $periodeOpenned->name) }}">
                                 @csrf
-                                <button type="submit" class="btn btn-primary">Selesai & Kirim</button>
+                                <button type="submit" class="btn btn-primary">Selesai</button>
                             </form>
                         @endif
                     </div>
@@ -828,9 +842,7 @@
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Soal</th>
-                                                @if (isset($periodeOpenned->status_wwn))
-                                                    <th scope="col">Aksi</th>
-                                                @endif
+                                                <th scope="col">Kirim Email</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -848,10 +860,19 @@
                                                         <td>{{ isset($userWwnLolos->soal) ? $userWwnLolos->soal : '' }}
                                                         </td>
                                                         @if (isset($periodeOpenned->status_wwn))
-                                                            <th scope="col"><a target="_blank"
-                                                                    href="{{ route('umumkanemail.wwnmanual', [$periodeOpenned->name, $userWwnLolos->email]) }}"
-                                                                    class="btn btn-xs btn-outline-primary">Kirim
-                                                                    Pengumuman</a>
+                                                            <th scope="col">
+                                                                <small>
+                                                                    {{ isset($userWwnLolos->wwn_email_at) ? $userWwnLolos->wwn_email_at->diffForHumans() . '. ' : '' }}
+                                                                </small>
+                                                                <a target="_blank"
+                                                                    href="{{ route('umumkanemail.wwn', [$periodeOpenned->name, $userWwnLolos->user_id]) }}"
+                                                                    class="{{ isset($userWwnLolos->wwn_email_at) ? 'small' : 'btn btn-email btn-xs btn-outline-primary' }} font-weight-normal">Kirimkan
+                                                                    {{ isset($userWwnLolos->wwn_email_at) ? 'Ulang.' : '' }}</a>
+                                                            </th>
+                                                        @else
+                                                            <th scope="col"><button
+                                                                    class="btn-email btn btn-xs btn-outline-disabled text-muted"
+                                                                    disabled>Status belum Selesai</button>
                                                             </th>
                                                         @endif
                                                     </tr>
@@ -878,9 +899,7 @@
                                                 <th scope="col">No</th>
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">Email</th>
-                                                @if (isset($periodeOpenned->status_wwn))
-                                                    <th scope="col">Aksi</th>
-                                                @endif
+                                                <th scope="col">Kirim Email</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -893,10 +912,19 @@
                                                     <td>{{ $userWwnGagal->email }}
                                                     </td>
                                                     @if (isset($periodeOpenned->status_wwn))
-                                                        <th scope="col"><a target="_blank"
-                                                                href="{{ route('umumkanemail.wwnmanual', [$periodeOpenned->name, $userWwnGagal->email]) }}"
-                                                                class="btn btn-xs btn-outline-primary">Kirim
-                                                                Pengumuman</a>
+                                                        <th scope="col">
+                                                            <small>
+                                                                {{ isset($userWwnGagal->wwn_email_at) ? $userWwnGagal->wwn_email_at->diffForHumans() . '. ' : '' }}
+                                                            </small>
+                                                            <a target="_blank"
+                                                                href="{{ route('umumkanemail.wwn', [$periodeOpenned->name, $userWwnGagal->user_id]) }}"
+                                                                class="{{ isset($userWwnGagal->wwn_email_at) ? 'small' : 'btn btn-email btn-xs btn-outline-primary' }} font-weight-normal">Kirimkan
+                                                                {{ isset($userWwnGagal->wwn_email_at) ? 'Ulang.' : '' }}</a>
+                                                        </th>
+                                                    @else
+                                                        <th scope="col"><button
+                                                                class="btn-email btn btn-xs btn-outline-disabled text-muted"
+                                                                disabled>Status belum Selesai</button>
                                                         </th>
                                                     @endif
                                                 </tr>
@@ -917,13 +945,13 @@
                             {{ isset($periodeOpenned->ts_wwn) ? $periodeOpenned->ts_wwn->translatedFormat('d F Y - H:i') : '' }}.
                         @else
                             <div class="text-right">
-                                <p class="m-0 p-0 small">Tandai Tahap Wawancara Telah Selesai.</p>
-                                <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
+                                <p class="m-0 p-0 small">Atur Status Tahap Wawancara</p>
+                                <p class="m-0 p-0 small">menjadi telah Selesai.</p>
                             </div>
                             <form id="pengumumanWwnForm" method="POST"
-                                action="{{ route('umumkanemail.wwn', $periodeOpenned->name) }}">
+                                action="{{ route('setselesai.wwn', $periodeOpenned->name) }}">
                                 @csrf
-                                <button type="submit" class="btn btn-primary">Selesai & Kirim</button>
+                                <button type="submit" class="btn btn-primary">Selesai</button>
                             </form>
                         @endif
                     </div>
@@ -955,9 +983,7 @@
                                                 <th scope="col">No</th>
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">Email</th>
-                                                @if (isset($periodeOpenned->status_png))
-                                                    <th scope="col">Aksi</th>
-                                                @endif
+                                                <th scope="col">Kirim Email</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -973,10 +999,19 @@
                                                         <td>{{ $userPngLolos->email }}
                                                         </td>
                                                         @if (isset($periodeOpenned->status_png))
-                                                            <th scope="col"><a target="_blank"
-                                                                    href="{{ route('umumkanemail.pngmanual', [$periodeOpenned->name, $userPngLolos->email]) }}"
-                                                                    class="btn btn-xs btn-outline-primary">Kirim
-                                                                    Pengumuman</a>
+                                                            <th scope="col">
+                                                                <small>
+                                                                    {{ isset($userPngLolos->png_email_at) ? $userPngLolos->png_email_at->diffForHumans() . '. ' : '' }}
+                                                                </small>
+                                                                <a target="_blank"
+                                                                    href="{{ route('umumkanemail.png', [$periodeOpenned->name, $userPngLolos->user_id]) }}"
+                                                                    class="{{ isset($userPngLolos->png_email_at) ? 'small' : 'btn btn-email btn-xs btn-outline-primary' }} font-weight-normal">Kirimkan
+                                                                    {{ isset($userPngLolos->png_email_at) ? 'Ulang.' : '' }}</a>
+                                                            </th>
+                                                        @else
+                                                            <th scope="col"><button
+                                                                    class="btn-email btn btn-xs btn-outline-disabled text-muted"
+                                                                    disabled>Status belum Selesai</button>
                                                             </th>
                                                         @endif
                                                     </tr>
@@ -1003,9 +1038,7 @@
                                                 <th scope="col">No</th>
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">Email</th>
-                                                @if (isset($periodeOpenned->status_png))
-                                                    <th scope="col">Aksi</th>
-                                                @endif
+                                                <th scope="col">Kirim Email</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1019,10 +1052,20 @@
                                                         <td>{{ $userPngGagal->email }}
                                                         </td>
                                                         @if (isset($periodeOpenned->status_png))
-                                                            <th scope="col"><a target="_blank"
-                                                                    href="{{ route('umumkanemail.pngmanual', [$periodeOpenned->name, $userPngGagal->email]) }}"
-                                                                    class="btn btn-xs btn-outline-primary">Kirim
-                                                                    Pengumuman</a>
+                                                            <th scope="col">
+                                                                <small>
+                                                                    {{ isset($userPngGagal->png_email_at) ? $userPngGagal->png_email_at->diffForHumans() . '. ' : '' }}
+                                                                </small>
+                                                                <a target="_blank"
+                                                                    href="{{ route('umumkanemail.png', [$periodeOpenned->name, $userPngGagal->user_id]) }}"
+                                                                    class="{{ isset($userPngGagal->png_email_at) ? 'small' : 'btn btn-email btn-xs btn-outline-primary' }} font-weight-normal">Kirimkan
+                                                                    {{ isset($userPngGagal->png_email_at) ? 'Ulang.' : '' }}
+                                                                </a>
+                                                            </th>
+                                                        @else
+                                                            <th scope="col"><button
+                                                                    class="btn-email btn btn-xs btn-outline-disabled text-muted"
+                                                                    disabled>Status belum Selesai</button>
                                                             </th>
                                                         @endif
                                                     </tr>
@@ -1044,13 +1087,13 @@
                             {{ isset($periodeOpenned->ts_png) ? $periodeOpenned->ts_png->translatedFormat('d F Y - H:i') : '' }}.
                         @else
                             <div class="text-right">
-                                <p class="m-0 p-0 small">Tandai Tahap Penugasan Telah Selesai.</p>
-                                <p class="m-0 p-0 small">& Kirim Pengumuman.</p>
+                                <p class="m-0 p-0 small">Atur Status Tahap Penugasan</p>
+                                <p class="m-0 p-0 small">menjadi telah Selesai.</p>
                             </div>
                             <form id="pengumumanPngForm" method="POST"
-                                action="{{ route('umumkanemail.png', $periodeOpenned->name) }}">
+                                action="{{ route('setselesai.png', $periodeOpenned->name) }}">
                                 @csrf
-                                <button type="submit" class="btn btn-primary">Selesai & Kirim</button>
+                                <button type="submit" class="btn btn-primary">Selesai</button>
                             </form>
                         @endif
                     </div>

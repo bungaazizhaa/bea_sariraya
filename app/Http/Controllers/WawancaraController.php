@@ -71,4 +71,22 @@ class WawancaraController extends Controller
 
         return redirect()->back();
     }
+
+    public function setSelesaiWawancara($name)
+    {
+
+        $periodeSelected = Periode::where('name', '=', $name)->first();
+
+        $periodeSelected->status_wwn = 'Selesai';
+        $periodeSelected->ts_wwn = now();
+        $periodeSelected->save();
+
+        if ($periodeSelected) {
+            Alert::success('Tahap Administrasi ' . ucfirst($periodeSelected->name) . ' diatur menjadi Selesai.', 'Sekarang Anda dapat mengirimkan Email Pengumuman Wawancara melalui Tombol Umumkan. Selanjutnya adalah Tahap Penugasan.')->autoClose(false);
+            return redirect(route('periode', $name));
+        } else {
+            Alert::error('Tahap Wawancara ' . ucfirst($periodeSelected->name) . ' Gagal Diumumkan.', 'Cek data kembali.');
+            return redirect(route('periode', $name));
+        }
+    }
 }

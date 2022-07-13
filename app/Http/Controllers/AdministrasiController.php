@@ -111,7 +111,7 @@ class AdministrasiController extends Controller
     {
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        // if ($getPeriodeAktif->ta_adm < $getTanggalSekarang) { //Update melebihi Batas Tanggal akan Tidak Akan Disimpan 
+        // if ($getPeriodeAktif->ta_adm < $getTanggalSekarang) { //Update melebihi Batas Tanggal akan Tidak Akan Disimpan
         //     Alert::error('Terlambat melakukan Update.', 'Maaf, Data Anda tidak Disimpan.');
         //     return redirect(route('tahap.administrasi'));
         // } else {
@@ -306,5 +306,28 @@ class AdministrasiController extends Controller
         }
         // }
         return redirect(route('tahap.administrasi'));
+    }
+
+    public function setSelesaiAdministrasi($name)
+    {
+
+        $periodeSelected = Periode::where('name', '=', $name)->first();
+
+        if ($periodeSelected->teknis_wwn == null) {
+            Alert::error('Gagal! Mohon isi Teknis Wawancara ' . ucfirst($periodeSelected->name) . ' terlebih Dahulu! ', 'Terimakasih.');
+            return back();
+        }
+
+        $periodeSelected->status_adm = 'Selesai';
+        $periodeSelected->ts_adm = now();
+        $periodeSelected->save();
+
+        if ($periodeSelected) {
+            Alert::success('Tahap Administrasi ' . ucfirst($periodeSelected->name) . ' diatur menjadi Selesai.', 'Sekarang Anda dapat mengirimkan Email Pengumuman Administrasi melalui Tombol Umumkan. Selanjutnya adalah Tahap Wawancara.')->autoClose(false);
+            return redirect(route('periode', $name));
+        } else {
+            Alert::error('Tahap Administrasi ' . ucfirst($periodeSelected->name) . ' Gagal Diumumkan.', 'Cek data kembali.');
+            return redirect(route('periode', $name));
+        }
     }
 }

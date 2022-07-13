@@ -20,6 +20,7 @@ class CreatePenugasansTable extends Migration
             $table->text('field_jawaban')->nullable();
             $table->string('file_jawaban')->nullable();
             $table->string('status_png')->nullable();
+            $table->timestamp('email_sent_at')->nullable();
             $table->string('catatan')->nullable();
             $table->unique('wawancara_id');
             $table->timestamps();

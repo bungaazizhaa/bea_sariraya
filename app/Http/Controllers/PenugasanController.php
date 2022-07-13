@@ -131,4 +131,25 @@ class PenugasanController extends Controller
         Alert::success('Data Terhapus!', 'Data Penugasan Telah Diperbarui.');
         return back();
     }
+
+    public function setSelesaiPenugasan($name)
+    {
+
+        $periodeSelected = Periode::where('name', '=', $name)->first();
+        if ($periodeSelected->group_wa == null) {
+            Alert::error('Gagal! Mohon isi link Group WhatsApp ' . ucfirst($periodeSelected->name) . ' terlebih Dahulu! ', 'Terimakasih.');
+            return back();
+        }
+        $periodeSelected->status_png = 'Selesai';
+        $periodeSelected->ts_png = now();
+        $periodeSelected->save();
+
+        if ($periodeSelected) {
+            Alert::success('Tahap Administrasi ' . ucfirst($periodeSelected->name) . ' diatur menjadi Selesai.', 'Sekarang Anda dapat mengirimkan Email Pengumuman Penugasan melalui Tombol Umumkan. Selanjutnya adalah menunggu peserta bergabung pada Grup Whatsapp.')->autoClose(false);
+            return redirect(route('periode', $name));
+        } else {
+            Alert::error('Tahap Penugasan ' . ucfirst($periodeSelected->name) . ' Gagal Diumumkan.', 'Cek data kembali.');
+            return redirect(route('periode', $name));
+        }
+    }
 }

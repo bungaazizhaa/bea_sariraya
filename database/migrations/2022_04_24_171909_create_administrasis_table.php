@@ -36,6 +36,7 @@ class CreateAdministrasisTable extends Migration
             $table->string('instagram')->nullable();
             $table->string('facebook')->nullable();
             $table->enum('status_adm', ['lolos', 'gagal'])->nullable(); //Seharusnya ga Nullable
+            $table->timestamp('email_sent_at')->nullable();
             $table->string('catatan')->nullable();
             $table->unique(['user_id', 'periode_id']);
         });

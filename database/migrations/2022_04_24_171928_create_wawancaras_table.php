@@ -22,6 +22,7 @@ class CreateWawancarasTable extends Migration
             // $table->foreign('periode_id')->references('id_periode')->on('periodes')->onUpdate('cascade')->onDelete('cascade');
             $table->dateTime('jadwal_wwn')->nullable(); //Seharusnya ga Nullable
             $table->enum('status_wwn', ['lolos', 'gagal'])->nullable(); //Seharusnya ga Nullable
+            $table->timestamp('email_sent_at')->nullable();
             $table->string('catatan')->nullable(); //Seharusnya ga Nullable
             $table->timestamps();
         });

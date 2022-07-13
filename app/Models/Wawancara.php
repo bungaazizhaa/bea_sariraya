@@ -13,6 +13,8 @@ class Wawancara extends Model
 
     protected $dates = [
         'jadwal_wwn',
+        'email_sent_at',
+        'wwn_email_at',
     ];
 
     protected $guarded = [

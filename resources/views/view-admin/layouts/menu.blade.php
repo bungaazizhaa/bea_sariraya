@@ -70,12 +70,6 @@
         </ul>
     </li>
     <li class="nav-item mb-1">
-        <a href="/progres" class="nav-link" target="_blank">
-            <i class="nav-icon fa-solid fa-envelope-circle-check"></i>
-            <p class="text-nowrap">Email Progress</p>
-        </a>
-    </li>
-    <li class="nav-item mb-1">
         <a href="{{ route('setting.beasiswa') }}"
             class="nav-link {{ Request::segment(2) === 'setting' ? 'active' : null }}">
             <i class="nav-icon fa-solid fa-gear"></i>

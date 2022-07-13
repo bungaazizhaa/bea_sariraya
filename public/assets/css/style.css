@@ -16,7 +16,7 @@ body {
     background-color: #ffffff;
     color: #495057;
 }
-/* 
+/*
 .container {
     max-width: 1300px;
     margin: auto;
@@ -284,6 +284,7 @@ body {
 .scrollbar-hidden::-webkit-scrollbar {
     display: none;
 }
+
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {

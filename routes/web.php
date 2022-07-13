@@ -60,12 +60,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/{name}/destroy-periode', [PeriodeController::class, 'destroy'])->name('destroy.periode'); //menghapus-periode
     Route::post('/{name}/update-periode', [PeriodeController::class, 'update'])->name('update.periode');
     //Send Email Pengumuman
-    Route::post('/{name}/administrasi/umumkanemail', [EmailController::class, 'sendEmailAdministrasi'])->name('umumkanemail.adm'); //Set status_adm Selesai di Periode
-    Route::post('/{name}/wawancara/umumkanemail', [EmailController::class, 'sendEmailWawancara'])->name('umumkanemail.wwn'); //Set status_wwn Selesai di Periode
-    Route::post('/{name}/penugasan/umumkanemail', [EmailController::class, 'sendEmailPenugasan'])->name('umumkanemail.png'); //Set status_png Selesai di Periode
-    Route::get('/{name}/administrasi/umumkanemail/{emailTujuan}', [EmailController::class, 'sendEmailAdmManual'])->name('umumkanemail.admmanual'); //Set status_adm Selesai di Periode
-    Route::get('/{name}/wawancara/umumkanemail/{emailTujuan}', [EmailController::class, 'sendEmailWwnManual'])->name('umumkanemail.wwnmanual'); //Set status_wwn Selesai di Periode
-    Route::get('/{name}/penugasan/umumkanemail/{emailTujuan}', [EmailController::class, 'sendEmailPngManual'])->name('umumkanemail.pngmanual'); //Set status_png Selesai di Periode
+    Route::post('/{name}/administrasi/setselesai', [AdministrasiController::class, 'setSelesaiAdministrasi'])->name('setselesai.adm'); //Set status_adm Selesai di Periode
+    Route::post('/{name}/wawancara/setselesai', [WawancaraController::class, 'setSelesaiWawancara'])->name('setselesai.wwn'); //Set status_wwn Selesai di Periode
+    Route::post('/{name}/penugasan/setselesai', [PenugasanController::class, 'setSelesaiPenugasan'])->name('setselesai.png'); //Set status_png Selesai di Periode
+    Route::get('/{name}/administrasi/umumkanemail/{emailid}', [EmailController::class, 'sendEmailAdministrasi'])->name('umumkanemail.adm'); //Set status_adm Selesai di Periode
+    Route::get('/{name}/wawancara/umumkanemail/{emailid}', [EmailController::class, 'sendEmailWawancara'])->name('umumkanemail.wwn'); //Set status_wwn Selesai di Periode
+    Route::get('/{name}/penugasan/umumkanemail/{emailid}', [EmailController::class, 'sendEmailPenugasan'])->name('umumkanemail.png'); //Set status_png Selesai di Periode
     //Administrasi
     Route::get('/{name}/nilai-administrasi', [AdministrasiController::class, 'nilaiAdm'])->name('nilai.adm'); //halaman nilai adm
     Route::post('/update-nilai-administrasi/{id}', [AdministrasiController::class, 'updatenilaiAdm'])->name('updatenilai.adm'); //menyimpan penilaian adm
@@ -81,9 +81,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/data-pengguna/detail/{id}', [UserController::class, 'show'])->name('pengguna.show');;
     Route::get('admin/destroy/data-pengguna/{id}', [UserController::class, 'destroy'])->name('pengguna.destroy');
     Route::post('admin/data-pengguna/update/{id}', [UserController::class, 'update'])->name('pengguna.update');
-    Route::prefix('progres')->group(function () {
-        Route::queueMonitor();
-    });
 });
 
 
