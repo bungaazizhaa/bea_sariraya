@@ -106,10 +106,9 @@
                                             data-live-search="true" required>
                                             {{-- <option disabled selected>Asal Perguruan Tinggi
                                             </option> --}}
-                                            <option style="max-width:330px;"
-                                                {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">-
-                                                Lainnya
-                                                -
+                                            <option style="max-width:330px; color:#3588da!important"
+                                                {{ old('univ_id') == 'other' ? 'selected' : '' }} value="other">
+                                                + Tambahkan Pilihan Baru...
                                             </option>
                                             @foreach ($getAllUniv as $univ)
                                                 <option style="max-width:330px;"

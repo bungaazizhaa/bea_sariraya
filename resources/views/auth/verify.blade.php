@@ -15,7 +15,7 @@
                             </div>
                         @endif
 
-                        Silahkan cek Kotak Masuk email Anda, dan lakukan verifikasi Email.<br>
+                        Silahkan cek Kotak Masuk email Anda (termasuk Folder Spam),<br>dan lakukan verifikasi Email.<br><br>
                         Jika Anda tidak menerima email,
                         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                             @csrf

@@ -316,7 +316,7 @@
                                             <td>{{ $i++ }}</td>
 
                                             <td><a class="text-light"
-                                                    href="{{ route('pengguna.show', $userAdm->id) }}">{{ $userAdm->name }}</a>
+                                                    href="{{ route('pengguna.show', $userAdm->iduser) }}">{{ $userAdm->name }}</a>
                                             </td>
                                             <td>{{ $userAdm->no_pendaftaran }}</td>
                                             <td>{{ $userAdm->email }}</td>

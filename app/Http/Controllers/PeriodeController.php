@@ -42,6 +42,7 @@ class PeriodeController extends Controller
             ->leftJoin('users', 'users.id', '=', 'administrasis.user_id')
             ->leftJoin('univs', 'univs.id', '=', 'users.univ_id')
             ->leftJoin('prodis', 'prodis.id', '=', 'users.prodi_id')
+            ->select('*', 'users.id AS iduser')
             ->get();
         $getAllAdmLolos = Administrasi::with('user')->where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '=', 'lolos')
             ->leftJoin('wawancaras', 'wawancaras.administrasi_id', '=', 'administrasis.id')
