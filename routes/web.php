@@ -47,6 +47,7 @@ Route::get('/tahap-penugasan', [PenugasanController::class, 'index'])->name('tah
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/admin/setting', [HomeController::class, 'viewSetting'])->name('setting.beasiswa');
+    Route::post('/admin/update-kontak', [HomeController::class, 'updateKontakAdmin'])->name('update.kontakadmin');
     Route::post('/admin/reset-beasiswa', [HomeController::class, 'resetBeasiswa'])->name('reset.beasiswa');
     Route::get('/dashboard', [HomeController::class, 'indexAdmin'])->name('admin');
     Route::get('/panduan-aplikasi', [HomeController::class, 'panduanAplikasi'])->name('panduan.aplikasi');

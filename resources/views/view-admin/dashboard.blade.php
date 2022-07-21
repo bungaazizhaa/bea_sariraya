@@ -15,7 +15,7 @@
                     <div>
                         <p class="ml-2 d-flex">
                             Pengunjung Landing Page &nbsp;<span
-                                class="border border-info rounded px-2 py-1 h-100 ml-auto h6 font-weight-bold">{{ $pengunjung = DB::table('statistics')->where('name', '=', 'Landing Page')->first()->views }}</span>
+                                class="border border-info rounded px-2 py-1 h-100 ml-auto h6 font-weight-bold">{{ $pengunjung = DB::table('others')->where('name', '=', 'Landing Page')->first()->views }}</span>
                         </p>
                     </div>
                 </div>

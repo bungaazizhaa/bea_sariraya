@@ -84,7 +84,8 @@
                                     <div class="col-md-6">
                                         <input id="password" type="password"
                                             class="form-control @error('password') is-invalid @enderror" name="password"
-                                            autocomplete="off" placeholder="Isi jika ingin mengubah Password">
+                                            value="" autocomplete="new-password"
+                                            placeholder="Isi jika ingin mengubah Password">
 
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -100,14 +101,14 @@
 
                                     <div class="col-md-6">
                                         <input id="password-confirm" type="password" class="form-control"
-                                            name="password_confirmation" autocomplete="off"
+                                            name="password_confirmation" value=""
                                             placeholder="Ketik ulang Password Baru">
                                     </div>
                                 </div>
 
                                 <div class=" row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn  btn-outline-primary rounded-pill"><i
+                                        <button type="submit" class="btn btn-outline-primary rounded-pill float-right"><i
                                                 class="fa-solid fa-floppy-disk"></i>&nbsp;
                                             {{ __('Simpan') }}
                                         </button>
@@ -115,6 +116,40 @@
                                 </div>
                             </div>
                         </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6 mt-5">
+            <p class="h3 font-weight-bold mb-3">Pengaturan Landing Page</p>
+            <div class="card rounded-md myshadow">
+                <div class="card-body">
+                    <p class="font-weight-bold">Kontak Admin</p>
+                    <form id="formKontakAdmin" method="POST" action="{{ route('update.kontakadmin') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="kontak1" class="col-md-4 col-form-label">{{ __('Kontak 1') }}</label>
+                            <div class="col">
+                                <input id="kontak1" type="text"
+                                    class="form-control @error('kontak1') is-invalid @enderror" name="kontak1"
+                                    value="{{ old('kontak1', $getKontak1->keterangan) }}" required
+                                    autocomplete="kontak1">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="kontak2" class="col-md-4 col-form-label">{{ __('Kontak 2') }}</label>
+                            <div class="col">
+                                <input id="kontak2" type="text"
+                                    class="form-control @error('kontak2') is-invalid @enderror" name="kontak2"
+                                    value="{{ old('kontak2', $getKontak2->keterangan) }}" required
+                                    autocomplete="kontak2">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary rounded-pill float-right"><i
+                                class="fa-solid fa-floppy-disk"></i>&nbsp;
+                            {{ __('Simpan') }}
+                        </button>
                     </form>
                 </div>
             </div>

@@ -64,6 +64,7 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|regex:/^[a-z A-Z]+$/u|string|max:255',
+            'password' => 'string|min:8|confirmed|nullable',
         ]);
         if ($request->email != Auth::user()->email) {
             $validated = $request->validate([
@@ -245,6 +246,9 @@ class UserController extends Controller
         }
 
         if ($request->password != '') {
+            $request->validate([
+                'password' => ['sometimes','string', 'min:8', 'confirmed'],
+            ]);
             $user->password = Hash::make($request->password);
         }
         $user->save();

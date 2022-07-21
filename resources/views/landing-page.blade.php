@@ -189,12 +189,13 @@
                                 minimal B dengan program studi
                                 (akreditasi minimal B): <br>
                                 - Desain Komunikasi Visual <br>
-                                - Desain Grafis, Teknik Informatika <br>
+                                - Desain Grafis <br>
+                                - Teknik Informatika <br>
                                 - Teknologi Informasi <br>
                                 - Sistem Informasi <br>
                                 - Sistem Komputer <br>
                                 - Ilmu Komputer <br>
-                                - Manajemen Pemasaran
+                                - Manajemen Pemasaran <br>
                                 - Seni Rupa <br>
                                 - IPK minimal 3.0 (skala 4.0) <br>
                                 - Memiliki kemampuan pengembangan website dan/atau desain grafis
@@ -219,9 +220,10 @@
                         <div class="col-md-6 d-flex align-items-stretch">
                             <div class="card whitecard bea text-left px-4 pt-4">
                                 <p class="h6 font-weight-bold text-center">Syarat Administrasi :</p>
-                                <p>- Scan Kartu Tanda Mahasiswa <br>
+                                <p>- CV <br>
+                                    - Scan Kartu Tanda Mahasiswa <br>
                                     - Scan Transkrip Nilai <br>
-                                    - Portofolio pengembangan website dan/atau desain grafis <br>
+                                    - Portofolio pengembangan website dan/atau desain grafis (Optional)<br>
                                     - Esai 1000 kata: Strategi Pemanfaatan Peluang Pasar Produk Halal di Jepang</p>
                             </div>
                         </div>
@@ -243,11 +245,11 @@
                                 Halal di Jepang sejak tahun 2005.
                                 <br> Saat ini Sariraya Co., Ltd telah memiliki beberapa unit usaha
                                 di antaranya :
-                                <br> produksi tempe, bakso halal dan sambal pecel,toko retail produk-produk makanan
+                                <br> produksi tempe, bakso halal dan sambal pecel, toko retail produk-produk makanan
                                 halal
-                                japanhalal_net , restoran halal, Halal Fried Chicken sariraya.hfcjapan , Halal Pizza
+                                (japanhalal_net) , restoran halal, Halal Fried Chicken (sariraya.hfcjapan) , Halal Pizza
                                 Station
-                                pizzastation.jp dan impor serta distribusi produk halal dari berbagai negara terutama
+                                (pizzastation.jp) dan impor serta distribusi produk halal dari berbagai negara terutama
                                 Asia
                                 Tenggara khususnya Indonesia ke Jepang.
                             </p>
@@ -325,8 +327,8 @@
             <div class="kontak">
                 <center>
                     <h2 class="mb-4"><b>Contact Person</b> </h2>
-                    <p>WhatsApp: +81-70-1304-5868</p>
-                    <p>Email: info@sariraya.com</p>
+                    <p>{{ $getKontak1->keterangan }}</p>
+                    <p>{{ $getKontak2->keterangan }}</p>
                 </center>
             </div>
             <!-- Akhir Section Kontak -->

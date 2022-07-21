@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use App\Models\Univ;
 use App\Models\User;
 use App\Models\Periode;
-use App\Models\Statistic;
+use App\Models\Other;
 use App\Models\Wawancara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,10 +45,12 @@ class HomeController extends Controller
 
     public function indexLandingPage()
     {
+        Other::where('name', '=', 'Landing Page')->first()->increment('views');
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        Statistic::where('name', '=', 'Landing Page')->first()->increment('views');
-        return view('landing-page', compact('getPeriodeAktif', 'getTanggalSekarang'));
+        $getKontak1 = Other::where('id','=',2)->first();
+        $getKontak2 = Other::where('id','=',3)->first();
+        return view('landing-page', compact('getPeriodeAktif', 'getTanggalSekarang','getKontak1','getKontak2'));
     }
 
     public function previewTeknisWwn()
@@ -85,7 +87,9 @@ class HomeController extends Controller
         $getPeriodeLast = Periode::orderBy('id_periode', 'desc')->value('id_periode');
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        return view('view-admin.setting', compact('getAllUser', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAllPeriode', 'getPeriodeLast'));
+        $getKontak1 = Other::where('id','=',2)->first();
+        $getKontak2 = Other::where('id','=',3)->first();
+        return view('view-admin.setting', compact('getAllUser', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAllPeriode', 'getPeriodeLast','getKontak1','getKontak2'));
     }
 
     public function indexMahasiswa()
@@ -101,6 +105,18 @@ class HomeController extends Controller
         }
         $getUserLoggedIn = Auth::user();
         return view('view-mahasiswa.profil-mahasiswa', compact('getUserLoggedIn', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAdministrasiUser'));
+    }
+
+    public function updateKontakAdmin(Request $request)
+    {
+        $getKontak1 = Other::where('id','=',2)->first();
+        $getKontak1->keterangan = $request->kontak1;
+        $getKontak1->save();
+        $getKontak2 = Other::where('id','=',3)->first();
+        $getKontak2->keterangan = $request->kontak2;
+        $getKontak2->save();
+        Alert::toast('Kontak Admin Berhasil diperbarui.','success');
+        return redirect(route('setting.beasiswa'));
     }
 
     public function resetBeasiswa()
