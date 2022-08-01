@@ -28,7 +28,7 @@ use Stevebauman\Location\Facades\Location;
 
 Route::get('/', [HomeController::class, 'indexLandingPage'])->name('landing');
 
-//TODO: ================= ROUTE HOME MAHASISWA =================
+//! ================= ROUTE HOME MAHASISWA =================
 Route::middleware(['periode.timerestricted', 'auth', 'role:mahasiswa', 'verified'])->group(function () {
     Route::get('/my-profile', [HomeController::class, 'indexMahasiswa'])->name('profil.mahasiswa');
     Route::post('update-data-saya', [UserController::class, 'updateMyUser'])->name('update.myuser'); //Edit Data User dari Profil Akun Sendiri
@@ -43,7 +43,7 @@ Route::get('/tahap-administrasi', [AdministrasiController::class, 'index'])->nam
 Route::get('/tahap-wawancara', [WawancaraController::class, 'index'])->name('tahap.wawancara')->middleware('auth', 'verified', 'role:mahasiswa', 'periode.timerestricted', 'wawancara.timerestricted');
 Route::get('/tahap-penugasan', [PenugasanController::class, 'index'])->name('tahap.penugasan')->middleware('auth', 'verified', 'role:mahasiswa', 'periode.timerestricted', 'penugasan.timerestricted');
 
-//TODO: ================= ROUTE HOME ADMIN =================
+//! ================= ROUTE HOME ADMIN =================
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/admin/setting', [HomeController::class, 'viewSetting'])->name('setting.beasiswa');
@@ -52,7 +52,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard', [HomeController::class, 'indexAdmin'])->name('admin');
     Route::get('/panduan-aplikasi', [HomeController::class, 'panduanAplikasi'])->name('panduan.aplikasi');
     Route::get('/preview-tekniswwn', [HomeController::class, 'previewTeknisWwn'])->name('preview.tekniswwn'); //preview teknis wawancara
-    //Periode
+    //! Periode
     Route::get('/periode', [PeriodeController::class, 'index'])->name('index.periode'); //periode
     Route::post('/periode/store', [PeriodeController::class, 'store'])->name('store.periode'); //membuat-baru-periode
     Route::post('/{name}/group-wa/update', [PeriodeController::class, 'groupwaUpdate'])->name('groupwaupdate.periode'); //memperbarui link wa
@@ -60,23 +60,23 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/{name}/detail-periode', [PeriodeController::class, 'indexPeriodeById'])->name('periode'); //detail-periode
     Route::post('/{name}/destroy-periode', [PeriodeController::class, 'destroy'])->name('destroy.periode'); //menghapus-periode
     Route::post('/{name}/update-periode', [PeriodeController::class, 'update'])->name('update.periode');
-    //Send Email Pengumuman
+    //! Send Email Pengumuman
     Route::post('/{name}/administrasi/setselesai', [AdministrasiController::class, 'setSelesaiAdministrasi'])->name('setselesai.adm'); //Set status_adm Selesai di Periode
     Route::post('/{name}/wawancara/setselesai', [WawancaraController::class, 'setSelesaiWawancara'])->name('setselesai.wwn'); //Set status_wwn Selesai di Periode
     Route::post('/{name}/penugasan/setselesai', [PenugasanController::class, 'setSelesaiPenugasan'])->name('setselesai.png'); //Set status_png Selesai di Periode
     Route::get('/{name}/administrasi/umumkanemail/{emailid}', [EmailController::class, 'sendEmailAdministrasi'])->name('umumkanemail.adm'); //Set status_adm Selesai di Periode
     Route::get('/{name}/wawancara/umumkanemail/{emailid}', [EmailController::class, 'sendEmailWawancara'])->name('umumkanemail.wwn'); //Set status_wwn Selesai di Periode
     Route::get('/{name}/penugasan/umumkanemail/{emailid}', [EmailController::class, 'sendEmailPenugasan'])->name('umumkanemail.png'); //Set status_png Selesai di Periode
-    //Administrasi
+    //! Administrasi
     Route::get('/{name}/nilai-administrasi', [AdministrasiController::class, 'nilaiAdm'])->name('nilai.adm'); //halaman nilai adm
     Route::post('/update-nilai-administrasi/{id}', [AdministrasiController::class, 'updatenilaiAdm'])->name('updatenilai.adm'); //menyimpan penilaian adm
-    //Wawancara
+    //! Wawancara
     Route::get('/{name}/nilai-wawancara', [WawancaraController::class, 'nilaiWwn'])->name('nilai.wwn'); //halaman nilai wwn
     Route::post('/update-nilai-wawancara/{id}', [WawancaraController::class, 'updatenilaiWwn'])->name('updatenilai.wwn'); //menyimpan penilaian wwn
-    //Penugasan
+    //! Penugasan
     Route::get('/{name}/nilai-penugasan', [PenugasanController::class, 'nilaiPng'])->name('nilai.png'); //halaman nilai png
     Route::post('/update-nilai-penugasan/{id}', [PenugasanController::class, 'updatenilaiPng'])->name('updatenilai.png'); //menyimpan penilaian wwn
-    // User
+    //! User
     Route::get('admin/data-pengguna/tabel', [UserController::class, 'showDataPenggunaTabel'])->name('datatabel.pengguna'); //halaman nilai png
     Route::get('admin/data-pengguna', [UserController::class, 'showDataPengguna'])->name('data.pengguna'); //halaman nilai png
     Route::get('admin/data-pengguna/detail/{id}', [UserController::class, 'show'])->name('pengguna.show');;
