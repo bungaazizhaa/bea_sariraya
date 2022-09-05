@@ -14,25 +14,17 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     {{-- Bootstrap 4 --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
-    </script>
-
-    <!-- CSS -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-
     <!-- SelectPicker -->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
@@ -46,7 +38,6 @@
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript" defer></script>
 
-    {{-- Jangan Dihapus --}}
     <script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script>
     <script src="{{ asset('assets/js/countdown.min.js') }}"></script>
 
@@ -116,8 +107,7 @@
         <h1 class="text-center mt-3 test">Tahap Administrasi</h1>
 
 
-        <form id="admForm" method="POST" action="{{ route('update.administrasi') }}"
-            enctype="multipart/form-data">
+        <form id="admForm" method="POST" action="{{ route('update.administrasi') }}" enctype="multipart/form-data">
             @csrf
             @if (isset($getAdministrasiUser))
                 <hr class="container" style="width:65vw;" />
@@ -155,8 +145,7 @@
                                 autocomplete="no_pendaftaran" > --}}
                                         <input id="no_pendaftaran" type="text" disabled
                                             class="form-control @error('no_pendaftaran') is-invalid @enderror"
-                                            name="no_pendaftaran"
-                                            value="{{ $getAdministrasiUser->no_pendaftaran }}"
+                                            name="no_pendaftaran" value="{{ $getAdministrasiUser->no_pendaftaran }}"
                                             autocomplete="no_pendaftaran">
 
                                         @error('no_pendaftaran')

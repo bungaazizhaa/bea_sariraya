@@ -202,29 +202,29 @@ class PeriodeController extends Controller
         $validator->validated();
         $periodeAktif = Periode::where('status', '=', 'aktif')->whereNotIn('name', array($name))->get();
         $periode = Periode::where('name', '=', $name)->first();
-        if ($periode->id_periode != $request->id_periode) {
-            $validator = Validator::make($request->all(), [
-                'id_periode' => 'required|unique:periodes|integer',
-            ]);
-            if ($validator->fails()) {
-                Alert::error('Gagal melakukan Update.', 'Cek kesalahan Pengisian.');
-                // var_dump($validator);
-            }
-            $validator->validated();
-            $periode->id_periode = $request->id_periode;
-        }
-        if ($name != $request->name) {
-            $validator = Validator::make($request->all(), [
-                'name' => 'required|string|max:255|unique:periodes',
-            ]);
-            if ($validator->fails()) {
-                Alert::error('Gagal melakukan Update.', 'Cek kesalahan Pengisian.');
-                // var_dump($validator);
-            }
-            $validator->validated();
-            $periode->name = $request->name;
-            rename($name, $request->name);
-        }
+        // if ($periode->id_periode != $request->id_periode) {
+        //     $validator = Validator::make($request->all(), [
+        //         'id_periode' => 'required|unique:periodes|integer',
+        //     ]);
+        //     if ($validator->fails()) {
+        //         Alert::error('Gagal melakukan Update.', 'Cek kesalahan Pengisian.');
+        //         // var_dump($validator);
+        //     }
+        //     $validator->validated();
+        //     $periode->id_periode = $request->id_periode;
+        // }
+        // if ($name != $request->name) {
+        //     $validator = Validator::make($request->all(), [
+        //         'name' => 'required|string|max:255|unique:periodes',
+        //     ]);
+        //     if ($validator->fails()) {
+        //         Alert::error('Gagal melakukan Update.', 'Cek kesalahan Pengisian.');
+        //         // var_dump($validator);
+        //     }
+        //     $validator->validated();
+        //     $periode->name = $request->name;
+        //     rename($name, $request->name);
+        // }
 
         $periode->tp_adm = $request->tp_adm;
         $periode->tm_adm = $request->tm_adm;

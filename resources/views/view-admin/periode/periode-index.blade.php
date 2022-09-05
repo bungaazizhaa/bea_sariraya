@@ -81,7 +81,7 @@
     </div>
 
 
-    {{-- ======== MODAL EDIT PERIODE ======== --}}
+    {{-- ======== MODAL TAMBAH PERIODE ======== --}}
     <!-- Modal -->
     <div class="modal fade" id="tambahPeriode" tabindex="-1" role="dialog" aria-labelledby="tambahPeriodeLabel"
         aria-hidden="true">
@@ -121,6 +121,12 @@
                                                     <strong>{{ $message }}</strong>
                                                 </div>
                                             @enderror
+                                            <small class="text-warning">- ID dan Nama tidak dapat diubah
+                                                kemudian.</small><br>
+                                            <small class="text-warning">- Format Nama: Gunakan huruf kecil tanpa
+                                                spasi.</small><br>
+                                            <small class="text-warning">- Samakan Nomor pada ID dan Nama.</small>
+
                                         </div>
                                     </div>
                                 </div>

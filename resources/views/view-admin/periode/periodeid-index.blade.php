@@ -321,12 +321,10 @@
                                             <td>{{ $userAdm->no_pendaftaran }}</td>
                                             <td>{{ $userAdm->email }}</td>
                                             <td>
-                                                <form target="_blank"
-                                                    id="editFormNilaiAdm{{ $userAdm->no_pendaftaran }}"
+                                                <form target="_blank" id="editFormNilaiAdm{{ $userAdm->no_pendaftaran }}"
                                                     action="{{ route('nilai.adm', $periodeOpenned->name) }}">
                                                     <input type="text" hidden aria-label="Recipient's username"
-                                                        name="search" value="{{ $userAdm->no_pendaftaran }}"
-                                                        autofocus>
+                                                        name="search" value="{{ $userAdm->no_pendaftaran }}" autofocus>
                                                     <div style="cursor: pointer;"
                                                         onclick="document.getElementById('editFormNilaiAdm{{ $userAdm->no_pendaftaran }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
@@ -339,12 +337,10 @@
                                             </td>
 
                                             <td>
-                                                <form target="_blank"
-                                                    id="editFormNilaiWwn{{ $userAdm->no_pendaftaran }}"
+                                                <form target="_blank" id="editFormNilaiWwn{{ $userAdm->no_pendaftaran }}"
                                                     action="{{ route('nilai.wwn', $periodeOpenned->name) }}">
                                                     <input type="text" hidden aria-label="Recipient's username"
-                                                        name="search" value="{{ $userAdm->no_pendaftaran }}"
-                                                        autofocus>
+                                                        name="search" value="{{ $userAdm->no_pendaftaran }}" autofocus>
                                                     <div style="cursor: pointer;"
                                                         onclick="document.getElementById('editFormNilaiWwn{{ $userAdm->no_pendaftaran }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
@@ -357,12 +353,10 @@
 
                                             </td>
                                             <td>
-                                                <form target="_blank"
-                                                    id="editFormNilaiPng{{ $userAdm->no_pendaftaran }}"
+                                                <form target="_blank" id="editFormNilaiPng{{ $userAdm->no_pendaftaran }}"
                                                     action="{{ route('nilai.png', $periodeOpenned->name) }}">
                                                     <input type="text" hidden aria-label="Recipient's username"
-                                                        name="search" value="{{ $userAdm->no_pendaftaran }}"
-                                                        autofocus>
+                                                        name="search" value="{{ $userAdm->no_pendaftaran }}" autofocus>
                                                     <div style="cursor: pointer;"
                                                         onclick="document.getElementById('editFormNilaiPng{{ $userAdm->no_pendaftaran }}').submit();"
                                                         class="badge py-2 px-3 rounded-pill
@@ -404,8 +398,7 @@
             aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <form id="periodeForm" method="POST"
-                        action="{{ route('update.periode', $periodeOpenned->name) }}">
+                    <form id="periodeForm" method="POST" action="{{ route('update.periode', $periodeOpenned->name) }}">
                         @csrf
                         <div class="modal-header h4 text-center">
                             <p class="mb-0 w-100">Form Edit Periode</p>
@@ -419,10 +412,10 @@
                                                 Periode
                                                 :</label>
                                             <div class="col-12 col-md-10 mb-1">
-                                                <input autocomplete="off" spellcheck="false" id="id_periode"
+                                                <input autocomplete="off" disabled spellcheck="false" id="id_periode"
                                                     name="id_periode"
                                                     value="{{ old('id_periode', $periodeOpenned->id_periode) }}"
-                                                    class="form-control">
+                                                    class="form-control disabled text-muted">
                                                 @error('id_periode')
                                                     <span class="small text-danger" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -434,14 +427,16 @@
                                             <label for="name" class="col col-form-label text-md-right">Nama Periode
                                                 :</label>
                                             <div class="col-12 col-md-10">
-                                                <input autocomplete="off" spellcheck="false" id="name"
+                                                <input autocomplete="off" spellcheck="false" disabled id="name"
                                                     name="name" value="{{ old('name', $periodeOpenned->name) }}"
-                                                    class="form-control">
+                                                    class="form-control disabled text-muted">
                                                 @error('name')
                                                     <span class="small text-danger" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
+                                                <small class="text-disable text-muted">(ID dan Nama tidak dapat
+                                                    diubah.)</small>
                                             </div>
                                         </div>
                                     </div>
@@ -484,8 +479,8 @@
                                         <input autocomplete="off" spellcheck="false" id="tm_adm" type="tm_adm"
                                             class="datepicker" class="form-control @error('tm_adm') is-invalid @enderror"
                                             name="tm_adm"
-                                            value="{{ old('tm_adm', $periodeOpenned->tm_adm->format('d F Y')) }}"
-                                            required autofocus>
+                                            value="{{ old('tm_adm', $periodeOpenned->tm_adm->format('d F Y')) }}" required
+                                            autofocus>
 
                                         @error('tm_adm')
                                             <div class="small text-danger" role="alert">
@@ -496,8 +491,8 @@
                                         <input autocomplete="off" spellcheck="false" id="ta_adm" type="ta_adm"
                                             class="datepicker" class="form-control @error('ta_adm') is-invalid @enderror"
                                             name="ta_adm"
-                                            value="{{ old('ta_adm', $periodeOpenned->ta_adm->format('d F Y')) }}"
-                                            required autofocus>
+                                            value="{{ old('ta_adm', $periodeOpenned->ta_adm->format('d F Y')) }}" required
+                                            autofocus>
 
                                         @error('ta_adm')
                                             <div class="small text-danger" role="alert">
@@ -508,8 +503,8 @@
                                         <input autocomplete="off" spellcheck="false" id="tp_adm" type="tp_adm"
                                             class="datepicker" class="form-control @error('tp_adm') is-invalid @enderror"
                                             name="tp_adm"
-                                            value="{{ old('tp_adm', $periodeOpenned->tp_adm->format('d F Y')) }}"
-                                            required autofocus>
+                                            value="{{ old('tp_adm', $periodeOpenned->tp_adm->format('d F Y')) }}" required
+                                            autofocus>
 
                                         @error('tp_adm')
                                             <div class="small text-danger" role="alert">
@@ -550,8 +545,8 @@
                                         <input autocomplete="off" spellcheck="false" id="tm_wwn" type="tm_wwn"
                                             class="datepicker" class="form-control @error('tm_wwn') is-invalid @enderror"
                                             name="tm_wwn"
-                                            value="{{ old('tm_wwn', $periodeOpenned->tm_wwn->format('d F Y')) }}"
-                                            required autofocus>
+                                            value="{{ old('tm_wwn', $periodeOpenned->tm_wwn->format('d F Y')) }}" required
+                                            autofocus>
 
                                         @error('tm_wwn')
                                             <div class="small text-danger" role="alert">
@@ -562,8 +557,8 @@
                                         <input autocomplete="off" spellcheck="false" id="ta_wwn" type="ta_wwn"
                                             class="datepicker" class="form-control @error('ta_wwn') is-invalid @enderror"
                                             name="ta_wwn"
-                                            value="{{ old('ta_wwn', $periodeOpenned->ta_wwn->format('d F Y')) }}"
-                                            required autofocus>
+                                            value="{{ old('ta_wwn', $periodeOpenned->ta_wwn->format('d F Y')) }}" required
+                                            autofocus>
 
                                         @error('ta_wwn')
                                             <div class="small text-danger" role="alert">
@@ -574,8 +569,8 @@
                                         <input autocomplete="off" spellcheck="false" id="tp_wwn" type="tp_wwn"
                                             class="datepicker" class="form-control @error('tp_wwn') is-invalid @enderror"
                                             name="tp_wwn"
-                                            value="{{ old('tp_wwn', $periodeOpenned->tp_wwn->format('d F Y')) }}"
-                                            required autofocus>
+                                            value="{{ old('tp_wwn', $periodeOpenned->tp_wwn->format('d F Y')) }}" required
+                                            autofocus>
 
                                         @error('tp_wwn')
                                             <div class="small text-danger" role="alert">
@@ -616,8 +611,8 @@
                                         <input autocomplete="off" spellcheck="false" id="tm_png" type="tm_png"
                                             class="datepicker" class="form-control @error('tm_png') is-invalid @enderror"
                                             name="tm_png"
-                                            value="{{ old('tm_png', $periodeOpenned->tm_png->format('d F Y')) }}"
-                                            required autofocus>
+                                            value="{{ old('tm_png', $periodeOpenned->tm_png->format('d F Y')) }}" required
+                                            autofocus>
 
                                         @error('tm_png')
                                             <div class="small text-danger" role="alert">
@@ -628,8 +623,8 @@
                                         <input autocomplete="off" spellcheck="false" id="ta_png" type="ta_png"
                                             class="datepicker" class="form-control @error('ta_png') is-invalid @enderror"
                                             name="ta_png"
-                                            value="{{ old('ta_png', $periodeOpenned->ta_png->format('d F Y')) }}"
-                                            required autofocus>
+                                            value="{{ old('ta_png', $periodeOpenned->ta_png->format('d F Y')) }}" required
+                                            autofocus>
 
                                         @error('ta_png')
                                             <div class="small text-danger" role="alert">
@@ -640,8 +635,8 @@
                                         <input autocomplete="off" spellcheck="false" id="tp_png" type="tp_png"
                                             class="datepicker" class="form-control @error('tp_png') is-invalid @enderror"
                                             name="tp_png"
-                                            value="{{ old('tp_png', $periodeOpenned->tp_png->format('d F Y')) }}"
-                                            required autofocus>
+                                            value="{{ old('tp_png', $periodeOpenned->tp_png->format('d F Y')) }}" required
+                                            autofocus>
 
                                         @error('tp_png')
                                             <div class="small text-danger" role="alert">
