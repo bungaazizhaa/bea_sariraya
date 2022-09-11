@@ -24,7 +24,7 @@ class PeriodeController extends Controller
     public function index()
     {
         $getAllPeriode = Periode::all();
-        $getPeriodeLast = Periode::orderBy('id_periode', 'desc')->value('id_periode');
+        $getPeriodeLast = Periode::withTrashed()->orderBy('id_periode', 'desc')->value('id_periode');
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
         return view('view-admin.periode.periode-index', compact('getAllPeriode', 'getPeriodeLast', 'getTanggalSekarang', 'getPeriodeAktif'));
@@ -131,7 +131,7 @@ class PeriodeController extends Controller
             'status' => 'nonaktif',
         ]);
         mkdir($request['name']);
-        Alert::success('Berhasil membuat Periode Baru!', 'Data Periode telah dibuat.');
+        Alert::success('Berhasil membuat Periode Baru!', 'Silahkan melengkapi data program beasiswa.');
         return redirect(route('periode', $request['name']));
     }
 
@@ -154,7 +154,7 @@ class PeriodeController extends Controller
         $periodeSelected = Periode::where('name', '=', $name)->first();
         $periodeSelected->group_wa = $request->group_wa;
         $periodeSelected->save();
-        Alert::success('Link Group WhatsApp ' . ucfirst($periodeSelected->name) . ' sudah Diperbarui.', 'Data Tersimpan.');
+        Alert::toast('Link Group WhatsApp ' . ucfirst($periodeSelected->name) . ' sudah Diperbarui.', 'success');
         return redirect(route('periode', $name));
     }
 
@@ -166,7 +166,7 @@ class PeriodeController extends Controller
             $periodeSelected->teknis_wwn = null;
         }
         $periodeSelected->save();
-        Alert::success('Teknis Wawancara ' . ucfirst($periodeSelected->name) . ' sudah Diperbarui.', 'Data Tersimpan.');
+        Alert::toast('Teknis Wawancara ' . ucfirst($periodeSelected->name) . ' sudah Diperbarui.', 'success');
         return redirect(route('periode', $name));
     }
 
@@ -245,40 +245,78 @@ class PeriodeController extends Controller
         }
         $periode->status = $request->status;
         $periode->save();
-        Alert::success('Berhasil!', 'Data Periode Telah Diperbarui.');
+        Alert::toast('Data Periode Telah Diperbarui.', 'success');
         return redirect(route('periode', $periode->name));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function restore($name = null)
+    {
+        if ($name != null) {
+            $getBatch = Periode::onlyTrashed()->where('name', '=', $name)->first()->restore();
+            Alert::toast('Periode ' . ucfirst($name) . ' berhasil di-Restore!', 'success');
+        } else {
+            $getBatch = Periode::onlyTrashed()->restore();
+            Alert::toast('Periode berhasil di-Restore!', 'success');
+        }
+        return redirect(route('trash'));
+    }
+
     public function destroy($name)
     {
-        $getBatch = Periode::where('name', '=', $name)->first();
-        if (isset($getBatch)) {
-            if (is_dir(public_path($getBatch->name))) {
-                $dir = public_path($getBatch->name);
-                $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
-                $files = new RecursiveIteratorIterator(
-                    $it,
-                    RecursiveIteratorIterator::CHILD_FIRST
-                );
-                foreach ($files as $file) {
-                    if ($file->isDir()) {
-                        rmdir($file->getRealPath());
-                    } else {
-                        unlink($file->getRealPath());
-                    }
-                }
-                rmdir($dir);
-            }
-        }
         $getBatch = Periode::where('name', '=', $name)->first()->delete();
 
-        Alert::success('Periode ' . ucfirst($name) . ' berhasil di Hapus!', 'Daftar periode telah terbarui.');
+        Alert::toast('Periode ' . ucfirst($name) . ' berhasil di Hapus!', 'success');
         return redirect(route('index.periode'));
+    }
+
+    public function forceDestroy($name = null)
+    {
+        if ($name != null) {
+            $getBatch = Periode::onlyTrashed()->where('name', '=', $name)->first();
+            if (isset($getBatch)) {
+                if (is_dir(public_path($getBatch->name))) {
+                    $dir = public_path($getBatch->name);
+                    $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+                    $files = new RecursiveIteratorIterator(
+                        $it,
+                        RecursiveIteratorIterator::CHILD_FIRST
+                    );
+                    foreach ($files as $file) {
+                        if ($file->isDir()) {
+                            rmdir($file->getRealPath());
+                        } else {
+                            unlink($file->getRealPath());
+                        }
+                    }
+                    rmdir($dir);
+                }
+            }
+            $getBatch = Periode::onlyTrashed()->where('name', '=', $name)->first()->forceDelete();
+        } else {
+            $getBatchTrashed = Periode::onlyTrashed()->get();
+            foreach ($getBatchTrashed as $getBatch) {
+                if (isset($getBatch)) {
+                    if (is_dir(public_path($getBatch->name))) {
+                        $dir = public_path($getBatch->name);
+                        $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+                        $files = new RecursiveIteratorIterator(
+                            $it,
+                            RecursiveIteratorIterator::CHILD_FIRST
+                        );
+                        foreach ($files as $file) {
+                            if ($file->isDir()) {
+                                rmdir($file->getRealPath());
+                            } else {
+                                unlink($file->getRealPath());
+                            }
+                        }
+                        rmdir($dir);
+                    }
+                }
+                $getBatch->forceDelete();
+            }
+        }
+        Alert::toast('Periode ' . ucfirst($name) . ' berhasil di Hapus!', 'success');
+        return redirect(route('trash'));
     }
 }

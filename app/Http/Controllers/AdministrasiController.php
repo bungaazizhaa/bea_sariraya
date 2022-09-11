@@ -56,7 +56,7 @@ class AdministrasiController extends Controller
         $getAllPeriode = Periode::all();
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $periodeOpenned = Periode::where('name', '=', $name)->first();
-        $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->filter(request(['search']))->paginate(1)->withQueryString();
+        $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->filter(request(['search']))->paginate(1)->onEachSide(0)->withQueryString();
         return view('view-admin.administrasi.nilai-administrasi', compact('getTanggalSekarang', 'periodeOpenned', 'administrasiOpenned', 'getAllPeriode'));
     }
 

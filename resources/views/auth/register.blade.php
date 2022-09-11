@@ -42,32 +42,38 @@
     </style>
 </head>
 
-<body>
+<body style="background-color: #24272b">
 
     <div class="banner-regist" style="background-image: url('{{ asset('assets/images/bg.png') }}')"> </div>
 
     <div class="container">
-        <a class="logo-img mt-1" href="/">
+        <a class="logo-img mt-1 d-none d-md-block" href="/">
             <img class=" mt-0 mt-lg-4" src="{{ asset('assets/images/logo.png') }}" alt="">
         </a>
 
-
-
+        <div class="logo d-none d-md-block">
+            <img src="{{ asset('assets/images/awardee.png') }}" alt="">
+        </div>
+    </div>
+    <div class="container">
         <!-- Banner -->
         <!-- Akhir Banner -->
         {{-- <img src="{{ asset('assets/images/bg.png') }}" alt=""> --}}
-        <div class="row row-kontak mt-5 pt-4 m-lg-0 pt-lg-3 pb-lg-0">
-            <div class="col-12 pl-lg-0 col-lg-6 text-lg-left text-center d-flex my-auto">
-                <div class="welcom mt-5 mt-lg-0 mb-lg-5 mx-auto">
+        <div class="row d-flex justify-content-center" style="min-height: 90vh">
+
+            <div class="col-12 pl-lg-0 col-lg-7 text-lg-left text-center my-md-auto my-0">
+
+                <div class="text-left d-md-none mt-3 text-center">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="" width="40%">
+                </div>
+                <div class="welcom mt-lg-4 mt-3 mt-lg-0 mb-lg-5 w-100 px-3 mx-1">
                     <p>Pendaftaran Beasiswa Sariraya Japan 2022</p>
                     <h1 class="text-white">Sudah Dibuka</h1>
                 </div>
-
-
             </div>
 
-            <div class="col-12 col-lg-6">
-                <div class="card regis mx-lg-3 ml-lg-4 mt-lg-3 mb-lg-3 mt-4 mb-5">
+            <div class="col-12 col-lg-5 my-0 mt-4 pt-1">
+                <div class="card regis mx-lg-3 ml-lg-4 mt-lg-3 mb-lg-3 mt-2 mb-5">
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
@@ -199,9 +205,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="logo d-none d-lg-block">
-            <img src="{{ asset('assets/images/awardee.png') }}" alt="">
         </div>
     </div>
 

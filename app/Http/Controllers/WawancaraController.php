@@ -34,7 +34,7 @@ class WawancaraController extends Controller
         $periodeOpenned = Periode::where('name', '=', $name)->first();
         $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->pluck('id');
         // dd($administrasiOpenned);
-        $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->filter(request(['search']))->orderBy('jadwal_wwn', 'asc')->paginate(1)->withQueryString();
+        $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->filter(request(['search']))->orderBy('jadwal_wwn', 'asc')->paginate(1)->onEachSide(0)->withQueryString();
         return view('view-admin.wawancara.nilai-wawancara', compact('getTanggalSekarang', 'periodeOpenned', 'wawancaraOpenned', 'getAllPeriode'));
     }
 
@@ -82,7 +82,7 @@ class WawancaraController extends Controller
         $periodeSelected->save();
 
         if ($periodeSelected) {
-            Alert::success('Tahap Administrasi ' . ucfirst($periodeSelected->name) . ' diatur menjadi Selesai.', 'Sekarang Anda dapat mengirimkan Email Pengumuman Wawancara melalui Tombol Umumkan. Selanjutnya adalah Tahap Penugasan.')->autoClose(false);
+            Alert::success('Tahap Wawancara ' . ucfirst($periodeSelected->name) . ' diatur menjadi Selesai.', 'Sekarang Anda dapat mengirimkan Email Pengumuman Wawancara melalui Tombol Umumkan. Selanjutnya adalah Tahap Penugasan.')->autoClose(false);
             return redirect(route('periode', $name));
         } else {
             Alert::error('Tahap Wawancara ' . ucfirst($periodeSelected->name) . ' Gagal Diumumkan.', 'Cek data kembali.');

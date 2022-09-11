@@ -41,55 +41,59 @@
 
 </head>
 
-<body class=" d-flex flex-column" style="min-height: calc(100vh - 60px);">
-    <div class="banner-regist" style="background-image: url('{{ asset('assets/images/berhasil.jpg') }}')"> </div>
+<body style="background-color: #212921">
 
+    <div class="banner-regist" style="background-image: url('{{ asset('assets/images/berhasil.jpg') }}')"></div>
     <div class="container">
-        <div class="logo2">
+        <div class="logo2 d-none d-md-block">
             <img src="{{ asset('assets/images/logo.png') }}" alt="">
         </div>
-    </div>
-    <div class="container">
 
+        <div class="logo d-none d-md-block">
+            <img src="{{ asset('assets/images/awardee.png') }}" alt="">
+        </div>
         {{-- <img src="{{ asset('assets/images/berhasil.jpg') }}" alt=""> --}}
         @include('sweetalert::alert')
-        <div class="container">
-            <div class="text-center col-12 pl-lg-0 col-lg-12 text-lg-left text-center my-auto">
-                <center>
-                    <div class="pengumuman">
-                        <h1 class="mt-4 h2 test"> <b>BEASISWA SARIRAYA JAPAN
+        <div class="text-center col-12 text-lg-left pt-md-4 ">
+            <center>
+                <div class="mt-4 text-left d-md-none">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="" width="30%">
+                </div>
+                <div class="pt-0 pt-sm-3 pt-md-5 d-flex justify-content-around flex-column">
+                    <div class="text-white mt-3 mt-sm-0 d-flex justify-content-around flex-column "
+                        style="min-height: 80vh">
+                        <h1 class="mt-1 h3 mb-lg-4"> <b>BEASISWA SARIRAYA JAPAN
                                 {{ strtoupper($getPeriodeAktif->name) }}</b> </h1>
 
-                        <h1 class="mt-3 h3">Pengumuman Akhir</h1>
+                        {{-- <h1 class="mt-3 h3">Pengumuman Akhir</h1> --}}
 
-                        <div class="alert alert-success mt-4 teksalert" role="alert">
-                            <strong>Selamat {{ ucfirst(Auth::user()->name) }}! Anda Diterima Pada Program <br>
-                                Beasiswa Sariraya Japan {{ ucfirst($getPeriodeAktif->name) }}</strong>
+                        <div class="alert alert-success mt-4 teksalert mx-md-5" role="alert">
+                            <h5>Selamat <strong>{{ ucfirst(Auth::user()->name) }}</strong> !</h5>
+                            <h5>Anda Diterima Pada
+                                Program
+                                Beasiswa Sariraya Japan {{ ucfirst($getPeriodeAktif->name) }}</h5>
                         </div>
 
-                        <p class="h5 pt-2 pt-md-2">Berikut adalah link untuk masuk ke Grup WhatsApp :</p>
-                        <a href="{{ url($getPeriodeAktif->group_wa) }}" class="btn btn-success mb-3 mt-2">Grup
-                            WhatsApp</a>
-                        <p>Atau klik link berikut <span><a
-                                    href="{{ $getPeriodeAktif->group_wa }}">{{ $getPeriodeAktif->group_wa }}</a></span>
-                        </p>
-                        <br>
-                        <p>Jika ada kendala, silahkan hubungi Admin.</p>
-                        @auth
-                            <a href="{{ url('/my-profile') }}" class="btn btn-outline-light mb-4 mt-2"><i
-                                    class="fa-solid fa-angle-left"></i>
-                                Kembali ke
-                                Profil Anda</a>
-                        @endauth
+                        <div>
+                            <p class="pt-2 pt-lg-5 mb-2 pt-md-2">Berikut adalah link untuk masuk ke Grup WhatsApp :</p>
+                            <a href="{{ url($getPeriodeAktif->group_wa) }}"
+                                class="btn btn-success mb-4 mb-md-5 mt-2">Grup
+                                WhatsApp</a>
+                        </div>
+                        <div>
+                            <p class="mt-lg-5 mt-3">Jika ada kendala, silahkan hubungi Admin.</p>
+                            @auth
+                                <a href="{{ url('/my-profile') }}" class="btn btn-sm btn-outline-light mb-4"><i
+                                        class="fa-solid fa-angle-left"></i>
+                                    Kembali ke
+                                    Profil Anda</a>
+                            @endauth
+                        </div>
                     </div>
-                </center>
-            </div>
-            <div class="logo">
-                <img src="{{ asset('assets/images/awardee.png') }}" alt="">
-            </div>
+                </div>
+            </center>
         </div>
-
-
+    </div>
 </body>
 
 </html>

@@ -39,7 +39,7 @@ class UserController extends Controller
         $getAllUniv = Univ::all();
         $getAllPeriode = Periode::all();
         $getAllUser = User::all();
-        $getUser = User::filter(request(['search']))->paginate(20)->withQueryString();
+        $getUser = User::filter(request(['search']))->paginate(20)->onEachSide(0)->withQueryString();
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
         return view('view-admin.user.u-index', compact('getPeriodeAktif', 'getAllUniv', 'getAllPeriode', 'getAllUser', 'getUser'));
     }
@@ -81,7 +81,9 @@ class UserController extends Controller
             if ($upload) {
                 $userInfo =  $request->user()->picture;
                 if ($userInfo != '') {
-                    unlink($path . $userInfo);
+                    if (file_exists($path . $userInfo)) {
+                        unlink($path . $userInfo);
+                    }
                 }
 
                 $user->picture = $new_image_name;
@@ -105,48 +107,132 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
 
         $path = 'pictures/';
         $getAllPeriode = Periode::all();
         $user = User::find($id);
-        $userInfo =  $user->picture;
-        if ($userInfo != '') {
-            unlink($path . $userInfo);
-        }
-        foreach ($getAllPeriode as $periode) {
-            $path2 = $periode->name . '/' . $user->id . '/';
-            if (is_dir(public_path($path2))) {
-                $dir = public_path($path2);
-                $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
-                $files = new RecursiveIteratorIterator(
-                    $it,
-                    RecursiveIteratorIterator::CHILD_FIRST
-                );
-                foreach ($files as $file) {
-                    if ($file->isDir()) {
-                        rmdir($file->getRealPath());
-                    } else {
-                        unlink($file->getRealPath());
-                    }
-                }
-                rmdir($dir);
-            }
-        }
         $user->delete();
         if (!$user) {
             Alert::danger('Gagal', 'Gagal menghapus user.');
             return back();
         } else {
-            Alert::success('Berhasil', 'Anda Berhasil Menghapus ' . $user->name . '.');
+            Alert::toast('Berhasil Menghapus ' . $user->name . '.', 'success');
             return redirect(route('data.pengguna'));
+        }
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function forceDestroy($id = null)
+    {
+        if ($id != null) {
+            $path = 'pictures/';
+            $getAllPeriode = Periode::withTrashed()->get();
+            $user = User::withTrashed()->find($id);
+            if (isset($user->picture) != false) {
+                $userInfo = $user->picture;
+                unlink($path . $userInfo);
+            }
+            foreach ($getAllPeriode as $periode) {
+                $path2 = $periode->name . '/' . $user->id . '/';
+                if (is_dir(public_path($path2))) {
+                    $dir = public_path($path2);
+                    $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+                    $files = new RecursiveIteratorIterator(
+                        $it,
+                        RecursiveIteratorIterator::CHILD_FIRST
+                    );
+                    foreach ($files as $file) {
+                        if ($file->isDir()) {
+                            rmdir($file->getRealPath());
+                        } else {
+                            unlink($file->getRealPath());
+                        }
+                    }
+                    rmdir($dir);
+                }
+            }
+            $user->forceDelete();
+            if (!$user) {
+                Alert::danger('Gagal', 'Gagal menghapus user.');
+                return back();
+            } else {
+                Alert::success('Berhasil', 'Anda Berhasil Menghapus ' . $user->name . '.');
+                return redirect(route('trash'));
+            }
+        } else {
+            $path = 'pictures/';
+            $getAllPeriode = Periode::withTrashed()->get();
+            $getAllUserTrashed = User::onlyTrashed()->get();
+            foreach ($getAllUserTrashed as $user) {
+
+                if (isset($user->picture) != false) {
+                    $userInfo = $user->picture;
+                    unlink($path . $userInfo);
+                }
+                foreach ($getAllPeriode as $periode) {
+                    $path2 = $periode->name . '/' . $user->id . '/';
+                    if (is_dir(public_path($path2))) {
+                        $dir = public_path($path2);
+                        $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+                        $files = new RecursiveIteratorIterator(
+                            $it,
+                            RecursiveIteratorIterator::CHILD_FIRST
+                        );
+                        foreach ($files as $file) {
+                            if ($file->isDir()) {
+                                rmdir($file->getRealPath());
+                            } else {
+                                unlink($file->getRealPath());
+                            }
+                        }
+                        rmdir($dir);
+                    }
+                }
+                $user->forceDelete();
+                if (!$user) {
+                    Alert::danger('Gagal', 'Gagal menghapus user.');
+                    return back();
+                }
+            }
+            if (!$user) {
+                Alert::danger('Gagal', 'Gagal menghapus user.');
+                return back();
+            } else {
+                Alert::success('Berhasil', 'Anda Berhasil Menghapus ' . $user->name . '.');
+                return redirect(route('trash'));
+            }
+        }
+    }
+
+    public function restore($id = null)
+    {
+        if ($id != null) {
+            $user = User::onlyTrashed()->find($id);
+            $user->restore();
+            if (!$user) {
+                Alert::danger('Gagal', 'Gagal mengembalikan user.');
+                return back();
+            } else {
+                Alert::success('Berhasil', 'Anda Berhasil Mengembalikan User ' . $user->name . '.');
+                return redirect(route('trash'));
+            }
+        } else {
+            $user = User::onlyTrashed()->restore();
+            if (!$user) {
+                Alert::danger('Gagal', 'Gagal mengembalikan user.');
+                return back();
+            } else {
+                Alert::success('Berhasil', 'Anda Berhasil Mengembalikan Semua User.');
+                return redirect(route('trash'));
+            }
         }
     }
 
@@ -179,8 +265,12 @@ class UserController extends Controller
         if ($upload) {
             $userInfo =  $request->user()->picture;
             if ($userInfo != '') {
-                unlink($path . $userInfo);
-                unlink($path2 . $userInfo);
+                if (file_exists($path . $userInfo)) {
+                    unlink($path . $userInfo);
+                }
+                if (file_exists($path2 . $userInfo)) {
+                    unlink($path2 . $userInfo);
+                }
             }
 
             User::where('id', $request->user()->id)->update(['picture' => $new_image_name]);
@@ -196,7 +286,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
-            'nim' => ['string', 'max:255'],
+            'nim' => ['string', 'max:255', 'unique:users'],
             'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255', 'nullable'],
             'password' => ['string', 'min:8', 'confirmed', 'nullable'],
         ]);
@@ -247,7 +337,7 @@ class UserController extends Controller
 
         if ($request->password != '') {
             $request->validate([
-                'password' => ['sometimes','string', 'min:8', 'confirmed'],
+                'password' => ['sometimes', 'string', 'min:8', 'confirmed'],
             ]);
             $user->password = Hash::make($request->password);
         }

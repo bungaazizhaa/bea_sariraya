@@ -24,18 +24,15 @@ class EmailController extends Controller
     public function sendEmailAdministrasi($name, $emailid)
     {
         $periode = Periode::where('name', '=', $name)->first();
-
-        $userAdm = Administrasi::where('periode_id', '=', $periode->id_periode)
+        $userAdm = Administrasi::select('*', 'administrasis.id AS id')->where('periode_id', '=', $periode->id_periode)
             ->where('administrasis.user_id', '=', $emailid)
-            ->leftJoin('users', 'users.id', '=', 'administrasis.user_id')
-            ->leftJoin('wawancaras', 'wawancaras.administrasi_id', '=', 'administrasis.id')
+            ->leftJoin('wawancaras', 'administrasis.id', '=', 'wawancaras.administrasi_id')
             ->leftJoin('penugasans', 'penugasans.wawancara_id', '=', 'wawancaras.id')
+            ->leftJoin('users', 'users.id', '=', 'administrasis.user_id')
             ->leftJoin('univs', 'univs.id', '=', 'users.univ_id')
             ->leftJoin('prodis', 'prodis.id', '=', 'users.prodi_id')
             ->orderBy('jadwal_wwn', 'asc')
-            ->select('*', 'administrasis.id AS admid')
             ->first();
-
         Mail::to($userAdm->email)->send(new SendEmailAdministrasi($userAdm, $periode));
 
         $updateEmailSent = Administrasi::with('user')->where('periode_id', '=', $periode->id_periode)
@@ -43,10 +40,10 @@ class EmailController extends Controller
         $updateEmailSent->email_sent_at = now();
         $updateEmailSent->save();
 
-        if($updateEmailSent){
+        if ($updateEmailSent) {
             Alert::success('Berhasil!', 'Email Pengumuman Administrasi Telah dikirimkan ke email ' . $userAdm->email . ' dengan Status Peserta: ' . ucfirst($userAdm->status_adm) . '.')->autoClose(false);
         } else {
-            Alert::error('Gagal!', 'Email Pengumuman Administrasi Gagal dikirimkan ke email ' . $userAdm->email )->autoClose(false);
+            Alert::error('Gagal!', 'Email Pengumuman Administrasi Gagal dikirimkan ke email ' . $userAdm->email)->autoClose(false);
         }
 
         return view('emails.emailAdmPreview', compact('userAdm', 'periode'));
@@ -74,10 +71,10 @@ class EmailController extends Controller
         $updateEmailSent->email_sent_at = now();
         $updateEmailSent->save();
 
-        if($updateEmailSent){
+        if ($updateEmailSent) {
             Alert::success('Berhasil!', 'Email Pengumuman Wawancara Telah dikirimkan ke email ' . $userWwn->email . ' dengan Status Peserta: ' . ucfirst($userWwn->status_wwn) . '.')->autoClose(false);
         } else {
-            Alert::error('Gagal!', 'Email Pengumuman Wawancara Gagal dikirimkan ke email ' . $userWwn->email )->autoClose(false);
+            Alert::error('Gagal!', 'Email Pengumuman Wawancara Gagal dikirimkan ke email ' . $userWwn->email)->autoClose(false);
         }
 
         return view('emails.emailWwnPreview', compact('userWwn', 'periode'));
@@ -105,10 +102,10 @@ class EmailController extends Controller
         $updateEmailSent->email_sent_at = now();
         $updateEmailSent->save();
 
-        if($updateEmailSent){
+        if ($updateEmailSent) {
             Alert::success('Berhasil!', 'Email Pengumuman Penugasan Telah dikirimkan ke email ' . $userPng->email . ' dengan Status Peserta: ' . ucfirst($userPng->status_png) . '.')->autoClose(false);
         } else {
-            Alert::error('Gagal!', 'Email Pengumuman Penugasan Gagal dikirimkan ke email ' . $userPng->email )->autoClose(false);
+            Alert::error('Gagal!', 'Email Pengumuman Penugasan Gagal dikirimkan ke email ' . $userPng->email)->autoClose(false);
         }
 
         return view('emails.emailPngPreview', compact('userPng', 'periode'));

@@ -9,6 +9,10 @@
             content="Beasiswa Sariraya Japan adalah beasiswa yang diberikan oleh perusahaan Sariraya Co., Ltd bagi mahasiswa berprestasi yang memenuhi kriteria, sebagai bentuk tanggung jawab sosial perusahaan.">
         <title>Beasiswa Sariraya Japan</title>
 
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{ asset('admin-lte') }}/plugins/fontawesome-free/css/all.min.css">
+        <script src="https://kit.fontawesome.com/637f4baacf.js" crossorigin="anonymous"></script>
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
             integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -45,8 +49,7 @@
                         <p class="mt-4">Klik tombol di bawah ini untuk mengakses pendaftaran</p>
                         @guest
                             @if (Route::has('login'))
-                                <a class="btn btn-success rounded-pill"
-                                    href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="btn btn-success rounded-pill" href="{{ route('login') }}">{{ __('Login') }}</a>
                             @endif
 
                             @if (Route::has('register') && isset($getPeriodeAktif) ? !$getPeriodeAktif->status_adm == 'Selesai' : '')
@@ -72,103 +75,269 @@
             <!-- Section Timeline -->
             <div class="timeline">
                 <center>
-                    <h2><b> Timeline Beasiswa</b></h2>
                     @if ($getPeriodeAktif == null)
-                        <div class=" py-1 my-2 p-md-0 m-md-0">
-                            <center class="text-gray-200 h4 pt-4 mt-4 mb-5 pb-3"> Maaf. Saat ini sedang tidak ada
-                                Program
-                                Penerimaan Beasiswa
-                                Sariraya.
-                            </center>
-                        </div>
-                    @else
-                        <div class="row mb-lg-2 mx-lg-5 mx-sm-2 my-sm-2">
-                            <div class="col-sm-6 col-lg-3 mt-3 d-flex align-items-stretch">
-                                <div class="card whitecard text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/1.png') }}" width="100px"
-                                        alt="Card image cap">
-                                    <div class="card-body pb-0">
-                                        <h5 class="card-title">Pendaftaran & Submit Administrasi</h5>
-                                        <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tm_adm->translatedFormat('d F Y - ') . $getPeriodeAktif->ta_adm->translatedFormat('d F Y') : '-' }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
-                                <div class="card whitecard text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/3.png') }}" width="100px"
-                                        alt="Card image cap">
-                                    <div class="card-body pb-0">
-                                        <h5 class="card-title">Pengumuman Hasil Seleksi Administrasi</h5>
-                                        <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tp_adm->translatedFormat('d F Y') : '-' }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
-                                <div class="card whitecard text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/4.png') }}" width="100px"
-                                        alt="Icon Orang">
-                                    <div class="card-body pb-0">
-                                        <h5 class="card-title">Seleksi Wawancara</h5>
-                                        <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tm_wwn->translatedFormat('d F Y - ') . $getPeriodeAktif->ta_wwn->translatedFormat('d F Y') : '-' }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
-                                <div class="card whitecard text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/5.png') }}" width="100px"
-                                        alt="Icon Pengumuman Orang">
-                                    <div class="card-body pb-0">
-                                        <h5 class="card-title">Pengumuman Hasil Seleksi Wawancara</h5>
-                                        <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tp_wwn->translatedFormat('d F Y') : '-' }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-lg-2 mb-lg-5 mx-lg-5 mx-sm-2 my-sm-2 d-flex justify-content-center">
-                            <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
-                                <div class="card whitecard text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/7.png') }}" width="100px"
-                                        alt="Icon Submit Pendaftaran">
-                                    <div class="card-body pb-0">
-                                        <h5 class="card-title">Submit Penugasan</h5>
-                                        <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tm_png->translatedFormat('d F Y - ') . $getPeriodeAktif->ta_png->translatedFormat('d F Y') : '-' }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
-                                <div class="card whitecard text-center">
-                                    <img class="card-img-top" src="{{ asset('assets/images/9.png') }}"
-                                        width="100px" alt="Card image cap">
-                                    <div class="card-body pb-0">
-                                        <h5 class="card-title">Pengumuman Akhir</h5>
-                                        <p>{{ isset($getPeriodeAktif) ? $getPeriodeAktif->tp_png->translatedFormat('d F Y') : '-' }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
-                                <div class="card whitecard text-center mb-md-0 mb-5">
-                                    <img class="card-img-top" src="{{ asset('assets/images/6.png') }}"
-                                        width="100px" alt="Card image cap">
-                                    <div class="card-body pb-0">
-                                        <h5 class="card-title">Pemberian Beasiswa</h5>
-                                        <p>{{ $getPeriodeAktif == null ? '-' : 'Maret - Agustus 2022' }}</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="text-center alert alert-warning mb-5 mx-md-5 mx-0">
+                            Maaf! Saat ini sedang
+                            tidak ada
+                            Program
+                            Penerimaan Beasiswa
+                            Sariraya.
                         </div>
                     @endif
+                    <h2><b> Timeline Beasiswa</b></h2>
+                    <div class="row mb-lg-2 mx-lg-5 mx-sm-2 my-sm-2">
+                        <div class="col-sm-6 col-lg-3 mt-3 d-flex align-items-stretch">
+                            <div class="card whitecard text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/1.png') }}" width="100px"
+                                    alt="Card image cap">
+                                <div class="card-body pb-2">
+                                    <h5 class="card-title">Pendaftaran & Submit Administrasi</h5>
+                                    @if ($getPeriodeAktif == null)
+                                        <br><br>
+                                        <div class="info-timeline text-center w-100">
+                                            <small><i class="fa-solid fa-minus"></i></small>
+                                        </div>
+                                    @else
+                                        <p class="mb-4 pb-4 pb-md-2">
+                                            @if (isset($getPeriodeAktif))
+                                                {{ $getPeriodeAktif->tm_adm->translatedFormat('d F Y - ') . $getPeriodeAktif->ta_adm->translatedFormat('d F Y') }}
+                                            @endif
+                                        </p>
+                                        <div class="info-timeline text-center w-100">
+                                            @if ($getPeriodeAktif->status_adm == null &&
+                                                $getTanggalSekarang >= $getPeriodeAktif->tm_adm->format('Y-m-d') &&
+                                                $getTanggalSekarang <= $getPeriodeAktif->ta_adm->format('Y-m-d'))
+                                                <small class="text-info"><i class="fa-solid fa-circle-info"></i>&nbsp;
+                                                    Sedang
+                                                    Berlangsung</small>
+                                            @elseif ($getPeriodeAktif->status_adm == null && $getTanggalSekarang > $getPeriodeAktif->ta_adm->format('Y-m-d'))
+                                                <small class="text-secondary"><i
+                                                        class="fa-solid fa-circle-minus"></i>&nbsp; Telah
+                                                    Ditutup</small>
+                                            @endif
+                                            @if ($getPeriodeAktif->status_adm == 'Selesai')
+                                                <i class="fa-solid fa-check text-success "></i>
+                                            @endif
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
+                            <div class="card whitecard text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/3.png') }}" width="100px"
+                                    alt="Card image cap">
+                                <div class="card-body pb-2">
+                                    <h5 class="card-title">Pengumuman Hasil Seleksi Administrasi</h5>
+                                    @if ($getPeriodeAktif == null)
+                                        <br><br>
+                                        <div class="info-timeline text-center w-100">
+                                            <small><i class="fa-solid fa-minus"></i></small>
+                                        </div>
+                                    @else
+                                        <p class="mb-4 pb-4 pb-md-2">
+                                            @if (isset($getPeriodeAktif))
+                                                {{ $getPeriodeAktif->tp_adm->translatedFormat('d F Y') }}
+                                            @endif
+                                        </p>
+                                        <div class="info-timeline text-center w-100">
+                                            @if ($getPeriodeAktif->status_adm == null && $getTanggalSekarang > $getPeriodeAktif->ta_adm->format('Y-m-d'))
+                                                <i class="fa-regular fa-clock text-info small"></i>
+                                            @endif
+                                            @if ($getPeriodeAktif->status_adm == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_wwn->format('Y-m-d'))
+                                                <small class="text-info"><i class="fa-solid fa-check"></i>
+                                                    Telah
+                                                    Diumumkan</small>
+                                            @endif
+                                            @if ($getPeriodeAktif->status_adm == 'Selesai' &&
+                                                $getTanggalSekarang >= $getPeriodeAktif->tm_wwn->format('Y-m-d'))
+                                                <i class="fa-solid fa-check text-success "></i>
+                                            @endif
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mt-sm-4 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
+                            <div class="card whitecard text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/4.png') }}" width="100px"
+                                    alt="Icon Orang">
+                                <div class="card-body pb-2">
+                                    <h5 class="card-title">Seleksi Wawancara</h5>
+                                    @if ($getPeriodeAktif == null)
+                                        <br><br>
+                                        <div class="info-timeline text-center w-100">
+                                            <small><i class="fa-solid fa-minus"></i></small>
+                                        </div>
+                                    @else
+                                        <p class="mb-4 pb-4 pb-md-2">
+                                            @if (isset($getPeriodeAktif))
+                                                {{ $getPeriodeAktif->tm_wwn->translatedFormat('d F Y - ') . $getPeriodeAktif->ta_wwn->translatedFormat('d F Y') }}
+                                            @endif
+                                        </p>
+                                        <div class="info-timeline text-center w-100">
+                                            @if ($getPeriodeAktif->status_adm == 'Selesai' &&
+                                                $getPeriodeAktif->status_wwn == null &&
+                                                $getTanggalSekarang >= $getPeriodeAktif->tm_wwn->format('Y-m-d') &&
+                                                $getTanggalSekarang <= $getPeriodeAktif->ta_wwn->format('Y-m-d'))
+                                                <small class="text-info"><i class="fa-solid fa-circle-info"></i>&nbsp;
+                                                    Sedang
+                                                    Berlangsung</small>
+                                            @endif
+                                            @if ($getPeriodeAktif->status_adm == 'Selesai' &&
+                                                $getPeriodeAktif->status_wwn == null &&
+                                                $getTanggalSekarang > $getPeriodeAktif->ta_wwn->format('Y-m-d'))
+                                                <small class="text-secondary"><i
+                                                        class="fa-solid fa-circle-minus"></i>&nbsp; Telah
+                                                    Ditutup</small>
+                                            @endif
+                                            @if ($getPeriodeAktif->status_wwn == 'Selesai')
+                                                <i class="fa-solid fa-check text-success "></i>
+                                            @endif
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mt-sm-4 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
+                            <div class="card whitecard text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/5.png') }}" width="100px"
+                                    alt="Icon Pengumuman Orang">
+                                <div class="card-body pb-2">
+                                    <h5 class="card-title">Pengumuman Hasil Seleksi Wawancara</h5>
+                                    @if ($getPeriodeAktif == null)
+                                        <br><br>
+                                        <div class="info-timeline text-center w-100">
+                                            <small><i class="fa-solid fa-minus"></i></small>
+                                        </div>
+                                    @else
+                                        <p class="mb-4 pb-4 pb-md-2">
+                                            @if (isset($getPeriodeAktif))
+                                                {{ $getPeriodeAktif->tp_wwn->translatedFormat('d F Y') }}
+                                            @endif
+                                        </p>
+                                        <div class="info-timeline text-center w-100">
+                                            @if ($getPeriodeAktif->status_adm == 'Selesai' &&
+                                                $getPeriodeAktif->status_wwn == null &&
+                                                $getTanggalSekarang > $getPeriodeAktif->ta_wwn->format('Y-m-d'))
+                                                <i class="fa-regular fa-clock text-info small"></i>
+                                            @endif
+                                            @if ($getPeriodeAktif->status_wwn == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_png->format('Y-m-d'))
+                                                <small class="text-info"><i class="fa-solid fa-check"></i>
+                                                    Telah
+                                                    Diumumkan</small>
+                                            @endif
+                                            @if ($getPeriodeAktif->status_wwn == 'Selesai' &&
+                                                $getTanggalSekarang >= $getPeriodeAktif->tm_png->format('Y-m-d'))
+                                                <i class="fa-solid fa-check text-success "></i>
+                                            @endif
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-lg-2 mb-lg-5 mx-lg-5 mx-sm-2 my-sm-2 d-flex justify-content-center">
+                        <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
+                            <div class="card whitecard text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/7.png') }}" width="100px"
+                                    alt="Icon Submit Pendaftaran">
+                                <div class="card-body pb-2">
+                                    <h5 class="card-title">Submit Penugasan</h5>
+                                    @if ($getPeriodeAktif == null)
+                                        <br><br>
+                                        <div class="info-timeline text-center w-100">
+                                            <small><i class="fa-solid fa-minus"></i></small>
+                                        </div>
+                                    @else
+                                        <p class="mb-4 pb-4 pb-md-2">
+                                            @if (isset($getPeriodeAktif))
+                                                {{ $getPeriodeAktif->tm_png->translatedFormat('d F Y - ') . $getPeriodeAktif->ta_png->translatedFormat('d F Y') }}
+                                            @endif
+                                        </p>
+                                        <div class="info-timeline text-center w-100">
+                                            @if ($getPeriodeAktif->status_wwn == 'Selesai' &&
+                                                $getPeriodeAktif->status_png == null &&
+                                                $getTanggalSekarang >= $getPeriodeAktif->tm_png->format('Y-m-d') &&
+                                                $getTanggalSekarang <= $getPeriodeAktif->ta_png->format('Y-m-d'))
+                                                <small class="text-info"><i class="fa-solid fa-circle-info"></i>&nbsp;
+                                                    Sedang
+                                                    Berlangsung</small>
+                                            @endif
+                                            @if ($getPeriodeAktif->status_wwn == 'Selesai' &&
+                                                $getPeriodeAktif->status_png == null &&
+                                                $getTanggalSekarang > $getPeriodeAktif->ta_png->format('Y-m-d'))
+                                                <small class="text-secondary"><i
+                                                        class="fa-solid fa-circle-minus"></i>&nbsp; Telah
+                                                    Ditutup</small>
+                                            @endif
+                                            @if ($getPeriodeAktif->status_png == 'Selesai')
+                                                <i class="fa-solid fa-check text-success "></i>
+                                            @endif
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
+                            <div class="card whitecard text-center">
+                                <img class="card-img-top" src="{{ asset('assets/images/9.png') }}" width="100px"
+                                    alt="Card image cap">
+                                <div class="card-body pb-2">
+                                    <h5 class="card-title">Pengumuman Akhir</h5>
+                                    @if ($getPeriodeAktif == null)
+                                        <br><br>
+                                        <div class="info-timeline text-center w-100">
+                                            <small><i class="fa-solid fa-minus"></i></small>
+                                        </div>
+                                    @else
+                                        <p class="mb-4 pb-4 pb-md-2">
+                                            @if (isset($getPeriodeAktif))
+                                                {{ $getPeriodeAktif->tp_png->translatedFormat('d F Y') }}
+                                            @endif
+                                        </p>
+                                        <div class="info-timeline text-center w-100">
+                                            @if ($getPeriodeAktif->status_wwn == 'Selesai' &&
+                                                $getPeriodeAktif->status_png == null &&
+                                                $getTanggalSekarang > $getPeriodeAktif->ta_png->format('Y-m-d'))
+                                                <i class="fa-regular fa-clock text-info small"></i>
+                                            @endif
+                                            @if ($getPeriodeAktif->status_wwn == 'Selesai' && $getPeriodeAktif->status_png == 'Selesai')
+                                                <small class="text-info"><i class="fa-solid fa-check"></i>
+                                                    Telah
+                                                    Diumumkan</small>
+                                            @endif
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mt-sm-4 mt-lg-3 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
+                            <div class="card whitecard text-center mb-md-0 mb-5">
+                                <img class="card-img-top" src="{{ asset('assets/images/6.png') }}" width="100px"
+                                    alt="Card image cap">
+                                <div class="card-body pb-2">
+                                    <h5 class="card-title">Pemberian Beasiswa</h5>
+                                    <p class="mb-4 pb-4 pb-md-2">
+                                        @if ($getPeriodeAktif != null)
+                                            {{ $getPemberian->keterangan }}
+                                        @endif
+                                    </p>
+                                    <div class="info-timeline text-center w-100">
+                                        @if ($getPeriodeAktif == null)
+                                            <small><i class="fa-solid fa-minus"></i></small>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </center>
             </div>
             <!-- Akhir Section Timeline -->
 
             <!-- Section Apa Itu Beasiswa Sariraya -->
-            <div class="beasariraya">
+            <div class="beasariraya mt-5 lg-mt-3">
                 <center>
                     <h2><b>Apa Itu Beasiswa Sariraya</b> </h2>
                 </center>

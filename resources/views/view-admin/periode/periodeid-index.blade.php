@@ -176,50 +176,16 @@
 
         {{-- Input Group WA --}}
         <div class="row">
-            <div class="col-12 mb-3">
-                <form id="groupwaForm" method="POST"
-                    action="{{ route('groupwaupdate.periode', $periodeOpenned->name) }}">
-                    @csrf
-                    <div
-                        class="rounded myshadow {{ isset($periodeOpenned->group_wa) ? 'bg-selesai' : 'bg-secondary' }} h-100">
-                        <div class="row p-3 p-md-2">
-                            <div class="col">
-                                <p class="h5 pl-md-2 pt-1">Grup WhatsApp :</p>
-                            </div>
-                            <div class="col-md-8">
-                                <input autocomplete="off" type="text" id="group_wa" name="group_wa"
-                                    spellcheck="false" class="form-control my-2 my-md-0"
-                                    placeholder="Pastikan dimulai dari 'https://...'"
-                                    value="{{ $periodeOpenned->group_wa }}">
-                                <small>Isi berupa Link atau tautan dari Grup WhatsApp yang nantinya akan ditampilkan pada
-                                    halaman
-                                    Pengumuman Akhir di Akun Peserta Beasiswa.</small>
-                            </div>
-
-                            <div class="col-md-2">
-                                <button type="submit" class="rounded myshadow btn float-right btn-dark"><i
-                                        class="fa-solid fa-floppy-disk"> </i> Simpan
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        {{-- Input Teknis Wwn --}}
-        <div class="row">
-            <div class="col-12 mb-3">
+            <div class="col-lg-8 mb-3 d-flex align-items-stretch">
                 <form id="tekniswwnForm" method="POST"
                     action="{{ route('tekniswwnupdate.periode', $periodeOpenned->name) }}">
                     @csrf
                     <div
-                        class="rounded myshadow {{ isset($periodeOpenned->teknis_wwn) ? 'bg-selesai' : 'bg-secondary' }} h-100">
+                        class="rounded myshadow px-2 pb-1 {{ isset($periodeOpenned->teknis_wwn) ? 'bg-selesai' : 'bg-secondary' }} h-100">
                         <div class="row p-3 p-md-2">
-                            <div class="col">
-                                <p class="h5 pl-md-2 pt-1">Teknis Wawancara :</p>
-                            </div>
-                            <div class="col-md-8">
-                                <style>
+                            <div class="col-12">
+                                <p class="h5 pt-1">Teknis Wawancara :</p>
+                                {{-- <style>
                                     .note-editable {
                                         color: #0C5B80 !important;
                                         background-color: #D1ECF1 !important;
@@ -229,22 +195,49 @@
                                         font-family: Montserrat !important;
                                         padding-bottom: 0 !important;
                                     }
-                                </style>
-                                <textarea autocomplete="off" id="summernote" name="teknis_wwn" spellcheck="false" class="my-2 my-md-0 mb-0"
-                                    style="margin-bottom: 0!important;">{!! $periodeOpenned->teknis_wwn !!}</textarea>
-                                <small>Isi berupa Tata cara melakukan wawancara yang nantinya akan
+                                </style> --}}
+                                <p>Isi berupa Tata cara melakukan wawancara yang nantinya akan
                                     ditampilkan pada halaman
-                                    Pengumuman Lolos Wawancara di Akun Peserta Beasiswa.</small>
+                                    Pengumuman Lolos Wawancara di Akun Peserta Beasiswa.</p>
+                                <textarea autocomplete="off" id="summernote" name="teknis_wwn" spellcheck="false">{!! $periodeOpenned->teknis_wwn !!}</textarea>
                             </div>
 
-                            <div class="col-md-2">
-                                <button type="submit" class="rounded myshadow btn float-right btn-dark"><i
+                            <div class="col-12">
+                                <button type="submit" class="rounded myshadow btn float-right ml-3 btn-dark"><i
                                         class="fa-solid fa-floppy-disk"> </i> Simpan
                                 </button>
                                 <a href="/preview-tekniswwn" target="_blank"
-                                    class="rounded myshadow btn float-right btn-outline-primary mr-3 mr-md-0 mt-0 mt-md-3"><i
+                                    class="rounded myshadow btn float-right btn-outline-primary"><i
                                         class="fa-solid fa-eye"></i> Preview
                                 </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4 mb-3 d-flex align-items-stretch">
+                <form id="groupwaForm" method="POST"
+                    action="{{ route('groupwaupdate.periode', $periodeOpenned->name) }}">
+                    @csrf
+                    <div
+                        class="rounded myshadow px-2 pb-1 {{ isset($periodeOpenned->group_wa) ? 'bg-selesai' : 'bg-secondary' }} h-100">
+                        <div class="row p-3 p-md-2">
+                            <div class="col-12">
+                                <p class="h5 pt-1">Grup WhatsApp :</p>
+                            </div>
+                            <div class="col-12">
+                                <p>Isi berupa Link atau tautan dari Grup WhatsApp yang nantinya akan ditampilkan pada
+                                    halaman
+                                    Pengumuman Akhir di Akun Peserta Beasiswa.</p>
+                                <textarea autocomplete="off" type="text" id="group_wa" name="group_wa" spellcheck="false" class="form-control"
+                                    placeholder="Pastikan dimulai dari 'https://...'" rows="4">{{ $periodeOpenned->group_wa }}</textarea>
+
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="rounded myshadow btn float-right btn-dark mt-3"><i
+                                        class="fa-solid fa-floppy-disk"> </i> Simpan
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -256,7 +249,7 @@
         <script>
             $(document).ready(function() {
                 $('#summernote').summernote({
-                    placeholder: '<p style="text-align: center; padding: 1.25rem;"><b>Teknis Wawancara...</b></p>',
+                    placeholder: 'Teknis Wawancara...',
                     tabsize: 2,
                     minHeight: 100,
                     toolbar: [
@@ -288,11 +281,11 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="tableperiodeuser" class="table table-striped table-hover">
-                            <thead>
+                        <table id="tableperiodeuser" class="table table-striped table-borderless table-dark rounded">
+                            <thead class="text-secondary">
                                 <tr>
                                     <th>No</th>
-                                    {{-- <th>Foto</th> --}}
+                                    <th>NIM</th>
                                     <th>Nama</th>
                                     <th>Nomor</th>
                                     <th>Email</th>
@@ -314,6 +307,7 @@
                                     @foreach ($getAdministrasiUser as $userAdm)
                                         <tr>
                                             <td>{{ $i++ }}</td>
+                                            <td>{{ $userAdm->nim }}</td>
 
                                             <td><a class="text-light"
                                                     href="{{ route('pengguna.show', $userAdm->iduser) }}">{{ $userAdm->name }}</a>

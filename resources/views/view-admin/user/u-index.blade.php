@@ -82,14 +82,6 @@
                                                 <a href="{{ route('pengguna.show', $user->id) }}" id="showUser"
                                                     class="btn btn-xs rounded bg-dark text-info px-3 mr-2">Detail
                                                 </a>
-                                                {{-- <a href="{{ route('pengguna.edit', $user->id) }}" id="editUserAlert"
-                                            class="btn btn-xs rounded bg-dark text-warning">
-                                            Edit
-                                        </a>
-                                        <button type="button" class="btn btn-xs rounded btn-info edit"
-                                            data-id="{{ $pengguna->id }}" data-toggle="modal">
-                                            Edit
-                                        </button> --}}
                                                 <a href="" id="deleteUserAlert" data-id="{{ $user->id }}"
                                                     data-name="{{ $user->name }}"
                                                     class="btn btn-xs rounded bg-dark text-danger">Hapus
@@ -132,7 +124,7 @@
             swalWithBootstrapButtons.fire({
                 title: "Hapus user " + username + " ?",
                 //  (" + userid + ")
-                text: "Data tidak dapat dikembalikan setelahnya.",
+                text: "Data akan dipindahkan ke menu Trash.",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Ya, Hapus',

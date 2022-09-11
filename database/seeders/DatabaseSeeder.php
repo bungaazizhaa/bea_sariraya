@@ -66,8 +66,8 @@ class DatabaseSeeder extends Seeder
         // );
         // Periode::create(
         //     [
-        //         'id_periode' => '2',
-        //         'name' => 'batch-2',
+        //         'id_periode' => '3',
+        //         'name' => 'batch-3',
         //         'tm_adm' => '2022-06-16',
         //         'ta_adm' => '2022-06-27',
         //         'tp_adm' => '2022-06-28',
@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
         //         'tp_png' => '2022-07-12',
         //         'status_png' => null,
         //         'ts_png' => null,
-        //         'status' => 'aktif'
+        //         'status' => 'nonaktif'
         //     ],
         // );
 
@@ -154,20 +154,20 @@ class DatabaseSeeder extends Seeder
             ],
         );
 
-        // User::create(
-        //     [
-        //         'name' => 'Alvin Alvrahesta',
-        //         'nim' => '21120118120025',
-        //         'univ_id' => '1',
-        //         'prodi_id' => '1',
-        //         'picture' => null,
-        //         'email_verified_at' => now(),
-        //         'email' => 'alvin.alvrahesta@gmail.com',
-        //         'password' => Hash::make('12345678'),
-        //         'remember_token' => Str::random(10),
-        //     ]
-        // );
-        // User::factory(5)->create();
-        // Administrasi::factory(15)->create();
+        User::create(
+            [
+                'name' => 'Alvin Alvrahesta',
+                'nim' => '21120118120025',
+                'univ_id' => '1',
+                'prodi_id' => '1',
+                'picture' => null,
+                'email_verified_at' => now(),
+                'email' => 'alvin.alvrahesta@gmail.com',
+                'password' => Hash::make('12345678'),
+                'remember_token' => Str::random(10),
+            ]
+        );
+        // User::factory(50)->create();
+        // Administrasi::factory(105)->create();
     }
 }

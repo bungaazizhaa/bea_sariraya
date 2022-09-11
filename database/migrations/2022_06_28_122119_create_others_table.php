@@ -38,6 +38,12 @@ class CreateOthersTable extends Migration
             'views' => null,
             'keterangan' => 'Email: info@sariraya.com',
         ]);
+
+        Other::create([
+            'name' => 'pemberian',
+            'views' => null,
+            'keterangan' => 'Maret 2022 - September 2022',
+        ]);
     }
 
     /**

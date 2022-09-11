@@ -21,10 +21,10 @@ class AdministrasiFactory extends Factory
         static $no = 2;
         return [
             'no_pendaftaran' => $id,
-            // 'user_id' => mt_rand(2, 5),
-            'user_id' => $no++,
-            // 'periode_id' => mt_rand(1, 3),
-            'periode_id' => 3,
+            'user_id' => mt_rand(2, 7),
+            // 'user_id' => $no++,
+            'periode_id' => mt_rand(1, 3),
+            // 'periode_id' => 3,
             'tempat_lahir' => $this->faker->city(),
             'tanggal_lahir' => $this->faker->date(),
             'semester' => mt_rand(6, 8),

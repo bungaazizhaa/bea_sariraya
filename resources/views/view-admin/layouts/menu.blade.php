@@ -70,6 +70,12 @@
         </ul>
     </li>
     <li class="nav-item mb-1">
+        <a href="{{ route('trash') }}" class="nav-link {{ Request::segment(2) === 'trash' ? 'active' : null }}">
+            <i class="nav-icon fa-solid fa-trash"></i>
+            <p class="text-nowrap">Trash</p>
+        </a>
+    </li>
+    <li class="nav-item mb-1">
         <a href="{{ route('setting.beasiswa') }}"
             class="nav-link {{ Request::segment(2) === 'setting' ? 'active' : null }}">
             <i class="nav-icon fa-solid fa-gear"></i>

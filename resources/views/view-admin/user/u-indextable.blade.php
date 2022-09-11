@@ -29,8 +29,8 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="tableuser" class="table table-striped table-hover">
-                                <thead>
+                            <table id="tableuser" class="table table-striped table-borderless table-dark rounded">
+                                <thead class="text-secondary">
                                     <tr>
                                         <th>No</th>
                                         <th>ID</th>
@@ -133,7 +133,7 @@
             swalWithBootstrapButtons.fire({
                 title: "Hapus user " + username + " ?",
                 //  (" + userid + ")
-                text: "Data tidak dapat dikembalikan setelahnya.",
+                text: "Data akan dipindahkan ke menu Trash.",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Ya, Hapus',

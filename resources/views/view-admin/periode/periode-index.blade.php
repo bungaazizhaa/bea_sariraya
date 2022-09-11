@@ -20,7 +20,7 @@
                             </div>
                             <div class="col-6">
                                 <a type="button" data-toggle="modal" data-target="#tambahPeriode"
-                                    class="btn btn-outline-info card-title float-right rounded-pill">
+                                    class="btn btn-info card-title float-right rounded-pill">
                                     <i class="fa-solid fa-plus nav-icon"></i>&nbsp; Tambah Periode
                                 </a>
                             </div>
@@ -57,14 +57,18 @@
                                                 class="btn btn-xs btn-primary">Detail
                                             </a>
 
-                                            <a href="" id="deletePeriodeAlert" data-id="{{ $periode->name }}"
-                                                class="btn btn-xs btn-danger ml-2">
-                                                <form id="formDelete{{ $periode->name }}" method="POST"
-                                                    action="{{ route('destroy.periode', $periode->name) }}">
-                                                    @csrf
-                                                    Hapus
-                                                </form>
-                                            </a>
+                                            @if ($periode->status == 'aktif')
+                                                <small class="ml-2">Periode sedang aktif, tidak dapat dihapus.</small>
+                                            @else
+                                                <a href="" id="deletePeriodeAlert" data-id="{{ $periode->name }}"
+                                                    class="btn btn-xs btn-danger ml-2">
+                                                    <form id="formDelete{{ $periode->name }}" method="POST"
+                                                        action="{{ route('destroy.periode', $periode->name) }}">
+                                                        @csrf
+                                                        Hapus
+                                                    </form>
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -102,9 +106,9 @@
                                             :</label>
                                         <div class="col-12 col-md-10">
                                             <input autocomplete="off" id="id_periode" name="id_periode"
-                                                value="{{ $getPeriodeLast + 1 }}" class="form-control mb-1">
+                                                value="{{ $getPeriodeLast + 1 }}" class="form-control">
                                             @error('id_periode')
-                                                <div class="small text-danger" role="alert">
+                                                <div class="small text-danger mb-1" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </div>
                                             @enderror
@@ -326,7 +330,7 @@
                 var periodeid = $(this).attr('data-id');
                 swalWithBootstrapButtons.fire({
                     title: "Hapus data " + periodeid + " ?",
-                    text: "Data tidak dapat dikembalikan setelahnya.",
+                    text: "Data akan dipindahkan ke menu Terhapus.",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Ya, Hapus',

@@ -42,7 +42,7 @@ class PenugasanController extends Controller
         $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->pluck('id');
         // dd($administrasiOpenned);
         $wawancaraOpenned = Wawancara::whereIn('administrasi_id', $administrasiOpenned)->pluck('id');
-        $penugasanOpenned = Penugasan::whereIn('wawancara_id', $wawancaraOpenned)->filter(request(['search']))->paginate(1)->withQueryString();
+        $penugasanOpenned = Penugasan::whereIn('wawancara_id', $wawancaraOpenned)->filter(request(['search']))->paginate(1)->onEachSide(0)->withQueryString();
         return view('view-admin.penugasan.nilai-penugasan', compact('getTanggalSekarang', 'periodeOpenned', 'wawancaraOpenned', 'penugasanOpenned', 'getAllPeriode'));
     }
 
@@ -145,7 +145,7 @@ class PenugasanController extends Controller
         $periodeSelected->save();
 
         if ($periodeSelected) {
-            Alert::success('Tahap Administrasi ' . ucfirst($periodeSelected->name) . ' diatur menjadi Selesai.', 'Sekarang Anda dapat mengirimkan Email Pengumuman Penugasan melalui Tombol Umumkan. Selanjutnya adalah menunggu peserta bergabung pada Grup Whatsapp.')->autoClose(false);
+            Alert::success('Tahap Penugasan ' . ucfirst($periodeSelected->name) . ' diatur menjadi Selesai.', 'Sekarang Anda dapat mengirimkan Email Pengumuman Penugasan melalui Tombol Umumkan. Selanjutnya adalah menunggu peserta bergabung pada Grup Whatsapp.')->autoClose(false);
             return redirect(route('periode', $name));
         } else {
             Alert::error('Tahap Penugasan ' . ucfirst($periodeSelected->name) . ' Gagal Diumumkan.', 'Cek data kembali.');

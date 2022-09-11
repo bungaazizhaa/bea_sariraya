@@ -13,7 +13,7 @@
 
         <div class="text-center">
             @if (Auth::user()->picture == null)
-                @if (!Route::has('register') && $getTanggalSekarang > $getPeriodeAktif->ta_adm)
+                @if ($getPeriodeAktif->status_adm == null && $getTanggalSekarang > $getPeriodeAktif->ta_adm->format('Y-m-d'))
                     <div class="alert alert-danger" role="alert">
                         <strong>Anda Terdiskualifikasi! </strong>Tahap Administrasi Telah Ditutup dan
                         Anda belum melakukan
@@ -44,7 +44,9 @@
                         <a href="/tahap-administrasi" class="btn btn-secondary">Tahap Administrasi
                             Belum Dimulai.
                         </a>
-                    @elseif ($getPeriodeAktif->status_adm == null && $getTanggalSekarang >= $getPeriodeAktif->tm_adm->format('Y-m-d') && $getTanggalSekarang <= $getPeriodeAktif->ta_adm->format('Y-m-d'))
+                    @elseif ($getPeriodeAktif->status_adm == null &&
+                        $getTanggalSekarang >= $getPeriodeAktif->tm_adm->format('Y-m-d') &&
+                        $getTanggalSekarang <= $getPeriodeAktif->ta_adm->format('Y-m-d'))
                         <a href="/tahap-administrasi" class="btn btn-primary">Tahap Administrasi Dimulai
                         </a>
                     @elseif ($getPeriodeAktif->status_adm == null && $getTanggalSekarang > $getPeriodeAktif->ta_adm->format('Y-m-d'))
@@ -55,18 +57,31 @@
                         <a href="/tahap-administrasi" class="btn btn-primary">Lihat Pengumuman
                             Administrasi
                         </a>
-                    @elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getPeriodeAktif->status_wwn == null && $getTanggalSekarang >= $getPeriodeAktif->tm_wwn->format('Y-m-d') && $getTanggalSekarang <= $getPeriodeAktif->ta_wwn->format('Y-m-d'))
+                    @elseif ($getPeriodeAktif->status_adm == 'Selesai' &&
+                        $getPeriodeAktif->status_wwn == null &&
+                        $getTanggalSekarang >= $getPeriodeAktif->tm_wwn->format('Y-m-d') &&
+                        $getTanggalSekarang <= $getPeriodeAktif->ta_wwn->format('Y-m-d'))
                         <a href="/tahap-wawancara" class="btn btn-primary">Tahap Wawancara Dimulai
                         </a>
-                    @elseif ($getPeriodeAktif->status_adm == 'Selesai' && $getPeriodeAktif->status_wwn == null && $getTanggalSekarang > $getPeriodeAktif->ta_wwn->format('Y-m-d'))
+                    @elseif ($getPeriodeAktif->status_adm == 'Selesai' &&
+                        $getPeriodeAktif->status_wwn == null &&
+                        $getTanggalSekarang > $getPeriodeAktif->ta_wwn->format('Y-m-d'))
                         <a href="/tahap-wawancara" class="btn btn-secondary">Tahap Wawancara Ditutup
                         </a>
                     @elseif ($getPeriodeAktif->status_wwn == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_png->format('Y-m-d'))
                         <a href="/tahap-wawancara" class="btn btn-primary">Lihat Pengumuman
                             Wawancara
                         </a>
-                    @elseif ($getPeriodeAktif->status_wwn == 'Selesai' && $getPeriodeAktif->status_png == null)
-                        <a href="/tahap-penugasan" class="btn btn-primary">Tahap Penugasan
+                    @elseif ($getPeriodeAktif->status_wwn == 'Selesai' &&
+                        $getPeriodeAktif->status_png == null &&
+                        $getTanggalSekarang >= $getPeriodeAktif->tm_png->format('Y-m-d') &&
+                        $getTanggalSekarang <= $getPeriodeAktif->ta_png->format('Y-m-d'))
+                        <a href="/tahap-penugasan" class="btn btn-primary">Tahap Penugasan Dimulai
+                        </a>
+                    @elseif ($getPeriodeAktif->status_wwn == 'Selesai' &&
+                        $getPeriodeAktif->status_png == null &&
+                        $getTanggalSekarang > $getPeriodeAktif->ta_png->format('Y-m-d'))
+                        <a href="/tahap-penugasan" class="btn btn-primary">Tahap Penugasan Ditutup
                         </a>
                     @elseif ($getPeriodeAktif->status_wwn == 'Selesai' && $getPeriodeAktif->status_png == 'Selesai')
                         <a href="/tahap-penugasan" class="btn btn-primary">Lihat Pengumuman Final
@@ -310,8 +325,7 @@
                                         ---
                                     </option>
                                     @foreach ($getAllUniv as $univ)
-                                        <option
-                                            {{ old('univ_id', Auth::user()->univ_id) == $univ->id ? 'selected' : '' }}
+                                        <option {{ old('univ_id', Auth::user()->univ_id) == $univ->id ? 'selected' : '' }}
                                             value="{{ $univ->id }}">
                                             {{ $univ->nama_universitas }}
                                         </option>

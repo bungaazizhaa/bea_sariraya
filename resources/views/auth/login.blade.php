@@ -37,84 +37,92 @@
     </style>
 </head>
 
-<body>
-    <div class="banner-regist " style="background-image: url('{{ asset('assets/images/bg.png') }}')"> </div>
+<body style="background-color: #24272b">
+
+    <div class="banner-regist" style="background-image: url('{{ asset('assets/images/bg.png') }}')"> </div>
 
     <div class="container">
-        <a class="logo2" href="/">
-            <img src="{{ asset('assets/images/logo.png') }}" alt="">
+        <a class="logo-img mt-1 d-none d-md-block" href="/">
+            <img class=" mt-0 mt-lg-4" src="{{ asset('assets/images/logo.png') }}" alt="">
         </a>
+
+        <div class="logo d-none d-md-block">
+            <img src="{{ asset('assets/images/awardee.png') }}" alt="">
+        </div>
     </div>
     <div class="container">
-
-
-
         <!-- Banner -->
-        <div class="row row-kontak1 ">
-            <div class="col-12 col-md-6  text-md-left text-center d-flex my-auto">
-                <div class="welcom mt-5 mt-lg-0 mb-lg-5 mx-auto">
+        <!-- Akhir Banner -->
+        {{-- <img src="{{ asset('assets/images/bg.png') }}" alt=""> --}}
+        <div class="row d-flex justify-content-center" style="min-height: 90vh">
+
+            <div class="col-12 pl-lg-0 col-lg-7 text-lg-left text-center my-md-auto my-0">
+
+                <div class="text-left d-md-none mt-3 text-center">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="" width="40%">
+                </div>
+                <div class="welcom mt-lg-5 mt-3 mt-lg-0 mb-lg-5 w-100 px-3 mx-1">
                     <p>Pendaftaran Beasiswa Sariraya Japan 2022</p>
                     <h1>{{ isset($getPeriodeAktif) ? 'Sudah Dibuka' : 'Belum Dibuka' }}
                     </h1>
                 </div>
             </div>
-            <div class="col-12 col-lg-5">
-                <div class="card regis mx-lg-3 ml-lg-4 mt-lg-3 mb-lg-3 mt-4 mb-5">
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <center>
-                                <h4 class="mb-3">Login</h4>
-                            </center>
-                            <div class="form-group">
-                                <input id="email" type="email" style="padding: 20px"
-                                    class="form-control rounded-pill @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" placeholder="Email" required
-                                    autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group mb-2">
-                                <input id="password" type="password" style="padding: 20px"
-                                    class="form-control rounded-pill @error('password') is-invalid @enderror"
-                                    name="password" placeholder="Password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            @if (Route::has('password.request'))
-                                <div class="d-flex">
-                                    <small class="ml-auto"><span><a class="text-secondary"
-                                                href="{{ route('password.request') }}">Lupa
-                                                Password <i class="fa-solid fa-circle-question"></i></a></span></small>
+            <div class="col-12 col-lg-5 my-md-auto mt-3">
+                <div class="card regis mx-lg-3 ml-lg-4 mt-lg-3 mb-lg-3 my-md-4">
+                    <div>
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('login') }}">
+                                @csrf
+                                <div class="text-center">
+                                    <p class="h4 mb-4">Login</p>
                                 </div>
-                            @endif
-                            <center>
-                                <div class="button-submit my-3">
-                                    <button type="submit" class="btn tombol px-4">Login</button>
+                                <div class="form-group">
+                                    <input id="email" type="email" style="padding: 20px"
+                                        class="form-control rounded-pill @error('email') is-invalid @enderror"
+                                        name="email" value="{{ old('email') }}" placeholder="Email" required
+                                        autocomplete="email" autofocus>
+
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
-                                @if (Route::has('register'))
-                                    <p class="font-weight-normal mt-3 mb-0">Belum punya akun ? <a
-                                            href="{{ route('register') }}">Register
-                                            disini.</a></p>
+                                <div class="form-group mb-2">
+                                    <input id="password" type="password" style="padding: 20px"
+                                        class="form-control rounded-pill @error('password') is-invalid @enderror"
+                                        name="password" placeholder="Password" required autocomplete="current-password">
+
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                @if (Route::has('password.request'))
+                                    <div class="d-flex">
+                                        <small class="ml-auto"><span><a class="text-secondary"
+                                                    href="{{ route('password.request') }}">Lupa
+                                                    Password <i
+                                                        class="fa-solid fa-circle-question"></i></a></span></small>
+                                    </div>
                                 @endif
-                            </center>
+                                <center>
+                                    <div class="button-submit my-3">
+                                        <button type="submit" class="btn tombol px-4">Login</button>
+                                    </div>
+                                    @if (Route::has('register'))
+                                        <p class="font-weight-normal mt-3 mb-0">Belum punya akun ? <a
+                                                href="{{ route('register') }}">Register
+                                                disini.</a></p>
+                                    @endif
+                                </center>
 
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="logo-login d-none d-lg-block">
-            <img src="{{ asset('assets/images/awardee.png') }}" alt="">
         </div>
 
     </div>

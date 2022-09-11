@@ -80,8 +80,7 @@
                                             {{ __('Logout') }}
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
                                     </div>
@@ -316,6 +315,7 @@
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input editable" disabled
                                                     id="file_jawaban" name="file_jawaban"
+                                                    accept="application/pdf, image/jpg, image/jpeg, image/png"
                                                     value="{{ old('file_jawaban', $getPenugasanUser->file_jawaban) }}">
                                                 <label class="custom-file-label" for="file_jawaban">Pilih File</label>
                                             </div>

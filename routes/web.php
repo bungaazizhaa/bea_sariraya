@@ -49,6 +49,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/setting', [HomeController::class, 'viewSetting'])->name('setting.beasiswa');
     Route::post('/admin/update-kontak', [HomeController::class, 'updateKontakAdmin'])->name('update.kontakadmin');
     Route::post('/admin/reset-beasiswa', [HomeController::class, 'resetBeasiswa'])->name('reset.beasiswa');
+    Route::get('/admin/trash', [HomeController::class, 'trash'])->name('trash');
     Route::get('/dashboard', [HomeController::class, 'indexAdmin'])->name('admin');
     Route::get('/panduan-aplikasi', [HomeController::class, 'panduanAplikasi'])->name('panduan.aplikasi');
     Route::get('/preview-tekniswwn', [HomeController::class, 'previewTeknisWwn'])->name('preview.tekniswwn'); //preview teknis wawancara
@@ -60,6 +61,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/{name}/detail-periode', [PeriodeController::class, 'indexPeriodeById'])->name('periode'); //detail-periode
     Route::post('/{name}/destroy-periode', [PeriodeController::class, 'destroy'])->name('destroy.periode'); //menghapus-periode
     Route::post('/{name}/update-periode', [PeriodeController::class, 'update'])->name('update.periode');
+
+    Route::get('/restore-periode/{name?}', [PeriodeController::class, 'restore'])->name('restore.periode'); //menghapus-periode
+    Route::get('/force-destroy-periode/{name?}', [PeriodeController::class, 'forceDestroy'])->name('forcedestroy.periode'); //menghapus-periode
     //! Send Email Pengumuman
     Route::post('/{name}/administrasi/setselesai', [AdministrasiController::class, 'setSelesaiAdministrasi'])->name('setselesai.adm'); //Set status_adm Selesai di Periode
     Route::post('/{name}/wawancara/setselesai', [WawancaraController::class, 'setSelesaiWawancara'])->name('setselesai.wwn'); //Set status_wwn Selesai di Periode
@@ -79,9 +83,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     //! User
     Route::get('admin/data-pengguna/tabel', [UserController::class, 'showDataPenggunaTabel'])->name('datatabel.pengguna'); //halaman nilai png
     Route::get('admin/data-pengguna', [UserController::class, 'showDataPengguna'])->name('data.pengguna'); //halaman nilai png
-    Route::get('admin/data-pengguna/detail/{id}', [UserController::class, 'show'])->name('pengguna.show');;
+    Route::get('admin/data-pengguna/detail/{id}', [UserController::class, 'show'])->name('pengguna.show');
     Route::get('admin/destroy/data-pengguna/{id}', [UserController::class, 'destroy'])->name('pengguna.destroy');
     Route::post('admin/data-pengguna/update/{id}', [UserController::class, 'update'])->name('pengguna.update');
+
+    Route::get('admin/data-pengguna/restore/{id?}', [UserController::class, 'restore'])->name('pengguna.restore');
+    Route::get('admin/force-destroy/data-pengguna/{id?}', [UserController::class, 'forceDestroy'])->name('pengguna.forcedestroy');
 });
 
 

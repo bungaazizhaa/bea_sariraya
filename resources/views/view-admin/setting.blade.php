@@ -66,8 +66,7 @@
                                     <div class="col-md-6">
                                         <input id="email" type="email"
                                             class="form-control @error('email') is-invalid @enderror" name="email"
-                                            value="{{ old('email', Auth::user()->email) }}" required
-                                            autocomplete="email">
+                                            value="{{ old('email', Auth::user()->email) }}" required autocomplete="email">
 
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -125,7 +124,6 @@
             <p class="h3 font-weight-bold mb-3">Pengaturan Landing Page</p>
             <div class="card rounded-md myshadow">
                 <div class="card-body">
-                    <p class="font-weight-bold">Kontak Admin</p>
                     <form id="formKontakAdmin" method="POST" action="{{ route('update.kontakadmin') }}">
                         @csrf
                         <div class="mb-3">
@@ -146,7 +144,17 @@
                                     autocomplete="kontak2">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-outline-primary rounded-pill float-right"><i
+                        <div class="mb-3">
+                            <label for="pemberian-beasiswa"
+                                class="col-md-6 col-form-label">{{ __('Pemberian Beasiswa') }}</label>
+                            <div class="col">
+                                <input id="pemberian" type="text"
+                                    class="form-control @error('pemberian') is-invalid @enderror" name="pemberian"
+                                    value="{{ old('pemberian', $getPemberian->keterangan) }}" required
+                                    autocomplete="pemberian">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary rounded-pill float-right mx-2"><i
                                 class="fa-solid fa-floppy-disk"></i>&nbsp;
                             {{ __('Simpan') }}
                         </button>

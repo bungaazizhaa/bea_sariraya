@@ -376,6 +376,16 @@
                                                     class="form-control @error('jadwal_wwn') is-invalid @enderror"
                                                     name="jadwal_wwn"
                                                     value="{{ old('jadwal_wwn', isset($admUser->wawancara->jadwal_wwn) ? $admUser->wawancara->jadwal_wwn->format('Y-m-d H:i') : '') }}">
+                                                <div>
+                                                    <p>Pilih waktu antara
+                                                        <span><strong
+                                                                class="text-info">{{ $periodeOpenned->tm_wwn->translatedFormat('d F Y') }}</strong>
+                                                        </span> sampai
+                                                        <span><strong
+                                                                class="text-info">{{ $periodeOpenned->ta_wwn->translatedFormat('d F Y') }}</strong>
+                                                        </span>
+                                                    </p>
+                                                </div>
 
                                                 @error('jadwal_wwn')
                                                     <div class="small text-danger" role="alert">

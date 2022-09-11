@@ -65,7 +65,7 @@ class RegisterController extends Controller
         if (isset($data['Input_Universitas'])) {
             return Validator::make($data, [
                 'name' => ['required', 'string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
-                'nim' => ['required', 'string', 'max:25'],
+                'nim' => ['required', 'string', 'min:5', 'max:25', 'unique:users'],
                 'univ_id' => ['required'],
                 'prodi_id' => ['required'],
                 'Input_Universitas' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
@@ -75,7 +75,7 @@ class RegisterController extends Controller
         } else {
             return Validator::make($data, [
                 'name' => ['required', 'string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
-                'nim' => ['required', 'string', 'max:25'],
+                'nim' => ['required', 'string', 'min:8', 'max:25', 'unique:users'],
                 'univ_id' => ['required'],
                 'prodi_id' => ['required'],
                 // 'Input_Universitas' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],

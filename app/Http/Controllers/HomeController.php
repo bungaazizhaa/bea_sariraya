@@ -48,9 +48,10 @@ class HomeController extends Controller
         Other::where('name', '=', 'Landing Page')->first()->increment('views');
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        $getKontak1 = Other::where('id','=',2)->first();
-        $getKontak2 = Other::where('id','=',3)->first();
-        return view('landing-page', compact('getPeriodeAktif', 'getTanggalSekarang','getKontak1','getKontak2'));
+        $getKontak1 = Other::where('id', '=', 2)->first();
+        $getKontak2 = Other::where('id', '=', 3)->first();
+        $getPemberian = Other::where('id', '=', 4)->first();
+        return view('landing-page', compact('getPeriodeAktif', 'getTanggalSekarang', 'getKontak1', 'getKontak2', 'getPemberian'));
     }
 
     public function previewTeknisWwn()
@@ -87,9 +88,10 @@ class HomeController extends Controller
         $getPeriodeLast = Periode::orderBy('id_periode', 'desc')->value('id_periode');
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        $getKontak1 = Other::where('id','=',2)->first();
-        $getKontak2 = Other::where('id','=',3)->first();
-        return view('view-admin.setting', compact('getAllUser', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAllPeriode', 'getPeriodeLast','getKontak1','getKontak2'));
+        $getKontak1 = Other::where('id', '=', 2)->first();
+        $getKontak2 = Other::where('id', '=', 3)->first();
+        $getPemberian = Other::where('id', '=', 4)->first();
+        return view('view-admin.setting', compact('getAllUser', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAllPeriode', 'getPeriodeLast', 'getKontak1', 'getKontak2', 'getPemberian'));
     }
 
     public function indexMahasiswa()
@@ -109,13 +111,16 @@ class HomeController extends Controller
 
     public function updateKontakAdmin(Request $request)
     {
-        $getKontak1 = Other::where('id','=',2)->first();
+        $getKontak1 = Other::where('id', '=', 2)->first();
         $getKontak1->keterangan = $request->kontak1;
         $getKontak1->save();
-        $getKontak2 = Other::where('id','=',3)->first();
+        $getKontak2 = Other::where('id', '=', 3)->first();
         $getKontak2->keterangan = $request->kontak2;
         $getKontak2->save();
-        Alert::toast('Kontak Admin Berhasil diperbarui.','success');
+        $getPemberian = Other::where('id', '=', 4)->first();
+        $getPemberian->keterangan = $request->pemberian;
+        $getPemberian->save();
+        Alert::toast('Data Halaman Utama Berhasil diperbarui.', 'success');
         return redirect(route('setting.beasiswa'));
     }
 
@@ -185,5 +190,16 @@ class HomeController extends Controller
         );
         Alert::html('Beasiswa Berhasil Direset. Semua Data Telah Terhapus.', " Username Admin = admin@gmail.com<br>Demi keamanan, segera ubah password default Anda di menu Pengaturan.", 'success');
         return redirect(route('admin'));
+    }
+
+    public function trash(Request $request)
+    {
+        $getAllUniv = Univ::all();
+        $getAllPeriode = Periode::all();
+        $getAllPeriodeTrashed = Periode::onlyTrashed()->get();
+        $getAllUser = User::all();
+        $getAllUserTrashed = User::onlyTrashed()->get();
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        return view('view-admin.trash', compact('getPeriodeAktif', 'getAllUniv', 'getAllPeriode', 'getAllUser', 'getAllPeriodeTrashed', 'getAllUserTrashed'));
     }
 }
