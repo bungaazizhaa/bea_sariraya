@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use App\Models\Univ;
 use App\Models\User;
 use App\Models\Periode;
-use App\Models\Other;
+use App\Models\Landingpage;
 use App\Models\Wawancara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,12 +45,12 @@ class HomeController extends Controller
 
     public function indexLandingPage()
     {
-        Other::where('name', '=', 'Landing Page')->first()->increment('views');
+        Landingpage::where('name', '=', 'views')->first()->increment('keterangan');
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        $getKontak1 = Other::where('id', '=', 2)->first();
-        $getKontak2 = Other::where('id', '=', 3)->first();
-        $getPemberian = Other::where('id', '=', 4)->first();
+        $getKontak1 = Landingpage::where('id', '=', 2)->first();
+        $getKontak2 = Landingpage::where('id', '=', 3)->first();
+        $getPemberian = Landingpage::where('id', '=', 4)->first();
         return view('landing-page', compact('getPeriodeAktif', 'getTanggalSekarang', 'getKontak1', 'getKontak2', 'getPemberian'));
     }
 
@@ -88,9 +88,9 @@ class HomeController extends Controller
         $getPeriodeLast = Periode::orderBy('id_periode', 'desc')->value('id_periode');
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        $getKontak1 = Other::where('id', '=', 2)->first();
-        $getKontak2 = Other::where('id', '=', 3)->first();
-        $getPemberian = Other::where('id', '=', 4)->first();
+        $getKontak1 = Landingpage::where('id', '=', 2)->first();
+        $getKontak2 = Landingpage::where('id', '=', 3)->first();
+        $getPemberian = Landingpage::where('id', '=', 4)->first();
         return view('view-admin.setting', compact('getAllUser', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAllPeriode', 'getPeriodeLast', 'getKontak1', 'getKontak2', 'getPemberian'));
     }
 
@@ -111,13 +111,13 @@ class HomeController extends Controller
 
     public function updateKontakAdmin(Request $request)
     {
-        $getKontak1 = Other::where('id', '=', 2)->first();
+        $getKontak1 = Landingpage::where('id', '=', 2)->first();
         $getKontak1->keterangan = $request->kontak1;
         $getKontak1->save();
-        $getKontak2 = Other::where('id', '=', 3)->first();
+        $getKontak2 = Landingpage::where('id', '=', 3)->first();
         $getKontak2->keterangan = $request->kontak2;
         $getKontak2->save();
-        $getPemberian = Other::where('id', '=', 4)->first();
+        $getPemberian = Landingpage::where('id', '=', 4)->first();
         $getPemberian->keterangan = $request->pemberian;
         $getPemberian->save();
         Alert::toast('Data Halaman Utama Berhasil diperbarui.', 'success');

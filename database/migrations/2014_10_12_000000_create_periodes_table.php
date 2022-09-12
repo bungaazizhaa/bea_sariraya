@@ -41,6 +41,7 @@ class CreatePeriodesTable extends Migration
             $table->string('group_wa')->nullable();
             $table->text('teknis_wwn')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

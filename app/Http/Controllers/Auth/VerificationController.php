@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class VerificationController extends Controller
 {
@@ -21,12 +22,11 @@ class VerificationController extends Controller
 
     use VerifiesEmails;
 
-    /**
-     * Where to redirect users after verification.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    public function redirectTo()
+    {
+        Alert::success('Email Anda telah Terverifikasi.', 'Lanjutkan dengan unggah Foto 3x4 Anda.');
+        return RouteServiceProvider::HOME;
+    }
 
     /**
      * Create a new controller instance.

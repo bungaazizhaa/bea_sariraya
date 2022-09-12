@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\Other;
+use App\Models\Landingpage;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOthersTable extends Migration
+class CreateLandingpagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,34 +14,30 @@ class CreateOthersTable extends Migration
      */
     public function up()
     {
-        Schema::create('others', function (Blueprint $table) {
+        Schema::create('landingpages', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->integer('views')->nullable();
             $table->string('keterangan')->nullable();
             // $table->timestamps();
         });
 
-        Other::create([
-            'name' => 'Landing Page',
-            'views' => 0,
+        Landingpage::create([
+            'name' => 'views',
+            'keterangan' => 0,
         ]);
 
-        Other::create([
+        Landingpage::create([
             'name' => 'kontak1',
-            'views' => null,
             'keterangan' => 'WhatsApp: +81-70-1304-5868',
         ]);
 
-        Other::create([
+        Landingpage::create([
             'name' => 'kontak2',
-            'views' => null,
             'keterangan' => 'Email: info@sariraya.com',
         ]);
 
-        Other::create([
+        Landingpage::create([
             'name' => 'pemberian',
-            'views' => null,
             'keterangan' => 'Maret 2022 - September 2022',
         ]);
     }
@@ -53,6 +49,6 @@ class CreateOthersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('others');
+        Schema::dropIfExists('landingpages');
     }
 }

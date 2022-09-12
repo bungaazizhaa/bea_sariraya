@@ -47,11 +47,11 @@
     <div class="banner-regist" style="background-image: url('{{ asset('assets/images/bg.png') }}')"> </div>
 
     <div class="container">
-        <a class="logo-img mt-1 d-none d-md-block" href="/">
+        <a class="logo-img mt-1 d-none d-lg-block" href="/">
             <img class=" mt-0 mt-lg-4" src="{{ asset('assets/images/logo.png') }}" alt="">
         </a>
 
-        <div class="logo d-none d-md-block">
+        <div class="logo d-none d-lg-block">
             <img src="{{ asset('assets/images/awardee.png') }}" alt="">
         </div>
     </div>
@@ -63,7 +63,7 @@
 
             <div class="col-12 pl-lg-0 col-lg-7 text-lg-left text-center my-md-auto my-0">
 
-                <div class="text-left d-md-none mt-3 text-center">
+                <div class="text-left d-lg-none mt-3 text-center">
                     <img src="{{ asset('assets/images/logo.png') }}" alt="" width="40%">
                 </div>
                 <div class="welcom mt-lg-4 mt-3 mt-lg-0 mb-lg-5 w-100 px-3 mx-1">
