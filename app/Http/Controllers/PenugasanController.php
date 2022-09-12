@@ -108,7 +108,7 @@ class PenugasanController extends Controller
         $getPenugasanUser = Penugasan::find($id)->update(['field_jawaban' => $request->field_jawaban]);
 
         if ($getPenugasanUser) {
-            Alert::success('Berhasil!', 'Data Penugasan Telah Disimpan.');
+            Alert::success('Jawaban Tugas telah Tersimpan.', 'Silahkan tunggu hasil seleksi keseluruhan sesuai dengan waktu yang sudah ditentukan. ')->autoClose(false);
         }
         return back();
     }

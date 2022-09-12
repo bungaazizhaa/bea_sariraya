@@ -149,24 +149,24 @@ class DatabaseSeeder extends Seeder
                 'picture' => 'admin.png',
                 'email_verified_at' => now(),
                 'email' => 'admin@gmail.com',
-                'password' => Hash::make('12345678'),
+                'password' => bcrypt('12345678'),
                 'remember_token' => '',
             ],
         );
 
-        User::create(
-            [
-                'name' => 'Alvin Alvrahesta',
-                'nim' => '21120118120025',
-                'univ_id' => '1',
-                'prodi_id' => '1',
-                'picture' => null,
-                'email_verified_at' => now(),
-                'email' => 'alvin.alvrahesta@gmail.com',
-                'password' => Hash::make('12345678'),
-                'remember_token' => Str::random(10),
-            ]
-        );
+        // User::create(
+        //     [
+        //         'name' => 'Budi Sanjaya',
+        //         'nim' => '21120118120024',
+        //         'univ_id' => '1',
+        //         'prodi_id' => '1',
+        //         'picture' => null,
+        //         'email_verified_at' => now(),
+        //         'email' => 'alvin.alvrahesta.dev@gmail.com',
+        //         'password' => bcrypt('12345678'),
+        //         'remember_token' => null,
+        //     ]
+        // );
         // User::factory(50)->create();
         // Administrasi::factory(105)->create();
     }

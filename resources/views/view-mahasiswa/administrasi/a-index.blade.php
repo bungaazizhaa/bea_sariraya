@@ -40,6 +40,7 @@
 
     <script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script>
     <script src="{{ asset('assets/js/countdown.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.maskedinput.min.js') }}"></script>
 </head>
 
 <body>
@@ -80,8 +81,7 @@
                                             {{ __('Logout') }}
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
                                     </div>
@@ -203,8 +203,8 @@
                             <div class="card-body">
                                 <div class="row mb-3 datadiri">
                                     <label for="tempat_lahir"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Tempat Lahir') }}<span
-                                            class="text-danger"> *</span></label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Tempat Lahir') }}<strong
+                                            class="text-danger"> *</strong></label>
 
                                     <div class="col-md-6">
                                         <input id="tempat_lahir" type="text"
@@ -223,15 +223,15 @@
 
                                 <div class="row mb-3 datadiri">
                                     <label for="tanggal_lahir"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Lahir') }}<span
-                                            class="text-danger"> *</span></label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Lahir') }}<strong
+                                            class="text-danger"> *</strong></label>
 
                                     <div class="col-md-6">
                                         <input autocomplete="off" id="tanggal_lahir" type="text"
-                                            class="form-control editable {{ isset($getAdministrasiUser->tanggal_lahir) ? 'font-weight-bold' : '' }} datepicker @error('tanggal_lahir') is-invalid @enderror"
+                                            class="form-control editable {{ isset($getAdministrasiUser->tanggal_lahir) ? 'font-weight-bold' : '' }} datepicker validate @error('tanggal_lahir') is-invalid @enderror"
                                             name="tanggal_lahir" spellcheck="false" disabled
-                                            value="{{ old('tanggal_lahir', isset($getAdministrasiUser->tanggal_lahir) ? $getAdministrasiUser->tanggal_lahir->format('Y-m-d') : '') }}"
-                                            autocomplete="tanggal_lahir" placeholder="YYYY-MM-DD">
+                                            value="{{ old('tanggal_lahir', isset($getAdministrasiUser->tanggal_lahir) ? $getAdministrasiUser->tanggal_lahir->format('Y/m/d') : '') }}"
+                                            autocomplete="tanggal_lahir" placeholder="YYYY/MM/DD" maxlength="10">
                                         @error('tanggal_lahir')
                                             <strong class="text-danger small font-weight-bold"
                                                 role="alert">{{ $message }}</strong>
@@ -241,8 +241,8 @@
 
                                 <div class="row mb-3 datadiri">
                                     <label for="semester"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Semester') }}<span
-                                            class="text-danger"> *</span></label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Semester') }}<strong
+                                            class="text-danger"> *</strong></label>
 
                                     <div class="col-md-6">
                                         <input id="semester" type="text" spellcheck="false"
@@ -261,8 +261,8 @@
 
                                 <div class="row mb-3 datadiri">
                                     <label for="ipk"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('IPK') }}<span
-                                            class="text-danger"> *</span></label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('IPK') }}<strong
+                                            class="text-danger"> *</strong></label>
 
                                     <div class="col-md-6">
                                         <input id="ipk" type="text"
@@ -281,8 +281,8 @@
 
                                 <div class="row mb-3 datadiri">
                                     <label for="keahlian"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Keahlian') }}<span
-                                            class="text-danger"> *</span></label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Keahlian') }}<strong
+                                            class="text-danger"> *</strong></label>
 
                                     <div class="col-md-6">
                                         <input id="keahlian" type="text" spellcheck="false"
@@ -300,8 +300,8 @@
                                 </div>
                                 <div class="row mb-3 datadiri">
                                     <label for="alamat"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Alamat') }}<span
-                                            class="text-danger"> *</span></label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Alamat') }}<strong
+                                            class="text-danger"> *</strong></label>
 
                                     <div class="col-md-6">
                                         <input id="alamat" type="text" spellcheck="false"
@@ -333,7 +333,7 @@
                                 </div>
                                 <div class="row mb-3">
                                     <label for="file_cv" class="col-md-4 col-form-label text-md-right">File
-                                        CV<span class="text-danger"> *</span></label>
+                                        CV<strong class="text-danger"> *</strong></label>
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <div class="custom-file berkas">
@@ -370,7 +370,7 @@
                                 @endif
                                 <div class="row mb-3">
                                     <label for="file_esai" class="col-md-4 col-form-label text-md-right">File
-                                        Esai<span class="text-danger"> *</span></label>
+                                        Esai<strong class="text-danger"> *</strong></label>
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <div class="custom-file">
@@ -446,7 +446,7 @@
 
                                 <div class="row mb-3">
                                     <label for="file_ktm" class="col-md-4 col-form-label text-md-right">File
-                                        KTM<span class="text-danger"> *</span></label>
+                                        KTM<strong class="text-danger"> *</strong></label>
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <div class="custom-file">
@@ -484,7 +484,7 @@
 
                                 <div class="row mb-3">
                                     <label for="file_transkrip" class="col-md-4 col-form-label text-md-right">File
-                                        Transkrip<span class="text-danger"> *</span></label>
+                                        Transkrip<strong class="text-danger"> *</strong></label>
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             <div class="custom-file">
@@ -535,8 +535,8 @@
 
                                 <div class="row mb-3 datadiri">
                                     <label for="no_wa"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Nomor WhatsApp') }}<span
-                                            class="text-danger"> *</span></label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Nomor WhatsApp') }}<strong
+                                            class="text-danger"> *</strong></label>
 
                                     <div class="col-md-6">
                                         <input id="no_wa" type="text" spellcheck="false"
@@ -589,10 +589,14 @@
                                         @enderror
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
+
+                        <div class="mt-3 text-center">
+                            <p>(<strong class="text-danger"> * </strong>) Wajib diisi.
+                            </p>
+                        </div>
                         @if (isset($getAdministrasiUser))
                             <div class=" text-center">
                                 <button type="button" id="tombolEdit" class="btn btn-xl m-3 btn-secondary"
@@ -647,17 +651,37 @@
                 today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                     .getDate());
                 $('.datepicker').datepicker({
-                    format: 'yyyy-mm-dd',
+                    format: 'yyyy/mm/dd',
                     uiLibrary: 'bootstrap4',
                     iconsLibrary: 'fontawesome',
-                    showRightIcon: false,
+                    // showRightIcon: false,
                     maxDate: today,
                     modal: true,
-                    autoclose: true,
-                    footer: true
+                    header: true,
+                    // autoclose: true,
+                    footer: true,
+                    showOnFocus: false,
                 });
             });
         </script>
+
+
+
+        <script>
+            $('.validate').mask("9999/99/99");
+            $('.validate').change(function() {
+
+                // if ($(this).val().substring(4, 7) > 12 || $(this).val().substring(4, 7) == "00") {
+                //     alert("Iregular Month Format");
+                //     return false;
+                // }
+                // if ($(this).val().substring(8, 10) > 31 || $(this).val().substring(4, 7) == "00") {
+                //     alert("Iregular Date Format");
+                //     return false;
+                // }
+            });
+        </script>
+
 
         @if (!isset($getAdministrasiUser))
             <script>

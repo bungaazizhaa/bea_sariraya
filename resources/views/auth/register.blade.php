@@ -61,11 +61,11 @@
         {{-- <img src="{{ asset('assets/images/bg.png') }}" alt=""> --}}
         <div class="row d-flex justify-content-center" style="min-height: 90vh">
 
-            <div class="col-12 pl-lg-0 col-lg-7 text-lg-left text-center my-md-auto my-0">
+            <div class="col-12 pl-lg-0 col-lg-7 text-lg-left text-center my-md-auto mt-3">
 
-                <div class="text-left d-lg-none mt-3 text-center">
-                    <img src="{{ asset('assets/images/logo.png') }}" alt="" width="40%">
-                </div>
+                <a href="/" class="d-lg-none mt-3 text-center">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="" width="35%">
+                </a>
                 <div class="welcom mt-lg-4 mt-3 mt-lg-0 mb-lg-5 w-100 px-3 mx-1">
                     <p>Pendaftaran Beasiswa Sariraya Japan 2022</p>
                     <h1 class="text-white">Sudah Dibuka</h1>

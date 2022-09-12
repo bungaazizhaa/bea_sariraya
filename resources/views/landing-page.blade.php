@@ -85,11 +85,11 @@
                         </div>
                     @endif
                     <h2><b> Timeline Beasiswa</b></h2>
-                    <div class="row mb-lg-2 mx-lg-5 mx-sm-2 my-sm-2">
-                        <div class="col-sm-6 col-lg-3 mt-3 d-flex align-items-stretch">
+                    <div class="row mb-lg-2 px-1 my-sm-2">
+                        <div class="col-6 col-lg-3 px-1 px-lg-3 px-sm-3 px-md-auto mt-3 d-flex align-items-stretch">
                             <div class="card whitecard text-center">
-                                <img class="card-img-top" src="{{ asset('assets/images/1.png') }}" width="100px"
-                                    alt="Card image cap">
+                                <img class="card-img-top w-md-100 w-25" src="{{ asset('assets/images/1.png') }}"
+                                    width="100px" alt="Card image cap">
                                 <div class="card-body pb-2">
                                     <h5 class="card-title">Pendaftaran & Submit Administrasi</h5>
                                     @if ($getPeriodeAktif == null)
@@ -123,10 +123,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
+                        <div
+                            class="col-6 col-lg-3 px-1 px-lg-3 px-sm-3 px-md-auto mt-3 pb-0 d-flex align-items-stretch">
                             <div class="card whitecard text-center">
-                                <img class="card-img-top" src="{{ asset('assets/images/3.png') }}" width="100px"
-                                    alt="Card image cap">
+                                <img class="card-img-top w-md-100 w-25" src="{{ asset('assets/images/3.png') }}"
+                                    width="100px" alt="Card image cap">
                                 <div class="card-body pb-2">
                                     <h5 class="card-title">Pengumuman Hasil Seleksi Administrasi</h5>
                                     @if ($getPeriodeAktif == null)
@@ -158,10 +159,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 mt-sm-4 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
+                        <div
+                            class="col-6 col-lg-3 px-1 px-lg-3 px-sm-3 px-md-auto mt-sm-3 mt-3 pb-0 d-flex align-items-stretch">
                             <div class="card whitecard text-center">
-                                <img class="card-img-top" src="{{ asset('assets/images/4.png') }}" width="100px"
-                                    alt="Icon Orang">
+                                <img class="card-img-top w-md-100 w-25" src="{{ asset('assets/images/4.png') }}"
+                                    width="100px" alt="Icon Orang">
                                 <div class="card-body pb-2">
                                     <h5 class="card-title">Seleksi Wawancara</h5>
                                     @if ($getPeriodeAktif == null)
@@ -199,10 +201,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 mt-sm-4 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
+                        <div
+                            class="col-6 col-lg-3 px-1 px-lg-3 px-sm-3 px-md-auto mt-sm-3 mt-3 pb-0 d-flex align-items-stretch">
                             <div class="card whitecard text-center">
-                                <img class="card-img-top" src="{{ asset('assets/images/5.png') }}" width="100px"
-                                    alt="Icon Pengumuman Orang">
+                                <img class="card-img-top w-md-100 w-25" src="{{ asset('assets/images/5.png') }}"
+                                    width="100px" alt="Icon Pengumuman Orang">
                                 <div class="card-body pb-2">
                                     <h5 class="card-title">Pengumuman Hasil Seleksi Wawancara</h5>
                                     @if ($getPeriodeAktif == null)
@@ -237,11 +240,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-lg-2 mb-lg-5 mx-lg-5 mx-sm-2 my-sm-2 d-flex justify-content-center">
-                        <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
+                    <div class="row mb-lg-2 px-1 my-sm-2 d-flex justify-content-center">
+                        <div
+                            class="col-6 col-lg-3 px-1 px-lg-3 px-sm-3 px-md-auto mt-3 pb-0 d-flex align-items-stretch">
                             <div class="card whitecard text-center">
-                                <img class="card-img-top" src="{{ asset('assets/images/7.png') }}" width="100px"
-                                    alt="Icon Submit Pendaftaran">
+                                <img class="card-img-top w-md-100 w-25" src="{{ asset('assets/images/7.png') }}"
+                                    width="100px" alt="Icon Submit Pendaftaran">
                                 <div class="card-body pb-2">
                                     <h5 class="card-title">Submit Penugasan</h5>
                                     @if ($getPeriodeAktif == null)
@@ -279,10 +283,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
+                        <div
+                            class="col-6 col-lg-3 px-1 px-lg-3 px-sm-3 px-md-auto mt-3 pb-0 d-flex align-items-stretch">
                             <div class="card whitecard text-center">
-                                <img class="card-img-top" src="{{ asset('assets/images/9.png') }}" width="100px"
-                                    alt="Card image cap">
+                                <img class="card-img-top w-md-100 w-25" src="{{ asset('assets/images/9.png') }}"
+                                    width="100px" alt="Card image cap">
                                 <div class="card-body pb-2">
                                     <h5 class="card-title">Pengumuman Akhir</h5>
                                     @if ($getPeriodeAktif == null)
@@ -312,10 +317,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 mt-sm-4 mt-lg-3 col-lg-3 mt-3 pb-0 d-flex align-items-stretch">
+                        <div
+                            class="col-6 col-lg-3 px-1 px-lg-3 px-sm-3 mt-lg-3 mt-sm-4 mt-3 pb-0 d-flex align-items-stretch">
                             <div class="card whitecard text-center mb-md-0 mb-5">
-                                <img class="card-img-top" src="{{ asset('assets/images/6.png') }}" width="100px"
-                                    alt="Card image cap">
+                                <img class="card-img-top w-md-100 w-25" src="{{ asset('assets/images/6.png') }}"
+                                    width="100px" alt="Card image cap">
                                 <div class="card-body pb-2">
                                     <h5 class="card-title">Pemberian Beasiswa</h5>
                                     <p class="mb-4 pb-4 pb-md-2">

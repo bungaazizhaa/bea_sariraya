@@ -69,8 +69,8 @@
                                 Administrasi</a>
                         @endif
                         @if ($getTanggalSekarang >= $periodeOpenned->tp_adm->format('Y-m-d'))
-                            <button class="btn btn-outline-light ml-auto" data-toggle="modal" data-target="#umumkanAdm"><i
-                                    class="fa-solid fa-check"></i>&nbsp; Umumkan</button>
+                            <button class="btn btn-outline-light ml-auto text-truncate" data-toggle="modal"
+                                data-target="#umumkanAdm"><i class="fa-solid fa-check"></i>&nbsp; Umumkan</button>
                         @endif
                     </div>
                 </div>
@@ -117,8 +117,8 @@
                                 Nilai Wawancara</a>
                         @endif
                         @if ($getTanggalSekarang >= $periodeOpenned->tp_wwn->format('Y-m-d'))
-                            <button class="btn btn-outline-light ml-auto" data-toggle="modal" data-target="#umumkanWwn"><i
-                                    class="fa-solid fa-check"></i>&nbsp; Umumkan</button>
+                            <button class="btn btn-outline-light ml-auto text-truncate" data-toggle="modal"
+                                data-target="#umumkanWwn"><i class="fa-solid fa-check"></i>&nbsp; Umumkan</button>
                         @endif
                     </div>
                 </div>
@@ -166,8 +166,8 @@
                                 Penugasan</a>
                         @endif
                         @if ($getTanggalSekarang >= $periodeOpenned->tp_png->format('Y-m-d'))
-                            <button class="btn btn-outline-light ml-auto" data-toggle="modal" data-target="#umumkanPng"><i
-                                    class="fa-solid fa-check"></i>&nbsp; Umumkan</button>
+                            <button class="btn btn-outline-light ml-auto text-truncate" data-toggle="modal"
+                                data-target="#umumkanPng"><i class="fa-solid fa-check"></i>&nbsp; Umumkan</button>
                         @endif
                     </div>
                 </div>
@@ -361,10 +361,10 @@
                                                     </div>
                                                 </form>
                                             </td>
-                                            <td>{{ isset($userAdm->catatan) ? $userAdm->catatan : '-' }}</td>
-                                            <td>{{ isset($userAdm->wawancara->catatan) ? $userAdm->wawancara->catatan : '-' }}
+                                            <td>{{ isset($userAdm->catatanadm) ? $userAdm->catatanadm : '-' }}</td>
+                                            <td>{{ isset($userAdm->catatanwwn) ? $userAdm->catatanwwn : '-' }}
                                             </td>
-                                            <td>{{ isset($userAdm->wawancara->penugasan->catatan) ? $userAdm->wawancara->penugasan->catatan : '-' }}
+                                            <td>{{ isset($userAdm->catatanpng) ? $userAdm->catatanpng : '-' }}
                                             </td>
                                             <td>{{ isset($userAdm->keahlian) ? $userAdm->keahlian : '-' }}</td>
                                             <td>{{ isset($userAdm->jadwal_wwn) ? $userAdm->jadwal_wwn->translatedFormat('d M Y - H:i') . ' WIB' : '-' }}
@@ -1021,8 +1021,8 @@
                                         Gagal :
                                     </p>
                                     {{-- <hr style="border-color:#ffffff"> --}}
-                                    <table class="table table-responsive table-borderless text-nowrap">
-                                        <thead>
+                                    <table class="table table-striped table-borderless table-dark rounded">
+                                        <thead class="text-secondary">
                                             <tr>
                                                 <th scope="col">No</th>
                                                 <th scope="col">Nama</th>

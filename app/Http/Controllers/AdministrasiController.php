@@ -117,7 +117,7 @@ class AdministrasiController extends Controller
         // } else {
         $validator = Validator::make($request->all(), [
             'tempat_lahir' => 'string|max:255|nullable',
-            'tanggal_lahir' => 'date|date_format:Y-m-d|nullable',
+            'tanggal_lahir' => 'date|nullable',
             'semester' => 'numeric|between:6,14|nullable',
             'ipk' => 'numeric|between:0,4.00|nullable',
             'keahlian' => 'string|max:255|nullable',
@@ -302,7 +302,7 @@ class AdministrasiController extends Controller
             $path2 = 'pictures' . '/';
             $file = $path2 . Auth::user()->picture;
             File::copy(public_path($file), public_path($path));
-            Alert::success('Data Administrasi Anda Berhasil Di Tambahkan.', 'Anda dapat mengubahnya kembali.');
+            Alert::success('Data Administrasi Anda Berhasil di Submit.', 'Silahkan tunggu hasil seleksi Tahap Administrasi sesuai dengan waktu yang sudah ditentukan. ')->autoClose(false);
         }
         // }
         return redirect(route('tahap.administrasi'));

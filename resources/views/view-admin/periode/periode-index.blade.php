@@ -28,8 +28,8 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="tableperiode" class="table table-striped table-hover">
-                            <thead>
+                        <table id="tableperiode" class="table table-striped table-borderless table-dark rounded">
+                            <thead class="text-secondary">
                                 <tr>
                                     <th>No</th>
                                     <th>ID</th>
@@ -330,7 +330,7 @@
                 var periodeid = $(this).attr('data-id');
                 swalWithBootstrapButtons.fire({
                     title: "Hapus data " + periodeid + " ?",
-                    text: "Data akan dipindahkan ke menu Terhapus.",
+                    text: "Data akan dipindahkan ke menu Trash.",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Ya, Hapus',

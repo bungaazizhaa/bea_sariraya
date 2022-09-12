@@ -42,7 +42,7 @@ class PeriodeController extends Controller
             ->leftJoin('users', 'users.id', '=', 'administrasis.user_id')
             ->leftJoin('univs', 'univs.id', '=', 'users.univ_id')
             ->leftJoin('prodis', 'prodis.id', '=', 'users.prodi_id')
-            ->select('*', 'users.id AS iduser')
+            ->select('*', 'users.id AS iduser', 'administrasis.catatan AS catatanadm', 'wawancaras.catatan AS catatanwwn', 'penugasans.catatan AS catatanpng')
             ->get();
         $getAllAdmLolos = Administrasi::with('user')->where('periode_id', '=', $periodeOpenned->id_periode)->where('status_adm', '=', 'lolos')
             ->leftJoin('wawancaras', 'wawancaras.administrasi_id', '=', 'administrasis.id')
@@ -130,7 +130,10 @@ class PeriodeController extends Controller
             'status_png' => null,
             'status' => 'nonaktif',
         ]);
-        mkdir($request['name']);
+        if (!is_dir($request['name'])) {
+            mkdir($request['name']);
+        }
+
         Alert::success('Berhasil membuat Periode Baru!', 'Silahkan melengkapi data program beasiswa.');
         return redirect(route('periode', $request['name']));
     }

@@ -144,7 +144,8 @@
 
                                 <div class="row mb-3">
                                     <label for="tempat_lahir"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Tempat Lahir') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Tempat Lahir') }}<strong
+                                            class="text-danger"> *</strong></label>
 
                                     <div class="col-md-6">
                                         <input id="tempat_lahir" type="text" class="form-control" name="tempat_lahir"
@@ -155,7 +156,8 @@
 
                                 <div class="row mb-3">
                                     <label for="tanggal_lahir"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Lahir') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Lahir') }}<strong
+                                            class="text-danger"> *</strong></label>
 
                                     <div class="col-md-6">
                                         <input id="tanggal_lahir" type="text" class="form-control"
@@ -166,7 +168,8 @@
 
                                 <div class="row mb-3">
                                     <label for="semester"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Semester') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Semester') }}<strong
+                                            class="text-danger"> *</strong></label>
 
                                     <div class="col-md-6">
                                         <input id="semester" type="text" spellcheck="false" class="form-control"
@@ -177,7 +180,8 @@
 
                                 <div class="row mb-3">
                                     <label for="ipk"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('IPK') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('IPK') }}<strong
+                                            class="text-danger"> *</strong></label>
 
                                     <div class="col-md-6">
                                         <input id="ipk" type="text" class="form-control" name="ipk"
@@ -187,7 +191,8 @@
 
                                 <div class="row mb-3">
                                     <label for="keahlian"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Keahlian') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Keahlian') }}<strong
+                                            class="text-danger"> *</strong></label>
 
                                     <div class="col-md-6">
                                         <input id="keahlian" type="text" spellcheck="false" class="form-control"
@@ -208,7 +213,8 @@
 
                                 <div class="row mb-3">
                                     <label for="file_cv"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('File CV') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('File CV') }}<strong
+                                            class="text-danger"> *</strong></label>
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             @if (isset($admUser->file_cv))
@@ -223,7 +229,8 @@
                                 </div>
                                 <div class="row mb-3">
                                     <label for="file_esai"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('FileEsai') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('FileEsai') }}<strong
+                                            class="text-danger"> *</strong></label>
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             @if (isset($admUser->file_esai))
@@ -253,7 +260,8 @@
                                 </div>
                                 <div class="row mb-3">
                                     <label for="file_ktm"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('File KTM') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('File KTM') }}<strong
+                                            class="text-danger"> *</strong></label>
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             @if (isset($admUser->file_ktm))
@@ -268,7 +276,8 @@
                                 </div>
                                 <div class="row mb-3">
                                     <label for="file_transkrip"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('File Transkrip') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('File Transkrip') }}<strong
+                                            class="text-danger"> *</strong></label>
                                     <div class="col-md-6">
                                         <div class="input-group">
                                             @if (isset($admUser->file_transkrip))
@@ -296,7 +305,8 @@
 
                                 <div class="row mb-3">
                                     <label for="no_wa"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Nomor WhatsApp') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Nomor WhatsApp') }}<strong
+                                            class="text-danger"> *</strong></label>
 
                                     <div class="col-md-6">
                                         <input id="no_wa" type="text" class="form-control" name="no_wa"
@@ -400,7 +410,9 @@
                                             Administrasi</label>
                                         <div class="col-md-8">
                                             <textarea id="catatan" name="catatan" class="form-control selectpicker" title="Status Administrasi">{{ old('catatan', $admUser->catatan) }}</textarea>
+                                            <p><small>Hanya Admin yang dapat melihat catatan.</small></p>
                                         </div>
+
 
                                         @error('catatan')
                                             <div class="small text-danger" role="alert">

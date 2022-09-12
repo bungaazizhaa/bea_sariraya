@@ -279,14 +279,14 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="field_jawaban"
-                                        class="col-12 col-form-label">{{ __('Kolom Jawaban :') }}</label>
+                                    {{-- <label for="field_jawaban"
+                                        class="col-12 col-form-label">{{ __('Kolom Jawaban :') }}</label> --}}
 
                                     <div class="col-12">
                                         <textarea id="field_jawaban" type="text" disabled onkeyup="textAreaAdjust(this)"
                                             style="overflow:hidden; font-size:15pt" class="form-control editable @error('field_jawaban') is-invalid @enderror"
                                             name="field_jawaban" autocomplete="field_jawaban"
-                                            placeholder="Isi disini jika Jawaban Tugas berupa Uraian Kata.">{{ old('field_jawaban', $getAdministrasiUser->wawancara->penugasan->field_jawaban) }}</textarea>
+                                            placeholder="Tulis jawaban disini atau unggah melalui kolom Unggah File.">{{ old('field_jawaban', $getAdministrasiUser->wawancara->penugasan->field_jawaban) }}</textarea>
 
                                         @error('field_jawaban')
                                             <div class="text-danger small" role="alert">
@@ -357,7 +357,7 @@
                                 });
                             </script>
                         </div>
-                        <div class=" text-center w-25 mx-auto">
+                        <div class=" text-center mx-auto w-100">
                             <button type="button" id="tombolEdit" class="btn btn-xl m-3 btn-secondary"
                                 onclick="izinkanEdit();">Ubah Jawaban Tugas</button>
                             <div id="tombolSimpan" style="display: none;">
