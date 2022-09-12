@@ -87,7 +87,6 @@ class UserController extends Controller
                 }
 
                 $user->picture = $new_image_name;
-                Alert::success('Foto Berhasil Diupload.', 'Anda dapat melanjutkan ke Proses Penerimaan Beasiswa.');
             }
         }
         if ($request->email != Auth::user()->email) {
@@ -275,7 +274,7 @@ class UserController extends Controller
 
             User::where('id', $request->user()->id)->update(['picture' => $new_image_name]);
             Alert::success('Foto Berhasil Diupload.', 'Anda dapat melanjutkan ke Proses Penerimaan Beasiswa.');
-            return redirect(route('tahap.administrasi'));
+            return redirect(route('profil.mahasiswa'));
         }
 
         Alert::success('Error Title', 'Error Message');
@@ -286,7 +285,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
-            'nim' => ['string', 'max:255', 'unique:users'],
+            'nim' => ['string', 'max:255'],
             'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255', 'nullable'],
             'password' => ['string', 'min:8', 'confirmed', 'nullable'],
         ]);
@@ -297,11 +296,7 @@ class UserController extends Controller
         //     ]);
         // }
 
-        // if ($request->password != '') {
-        //     $request->validate([
-        //         'password' => ['string', 'min:8', 'confirmed'],
-        //     ]);
-        // }
+
 
         $valueInputManual = $request->univ_id_manual;
         $id = Auth::user()->id;
@@ -321,7 +316,14 @@ class UserController extends Controller
             rename(public_path($path2) . Auth::user()->picture, public_path($path2) . $new_image_name);
             File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
         }
-        $user->nim = $request->nim;
+
+        if ($request->nim != '' && (Auth::user()->nim != $request->nim)) {
+            $request->validate([
+                'nim' => ['string', 'max:255', 'unique:users'],
+            ]);
+            $user->nim = $request->nim;
+        }
+
         if ($request->univ_id == 'other') {
             $getUniv = Univ::where('nama_universitas', '=', $valueInputManual)->first();
             if (!$getUniv) {

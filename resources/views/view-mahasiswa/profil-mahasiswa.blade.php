@@ -169,9 +169,9 @@
                                         <th>{{ Auth::user()->prodi->nama_prodi }}</th>
                                     </tr>
                                     <tr>
-                                        <td>NIM</td>
-                                        <td>:</td>
-                                        <td>{{ Auth::user()->nim }}</td>
+                                        <th>NIM</th>
+                                        <th>:</th>
+                                        <th>{{ Auth::user()->nim }}</th>
                                     </tr>
                                     {{-- <tr>
                                                         <td>ID User</td>

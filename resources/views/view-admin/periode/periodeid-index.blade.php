@@ -1116,7 +1116,14 @@
                         [5, 10, 25, 50, -1],
                         [5, 10, 25, 50, "All"]
                     ],
-                    "buttons": ["pageLength", "excel", "pdf", {
+                    "buttons": ["pageLength", "excel", {
+                        extend: 'pdf',
+                        text: 'PDF',
+                        exportOptions: {
+                            columns: ':visible',
+                            page: 'current'
+                        }
+                    }, {
                         extend: 'print',
                         text: 'Print',
                         exportOptions: {
