@@ -117,7 +117,7 @@ class AdministrasiController extends Controller
         // } else {
         $validator = Validator::make($request->all(), [
             'tempat_lahir' => 'string|max:255|nullable',
-            'tanggal_lahir' => 'date|nullable',
+            'tanggal_lahir' => 'date|nullable|date_format:Y-m-d',
             'semester' => 'numeric|between:6,14|nullable',
             'ipk' => 'numeric|between:0,4.00|nullable',
             'keahlian' => 'string|max:255|nullable',

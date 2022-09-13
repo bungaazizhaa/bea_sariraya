@@ -20,7 +20,7 @@
                             </div>
                             <div class="col-6">
                                 <a type="button" data-toggle="modal" data-target="#tambahPeriode"
-                                    class="btn btn-info card-title float-right rounded-pill">
+                                    class="btn btn-sm mt-2 mt-md-0 btn-info card-title float-right rounded-pill text-truncate">
                                     <i class="fa-solid fa-plus nav-icon"></i>&nbsp; Tambah Periode
                                 </a>
                             </div>
@@ -100,7 +100,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="bg-secondary py-md-1 pb-3 px-3 rounded myshadow mb-3">
-                                    <div class="row">
+                                    <div class="row my-1">
                                         <label for="status" class="col col-form-label text-md-right">ID
                                             Periode
                                             :</label>
@@ -282,13 +282,40 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Tambahkan</button>
+                        <button type="submit" class="btn btn-primary buttonSubmit">
+                            Tambahkan</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
+    <script>
+        $(".buttonSubmit").click(function() {
+            $(this).html(
+                '  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Tunggu...'
+            );
+            var isValid = true;
+            $('input').filter('[required]:visible').each(function() {
+                if ($(this).val() === '')
+                    isValid = false;
+            });
+
+            if (isValid === true) {
+                $(this).closest('form').submit();
+                $(this).prop("disabled", true);
+                setTimeout(() => {
+                    $(this).prop("disabled", false);
+                    $(this).html("Tambahkan");
+                }, 8000);
+            } else {
+                setTimeout(() => {
+                    $(this).prop("disabled", false);
+                    $(this).html("Tambahkan");
+                }, 200);
+            }
+        });
+    </script>
     <!-- Page specific script -->
     <script>
         $(function() {
@@ -304,7 +331,14 @@
                     [5, 10, 25, 50, -1],
                     [5, 10, 25, 50, "All"]
                 ],
-                "buttons": ["pageLength", "copy", "excel", "pdf", {
+                "buttons": ["pageLength", "excel", {
+                    extend: 'pdf',
+                    text: 'PDF',
+                    exportOptions: {
+                        columns: ':visible',
+                        page: 'current'
+                    }
+                }, {
                     extend: 'print',
                     text: 'Print',
                     exportOptions: {

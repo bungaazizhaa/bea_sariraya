@@ -1,17 +1,21 @@
 .rounded-md {
     border-radius: 15px;
 }
+
 .rounded-top-md {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
+
 .rounded-bottom-md {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
+
 .myshadow {
     box-shadow: 0 0.3rem 0.8rem rgba(17, 26, 34, 0.215) !important;
 }
+
 .small-box {
     border-style: solid;
     border-width: 1px !important;
@@ -20,6 +24,7 @@
     transition: transform 0.2s;
     cursor: pointer;
 }
+
 .small-box .ion {
     color: #1c252e80 !important;
 }
@@ -114,22 +119,6 @@ ion-icon {
     color: rgb(25, 93, 165) !important;
 }
 
-.datepicker {
-    color: rgb(235, 235, 235) !important;
-    background-color: #34373a !important;
-}
-
-.datetimepicker {
-    color: rgb(235, 235, 235) !important;
-    background-color: #34373a !important;
-}
-
-.datetimepicker {
-    z-index: 99999;
-    /* color: rgb(235, 235, 235) !important;
-    background-color: #34373a !important; */
-}
-
 .modal-body .btn {
     background-color: #343a40 !important;
     border-color: #6c757d !important;
@@ -145,6 +134,7 @@ ion-icon {
 .text-primary {
     color: rgb(118, 184, 255) !important;
 }
+
 .text-primary:hover {
     color: rgb(255, 255, 255) !important;
 }
@@ -180,11 +170,59 @@ ion-icon {
     background-color: #f27474 !important;
 }
 
-th > a.btn-email:hover {
-    color: #298ce9!important;
-    border-color:#298ce9!important;
+th>a.btn-email:hover {
+    color: #298ce9 !important;
+    border-color: #298ce9 !important;
 }
 
+
+.gj-picker-bootstrap table tr td.today div {
+    color: #00BC8C !important;
+    font-weight: 700 !important;
+}
+
+.gj-picker-bootstrap table tr td.selected.gj-cursor-pointer div {
+    color: rgb(0, 0, 0) !important;
+    background-color: #00BC8C !important;
+    border-color: #122b40;
+    border-radius: 4px;
+    font-weight: 700 !important;
+}
+
+.gj-picker-bootstrap {
+    color: rgb(235, 235, 235) !important;
+    background-color: #252729 !important;
+}
+
+.gj-picker-md table tr td.disabled div,
+.gj-picker-md table tr td.other-month div {
+    color: #a5a5a5
+}
+
+.datetimepicker {
+    z-index: 99999;
+    /* color: rgb(235, 235, 235) !important;
+    background-color: #34373a !important; */
+}
+
+.buttonload .fa-spin {
+    margin-right: 10px;
+}
+
+.buttons-collection,
+.buttons-html5,
+.buttons-print {
+    background-color: #212529 !important;
+    border-color: #212529 !important;
+}
+
+.buttons-collection:hover,
+.buttons-html5:hover,
+.buttons-print:hover {
+    background-color: #6c6f74 !important;
+    border-color: #6c6f74 !important;
+    color: #111519;
+}
 
 /* .swal2-confirm {
     background-color: #00bc8c !important;

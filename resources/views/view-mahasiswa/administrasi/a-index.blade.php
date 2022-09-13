@@ -130,7 +130,7 @@
                     value="{{ $getPeriodeAktif->id }}" autocomplete="periode_id">
 
                 <div class="row d-flex justify-content-center my-5 mx-1">
-                    <div class="col-md-8 alert alert-info text-center" role="alert">
+                    <div class="col-md-10 col-lg-8 alert alert-info text-center" role="alert">
                         Halaman ini ditutup dalam waktu
                         <span id="countdownAdm" class="font-weight-bold text-nowrap"></span>
                     </div>
@@ -158,7 +158,7 @@
                         })();
                     </script>
                     {{-- ============== DATA DIRI ============== --}}
-                    <div class="col-md-8 mb-3 px-0">
+                    <div class="col-md-10 col-lg-8 mb-3 px-0">
                         <div class="alert alert-info pb-0 ">
                             <table
                                 class="table table-borderless table-responsive d-block d-md-flex justify-content-center text-nowrap">
@@ -195,7 +195,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="col-md-8 mb-5 px-0">
+                    <div class="col-md-10 col-lg-8 mb-5 px-0">
                         <div class="card">
                             <div class="card-header h4">
                                 <b>Data Diri</b>
@@ -224,17 +224,22 @@
                                 <div class="row mb-3 datadiri">
                                     <label for="tanggal_lahir"
                                         class="col-md-4 col-form-label text-md-right">{{ __('Tanggal Lahir') }}<strong
-                                            class="text-danger"> *</strong></label>
+                                            class="text-danger"> *</strong>
+                                    </label>
+
 
                                     <div class="col-md-6">
-                                        <input autocomplete="off" id="tanggal_lahir" type="text"
+                                        <input data-mask='yyyy-mm-dd' autocomplete="off" id="tanggal_lahir"
+                                            type="integer"
                                             class="form-control editable {{ isset($getAdministrasiUser->tanggal_lahir) ? 'font-weight-bold' : '' }} datepicker validate @error('tanggal_lahir') is-invalid @enderror"
                                             name="tanggal_lahir" spellcheck="false" disabled
-                                            value="{{ old('tanggal_lahir', isset($getAdministrasiUser->tanggal_lahir) ? $getAdministrasiUser->tanggal_lahir->format('Y/m/d') : '') }}"
-                                            autocomplete="tanggal_lahir" placeholder="YYYY/MM/DD" maxlength="10">
+                                            value="{{ old('tanggal_lahir', isset($getAdministrasiUser->tanggal_lahir) ? $getAdministrasiUser->tanggal_lahir->format('Y-m-d') : '') }}"
+                                            autocomplete="tanggal_lahir" placeholder="Misal, 2000-02-16"
+                                            maxlength="10">
                                         @error('tanggal_lahir')
+                                            {{-- <small>Contoh: 1999-12-31</small><br> --}}
                                             <strong class="text-danger small font-weight-bold"
-                                                role="alert">{{ $message }}</strong>
+                                                role="alert">{{ $message }} <br>Contoh: 1999-12-31</strong>
                                         @enderror
                                     </div>
                                 </div>
@@ -321,7 +326,7 @@
                         </div>
                     </div>
                     {{-- ============== UPLOAD BERKAS ============== --}}
-                    <div class="col-md-8 mb-5 px-0">
+                    <div class="col-md-10 col-lg-8 mb-5 px-0">
                         <div class="card">
                             <div class="card-header h4">
                                 <b>Upload Berkas</b>
@@ -525,7 +530,7 @@
                     </div>
 
                     {{-- ============== KONTAK ============== --}}
-                    <div class="col-md-8 mb-5 px-0">
+                    <div class="col-md-10 col-lg-8 mb-5 px-0">
                         <div class="card">
                             <div class="card-header h4">
                                 <b>Kontak</b>
@@ -627,7 +632,7 @@
                 <p>&copy; Sariraya 2022</p>
             </div>
         </footer>
-
+        {{-- <script src="https://jsuites.net/v4/jsuites.js"></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
             integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
         </script>
@@ -647,6 +652,11 @@
         </script>
 
         <script>
+            $('.validate').mask("9999-99-99");
+        </script>
+
+
+        {{-- <script>
             $(document).ready(function() {
                 today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date()
                     .getDate());
@@ -663,32 +673,16 @@
                     showOnFocus: false,
                 });
             });
-        </script>
-
-
-
-        <script>
-            $('.validate').mask("9999/99/99");
-            $('.validate').change(function() {
-
-                // if ($(this).val().substring(4, 7) > 12 || $(this).val().substring(4, 7) == "00") {
-                //     alert("Iregular Month Format");
-                //     return false;
-                // }
-                // if ($(this).val().substring(8, 10) > 31 || $(this).val().substring(4, 7) == "00") {
-                //     alert("Iregular Date Format");
-                //     return false;
-                // }
-            });
-        </script>
-
+        </script> --}}
 
         @if (!isset($getAdministrasiUser))
             <script>
-                $(document).ready(function() {});
-                document.querySelectorAll('.editable').forEach(b => b.removeAttribute('disabled'));
+                $(document).ready(function() {
+                    document.querySelectorAll('.editable').forEach(b => b.removeAttribute('disabled'));
+                });
             </script>
         @endif
+
 
         <script>
             function izinkanEdit() {
