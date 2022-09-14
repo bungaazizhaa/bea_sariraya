@@ -1,3 +1,17 @@
+.rounded-sm {
+    border-radius: 5px;
+}
+
+.rounded-top-sm {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.rounded-bottom-sm {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
 .rounded-md {
     border-radius: 15px;
 }
@@ -29,7 +43,14 @@
     color: #1c252e80 !important;
 }
 
-.small-box:hover {
+#smallBoxAktif {
+    border-style: solid;
+    border-width: 1px !important;
+    filter: none;
+}
+
+.small-box:hover,
+#smallBoxAktif.small-box:hover {
     box-shadow: 0 0.3rem 0.8rem rgba(17, 26, 34, 0.215) !important;
     background-color: #222f3a !important;
     border-style: solid;
@@ -102,8 +123,16 @@ ion-icon {
 }
 
 .bg-selesai {
-    background-color: rgb(25, 124, 99) !important;
-    color: #d4d4d4;
+    background-color: #375552 !important;
+    border-style: solid;
+    border-width: 2px 0px 2px 0px !important;
+    border-color: #00BC8C;
+    filter: brightness(80%);
+}
+
+#smallBoxAktif.bg-selesai {
+    background-color: #416e6a !important;
+    border-style: none;
 }
 
 .btn-primary {
@@ -147,6 +176,13 @@ ion-icon {
 #editPeriode .bg-secondary,
 #tambahPeriode .bg-secondary {
     background-color: #3f484e !important;
+}
+
+.bg-sec-dark {
+    background-color: #505a63 !important;
+    border-style: solid;
+    border-width: 2px 0px 2px 0px !important;
+    border-color: #343A40;
 }
 
 .text-success {
@@ -216,12 +252,82 @@ th>a.btn-email:hover {
     border-color: #212529 !important;
 }
 
+
+.buttons-collection span,
+.buttons-html5 span,
+.buttons-print span {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
 .buttons-collection:hover,
 .buttons-html5:hover,
 .buttons-print:hover {
     background-color: #6c6f74 !important;
     border-color: #6c6f74 !important;
     color: #111519;
+}
+
+.note-btn,
+.note-btn.dropdown-toggle {
+    color: #f8f8f8 !important;
+    background-color: #3c4044 !important;
+    border-color: #616161 !important;
+}
+
+.note-btn.active {
+    background-color: #00BC8C !important;
+    border-color: #00BC8C !important;
+}
+
+.note-btn:hover {
+    background-color: #b4b4b4 !important;
+}
+
+.note-btn:hover~.note-btn:hover [class^='note-icon-'],
+.note-btn:hover [class^='note-icon-'],
+.note-btn.dropdown-toggle:hover {
+    color: #252525 !important;
+}
+
+.note-btn i {
+    color: #ffffff !important;
+}
+
+[class^='note-icon-'] {
+    color: #0f0f0f !important;
+}
+
+/*
+.note-btn i:hover {
+    color: #1f1f1f !important;
+} */
+
+.note-btn:hover~i [class^='note-icon-'],
+.note-btn i:hover {
+    color: #1f1f1f !important;
+}
+
+.mytooltip {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 15px 15px;
+}
+
+hr {
+    border-color: #343A4080;
+    border-width: 3px;
+    margin: 12px 0px 12px 0px;
+}
+
+.tooltip>.tooltip-inner {
+    background: #000000dd !important;
+    padding: 14px !important;
+    border-radius: 15px !important;
+    -webkit-backdrop-filter: blur(100px) !important;
+    backdrop-filter: blur(100px) !important;
 }
 
 /* .swal2-confirm {

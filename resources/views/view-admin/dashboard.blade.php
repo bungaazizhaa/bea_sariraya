@@ -71,8 +71,9 @@
             </div>
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div onclick="location.href='{{ route('periode', isset($getPeriodeAktif->name) ? $getPeriodeAktif->name : '') }}'"
-                    class="{{ isset($getPeriodeAktif->name) ? 'bg-selesai' : '' }} small-box rounded-md myshadow"
+                <div id="smallBoxAktif"
+                    onclick="location.href='{{ route('periode', isset($getPeriodeAktif->name) ? $getPeriodeAktif->name : '') }}'"
+                    class="small-box {{ isset($getPeriodeAktif->name) ? 'bg-selesai' : '' }} rounded-md myshadow"
                     style="height: 118px;">
                     <div class="inner">
                         <h3 class="mb-1 {{ isset($getPeriodeAktif->name) ? 'mt-2' : 'mt-3' }}"

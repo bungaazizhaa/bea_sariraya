@@ -20,7 +20,7 @@
                             </div>
                             <div class="col-6">
                                 <a type="button" data-toggle="modal" data-target="#tambahPeriode"
-                                    class="btn btn-sm mt-2 mt-md-0 btn-info card-title float-right rounded-pill text-truncate">
+                                    class="btn btn-sm mt-2 mt-md-0 btn-info card-title float-right rounded-pill px-2 text-truncate">
                                     <i class="fa-solid fa-plus nav-icon"></i>&nbsp; Tambah Periode
                                 </a>
                             </div>
@@ -90,21 +90,21 @@
     <div class="modal fade" id="tambahPeriode" tabindex="-1" role="dialog" aria-labelledby="tambahPeriodeLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+            <div class="modal-content rounded-md">
                 <form id="periodeForm" autocomplete="off" method="POST" action="{{ route('store.periode') }}">
                     @csrf
                     <div class="modal-header h4 text-center">
                         <p class="mb-0 w-100">Form Tambah Periode</p>
                     </div>
-                    <div class="modal-body pb-1">
+                    <div class="modal-body pb-1 pt-2 pb-0">
                         <div class="row">
                             <div class="col-12">
-                                <div class="bg-secondary py-md-1 pb-3 px-3 rounded myshadow mb-3">
+                                <div class="bg-secondary py-md-1 pb-3 px-3 rounded-md myshadow mb-3">
                                     <div class="row my-1">
-                                        <label for="status" class="col col-form-label text-md-right">ID
+                                        <label for="status" class="col col-form-label text-lg-right">ID
                                             Periode
                                             :</label>
-                                        <div class="col-12 col-md-10">
+                                        <div class="col-12 col-lg-10">
                                             <input autocomplete="off" id="id_periode" name="id_periode"
                                                 value="{{ $getPeriodeLast + 1 }}" class="form-control">
                                             @error('id_periode')
@@ -115,9 +115,9 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <label for="status" class="col col-form-label text-md-right">Nama Periode
+                                        <label for="status" class="col col-form-label text-lg-right">Nama Periode
                                             :</label>
-                                        <div class="col-12 col-md-10">
+                                        <div class="col-12 col-lg-10">
                                             <input autocomplete="off" id="name" name="name"
                                                 value="batch-{{ $getPeriodeLast + 1 }}" class="form-control">
                                             @error('name')
@@ -138,7 +138,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="bg-secondary p-3 rounded myshadow mb-3">
+                                <div class="bg-secondary p-3 rounded-md myshadow mb-3">
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <p class="h5 mb-0 font-weight-bold">
@@ -185,7 +185,7 @@
                             </div>
 
                             <div class="col-md-4">
-                                <div class="bg-secondary p-3 rounded myshadow mb-3">
+                                <div class="bg-secondary p-3 rounded-md myshadow mb-3">
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <p class="h5 mb-0 font-weight-bold">
@@ -233,7 +233,7 @@
                             </div>
 
                             <div class="col-md-4">
-                                <div class="bg-secondary p-3 rounded myshadow mb-3">
+                                <div class="bg-secondary p-3 rounded-md myshadow mb-3">
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <p class="h5 mb-0 font-weight-bold">
@@ -281,8 +281,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary buttonSubmit">
+                        <button type="button" class="btn btn-secondary rounded-sm" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary rounded-sm buttonSubmit">
                             Tambahkan</button>
                     </div>
                 </form>
