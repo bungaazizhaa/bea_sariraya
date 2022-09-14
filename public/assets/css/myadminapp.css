@@ -323,11 +323,8 @@ hr {
 }
 
 .tooltip>.tooltip-inner {
-    background: #000000dd !important;
     padding: 14px !important;
     border-radius: 15px !important;
-    -webkit-backdrop-filter: blur(100px) !important;
-    backdrop-filter: blur(100px) !important;
 }
 
 /* .swal2-confirm {
