@@ -64,13 +64,14 @@
                     <div id="footer-tahap" class="d-flex" style="height:38px">
                         @if ($getTanggalSekarang > $periodeOpenned->ta_adm->format('Y-m-d'))
                             <a href="/{{ $periodeOpenned->name }}/nilai-administrasi"
-                                class="btn btn-outline-light text-truncate"><i class="fa-solid fa-list-check"></i>&nbsp;
+                                class="btn btn-outline-light text-truncate mr-1"><i
+                                    class="fa-solid fa-list-check"></i>&nbsp;
                                 Nilai
                                 Administrasi</a>
                         @endif
                         @if ($getTanggalSekarang >= $periodeOpenned->tp_adm->format('Y-m-d'))
                             <button class="btn btn-outline-light ml-auto text-truncate" data-toggle="modal"
-                                data-target="#umumkanAdm"><i class="fa-solid fa-check"></i>&nbsp; Umumkan</button>
+                                data-target="#umumkanAdm"><i class="fa-regular fa-envelope"></i>&nbsp; Umumkan</button>
                         @endif
                     </div>
                 </div>
@@ -113,12 +114,13 @@
                     <div id="footer-tahap" class="d-flex" style="height:38px">
                         @if ($getTanggalSekarang >= $periodeOpenned->tm_wwn->format('Y-m-d'))
                             <a href="/{{ $periodeOpenned->name }}/nilai-wawancara"
-                                class="btn btn-outline-light text-truncate"><i class="fa-solid fa-list-check"></i>&nbsp;
+                                class="btn btn-outline-light text-truncate mr-1"><i
+                                    class="fa-solid fa-list-check"></i>&nbsp;
                                 Nilai Wawancara</a>
                         @endif
                         @if ($getTanggalSekarang >= $periodeOpenned->tp_wwn->format('Y-m-d'))
                             <button class="btn btn-outline-light ml-auto text-truncate" data-toggle="modal"
-                                data-target="#umumkanWwn"><i class="fa-solid fa-check"></i>&nbsp; Umumkan</button>
+                                data-target="#umumkanWwn"><i class="fa-regular fa-envelope"></i>&nbsp; Umumkan</button>
                         @endif
                     </div>
                 </div>
@@ -161,13 +163,14 @@
                     <div id="footer-tahap" class="d-flex" style="height:38px">
                         @if ($getTanggalSekarang > $periodeOpenned->ta_png)
                             <a href="/{{ $periodeOpenned->name }}/nilai-penugasan"
-                                class="btn btn-outline-light text-truncate"><i class="fa-solid fa-list-check"></i>&nbsp;
+                                class="btn btn-outline-light text-truncate mr-1"><i
+                                    class="fa-solid fa-list-check"></i>&nbsp;
                                 Nilai
                                 Penugasan</a>
                         @endif
                         @if ($getTanggalSekarang >= $periodeOpenned->tp_png->format('Y-m-d'))
                             <button class="btn btn-outline-light ml-auto text-truncate" data-toggle="modal"
-                                data-target="#umumkanPng"><i class="fa-solid fa-check"></i>&nbsp; Umumkan</button>
+                                data-target="#umumkanPng"><i class="fa-regular fa-envelope"></i>&nbsp; Umumkan</button>
                         @endif
                     </div>
                 </div>
