@@ -234,10 +234,8 @@
                                             class="form-control editable {{ isset($getAdministrasiUser->tanggal_lahir) ? 'font-weight-bold' : '' }} datepicker validate @error('tanggal_lahir') is-invalid @enderror"
                                             name="tanggal_lahir" spellcheck="false" disabled
                                             value="{{ old('tanggal_lahir', isset($getAdministrasiUser->tanggal_lahir) ? $getAdministrasiUser->tanggal_lahir->format('Y-m-d') : '') }}"
-                                            autocomplete="tanggal_lahir" placeholder="Misal, 2000-02-16"
-                                            maxlength="10">
+                                            autocomplete="tanggal_lahir" placeholder="yyyy-mm-dd" maxlength="10">
                                         @error('tanggal_lahir')
-                                            {{-- <small>Contoh: 1999-12-31</small><br> --}}
                                             <strong class="text-danger small font-weight-bold"
                                                 role="alert">{{ $message }} <br>Contoh: 1999-12-31</strong>
                                         @enderror

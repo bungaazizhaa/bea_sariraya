@@ -255,7 +255,7 @@
                                     <input id="tanggal_lahir" type="text"
                                         class="form-control editable datepicker @error('tanggal_lahir') is-invalid @enderror"
                                         name="tanggal_lahir" spellcheck="false" disabled
-                                        value="{{ old('tanggal_lahir', isset($getAdministrasiUser) ? $getAdministrasiUser->tanggal_lahir : '') }}"
+                                        value="{{ old('tanggal_lahir', isset($getAdministrasiUser) ? $getAdministrasiUser->tanggal_lahir->translatedFormat('d F Y') : '') }}"
                                         autocomplete="tanggal_lahir" required>
                                     @error('tanggal_lahir')
                                         <strong class="text-danger small font-weight-bold"
