@@ -148,9 +148,10 @@ ion-icon {
     color: rgb(25, 93, 165) !important;
 }
 
-.modal-body .btn {
+.modal-body .btn,
+.modal-body input {
     background-color: #343a40 !important;
-    border-color: #6c757d !important;
+    border-color: #4c5258 !important;
     color: rgb(235, 235, 235) !important;
 }
 
@@ -181,8 +182,9 @@ ion-icon {
 .bg-sec-dark {
     background-color: #505a63 !important;
     border-style: solid;
-    border-width: 2px 0px 2px 0px !important;
+    border-width: 3px 1.5px 6px 1.5px !important;
     border-color: #343A40;
+    border-radius: 20px !important;
 }
 
 .text-success {
