@@ -385,14 +385,22 @@
                                                     class="datepicker"
                                                     class="form-control @error('jadwal_wwn') is-invalid @enderror"
                                                     name="jadwal_wwn"
-                                                    value="{{ old('jadwal_wwn', isset($admUser->wawancara->jadwal_wwn) ? $admUser->wawancara->jadwal_wwn->format('Y-m-d H:i') : '') }}">
+                                                    value="{{ old(
+                                                        'jadwal_wwn',
+                                                        isset($admUser->wawancara->jadwal_wwn)
+                                                            ? $admUser->wawancara->jadwal_wwn->translatedFormat('d F Y') .
+                                                                ' - ' .
+                                                                $admUser->wawancara->jadwal_wwn->translatedFormat('H:i') .
+                                                                ' WIB'
+                                                            : '',
+                                                    ) }}">
                                                 <div>
                                                     <p>Pilih waktu antara
                                                         <span><strong
-                                                                class="text-info">{{ $periodeOpenned->tm_wwn->translatedFormat('d F Y') }}</strong>
+                                                                class="text-info">{{ $periodeOpenned->tm_wwn->translatedFormat('d F Y H:i') }}</strong>
                                                         </span> sampai
                                                         <span><strong
-                                                                class="text-info">{{ $periodeOpenned->ta_wwn->translatedFormat('d F Y') }}</strong>
+                                                                class="text-info">{{ $periodeOpenned->ta_wwn->translatedFormat('d F Y 23:59') }}</strong>
                                                         </span>
                                                     </p>
                                                 </div>
@@ -451,13 +459,18 @@
     <script>
         var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
         $('.datepicker').datetimepicker({
-            format: 'yyyy-mm-dd HH:MM',
+            format: 'dd mmmm yyyy HH:MM',
             uiLibrary: 'bootstrap4',
             iconsLibrary: 'fontawesome',
             modal: true,
             footer: true,
             autoclose: false,
-            minDate: today,
+            datepicker: {
+                disableDates: function(date) {
+                    const currentDate = new Date().setHours(0, 0, 0, 0);
+                    return date.setHours(0, 0, 0, 0) >= currentDate ? true : false;
+                }
+            }
         });
     </script>
 
