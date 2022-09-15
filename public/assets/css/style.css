@@ -16,6 +16,7 @@ body {
     background-color: #ffffff;
     color: #495057;
 }
+
 /*
 .container {
     max-width: 1300px;
@@ -100,6 +101,7 @@ body {
     font-weight: bold;
     line-height: 2rem;
 }
+
 /* Apa itu Bea Sariraya*/
 .sariraya {
     margin-top: 30px;
@@ -159,8 +161,8 @@ body {
 
 .banner-regist {
 
-  /* Full height */
-  height: 100%;
+    /* Full height */
+    height: 100%;
 
     position: fixed;
     top: 0;
@@ -169,15 +171,15 @@ body {
     min-height: 100vh;
     display: block;
 
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: 0.5;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.5;
 
-  /* Add the blur effect */
-  filter: blur(4px);
-  -webkit-filter: blur(4px);
+    /* Add the blur effect */
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
 }
 
 .logo-img {
@@ -281,7 +283,7 @@ body {
     background-color: #fafafa;
     position: absolute;
     bottom: -1px;
-    left:0;
+    left: 0;
     overflow: hidden;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
@@ -291,6 +293,7 @@ body {
     border-width: 0px 0px 2px 0px;
     border-style: solid;
 }
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .scrollbar-hidden::-webkit-scrollbar {
     display: none;
@@ -299,15 +302,31 @@ body {
 /* Hide scrollbar for IE, Edge add Firefox */
 .scrollbar-hidden {
     -ms-overflow-style: none;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
+    /* Firefox */
 }
+
 .scrollbar-hidden::-webkit-scrollbar {
     display: none;
 }
 
+button.swal2-confirm.swal2-styled,
+button.swal2-confirm.swal2-styled:focus {
+    background-color: #18CA00 !important;
+    border-style: none !important;
+}
+
+
+.modal.fade.show,
+.swal2-backdrop-show:has(.swal2-modal) {
+    backdrop-filter: blur(3px);
+    background: #00000030 !important;
+    background-color: #00000030 !important;
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+
     /* SCROLL BAR */
     /* width */
     ::-webkit-scrollbar {

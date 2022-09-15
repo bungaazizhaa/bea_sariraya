@@ -15,8 +15,8 @@ body {
 }
 
 /* Banner */
-.banner img{
-    width:550px;
+.banner img {
+    width: 550px;
 }
 
 .tomboldaftar {
@@ -25,7 +25,7 @@ body {
     font-weight: bolder;
 }
 
-.tomboldaftar p{
+.tomboldaftar p {
     font-weight: bolder;
 }
 
@@ -43,11 +43,25 @@ body {
 
 /* Profil */
 
-.kotakprofil{
+.kotakprofil {
     border-radius: 100%;
 }
 
 .test {
-    
+
     font-family: Montserrat;
+}
+
+button.swal2-confirm.swal2-styled,
+button.swal2-confirm.swal2-styled:focus {
+    background-color: #18CA00 !important;
+    border-style: none !important;
+}
+
+
+.modal.fade.show,
+.swal2-backdrop-show:has(.swal2-modal) {
+    backdrop-filter: blur(3px);
+    background: #00000030 !important;
+    background-color: #00000030 !important;
 }

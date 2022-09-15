@@ -218,7 +218,8 @@
                         @endif
                         @if ($getTanggalSekarang >= $periodeOpenned->tp_png->format('Y-m-d'))
                             <button class="btn btn-dark rounded-sm ml-auto text-truncate" data-toggle="modal"
-                                data-target="#umumkanPng"><i class="fa-regular fa-envelope"></i>&nbsp; Umumkan</button>
+                                data-target="#umumkanPng"><i class="fa-regular fa-envelope"></i>&nbsp;
+                                Umumkan</button>
                         @else
                             <div class="btn btn-secondary rounded-sm ml-auto text-truncate disabled"
                                 style="cursor: help !important;" data-toggle="tooltip" data-placement="left"
@@ -312,28 +313,6 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            $(document).ready(function() {
-                $('#summernote').summernote({
-                    placeholder: 'Teknis Wawancara...',
-                    tabsize: 2,
-                    minHeight: 100,
-                    toolbar: [
-                        ['style', ['style']],
-                        ['font', ['bold', 'underline', 'clear']],
-                        ['para', ['ul', 'ol', 'paragraph']],
-                        ['table', ['table']],
-                        ['insert', ['link']],
-                        ['view', ['fullscreen', 'codeview', 'help']]
-                    ],
-                    spellCheck: false,
-                    disableGrammar: false,
-                    // airMode: true,
-
-                });
-            });
-        </script>
 
         <div class="row">
             <div class="col-12">
@@ -457,7 +436,6 @@
             <!-- /.col -->
         </div>
         <!-- /.row -->
-
 
         {{-- ======== MODAL EDIT PERIODE ======== --}}
         <!-- Modal -->
@@ -747,7 +725,7 @@
         <div class="modal fade" id="umumkanAdm" tabindex="-1" role="dialog" aria-labelledby="umumkanAdmLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
+                <div class="modal-content rounded-md">
                     <div class="modal-header h4 text-center">
                         <div class="modal-title w-100">Umumkan Tahap Administrasi</div>
                     </div>
@@ -886,7 +864,7 @@
         <div class="modal fade" id="umumkanWwn" tabindex="-1" role="dialog" aria-labelledby="umumkanWwnLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
+                <div class="modal-content rounded-md">
                     <div class="modal-header h4 text-center">
                         <div class="modal-title w-100">Umumkan Tahap Wawancara</div>
                     </div>
@@ -1029,7 +1007,7 @@
         <div class="modal fade" id="umumkanPng" tabindex="-1" role="dialog" aria-labelledby="umumkanPngLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
+                <div class="modal-content rounded-md">
                     <div class="modal-header h4 text-center">
                         <div class="modal-title w-100">Umumkan Tahap Akhir</div>
                     </div>
@@ -1166,6 +1144,29 @@
                 </div>
             </div>
         </div>
+
+
+        <script>
+            $(document).ready(function() {
+                $('#summernote').summernote({
+                    placeholder: 'Teknis Wawancara...',
+                    tabsize: 2,
+                    minHeight: 100,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link']],
+                        ['view', ['fullscreen', 'codeview', 'help']]
+                    ],
+                    spellCheck: false,
+                    disableGrammar: false,
+                    // airMode: true,
+
+                });
+            });
+        </script>
         <script>
             $('.datepicker').each(function() {
                 $(this).datepicker({

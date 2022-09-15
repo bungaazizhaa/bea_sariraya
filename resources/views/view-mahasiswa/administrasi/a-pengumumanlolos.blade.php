@@ -58,7 +58,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto my-2 my-md-0">
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto ml-md-0 test">
+                    <ul class="navbar-nav ml-md-0 test">
 
                         <!-- Authentication Links -->
                         @auth

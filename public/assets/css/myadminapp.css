@@ -329,6 +329,13 @@ hr {
     border-radius: 15px !important;
 }
 
+.modal.fade.show,
+.swal2-backdrop-show:has(.swal2-modal) {
+    backdrop-filter: blur(3px);
+    background: #00000030 !important;
+    background-color: #00000030 !important;
+}
+
 /* .swal2-confirm {
     background-color: #00bc8c !important;
     border-radius: 30px !important;

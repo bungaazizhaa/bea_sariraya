@@ -389,9 +389,7 @@
                                                         'jadwal_wwn',
                                                         isset($admUser->wawancara->jadwal_wwn)
                                                             ? $admUser->wawancara->jadwal_wwn->translatedFormat('d F Y') .
-                                                                ' - ' .
-                                                                $admUser->wawancara->jadwal_wwn->translatedFormat('H:i') .
-                                                                ' WIB'
+                                                                $admUser->wawancara->jadwal_wwn->translatedFormat(' H:i')
                                                             : '',
                                                     ) }}">
                                                 <div>

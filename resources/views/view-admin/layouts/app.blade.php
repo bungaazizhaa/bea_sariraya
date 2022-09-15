@@ -84,7 +84,7 @@
         <!-- Preloader -->
         {{-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="{{ asset('assets') }}/logo sariraya.png" alt="AdminLTELogo" height="40"
-                width="100">
+            width="100">
         </div> --}}
 
         <!-- Navbar -->
@@ -118,7 +118,7 @@
                         </div>
                         <span class="d-none d-lg-inline ml-2">{{ Auth::user()->name }}</span>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <ul class="userdropdown dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header">
                             <div class="row d-flex justify-content-center m-2">
