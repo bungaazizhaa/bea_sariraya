@@ -6,6 +6,7 @@ use App\Models\Administrasi;
 use App\Models\Univ;
 use App\Models\User;
 use App\Models\Periode;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -237,120 +238,133 @@ class UserController extends Controller
 
     public function uploadFoto(Request $request)
     {
+        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        $validator = Validator::make($request->all(), ['Foto' => 'required|mimes:jpeg,png,jpg|max:512']);
-
-        if ($validator->fails()) {
-            $error = $validator->errors();
-            $error = json_decode($error, true);
-            Alert::error('Foto Gagal Diupload.', '' . $error['Foto'][0]);
-        }
-
-        $validated = $request->validate([
-            'Foto' => 'required|mimes:jpeg,png,jpg|max:512',
-        ]);
-
-        $path = $getPeriodeAktif->name . '/' . $request->user()->id . '/';
-        $path2 = 'pictures' . '/';
-        $file = $request->file('Foto');
-        $new_image_name = '_PasFoto-' . str_replace(' ', '-', $request->user()->name) .  date('-Ymd-H.i.s.') . $file->extension();
-        $upload = $file->move(public_path($path2), $new_image_name);
-        if (is_dir(public_path($path))) {
-            File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
+        if ($getPeriodeAktif->status_adm == null && $getTanggalSekarang > $getPeriodeAktif->ta_adm->format('Y-m-d')) {
+            Alert::error('Waktu pengubahan sudah ditutup.', 'Foto Gagal Diupload.');
+            return redirect(route('profil.mahasiswa'));
         } else {
-            File::makeDirectory(public_path($path), 0777, true, true);
-            File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
-        }
-        if ($upload) {
-            $userInfo =  $request->user()->picture;
-            if ($userInfo != '') {
-                if (file_exists($path . $userInfo)) {
-                    unlink($path . $userInfo);
-                }
-                if (file_exists($path2 . $userInfo)) {
-                    unlink($path2 . $userInfo);
-                }
+
+            $validator = Validator::make($request->all(), ['Foto' => 'required|mimes:jpeg,png,jpg|max:512']);
+
+            if ($validator->fails()) {
+                $error = $validator->errors();
+                $error = json_decode($error, true);
+                Alert::error('Foto Gagal Diupload.', '' . $error['Foto'][0]);
             }
 
-            User::where('id', $request->user()->id)->update(['picture' => $new_image_name]);
-            Alert::success('Foto Berhasil Diupload.', 'Anda dapat melanjutkan ke Proses Penerimaan Beasiswa.');
-            return redirect(route('profil.mahasiswa'));
+            $validated = $request->validate([
+                'Foto' => 'required|mimes:jpeg,png,jpg|max:512',
+            ]);
+
+            $path = $getPeriodeAktif->name . '/' . $request->user()->id . '/';
+            $path2 = 'pictures' . '/';
+            $file = $request->file('Foto');
+            $new_image_name = '_PasFoto-' . str_replace(' ', '-', $request->user()->name) .  date('-Ymd-H.i.s.') . $file->extension();
+            $upload = $file->move(public_path($path2), $new_image_name);
+            if (is_dir(public_path($path))) {
+                File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
+            } else {
+                File::makeDirectory(public_path($path), 0777, true, true);
+                File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
+            }
+            if ($upload) {
+                $userInfo =  $request->user()->picture;
+                if ($userInfo != '') {
+                    if (file_exists($path . $userInfo)) {
+                        unlink($path . $userInfo);
+                    }
+                    if (file_exists($path2 . $userInfo)) {
+                        unlink($path2 . $userInfo);
+                    }
+                }
+
+                User::where('id', $request->user()->id)->update(['picture' => $new_image_name]);
+                Alert::success('Foto Berhasil Diupload.', 'Anda dapat melanjutkan ke Proses Penerimaan Beasiswa.');
+                return redirect(route('profil.mahasiswa'));
+            }
         }
 
-        Alert::success('Error Title', 'Error Message');
-        return back();
+        return redirect(route('profil.mahasiswa'));
     }
 
     public function updateMyUser(Request $request)
     {
-        $request->validate([
-            'name' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
-            'nim' => ['string', 'max:255'],
-            'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255', 'nullable'],
-            'password' => ['string', 'min:8', 'confirmed', 'nullable'],
-        ]);
-
-        // if ($request->univ_id_manual != '') {
-        //     $request->validate([
-        //         'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
-        //     ]);
-        // }
-
-
-
-        $valueInputManual = $request->univ_id_manual;
-        $id = Auth::user()->id;
-        $user = User::find($id);
-        $user->name = $request->name;
-        if (isset(Auth::user()->picture) && Auth::user()->name != $request->name) {
-            $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-            $path = $getPeriodeAktif->name . '/' . $request->user()->id . '/';
-            $path2 = 'pictures' . '/';
-            $file = $path2 . Auth::user()->picture;
-            if (pathinfo((public_path($path) . Auth::user()->picture))) {
-                unlink(public_path($path) . Auth::user()->picture);
-            }
-            $extension = pathinfo($file, PATHINFO_EXTENSION);
-            $new_image_name = '_PasFoto-' . str_replace(' ', '-', $request->name) .  date('-Ymd-H.i.s.') . $extension;
-            $user->picture = $new_image_name;
-            rename(public_path($path2) . Auth::user()->picture, public_path($path2) . $new_image_name);
-            File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
-        }
-
-        if ($request->nim != '' && (Auth::user()->nim != $request->nim)) {
-            $request->validate([
-                'nim' => ['string', 'max:255', 'unique:users'],
-            ]);
-            $user->nim = $request->nim;
-        }
-
-        if ($request->univ_id == 'other') {
-            $getUniv = Univ::where('nama_universitas', '=', $valueInputManual)->first();
-            if (!$getUniv) {
-                Univ::create([
-                    'nama_universitas' => $valueInputManual,
-                ]);
-            }
-            $getUnivId = Univ::where('nama_universitas', '=', $valueInputManual)->first()->id;
-            $user->univ_id = $getUnivId;
-        } else {
-            $user->univ_id = $request->univ_id;
-        }
-
-        if ($request->password != '') {
-            $request->validate([
-                'password' => ['sometimes', 'string', 'min:8', 'confirmed'],
-            ]);
-            $user->password = Hash::make($request->password);
-        }
-        $user->save();
-
-        if (!$user) {
-            Alert::danger('Gagal', 'Anda gagal mengubah user.');
-            return back();
-        } else {
-            Alert::success('Berhasil', 'Akun ' . $user->name . ' berhasil diperbarui.');
+        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        if ($getPeriodeAktif->status_adm == null && $getTanggalSekarang > $getPeriodeAktif->ta_adm->format('Y-m-d')) {
+            Alert::error('Waktu pengubahan sudah ditutup.', 'Data Akun Anda gagal diperbarui.');
             return redirect(route('profil.mahasiswa'));
+        } else {
+            $request->validate([
+                'name' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
+                'nim' => ['string', 'max:255'],
+                'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255', 'nullable'],
+                'password' => ['string', 'min:8', 'confirmed', 'nullable'],
+            ]);
+
+            // if ($request->univ_id_manual != '') {
+            //     $request->validate([
+            //         'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
+            //     ]);
+            // }
+
+
+
+            $valueInputManual = $request->univ_id_manual;
+            $id = Auth::user()->id;
+            $user = User::find($id);
+            $user->name = $request->name;
+            if (isset(Auth::user()->picture) && Auth::user()->name != $request->name) {
+                $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+                $path = $getPeriodeAktif->name . '/' . $request->user()->id . '/';
+                $path2 = 'pictures' . '/';
+                $file = $path2 . Auth::user()->picture;
+                if (pathinfo((public_path($path) . Auth::user()->picture))) {
+                    unlink(public_path($path) . Auth::user()->picture);
+                }
+                $extension = pathinfo($file, PATHINFO_EXTENSION);
+                $new_image_name = '_PasFoto-' . str_replace(' ', '-', $request->name) .  date('-Ymd-H.i.s.') . $extension;
+                $user->picture = $new_image_name;
+                rename(public_path($path2) . Auth::user()->picture, public_path($path2) . $new_image_name);
+                File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
+            }
+
+            if ($request->nim != '' && (Auth::user()->nim != $request->nim)) {
+                $request->validate([
+                    'nim' => ['string', 'min:5', 'max:255', 'unique:users'],
+                ]);
+                $user->nim = $request->nim;
+            }
+
+            if ($request->univ_id == 'other') {
+                $getUniv = Univ::where('nama_universitas', '=', $valueInputManual)->first();
+                if (!$getUniv) {
+                    Univ::create([
+                        'nama_universitas' => $valueInputManual,
+                    ]);
+                }
+                $getUnivId = Univ::where('nama_universitas', '=', $valueInputManual)->first()->id;
+                $user->univ_id = $getUnivId;
+            } else {
+                $user->univ_id = $request->univ_id;
+            }
+
+            if ($request->password != '') {
+                $request->validate([
+                    'password' => ['sometimes', 'string', 'min:8', 'confirmed'],
+                ]);
+                $user->password = Hash::make($request->password);
+            }
+            $user->save();
+
+            if (!$user) {
+                Alert::danger('Gagal', 'Anda gagal mengubah user.');
+                return back();
+            } else {
+                Alert::success('Berhasil', 'Akun ' . $user->name . ' berhasil diperbarui.');
+                return redirect(route('profil.mahasiswa'));
+            }
         }
     }
 }

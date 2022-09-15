@@ -55,6 +55,18 @@
     <script src="{{ asset('assets/js/moment-with-locales.min.js') }}"></script>
     <script src="{{ asset('assets/js/countdown.min.js') }}"></script>
 
+    <script>
+        window.addEventListener("pageshow", function(event) {
+            var historyTraversal = event.persisted ||
+                (typeof window.performance != "undefined" &&
+                    window.performance.navigation.type === 2);
+            if (historyTraversal) {
+                // Handle page restore.
+                window.location.reload();
+            }
+        });
+    </script>
+
 </head>
 
 <body class=" d-flex flex-column test" style="min-height: calc(100vh - 60px);">

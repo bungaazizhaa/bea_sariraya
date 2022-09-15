@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card mt-5">
-                    <div class="card-header">Verifikasi Alamat Email Anda</div>
+                    <div class="card-header">Verifikasi Alamat Email <strong>{{ Auth::user()->email }}</strong>.</div>
 
                     <div class="card-body">
                         @if (session('resent'))
@@ -14,7 +14,6 @@
                                 Tautan verifikasi baru telah dikirim ke alamat email Anda.
                             </div>
                         @endif
-
                         Silahkan cek Kotak Masuk email Anda (termasuk Folder Spam),<br>dan lakukan verifikasi Email.<br><br>
                         Jika Anda tidak menerima email,
                         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
