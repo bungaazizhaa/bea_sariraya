@@ -304,15 +304,11 @@
             if (isValid === true) {
                 $(this).closest('form').submit();
                 $(this).prop("disabled", true);
-                setTimeout(() => {
-                    $(this).prop("disabled", false);
-                    $(this).html("Tambahkan");
-                }, 8000);
             } else {
                 setTimeout(() => {
                     $(this).prop("disabled", false);
                     $(this).html("Tambahkan");
-                }, 200);
+                }, 10);
             }
         });
     </script>

@@ -202,7 +202,7 @@
                 swalWithBootstrapButtons.fire({
                     title: "Anda yakin ingin mereset Beasiswa ?",
                     //  (" + userid + ")
-                    text: "Data Pengguna, Administrasi, Wawancara, Penugasan dan Periode akan dihapus.",
+                    text: "Data Pengguna, Administrasi, Wawancara, Penugasan, Periode, dan Lainnya akan dihapus.",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Ya, Hapus',

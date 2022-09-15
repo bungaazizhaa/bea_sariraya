@@ -188,8 +188,8 @@ class HomeController extends Controller
                 'remember_token' => '',
             ],
         );
-        Alert::html('Beasiswa Berhasil Direset. Semua Data Telah Terhapus.', " Username Admin = admin@gmail.com<br>Demi keamanan, segera ubah password default Anda di menu Pengaturan.", 'success');
-        return redirect(route('admin'));
+        Alert::html('Beasiswa Berhasil Direset. Semua Data Telah Terhapus.', " Username Admin = admin@gmail.com<br>Demi keamanan, segera ubah password default Anda di menu Pengaturan.", 'success')->autoClose(false);
+        return redirect(route('setting.beasiswa'));
     }
 
     public function trash(Request $request)

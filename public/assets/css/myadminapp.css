@@ -329,11 +329,27 @@ hr {
     border-radius: 15px !important;
 }
 
+button.swal2-confirm.swal2-styled {
+    padding: 8px 40px 8px 40px !important;
+    background-color: #12ac6c !important;
+    border-style: none !important;
+}
+
+button.swal2-confirm:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 .modal.fade.show,
 .swal2-backdrop-show:has(.swal2-modal) {
     backdrop-filter: blur(3px);
     background: #00000030 !important;
     background-color: #00000030 !important;
+}
+
+div.swal2-modal {
+    border-radius: 18px !important;
+    overflow: hidden !important;
 }
 
 /* .swal2-confirm {

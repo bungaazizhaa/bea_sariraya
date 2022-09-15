@@ -24,8 +24,7 @@ class VerificationController extends Controller
 
     public function redirectTo()
     {
-        Alert::success('Email Anda telah Terverifikasi.', 'Lanjutkan dengan unggah Foto 3x4 Anda.')
-            ->showConfirmButton('Oke', '#3085d6')->autoClose($milliseconds = 15000);
+        Alert::success('Email Anda telah Terverifikasi.', 'Lanjutkan dengan unggah Foto 3x4 Anda.')->autoClose(false);
         return RouteServiceProvider::HOME;
     }
 
