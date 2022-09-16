@@ -114,14 +114,15 @@
                         @endif
                     </div>
                     <!-- /.card-header -->
+                    @error('Foto')
+                        <div class="alert alert-danger mb-2 text-danger font-weight-bold" role="alert">{{ $message }}
+                        </div>
+                    @enderror
                     <div class="alert   d-flex mx-auto flex-column pt-2 pb-0">
                         <div class="mx-auto mb-2">
                             <img src="{{ asset('pictures') . '/' }}{{ Auth::user()->picture == '' ? 'noimg.png' : Auth::user()->picture }}"
                                 class="rounded" alt="User Image" height="280px" width="210px">
                         </div>
-                        @error('Foto')
-                            <div class="alert alert-danger mb-2" role="alert">{{ $message }}</div>
-                        @enderror
                     </div>
                     <!-- /.card-body -->
                 </div>

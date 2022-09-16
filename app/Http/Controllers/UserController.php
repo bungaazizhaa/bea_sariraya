@@ -17,6 +17,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -63,15 +64,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'name' => 'required|regex:/^[a-z A-Z]+$/u|string|max:255',
             'password' => 'string|min:8|confirmed|nullable',
+            'email' => 'string|max:255|' . Rule::unique("users")->ignore(Auth::user()->id),
         ]);
-        if ($request->email != Auth::user()->email) {
-            $validated = $request->validate([
-                'email' => 'unique:users|string|max:255',
-            ]);
+
+        if ($validator->fails()) {
+            Alert::error('Gagal memperbarui Akun.', 'Cek kesalahan pengisian.');
+            return back()->withErrors($validator)->withInput();
         }
+
         $user = User::find($id);
         $user->name = $request->name;
         if ($request->file('Foto') != null) {
@@ -98,13 +102,8 @@ class UserController extends Controller
         }
         $user->save();
 
-        if (!$user) {
-            Alert::danger('Gagal', 'Anda gagal mengubah user.');
-            return back();
-        } else {
-            Alert::success('Berhasil', 'Akun ' . $user->name . ' berhasil diperbarui.');
-            return redirect(route('setting.beasiswa'));
-        }
+        Alert::success('Berhasil', 'Akun ' . $user->name . ' berhasil diperbarui.');
+        return redirect(route('setting.beasiswa'));
     }
 
     public function destroy($id)
@@ -248,14 +247,9 @@ class UserController extends Controller
             $validator = Validator::make($request->all(), ['Foto' => 'required|mimes:jpeg,png,jpg|max:512']);
 
             if ($validator->fails()) {
-                $error = $validator->errors();
-                $error = json_decode($error, true);
-                Alert::error('Foto Gagal Diupload.', '' . $error['Foto'][0]);
+                Alert::error('Foto Gagal Diupload.', 'Cek kesalahan pengisian.');
+                return back()->withErrors($validator)->withInput();
             }
-
-            $validated = $request->validate([
-                'Foto' => 'required|mimes:jpeg,png,jpg|max:512',
-            ]);
 
             $path = $getPeriodeAktif->name . '/' . $request->user()->id . '/';
             $path2 = 'pictures' . '/';
@@ -296,20 +290,19 @@ class UserController extends Controller
             Alert::error('Waktu pengubahan sudah ditutup.', 'Data Akun Anda gagal diperbarui.');
             return redirect(route('profil.mahasiswa'));
         } else {
-            $request->validate([
+
+            $validator = Validator::make($request->all(), [
                 'name' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
-                'nim' => ['string', 'max:255'],
                 'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255', 'nullable'],
                 'password' => ['string', 'min:8', 'confirmed', 'nullable'],
+                'nim' => ['string', 'min:5', 'max:25', Rule::unique("users")->ignore(Auth::user()->id)],
+                'password' => ['sometimes', 'string', 'min:8', 'confirmed', 'nullable'],
             ]);
 
-            // if ($request->univ_id_manual != '') {
-            //     $request->validate([
-            //         'univ_id_manual' => ['string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
-            //     ]);
-            // }
-
-
+            if ($validator->fails()) {
+                Alert::error('Gagal memperbarui Akun.', 'Cek kesalahan pengisian.');
+                return back()->withErrors($validator)->withInput();
+            }
 
             $valueInputManual = $request->univ_id_manual;
             $id = Auth::user()->id;
@@ -330,12 +323,7 @@ class UserController extends Controller
                 File::copy(public_path($path2) . $new_image_name, public_path($path) . $new_image_name);
             }
 
-            if ($request->nim != '' && (Auth::user()->nim != $request->nim)) {
-                $request->validate([
-                    'nim' => ['string', 'min:5', 'max:255', 'unique:users'],
-                ]);
-                $user->nim = $request->nim;
-            }
+            $user->nim = $request->nim;
 
             if ($request->univ_id == 'other') {
                 $getUniv = Univ::where('nama_universitas', '=', $valueInputManual)->first();
@@ -350,12 +338,7 @@ class UserController extends Controller
                 $user->univ_id = $request->univ_id;
             }
 
-            if ($request->password != '') {
-                $request->validate([
-                    'password' => ['sometimes', 'string', 'min:8', 'confirmed'],
-                ]);
-                $user->password = Hash::make($request->password);
-            }
+            $user->password = Hash::make($request->password);
             $user->save();
 
             if (!$user) {

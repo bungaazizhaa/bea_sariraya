@@ -9,7 +9,7 @@
     <div class="container-fluid px-3">
         <!-- Main content -->
         <div class="row">
-            <div class="col-12 col-xs-6 col-md-6 col-xl-3">
+            <div class="col-12 col-xs-6 col-md-6">
                 <!-- small box -->
                 <div class="bg-dark rounded mb-3 p-2 pt-1" style="height: 45px;">
                     <div>
@@ -30,7 +30,7 @@
                         <h3 class="mb-1 mt-2">{{ count($getAllUser->where('role', '=', 'mahasiswa')) }} Akun</h3>
                         <p class="mb-1">Mahasiswa.</p>
                     </div>
-                    <div class="icon">
+                    <div class="icon d-none d-sm-none d-md-block d-lg-none d-xl-block">
                         <i class="ion">
                             <ion-icon class="ion-icon" name="people"></ion-icon>
                         </i>
@@ -45,7 +45,7 @@
                         <h3 class="mb-1 mt-2">{{ count($getAllPeriode) }} Periode</h3>
                         <p class="mb-1">Telah dibuat.</p>
                     </div>
-                    <div class="icon">
+                    <div class="icon d-none d-sm-none d-md-block d-lg-none d-xl-block">
                         <i class="ion">
                             <ion-icon name="school"></ion-icon>
                         </i>
@@ -57,15 +57,15 @@
                 <div onclick="location.href='{{ route('index.periode') }}'" class="small-box rounded-md myshadow"
                     style="height: 118px;">
                     <div class="inner">
+                        <div class="icon d-none d-sm-none d-md-block d-lg-none d-xl-block">
+                            <i class="ion">
+                                <ion-icon name="checkmark-circle"></ion-icon>
+                            </i>
+                        </div>
                         <h3 class="mb-1 mt-2">{{ count($getAllPeriode->where('status_png', '=', 'Selesai')) }}
                             Periode
                         </h3>
                         <p class="mb-1">Telah Selesai.</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion">
-                            <ion-icon name="checkmark-circle"></ion-icon>
-                        </i>
                     </div>
                 </div>
             </div>
@@ -76,13 +76,13 @@
                     class="small-box {{ isset($getPeriodeAktif->name) ? 'bg-selesai' : '' }} rounded-md myshadow"
                     style="height: 118px;">
                     <div class="inner">
-                        <h3 class="mb-1 {{ isset($getPeriodeAktif->name) ? 'mt-2' : 'mt-3' }}"
+                        <h3 class="mb-1 {{ isset($getPeriodeAktif->name) ? 'mt-2' : 'mt-3 mt-lg-2 mt-xl-3' }}"
                             style="{{ isset($getPeriodeAktif->name) ? '' : 'font-size: 28px!important;' }}">
                             {{ isset($getPeriodeAktif->name) ? ucfirst($getPeriodeAktif->name) : 'Tidak Ada' }}
                         </h3>
                         <p class="mb-1">Periode Aktif.</p>
                     </div>
-                    <div class="icon">
+                    <div class="icon d-none d-sm-none d-md-block d-lg-none d-xl-block">
                         <i class="ion">
                             <ion-icon name="school"></ion-icon>
                         </i>
@@ -208,10 +208,5 @@
                 autoclose: true,
             });
         });
-    </script>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
     </script>
 @endsection

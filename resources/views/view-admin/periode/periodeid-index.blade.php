@@ -3,7 +3,7 @@
     <title>Periode {{ ucfirst($periodeOpenned->name) }} Beasiswa Sariraya</title>
 @endsection
 @section('title')
-    <h4 class="m-0 p-0">Periode {{ ucfirst($periodeOpenned->name) }}</h4>
+    <h4 class="m-0 p-0">Detail Periode {{ ucfirst($periodeOpenned->name) }}</h4>
 @endsection
 @section('content')
     <!-- Main content -->
@@ -316,7 +316,7 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="card rounded-md">
+                <div class="card rounded-md mb-4">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-12">
