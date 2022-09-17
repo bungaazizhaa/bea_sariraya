@@ -155,19 +155,19 @@ class DatabaseSeeder extends Seeder
             ],
         );
 
-        User::create(
-            [
-                'name' => 'Budi Sanjaya',
-                'nim' => '21120118120024',
-                'univ_id' => '1',
-                'prodi_id' => '1',
-                'picture' => null,
-                'email_verified_at' => now(),
-                'email' => 'alvin.alvrahesta.dev@gmail.com',
-                'password' => bcrypt('12345678'),
-                'remember_token' => null,
-            ]
-        );
+        // User::create(
+        //     [
+        //         'name' => 'Budi Sanjaya',
+        //         'nim' => '21120118120024',
+        //         'univ_id' => '1',
+        //         'prodi_id' => '1',
+        //         'picture' => null,
+        //         'email_verified_at' => now(),
+        //         'email' => 'alvin.alvrahesta.dev@gmail.com',
+        //         'password' => bcrypt('12345678'),
+        //         'remember_token' => null,
+        //     ]
+        // );
         // User::factory(20)->create();
         // Administrasi::factory(4)->create();
     }
