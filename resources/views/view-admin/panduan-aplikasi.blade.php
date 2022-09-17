@@ -94,9 +94,8 @@
                                             (Nonaktif).</b>
                                         <br> - Pada bagian kanan atas, tekan tombol <b
                                             class="text-warning">&nbsp;Pengaturan&nbsp;</b>.
-                                        <br> - Setelah form muncul, tekan pada kolom <b
-                                            class="text-info">&nbsp;Nonaktif &nbsp;</b>dan ubah menjadi <b
-                                            class="text-info">&nbsp;Aktif&nbsp;</b>.
+                                        <br> - Setelah form muncul, tekan pada kolom <b class="text-info">&nbsp;Nonaktif
+                                            &nbsp;</b>dan ubah menjadi <b class="text-info">&nbsp;Aktif&nbsp;</b>.
                                         <br> - Kemudian tekan tombol <b class="text-info">Simpan Perubahan</b>.
                                         <br> - Selesai. Periode Baru sudah Aktif, dan peserta dapat melakukan Pendaftaran
                                         atau Registrasi
@@ -335,7 +334,4 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
-    </script>
 @endsection

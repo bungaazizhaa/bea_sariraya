@@ -13,12 +13,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class WawancaraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
+    //! Menampilkan Halaman Wawancara Mahasiswa
     public function index()
     {
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
@@ -27,6 +22,7 @@ class WawancaraController extends Controller
         return view('view-mahasiswa.wawancara.w-index', compact('tanggal_wawancara', 'getAdministrasiUser', 'getPeriodeAktif'));
     }
 
+    //! Menampilkan Halaman Penilaian Wawancara Admin
     public function nilaiWwn($name)
     {
         $getAllPeriode = Periode::all();
@@ -38,6 +34,7 @@ class WawancaraController extends Controller
         return view('view-admin.wawancara.nilai-wawancara', compact('getTanggalSekarang', 'periodeOpenned', 'wawancaraOpenned', 'getAllPeriode'));
     }
 
+    //! Memperbarui Penilaian Wawancara
     public function updatenilaiWwn(Request $request, $id)
     {
         $wawancaraSelected = Wawancara::where('id', '=', $id)->first();
@@ -72,6 +69,7 @@ class WawancaraController extends Controller
         return redirect()->back();
     }
 
+    //! Mengumumkan Tahap Wawancara (Menyatakan Selesai)
     public function setSelesaiWawancara($name)
     {
 

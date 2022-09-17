@@ -124,7 +124,7 @@
             <p class="h3 font-weight-bold mb-3">Pengaturan Landing Page</p>
             <div class="card rounded-md myshadow">
                 <div class="card-body">
-                    <form id="formKontakAdmin" method="POST" action="{{ route('update.kontakadmin') }}">
+                    <form id="formKontakAdmin" method="POST" action="{{ route('update.landingpage') }}">
                         @csrf
                         <div class="mb-3">
                             <label for="kontak1" class="col-md-4 col-form-label">{{ __('Kontak 1') }}</label>

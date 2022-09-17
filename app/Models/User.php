@@ -14,13 +14,8 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    public $table = "users";
+    protected $table = "users";
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'role',
@@ -35,20 +30,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'updated_at',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
@@ -67,10 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Administrasi::class);
     }
-    // public function Wawancara()
-    // {
-    //     return $this->hasManyThrough(Wawancara::class, Administrasi::class, 'user_id', 'administrasi_id');
-    // }
+
     public function Periode()
     {
         return $this->HasManyThrough(Periode::class, Administrasi::class);

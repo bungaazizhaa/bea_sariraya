@@ -15,12 +15,7 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class AdministrasiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
+    //! Menampilkan Halaman Formulir Administrasi
     public function index()
     {
         $info = '';
@@ -35,6 +30,17 @@ class AdministrasiController extends Controller
         }
     }
 
+    //! Menampilkan Halaman Penilaian Administrasi
+    public function nilaiAdm($name)
+    {
+        $getAllPeriode = Periode::all();
+        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
+        $periodeOpenned = Periode::where('name', '=', $name)->first();
+        $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->filter(request(['search']))->paginate(1)->onEachSide(0)->withQueryString();
+        return view('view-admin.administrasi.nilai-administrasi', compact('getTanggalSekarang', 'periodeOpenned', 'administrasiOpenned', 'getAllPeriode'));
+    }
+
+    //! Menghapus File Administrasi
     public function fileadmDestroy($column)
     {
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
@@ -51,15 +57,7 @@ class AdministrasiController extends Controller
         return back();
     }
 
-    public function nilaiAdm($name)
-    {
-        $getAllPeriode = Periode::all();
-        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
-        $periodeOpenned = Periode::where('name', '=', $name)->first();
-        $administrasiOpenned = Administrasi::where('periode_id', '=', $periodeOpenned->id_periode)->filter(request(['search']))->paginate(1)->onEachSide(0)->withQueryString();
-        return view('view-admin.administrasi.nilai-administrasi', compact('getTanggalSekarang', 'periodeOpenned', 'administrasiOpenned', 'getAllPeriode'));
-    }
-
+    //! Memperbarui Penilaian Administrasi
     public function updatenilaiAdm(Request $request, $id)
     {
         $administrasiSelected = Administrasi::where('id', '=', $id)->first();
@@ -94,6 +92,7 @@ class AdministrasiController extends Controller
         return redirect()->back();
     }
 
+    //! Menampilkan Detail Administrasi Mhs Setelah Waktu Ditutup
     public function detailAdm()
     {
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
@@ -107,6 +106,7 @@ class AdministrasiController extends Controller
         }
     }
 
+    //! Memperbarui Formulir Administrasi Mahasiswa
     public function update(Request $request)
     {
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
@@ -308,6 +308,7 @@ class AdministrasiController extends Controller
         return redirect(route('tahap.administrasi'));
     }
 
+    //! Mengumumkan Tahap Administrasi (Menyatakan Selesai)
     public function setSelesaiAdministrasi($name)
     {
 

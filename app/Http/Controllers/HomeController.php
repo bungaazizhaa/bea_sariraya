@@ -21,15 +21,6 @@ use RecursiveIteratorIterator;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
 
     /**
      * Show the application dashboard.
@@ -41,8 +32,7 @@ class HomeController extends Controller
     //     return view('view-admin.dashboard');
     // }
 
-    /* SEMENTARA */
-
+    //! === View Halaman Landing Page ===
     public function indexLandingPage()
     {
         Landingpage::where('name', '=', 'views')->first()->increment('keterangan');
@@ -54,46 +44,7 @@ class HomeController extends Controller
         return view('landing-page', compact('getPeriodeAktif', 'getTanggalSekarang', 'getKontak1', 'getKontak2', 'getPemberian'));
     }
 
-    public function previewTeknisWwn()
-    {
-        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        return view('view-admin.preview-tekniswwn', compact('getPeriodeAktif'));
-    }
-
-    public function panduanAplikasi()
-    {
-        $getAllPeriode = Periode::all();
-        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        return view('view-admin.panduan-aplikasi', compact('getPeriodeAktif', 'getAllPeriode'));
-    }
-
-    public function indexAdmin()
-    {
-        $getAllUser = User::all();
-        $getAllUniv = Univ::all();
-        $getAllPeriode = Periode::all();
-        $getAllAdministrasi = Administrasi::all();
-        $getAllWawancara = Wawancara::all();
-        $getPeriodeLast = Periode::orderBy('id_periode', 'desc')->value('id_periode');
-        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
-        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        return view('view-admin.dashboard', compact('getAllUser', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAllPeriode', 'getPeriodeLast', 'getAllAdministrasi', 'getAllWawancara'));
-    }
-
-    public function viewSetting()
-    {
-        $getAllUser = User::all();
-        $getAllUniv = Univ::all();
-        $getAllPeriode = Periode::all();
-        $getPeriodeLast = Periode::orderBy('id_periode', 'desc')->value('id_periode');
-        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
-        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
-        $getKontak1 = Landingpage::where('id', '=', 2)->first();
-        $getKontak2 = Landingpage::where('id', '=', 3)->first();
-        $getPemberian = Landingpage::where('id', '=', 4)->first();
-        return view('view-admin.setting', compact('getAllUser', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAllPeriode', 'getPeriodeLast', 'getKontak1', 'getKontak2', 'getPemberian'));
-    }
-
+    //! === View Halaman Profil Mahasiswa ===
     public function indexMahasiswa()
     {
         $getAllUniv = Univ::all();
@@ -109,21 +60,51 @@ class HomeController extends Controller
         return view('view-mahasiswa.profil-mahasiswa', compact('getUserLoggedIn', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAdministrasiUser'));
     }
 
-    public function updateKontakAdmin(Request $request)
+    //! === View Halaman Dashboard Admin ===
+    public function indexAdmin()
     {
-        $getKontak1 = Landingpage::where('id', '=', 2)->first();
-        $getKontak1->keterangan = $request->kontak1;
-        $getKontak1->save();
-        $getKontak2 = Landingpage::where('id', '=', 3)->first();
-        $getKontak2->keterangan = $request->kontak2;
-        $getKontak2->save();
-        $getPemberian = Landingpage::where('id', '=', 4)->first();
-        $getPemberian->keterangan = $request->pemberian;
-        $getPemberian->save();
-        Alert::toast('Data Halaman Utama Berhasil diperbarui.', 'success');
-        return redirect(route('setting.beasiswa'));
+        $getAllUser = User::all();
+        $getAllUniv = Univ::all();
+        $getAllPeriode = Periode::all();
+        $getAllAdministrasi = Administrasi::all();
+        $getAllWawancara = Wawancara::all();
+        $getPeriodeLast = Periode::orderBy('id_periode', 'desc')->value('id_periode');
+        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        return view('view-admin.dashboard', compact('getAllUser', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAllPeriode', 'getPeriodeLast', 'getAllAdministrasi', 'getAllWawancara'));
     }
 
+    //! === View Halaman Panduan App ===
+    public function panduanAplikasi()
+    {
+        $getAllPeriode = Periode::all();
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        return view('view-admin.panduan-aplikasi', compact('getPeriodeAktif', 'getAllPeriode'));
+    }
+
+    //! === View Halaman Setting ===
+    public function viewSetting()
+    {
+        $getAllUser = User::all();
+        $getAllUniv = Univ::all();
+        $getAllPeriode = Periode::all();
+        $getPeriodeLast = Periode::orderBy('id_periode', 'desc')->value('id_periode');
+        $getTanggalSekarang = Carbon::now()->format('Y-m-d');
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        $getKontak1 = Landingpage::where('id', '=', 2)->first();
+        $getKontak2 = Landingpage::where('id', '=', 3)->first();
+        $getPemberian = Landingpage::where('id', '=', 4)->first();
+        return view('view-admin.setting', compact('getAllUser', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAllPeriode', 'getPeriodeLast', 'getKontak1', 'getKontak2', 'getPemberian'));
+    }
+
+    //! === View Halaman Preview Teknis Wwn ===
+    public function previewTeknisWwn()
+    {
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
+        return view('view-admin.preview-tekniswwn', compact('getPeriodeAktif'));
+    }
+
+    //! === Melakukan Reset Beasiswa ===
     public function resetBeasiswa()
     {
         $getAllBatch = Periode::All();
@@ -192,6 +173,23 @@ class HomeController extends Controller
         return redirect(route('setting.beasiswa'));
     }
 
+    //! === Update Data Landing Page ===
+    public function updateLandingPage(Request $request)
+    {
+        $getKontak1 = Landingpage::where('id', '=', 2)->first();
+        $getKontak1->keterangan = $request->kontak1;
+        $getKontak1->save();
+        $getKontak2 = Landingpage::where('id', '=', 3)->first();
+        $getKontak2->keterangan = $request->kontak2;
+        $getKontak2->save();
+        $getPemberian = Landingpage::where('id', '=', 4)->first();
+        $getPemberian->keterangan = $request->pemberian;
+        $getPemberian->save();
+        Alert::toast('Data Halaman Utama Berhasil diperbarui.', 'success');
+        return redirect(route('setting.beasiswa'));
+    }
+
+    //! === View Halaman Data Terhapus ===
     public function trash(Request $request)
     {
         $getAllUniv = Univ::all();

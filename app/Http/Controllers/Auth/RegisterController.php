@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\Univ;
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Prodi;
 use Illuminate\Support\Facades\Hash;
@@ -63,7 +62,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         if (isset($data['Input_Universitas'])) {
-            return Validator::make($data, [
+            $validator = Validator::make($data, [
                 'name' => ['required', 'string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
                 'nim' => ['required', 'string', 'min:5', 'max:25', 'unique:users'],
                 'univ_id' => ['required'],
@@ -73,7 +72,7 @@ class RegisterController extends Controller
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
         } else {
-            return Validator::make($data, [
+            $validator = Validator::make($data, [
                 'name' => ['required', 'string', 'regex:/^[a-z A-Z]+$/u', 'max:255'],
                 'nim' => ['required', 'string', 'min:5', 'max:25', 'unique:users'],
                 'univ_id' => ['required'],
@@ -83,6 +82,8 @@ class RegisterController extends Controller
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
         }
+
+        return $validator;
     }
 
     /**
@@ -93,13 +94,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         $checkLocation = geoip()->getLocation(isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']));
         Alert::success('Registrasi Berhasil.', 'Silahkan lengkapi data Anda!');
         if ($data['univ_id'] == "other") {
             $getUniv = Univ::where('nama_universitas', '=', $data['Input_Universitas'])->first();
 
             if ($getUniv) {
-                return User::create([
+                $user = User::create([
                     'name' => $data['name'],
                     'nim' => $data['nim'],
                     'univ_id' => $getUniv->id,
@@ -108,12 +110,14 @@ class RegisterController extends Controller
                     'password' => Hash::make($data['password']),
                     'info_login' => $checkLocation['city'] . ', ' . $checkLocation['state_name'] . ', ' . $checkLocation['country'] . ' (' . $checkLocation['ip'] . ')',
                 ]);
+                Auth::login($user);
+                return $user;
             } else {
                 Univ::create([
                     'nama_universitas' => $data['Input_Universitas'],
                 ]);
                 $getUniv = Univ::where('nama_universitas', '=', $data['Input_Universitas'])->first();
-                return User::create([
+                $user = User::create([
                     'name' => $data['name'],
                     'nim' => $data['nim'],
                     'univ_id' => $getUniv->id,
@@ -122,9 +126,11 @@ class RegisterController extends Controller
                     'password' => Hash::make($data['password']),
                     'info_login' => $checkLocation['city'] . ', ' . $checkLocation['state_name'] . ', ' . $checkLocation['country'] . ' (' . $checkLocation['ip'] . ')',
                 ]);
+                Auth::login($user);
+                return $user;
             }
         } else {
-            return User::create([
+            $user = User::create([
                 'name' => $data['name'],
                 'nim' => $data['nim'],
                 'univ_id' => $data['univ_id'],
@@ -133,6 +139,8 @@ class RegisterController extends Controller
                 'password' => Hash::make($data['password']),
                 'info_login' => $checkLocation['city'] . ', ' . $checkLocation['state_name'] . ', ' . $checkLocation['country'] . ' (' . $checkLocation['ip'] . ')',
             ]);
+            Auth::login($user);
+            return $user;
         }
     }
 }

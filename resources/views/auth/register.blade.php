@@ -194,7 +194,7 @@
                             </div>
                             <div class="text-center">
                                 <div class="button-submit">
-                                    <button type="submit" class="btn tombol mb-3">Register</button>
+                                    <button type="submit" class="btn tombol mb-3 buttonSubmit">Register</button>
                                 </div>
                                 <p class="font-weight-normal mb-0">Sudah punya akun ? <a
                                         href="{{ route('login') }}">Login
@@ -234,6 +234,29 @@
 
             }
         }
+    </script>
+
+    <script>
+        $(".buttonSubmit").click(function() {
+            $(this).html(
+                '  <span class="spinner-border spinner-border-sm my-1" role="status" aria-hidden="true"></span> Tunggu...'
+            );
+            var isValid = true;
+            $('input').filter('[required]:visible').each(function() {
+                if ($(this).val() === '')
+                    isValid = false;
+            });
+
+            if (isValid === true) {
+                $(this).closest('form').submit();
+                $(this).prop("disabled", true);
+            } else {
+                setTimeout(() => {
+                    $(this).prop("disabled", false);
+                    $(this).html("Register");
+                }, 100);
+            }
+        });
     </script>
 </body>
 

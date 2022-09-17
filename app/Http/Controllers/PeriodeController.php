@@ -16,11 +16,7 @@ use RecursiveIteratorIterator;
 
 class PeriodeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //! Menampilkan Halaman List Periode
     public function index()
     {
         $getAllPeriode = Periode::all();
@@ -30,6 +26,7 @@ class PeriodeController extends Controller
         return view('view-admin.periode.periode-index', compact('getAllPeriode', 'getPeriodeLast', 'getTanggalSekarang', 'getPeriodeAktif'));
     }
 
+    //! Menampilkan Halaman Detail Periode
     public function indexPeriodeById($name)
     {
         $getAllUniv = Univ::all();
@@ -81,12 +78,7 @@ class PeriodeController extends Controller
         return view('view-admin.periode.periodeid-index', compact('periodeOpenned', 'getAllUniv', 'getAllPeriode', 'getTanggalSekarang', 'getAllAdmLolos', 'getAllAdmGagal', 'getAllWwnLolos', 'getAllWwnGagal', 'getAllPngLolos', 'getAllPngGagal', 'getAdministrasiUser'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //! Membuat Periode Baru
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -138,20 +130,7 @@ class PeriodeController extends Controller
         return redirect(route('periode', $request['name']));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
+    //! Menyimpan Link Grup WA
     public function groupwaUpdate(Request $request, $name)
     {
         $periodeSelected = Periode::where('name', '=', $name)->first();
@@ -161,6 +140,7 @@ class PeriodeController extends Controller
         return redirect(route('periode', $name));
     }
 
+    //! Menyimpan Deskripsi Teknis Wawancara
     public function tekniswwnUpdate(Request $request, $name)
     {
         $periodeSelected = Periode::where('name', '=', $name)->first();
@@ -173,14 +153,7 @@ class PeriodeController extends Controller
         return redirect(route('periode', $name));
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //! Memperbarui Periode
     public function update(Request $request, $name)
     {
         $validator = Validator::make($request->all(), [
@@ -252,6 +225,7 @@ class PeriodeController extends Controller
         return redirect(route('periode', $periode->name));
     }
 
+    //! Mengembalikan Periode Terhapus
     public function restore($name = null)
     {
         if ($name != null) {
@@ -264,6 +238,7 @@ class PeriodeController extends Controller
         return redirect(route('trash'));
     }
 
+    //! Menghapus Sementara Periode
     public function destroy($name)
     {
         $getBatch = Periode::where('name', '=', $name)->first()->delete();
@@ -272,6 +247,7 @@ class PeriodeController extends Controller
         return redirect(route('index.periode'));
     }
 
+    //! Menghapus Permanen Periode
     public function forceDestroy($name = null)
     {
         if ($name != null) {

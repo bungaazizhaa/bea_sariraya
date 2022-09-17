@@ -9,7 +9,7 @@ class Administrasi extends Model
 {
     use HasFactory;
 
-    public $table = "administrasis";
+    protected $table = "administrasis";
 
     protected $dates = [
         'tanggal_lahir',
@@ -22,6 +22,20 @@ class Administrasi extends Model
         'id',
     ];
 
+    public function Periode()
+    {
+        return $this->hasOne(Periode::class, 'id_periode', 'periode_id');
+    }
+
+    public function Wawancara()
+    {
+        return $this->hasOne(Wawancara::class, 'administrasi_id');
+    }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function scopeFilter($query, array $filters)
     {
@@ -41,20 +55,5 @@ class Administrasi extends Model
                 });
             });
         });
-    }
-
-    public function Periode()
-    {
-        return $this->hasOne(Periode::class, 'id_periode', 'periode_id');
-    }
-
-    public function Wawancara()
-    {
-        return $this->hasOne(Wawancara::class, 'administrasi_id');
-    }
-
-    public function User()
-    {
-        return $this->belongsTo(User::class);
     }
 }

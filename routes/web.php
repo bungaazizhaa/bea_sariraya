@@ -52,7 +52,7 @@ Route::get('/tahap-penugasan', [PenugasanController::class, 'index'])->name('tah
 Route::middleware(['auth', 'role:admin'])->group(function () {
     //! Umum
     Route::get('/admin/setting', [HomeController::class, 'viewSetting'])->name('setting.beasiswa'); //Todo: Halaman Setting Admin
-    Route::post('/admin/update-kontak', [HomeController::class, 'updateKontakAdmin'])->name('update.kontakadmin'); //Todo: Update - Kontak di Pengaturan
+    Route::post('/admin/update-kontak', [HomeController::class, 'updateLandingPage'])->name('update.landingpage'); //Todo: Update - Kontak di Pengaturan
     Route::post('/admin/reset-beasiswa', [HomeController::class, 'resetBeasiswa'])->name('reset.beasiswa'); //Todo: Delete - Reset Database di Pengaturan
     Route::get('/admin/trash', [HomeController::class, 'trash'])->name('trash'); //Todo: Halaman Trash
     Route::get('/dashboard', [HomeController::class, 'indexAdmin'])->name('admin'); //Todo: Halaman Dashboard

@@ -9,7 +9,7 @@ class Wawancara extends Model
 {
     use HasFactory;
 
-    public $table = "wawancaras";
+    protected $table = "wawancaras";
 
     protected $dates = [
         'jadwal_wwn',
@@ -20,6 +20,21 @@ class Wawancara extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function Administrasi()
+    {
+        return $this->belongsTo(Administrasi::class, 'administrasi_id');
+    }
+
+    public function Penugasan()
+    {
+        return $this->hasOne(Penugasan::class, 'wawancara_id');
+    }
+
+    public function User()
+    {
+        return $this->hasOneThrough(User::class, Administrasi::class, 'id', 'id', 'administrasi_id', 'user_id');
+    }
 
     public function scopeFilter($query, array $filters)
     {
@@ -40,20 +55,5 @@ class Wawancara extends Model
                 });
             });
         });
-    }
-
-    public function Administrasi()
-    {
-        return $this->belongsTo(Administrasi::class, 'administrasi_id');
-    }
-
-    public function Penugasan()
-    {
-        return $this->hasOne(Penugasan::class, 'wawancara_id');
-    }
-
-    public function User()
-    {
-        return $this->hasOneThrough(User::class, Administrasi::class, 'id', 'id', 'administrasi_id', 'user_id');
     }
 }

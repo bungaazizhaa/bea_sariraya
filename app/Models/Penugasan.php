@@ -9,7 +9,7 @@ class Penugasan extends Model
 {
     use HasFactory;
 
-    public $table = "penugasans";
+    protected $table = "penugasans";
 
     protected $dates = [
         'email_sent_at',
@@ -19,6 +19,16 @@ class Penugasan extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function Periode()
+    {
+        return $this->hasMany(Periode::class);
+    }
+
+    public function Wawancara()
+    {
+        return $this->belongsTo(Wawancara::class, 'wawancara_id');
+    }
 
     public function scopeFilter($query, array $filters)
     {
@@ -41,15 +51,5 @@ class Penugasan extends Model
                 });
             });
         });
-    }
-
-    public function Periode()
-    {
-        return $this->hasMany(Periode::class);
-    }
-
-    public function Wawancara()
-    {
-        return $this->belongsTo(Wawancara::class, 'wawancara_id');
     }
 }

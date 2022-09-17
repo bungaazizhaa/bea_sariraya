@@ -14,12 +14,7 @@ use Illuminate\Support\Facades\Validator;
 
 class PenugasanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
+    //! Menampilkan Halaman Penugasan Mahasiswa
     public function index()
     {
         $info = '';
@@ -34,6 +29,7 @@ class PenugasanController extends Controller
         }
     }
 
+    //! Menampilkan Halaman Penilaian Tugas
     public function nilaiPng($name)
     {
         $getAllPeriode = Periode::all();
@@ -46,6 +42,7 @@ class PenugasanController extends Controller
         return view('view-admin.penugasan.nilai-penugasan', compact('getTanggalSekarang', 'periodeOpenned', 'wawancaraOpenned', 'penugasanOpenned', 'getAllPeriode'));
     }
 
+    //! Memperbarui Penilaian Tugas
     public function updatenilaiPng(Request $request, $id)
     {
         $penugasanSelected = Penugasan::where('id', '=', $id)->first();
@@ -57,13 +54,7 @@ class PenugasanController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //! Memperbarui Jawaban Tugas Mahasiswa
     public function update(Request $request)
     {
 
@@ -113,12 +104,7 @@ class PenugasanController extends Controller
         return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //! Menghapus File Jawaban Tugas
     public function filejawabanDestroy($id)
     {
         $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
@@ -132,6 +118,7 @@ class PenugasanController extends Controller
         return back();
     }
 
+    //! Mengumumkan Tahap Penugasan (Menyatakan Selesai)
     public function setSelesaiPenugasan($name)
     {
 

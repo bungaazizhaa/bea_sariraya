@@ -308,7 +308,7 @@
                 setTimeout(() => {
                     $(this).prop("disabled", false);
                     $(this).html("Tambahkan");
-                }, 10);
+                }, 100);
             }
         });
     </script>

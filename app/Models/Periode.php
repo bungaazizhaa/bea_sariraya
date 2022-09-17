@@ -10,7 +10,7 @@ class Periode extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public $table = "periodes";
+    protected $table = "periodes";
 
     protected $dates = [
         'tm_adm',

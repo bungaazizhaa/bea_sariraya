@@ -22,12 +22,7 @@ use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //! Menampilkan Halaman Detail Pengguna
     public function show($id)
     {
         $getAllPeriode = Periode::all();
@@ -36,6 +31,7 @@ class UserController extends Controller
         return view('view-admin.user.u-show', compact('getUser', 'getAdministrasiUser', 'getAllPeriode'));
     }
 
+    //! Menampilkan Halaman List Pengguna Card
     public function showDataPengguna()
     {
         $getAllUniv = Univ::all();
@@ -46,6 +42,7 @@ class UserController extends Controller
         return view('view-admin.user.u-index', compact('getPeriodeAktif', 'getAllUniv', 'getAllPeriode', 'getAllUser', 'getUser'));
     }
 
+    //! Menampilkan Halaman List Pengguna Tabel
     public function showDataPenggunaTabel()
     {
         $getAllUniv = Univ::all();
@@ -55,13 +52,7 @@ class UserController extends Controller
         return view('view-admin.user.u-indextable', compact('getPeriodeAktif', 'getAllUniv', 'getAllPeriode', 'getAllUser'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //! Memperbarui Akun Admin
     public function update(Request $request, $id)
     {
 
@@ -106,6 +97,7 @@ class UserController extends Controller
         return redirect(route('setting.beasiswa'));
     }
 
+    //! Menghapus Sementara Pengguna
     public function destroy($id)
     {
 
@@ -122,13 +114,7 @@ class UserController extends Controller
         }
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //! Menghapus Permanen Pengguna
     public function forceDestroy($id = null)
     {
         if ($id != null) {
@@ -211,6 +197,7 @@ class UserController extends Controller
         }
     }
 
+    //! Mengembalikan Akun Pengguna
     public function restore($id = null)
     {
         if ($id != null) {
@@ -235,6 +222,7 @@ class UserController extends Controller
         }
     }
 
+    //! Mengunggah Foto Mahasiswa
     public function uploadFoto(Request $request)
     {
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
@@ -282,6 +270,7 @@ class UserController extends Controller
         return redirect(route('profil.mahasiswa'));
     }
 
+    //! Memperbarui Data Akun Mahasiswa
     public function updateMyUser(Request $request)
     {
         $getTanggalSekarang = Carbon::now()->format('Y-m-d');
