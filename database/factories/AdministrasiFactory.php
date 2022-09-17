@@ -20,11 +20,11 @@ class AdministrasiFactory extends Factory
         $id = IdGenerator::generate(['table' => 'administrasis', 'field' => 'no_pendaftaran', 'reset_on_prefix_change' => true, 'length' => 7, 'prefix' => 'B' . $getPeriodeAktif->id_periode . '-']);
         static $no = 2;
         return [
-            'no_pendaftaran' => $id,
-            'user_id' => mt_rand(2, 7),
-            // 'user_id' => $no++,
-            'periode_id' => mt_rand(1, 3),
-            // 'periode_id' => 3,
+            'no_pendaftaran' => $id . $no++,
+            // 'user_id' => mt_rand(2, 7),
+            'user_id' => $no++,
+            // 'periode_id' => mt_rand(1, 1),
+            'periode_id' => 1,
             'tempat_lahir' => $this->faker->city(),
             'tanggal_lahir' => $this->faker->date(),
             'semester' => mt_rand(6, 8),
@@ -40,7 +40,7 @@ class AdministrasiFactory extends Factory
             'instagram' => $this->faker->userName(),
             'facebook' => $this->faker->userName(),
             'status_adm' => $this->faker->randomElement(['lolos', 'gagal']),
-            'catatan' => $this->faker->paragraph(2),
+            'catatan' => $this->faker->sentence(1),
         ];
     }
 }

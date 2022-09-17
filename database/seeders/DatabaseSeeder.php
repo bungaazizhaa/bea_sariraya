@@ -25,21 +25,22 @@ class DatabaseSeeder extends Seeder
         //     [
         //         'id_periode' => '1',
         //         'name' => 'batch-1',
-        //         'tm_adm' => '2021-01-23',
-        //         'ta_adm' => '2021-01-26',
-        //         'tp_adm' => '2021-01-30',
-        //         'status_adm' => 'Selesai',
-        //         'ts_adm' => '2021-01-30 16:00:01',
-        //         'tm_wwn' => '2021-02-10',
-        //         'ta_wwn' => '2021-02-20',
-        //         'tp_wwn' => '2021-02-25',
-        //         'status_wwn' => 'Selesai',
-        //         'ts_wwn' => '2021-02-25 16:00:01',
-        //         'tm_png' => '2021-03-05',
-        //         'ta_png' => '2021-03-15',
-        //         'tp_png' => '2021-03-20',
-        //         'status_png' => 'Selesai',
-        //         'ts_png' => '2021-03-20 16:00:01',
+        //         'tm_adm' => '2022-09-15',
+        //         'ta_adm' => '2022-09-25',
+        //         'tp_adm' => '2022-09-29',
+        //         'status_adm' => null,
+        //         'ts_adm' => null,
+        //         'tm_wwn' => '2022-10-05',
+        //         'ta_wwn' => '2022-10-10',
+        //         'tp_wwn' => '2022-10-15',
+        //         'status_wwn' => null,
+        //         'ts_wwn' => null,
+        //         'tm_png' => '2022-10-25',
+        //         'ta_png' => '2022-10-29',
+        //         'tp_png' => '2022-10-30',
+        //         'status_png' => null,
+        //         'ts_png' => null,
+        //         'status' => 'aktif',
         //     ],
         // );
         // Periode::create(
@@ -154,20 +155,20 @@ class DatabaseSeeder extends Seeder
             ],
         );
 
-        // User::create(
-        //     [
-        //         'name' => 'Budi Sanjaya',
-        //         'nim' => '21120118120024',
-        //         'univ_id' => '1',
-        //         'prodi_id' => '1',
-        //         'picture' => null,
-        //         'email_verified_at' => now(),
-        //         'email' => 'alvin.alvrahesta.dev@gmail.com',
-        //         'password' => bcrypt('12345678'),
-        //         'remember_token' => null,
-        //     ]
-        // );
-        // User::factory(50)->create();
-        // Administrasi::factory(105)->create();
+        User::create(
+            [
+                'name' => 'Budi Sanjaya',
+                'nim' => '21120118120024',
+                'univ_id' => '1',
+                'prodi_id' => '1',
+                'picture' => null,
+                'email_verified_at' => now(),
+                'email' => 'alvin.alvrahesta.dev@gmail.com',
+                'password' => bcrypt('12345678'),
+                'remember_token' => null,
+            ]
+        );
+        // User::factory(20)->create();
+        // Administrasi::factory(4)->create();
     }
 }
