@@ -44,6 +44,7 @@
                                 <thead class="text-secondary">
                                     <tr>
                                         <th>No</th>
+                                        <th>Dihapus</th>
                                         <th>ID</th>
                                         <th>Foto</th>
                                         <th>Nama</th>
@@ -61,6 +62,7 @@
                                         @foreach ($getAllUserTrashed as $user)
                                             <tr>
                                                 <td>{{ $i++ }}</td>
+                                                <td>{{ $user->deleted_at->translatedFormat('d M Y - H:i') }} WIB</td>
                                                 <td>{{ $user->id }}</td>
                                                 <td><img src="{{ asset('pictures') . '/' }}{{ $user->picture == '' ? 'noimg.png' : $user->picture }}"
                                                         class="rounded" alt="User Image" height="80px" width="60px">
@@ -132,6 +134,7 @@
                                 <thead class="text-secondary">
                                     <tr>
                                         <th>No</th>
+                                        <th>Dihapus</th>
                                         <th>ID</th>
                                         <th>Nama</th>
                                         <th>Status Adm</th>
@@ -146,6 +149,7 @@
                                     @foreach ($getAllPeriodeTrashed as $periode)
                                         <tr>
                                             <td>{{ $i++ }}</td>
+                                            <td>{{ $periode->deleted_at->translatedFormat('d M Y - H:i') }} WIB</td>
                                             <td>{{ $periode->id_periode }}</td>
                                             <td>{{ ucfirst($periode->name) }}</td>
                                             <td>{{ $periode->status_adm ? $periode->status_adm : '-' }}</td>
@@ -268,7 +272,7 @@
                     reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "admin/data-pengguna/restore/"
+                        window.location = "/admin/data-pengguna/restore/"
                     } else(
                         /* Read more about handling dismissals below */
                         result.dismiss === Swal.DismissReason.cancel

@@ -99,7 +99,7 @@
 
         <!-- Main content -->
         <div class="row">
-            <div class="col-lg-4 pr-md-0">
+            <div class="col-lg-4 pr-xl-0">
                 <div class="alert alert-secondary myshadow mb-3 kotakprofil">
                     <div class="mb-3 pt-1 mx-auto rounded-top-md">
                         <span class="h5 ">Foto</span>
