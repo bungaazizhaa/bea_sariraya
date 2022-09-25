@@ -145,54 +145,49 @@
                         @endif
                     </div><!-- /.card-header -->
                     <!-- Table row -->
-                    <div class="row px-3">
-                        <div class="col-12 alert table-responsive">
-                            <table class="table mb-0">
+                    <div class="row px-0 m-0">
+                        <div class="col-12 alert table-responsive p-0 pr-3 m-0">
+                            <table class="table p-0 m-0">
                                 <tbody>
-                                    <tr>
-                                        <th style="width: 30%">Nama</td>
+                                    <tr style="margin-top: 0;">
+                                        <th style="padding-left: 0;" style="width: 28%;">Nama</td>
                                         <th style="width: 2%">:</td>
                                         <th style="width: 68%">{{ Auth::user()->name }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Email Address</th>
+                                        <th style="padding-left: 0;">Email Address</th>
                                         <th>:</th>
                                         <th>{{ Auth::user()->email }}</th>
                                     </tr>
                                     <tr>
-                                        <th>Perguruan Tinggi</th>
+                                        <th style="padding-left: 0;">Perguruan Tinggi</th>
                                         <th>:</th>
                                         <th>{{ Auth::user()->univ->nama_universitas }}</th>
                                     </tr>
                                     <tr>
-                                        <th>Program Studi</th>
+                                        <th style="padding-left: 0;">Program Studi</th>
                                         <th>:</th>
                                         <th>{{ Auth::user()->prodi->nama_prodi }}</th>
                                     </tr>
                                     <tr>
-                                        <th>NIM</th>
+                                        <th style="padding-left: 0;">NIM</th>
                                         <th>:</th>
                                         <th>{{ Auth::user()->nim }}</th>
                                     </tr>
-                                    {{-- <tr>
-                                                        <td>ID User</td>
-                                                        <td>:</td>
-                                                        <td>{{ Auth::user()->id }}</td>
-                                </tr> --}}
                                     <tr>
-                                        <td>Email Terverifikasi</td>
+                                        <td style="padding-left: 0;">Email Terverifikasi</td>
                                         <td>:</td>
                                         <td>{{ Auth::user()->email_verified_at == '' ? '' : Auth::user()->email_verified_at->translatedFormat('l, d F Y - H:i:s') }}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Akun Dibuat</td>
+                                        <td style="padding-left: 0;">Akun Dibuat</td>
                                         <td>:</td>
                                         <td>{{ Auth::user()->created_at == '' ? '' : Auth::user()->created_at->translatedFormat('l, d F Y - H:i:s') }}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Akun Diperbarui</td>
+                                        <td style="padding-left: 0;">Akun Diperbarui</td>
                                         <td>:</td>
                                         <td>{{ Auth::user()->updated_at == '' ? '' : Auth::user()->updated_at->translatedFormat('l, d F Y - H:i:s') }}
                                         </td>

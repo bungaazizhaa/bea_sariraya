@@ -1,8 +1,8 @@
 html,
 body {
     height: 100%;
-    font-family: Montserrat;
-    font-style: normal;
+    font-family: 'Montserrat', sans-serif;
+    /* font-style: normal; */
     color: #000000;
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -326,6 +326,14 @@ button.swal2-confirm:focus {
     backdrop-filter: blur(3px);
     background: #00000030 !important;
     background-color: #00000030 !important;
+}
+
+.swal2-icon-success .swal2-timer-progress-bar {
+    background-color: #00bc8c !important;
+}
+
+.swal2-icon-error .swal2-timer-progress-bar {
+    background-color: #f27474 !important;
 }
 
 div.swal2-modal {

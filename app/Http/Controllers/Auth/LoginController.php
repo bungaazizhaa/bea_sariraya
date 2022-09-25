@@ -62,7 +62,7 @@ class LoginController extends Controller
         $user->info_login = $checkLocation['city'] . ', ' . $checkLocation['state_name'] . ', ' . $checkLocation['country'] . ' (' . $checkLocation['ip'] . ')';
         $user->save();
         if (Auth::user()->role === 'admin') {
-            Alert::success('Login Berhasil.', 'Anda Login sebagai ' . Auth::user()->name . " (" . Auth::user()->role . ").");
+            Alert::success('Login Berhasil.', 'Anda Login sebagai ' . Auth::user()->name . " (" . ucfirst(Auth::user()->role) . ").");
             return redirect(route('admin'));
         } else {
             $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
