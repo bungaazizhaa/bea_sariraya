@@ -98,7 +98,7 @@
                                                                 <div style="line-height:10px"><a
                                                                         href="https://sariraya.com/" target="_blank"
                                                                         style="outline:none" tabindex="-1"><img
-                                                                            src="https://d15k2d11r6t6rl.cloudfront.net/public/users/BeeFree/beefree-no38foxedir/logo.png"
+                                                                            src="https://beasiswa.sariraya.com/assets/images/logo.png"
                                                                             style="display: block; height: auto; border: 0; width: 125px; max-width: 100%;"
                                                                             width="125"></a></div>
                                                             </td>
