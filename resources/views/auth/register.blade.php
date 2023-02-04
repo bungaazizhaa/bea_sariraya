@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
@@ -68,8 +67,8 @@
                     <img src="{{ asset('assets/images/logo.png') }}" alt="" width="35%">
                 </a>
                 <div class="welcom mt-lg-4 mt-3 mt-lg-0 mb-lg-5 w-100 px-3 mx-1">
-                    <p>Pendaftaran Beasiswa Sariraya Japan 2022</p>
-                    <h1 class="text-white">Sudah Dibuka</h1>
+                    <p>Program Beasiswa Sariraya Japan {{ ucfirst($getPeriodeAktif->name) }}</p>
+                    <p class="h2">{{ isset($getPeriodeAktif) ? 'Sedang Berlangsung.' : 'Belum Dibuka.' }}
                 </div>
             </div>
 
@@ -96,7 +95,8 @@
                             <div class="form-group">
                                 <input id="nim" type="text"
                                     class="form-control @error('nim') is-invalid @enderror" name="nim"
-                                    value="{{ old('nim') }}" required autocomplete="nim" autofocus placeholder="NIM">
+                                    value="{{ old('nim') }}" required autocomplete="nim" autofocus
+                                    placeholder="NIM">
 
                                 @error('nim')
                                     <span class="invalid-feedback" role="alert">

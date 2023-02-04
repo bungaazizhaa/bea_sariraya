@@ -63,9 +63,10 @@
                     <img src="{{ asset('assets/images/logo.png') }}" alt="" width="35%">
                 </a>
                 <div class="welcom mt-lg-5 mt-3 mt-lg-0 mb-lg-5 w-100 px-3 mx-1">
-                    <p>Pendaftaran Beasiswa Sariraya Japan 2022</p>
-                    <h1>{{ isset($getPeriodeAktif) ? 'Sudah Dibuka' : 'Belum Dibuka' }}
-                    </h1>
+                    <p>Program Beasiswa Sariraya Japan
+                        {{ isset($getPeriodeAktif) ? ucfirst($getPeriodeAktif->name) : '' }}</p>
+                    <p class="h2">{{ isset($getPeriodeAktif) ? 'Sedang Berlangsung.' : 'Belum Diadakan.' }}
+                    </p>
                 </div>
             </div>
             <div class="col-12 col-lg-5 my-sm-auto mt-3">

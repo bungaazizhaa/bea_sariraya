@@ -46,9 +46,16 @@
                 <!-- Section Tombol Pendaftaran -->
                 <div class="tomboldaftar">
                     <center>
-                        <p class="mt-4">Klik tombol di bawah ini untuk mengakses pendaftaran</p>
+
                         @guest
                             @if (Route::has('login'))
+                                <p class="h5 mt-4 mb-3">
+                                    <span>Tekan Login untuk masuk ke Akun Anda.</span>
+                                    @if (Route::has('register') && isset($getPeriodeAktif) ? !$getPeriodeAktif->status_adm == 'Selesai' : '')
+                                        <span class="h5 mt-4">Tekan Register untuk membuat Akun Peserta.
+                                        </span>
+                                    @endif
+                                </p>
                                 <a class="btn btn-success rounded-pill" href="{{ route('login') }}">{{ __('Login') }}</a>
                             @endif
 
@@ -57,8 +64,8 @@
                                     href="{{ route('register') }}">{{ __('Register') }}</a>
                             @else
                                 <div class="mt-3">
-                                    <small class="text-danger">Tahap Administrasi berakhir, Registrasi Akun telah
-                                        ditutup.</small>
+                                    <small class="text-danger">Tahap Administrasi telah berakhir, Registrasi Akun
+                                        Ditutup.</small>
                                 </div>
                             @endif
                         @else
@@ -104,9 +111,10 @@
                                             @endif
                                         </p>
                                         <div class="info-timeline text-center w-100">
-                                            @if ($getPeriodeAktif->status_adm == null &&
-                                                $getTanggalSekarang >= $getPeriodeAktif->tm_adm->format('Y-m-d') &&
-                                                $getTanggalSekarang <= $getPeriodeAktif->ta_adm->format('Y-m-d'))
+                                            @if (
+                                                $getPeriodeAktif->status_adm == null &&
+                                                    $getTanggalSekarang >= $getPeriodeAktif->tm_adm->format('Y-m-d') &&
+                                                    $getTanggalSekarang <= $getPeriodeAktif->ta_adm->format('Y-m-d'))
                                                 <small class="text-info"><i class="fa-solid fa-circle-info"></i>&nbsp;
                                                     Sedang
                                                     Berlangsung</small>
@@ -150,8 +158,7 @@
                                                     Telah
                                                     Diumumkan</small>
                                             @endif
-                                            @if ($getPeriodeAktif->status_adm == 'Selesai' &&
-                                                $getTanggalSekarang >= $getPeriodeAktif->tm_wwn->format('Y-m-d'))
+                                            @if ($getPeriodeAktif->status_adm == 'Selesai' && $getTanggalSekarang >= $getPeriodeAktif->tm_wwn->format('Y-m-d'))
                                                 <i class="fa-solid fa-check text-success "></i>
                                             @endif
                                         </div>
@@ -178,17 +185,19 @@
                                             @endif
                                         </p>
                                         <div class="info-timeline text-center w-100">
-                                            @if ($getPeriodeAktif->status_adm == 'Selesai' &&
-                                                $getPeriodeAktif->status_wwn == null &&
-                                                $getTanggalSekarang >= $getPeriodeAktif->tm_wwn->format('Y-m-d') &&
-                                                $getTanggalSekarang <= $getPeriodeAktif->ta_wwn->format('Y-m-d'))
+                                            @if (
+                                                $getPeriodeAktif->status_adm == 'Selesai' &&
+                                                    $getPeriodeAktif->status_wwn == null &&
+                                                    $getTanggalSekarang >= $getPeriodeAktif->tm_wwn->format('Y-m-d') &&
+                                                    $getTanggalSekarang <= $getPeriodeAktif->ta_wwn->format('Y-m-d'))
                                                 <small class="text-info"><i class="fa-solid fa-circle-info"></i>&nbsp;
                                                     Sedang
                                                     Berlangsung</small>
                                             @endif
-                                            @if ($getPeriodeAktif->status_adm == 'Selesai' &&
-                                                $getPeriodeAktif->status_wwn == null &&
-                                                $getTanggalSekarang > $getPeriodeAktif->ta_wwn->format('Y-m-d'))
+                                            @if (
+                                                $getPeriodeAktif->status_adm == 'Selesai' &&
+                                                    $getPeriodeAktif->status_wwn == null &&
+                                                    $getTanggalSekarang > $getPeriodeAktif->ta_wwn->format('Y-m-d'))
                                                 <small class="text-secondary"><i
                                                         class="fa-solid fa-circle-minus"></i>&nbsp; Telah
                                                     Ditutup</small>
@@ -220,9 +229,10 @@
                                             @endif
                                         </p>
                                         <div class="info-timeline text-center w-100">
-                                            @if ($getPeriodeAktif->status_adm == 'Selesai' &&
-                                                $getPeriodeAktif->status_wwn == null &&
-                                                $getTanggalSekarang > $getPeriodeAktif->ta_wwn->format('Y-m-d'))
+                                            @if (
+                                                $getPeriodeAktif->status_adm == 'Selesai' &&
+                                                    $getPeriodeAktif->status_wwn == null &&
+                                                    $getTanggalSekarang > $getPeriodeAktif->ta_wwn->format('Y-m-d'))
                                                 <i class="fa-regular fa-clock text-info small"></i>
                                             @endif
                                             @if ($getPeriodeAktif->status_wwn == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_png->format('Y-m-d'))
@@ -230,8 +240,7 @@
                                                     Telah
                                                     Diumumkan</small>
                                             @endif
-                                            @if ($getPeriodeAktif->status_wwn == 'Selesai' &&
-                                                $getTanggalSekarang >= $getPeriodeAktif->tm_png->format('Y-m-d'))
+                                            @if ($getPeriodeAktif->status_wwn == 'Selesai' && $getTanggalSekarang >= $getPeriodeAktif->tm_png->format('Y-m-d'))
                                                 <i class="fa-solid fa-check text-success "></i>
                                             @endif
                                         </div>
@@ -260,17 +269,19 @@
                                             @endif
                                         </p>
                                         <div class="info-timeline text-center w-100">
-                                            @if ($getPeriodeAktif->status_wwn == 'Selesai' &&
-                                                $getPeriodeAktif->status_png == null &&
-                                                $getTanggalSekarang >= $getPeriodeAktif->tm_png->format('Y-m-d') &&
-                                                $getTanggalSekarang <= $getPeriodeAktif->ta_png->format('Y-m-d'))
+                                            @if (
+                                                $getPeriodeAktif->status_wwn == 'Selesai' &&
+                                                    $getPeriodeAktif->status_png == null &&
+                                                    $getTanggalSekarang >= $getPeriodeAktif->tm_png->format('Y-m-d') &&
+                                                    $getTanggalSekarang <= $getPeriodeAktif->ta_png->format('Y-m-d'))
                                                 <small class="text-info"><i class="fa-solid fa-circle-info"></i>&nbsp;
                                                     Sedang
                                                     Berlangsung</small>
                                             @endif
-                                            @if ($getPeriodeAktif->status_wwn == 'Selesai' &&
-                                                $getPeriodeAktif->status_png == null &&
-                                                $getTanggalSekarang > $getPeriodeAktif->ta_png->format('Y-m-d'))
+                                            @if (
+                                                $getPeriodeAktif->status_wwn == 'Selesai' &&
+                                                    $getPeriodeAktif->status_png == null &&
+                                                    $getTanggalSekarang > $getPeriodeAktif->ta_png->format('Y-m-d'))
                                                 <small class="text-secondary"><i
                                                         class="fa-solid fa-circle-minus"></i>&nbsp; Telah
                                                     Ditutup</small>
@@ -302,9 +313,10 @@
                                             @endif
                                         </p>
                                         <div class="info-timeline text-center w-100">
-                                            @if ($getPeriodeAktif->status_wwn == 'Selesai' &&
-                                                $getPeriodeAktif->status_png == null &&
-                                                $getTanggalSekarang > $getPeriodeAktif->ta_png->format('Y-m-d'))
+                                            @if (
+                                                $getPeriodeAktif->status_wwn == 'Selesai' &&
+                                                    $getPeriodeAktif->status_png == null &&
+                                                    $getTanggalSekarang > $getPeriodeAktif->ta_png->format('Y-m-d'))
                                                 <i class="fa-regular fa-clock text-info small"></i>
                                             @endif
                                             @if ($getPeriodeAktif->status_wwn == 'Selesai' && $getPeriodeAktif->status_png == 'Selesai')
@@ -390,7 +402,6 @@
                                 </p>
                             </div>
                         </div>
-
 
                         <div class="col-md-6 d-flex align-items-stretch">
                             <div class="card whitecard bea text-left px-4 pt-4">
@@ -515,7 +526,6 @@
                 <p>&copy; Sariraya 2022</p>
             </div>
         </footer>
-
 
     </body>
 

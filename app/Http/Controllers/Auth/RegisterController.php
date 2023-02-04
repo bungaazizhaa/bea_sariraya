@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\Univ;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\Periode;
 use App\Models\Prodi;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -48,9 +49,10 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
+        $getPeriodeAktif = Periode::where('status', '=', 'aktif')->first();
         $getAllProdi = Prodi::all();
         $getAllUniv = Univ::all();
-        return view('auth.register', compact('getAllProdi', 'getAllUniv'));
+        return view('auth.register', compact('getAllProdi', 'getAllUniv', 'getPeriodeAktif'));
     }
 
     /**

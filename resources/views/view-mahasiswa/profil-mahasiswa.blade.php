@@ -10,7 +10,6 @@
             </div>
         @endif
 
-
         <div class="text-center">
             @if (Auth::user()->picture == null)
                 @if ($getPeriodeAktif->status_adm == null && $getTanggalSekarang > $getPeriodeAktif->ta_adm->format('Y-m-d'))
@@ -44,9 +43,10 @@
                         <a href="/tahap-administrasi" class="btn btn-secondary">Tahap Administrasi
                             Belum Dimulai.
                         </a>
-                    @elseif ($getPeriodeAktif->status_adm == null &&
-                        $getTanggalSekarang >= $getPeriodeAktif->tm_adm->format('Y-m-d') &&
-                        $getTanggalSekarang <= $getPeriodeAktif->ta_adm->format('Y-m-d'))
+                    @elseif (
+                        $getPeriodeAktif->status_adm == null &&
+                            $getTanggalSekarang >= $getPeriodeAktif->tm_adm->format('Y-m-d') &&
+                            $getTanggalSekarang <= $getPeriodeAktif->ta_adm->format('Y-m-d'))
                         <a href="/tahap-administrasi" class="btn btn-primary">Tahap Administrasi Dimulai
                         </a>
                     @elseif ($getPeriodeAktif->status_adm == null && $getTanggalSekarang > $getPeriodeAktif->ta_adm->format('Y-m-d'))
@@ -57,30 +57,34 @@
                         <a href="/tahap-administrasi" class="btn btn-primary">Lihat Pengumuman
                             Administrasi
                         </a>
-                    @elseif ($getPeriodeAktif->status_adm == 'Selesai' &&
-                        $getPeriodeAktif->status_wwn == null &&
-                        $getTanggalSekarang >= $getPeriodeAktif->tm_wwn->format('Y-m-d') &&
-                        $getTanggalSekarang <= $getPeriodeAktif->ta_wwn->format('Y-m-d'))
+                    @elseif (
+                        $getPeriodeAktif->status_adm == 'Selesai' &&
+                            $getPeriodeAktif->status_wwn == null &&
+                            $getTanggalSekarang >= $getPeriodeAktif->tm_wwn->format('Y-m-d') &&
+                            $getTanggalSekarang <= $getPeriodeAktif->ta_wwn->format('Y-m-d'))
                         <a href="/tahap-wawancara" class="btn btn-primary">Tahap Wawancara Dimulai
                         </a>
-                    @elseif ($getPeriodeAktif->status_adm == 'Selesai' &&
-                        $getPeriodeAktif->status_wwn == null &&
-                        $getTanggalSekarang > $getPeriodeAktif->ta_wwn->format('Y-m-d'))
+                    @elseif (
+                        $getPeriodeAktif->status_adm == 'Selesai' &&
+                            $getPeriodeAktif->status_wwn == null &&
+                            $getTanggalSekarang > $getPeriodeAktif->ta_wwn->format('Y-m-d'))
                         <a href="/tahap-wawancara" class="btn btn-secondary">Tahap Wawancara Ditutup
                         </a>
                     @elseif ($getPeriodeAktif->status_wwn == 'Selesai' && $getTanggalSekarang < $getPeriodeAktif->tm_png->format('Y-m-d'))
                         <a href="/tahap-wawancara" class="btn btn-primary">Lihat Pengumuman
                             Wawancara
                         </a>
-                    @elseif ($getPeriodeAktif->status_wwn == 'Selesai' &&
-                        $getPeriodeAktif->status_png == null &&
-                        $getTanggalSekarang >= $getPeriodeAktif->tm_png->format('Y-m-d') &&
-                        $getTanggalSekarang <= $getPeriodeAktif->ta_png->format('Y-m-d'))
+                    @elseif (
+                        $getPeriodeAktif->status_wwn == 'Selesai' &&
+                            $getPeriodeAktif->status_png == null &&
+                            $getTanggalSekarang >= $getPeriodeAktif->tm_png->format('Y-m-d') &&
+                            $getTanggalSekarang <= $getPeriodeAktif->ta_png->format('Y-m-d'))
                         <a href="/tahap-penugasan" class="btn btn-primary">Tahap Penugasan Dimulai
                         </a>
-                    @elseif ($getPeriodeAktif->status_wwn == 'Selesai' &&
-                        $getPeriodeAktif->status_png == null &&
-                        $getTanggalSekarang > $getPeriodeAktif->ta_png->format('Y-m-d'))
+                    @elseif (
+                        $getPeriodeAktif->status_wwn == 'Selesai' &&
+                            $getPeriodeAktif->status_png == null &&
+                            $getTanggalSekarang > $getPeriodeAktif->ta_png->format('Y-m-d'))
                         <a href="/tahap-penugasan" class="btn btn-primary">Tahap Penugasan Ditutup
                         </a>
                     @elseif ($getPeriodeAktif->status_wwn == 'Selesai' && $getPeriodeAktif->status_png == 'Selesai')
@@ -95,6 +99,71 @@
                     </div>
                 @endif
             </div>
+        </div>
+
+        <div class="row">
+            <!-- /.col -->
+            <div class="col-md-12">
+                <div class="alert alert-secondary myshadow kotakprofil pb-0">
+                    <div class="mb-3 pt-1 mx-auto rounded-top-md">
+                        <span class="h5">Riwayat Pengajuan Beasiswa:</span>
+                        @if (isset($getRiwayatUser) && $getRiwayatUser->count() == 0)
+                            <p class="mt-3">Tidak ada riwayat.</p>
+                        @endif
+                        <!-- Table row -->
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            @if (isset($getRiwayatUser))
+                                @foreach ($getRiwayatUser as $riwayatUser)
+                                    <div class="d-flex mb-3 rounded py-2 px-3"
+                                        style="background-color:#ebedf1; overflow-x: auto; white-space: nowrap;">
+                                        <div class="h6 pt-2 mt-1 mr-5 font-weight-bold">
+                                            {{ ucfirst($riwayatUser->periode->name) }}</th>
+                                        </div>
+                                        <div class="h6 pt-2 mt-1 mr-2">Administrasi :</div>
+                                        <div
+                                            class="mr-5 h6 pt-2 mt-1  {{ $riwayatUser->status_adm == 'lolos' ? 'text-success' : '' }} {{ $riwayatUser->status_adm == 'gagal' ? 'text-danger' : '' }} {{ $riwayatUser->status_adm == null ? 'text-secondary' : '' }}">
+                                            {{ !isset($riwayatUser->status_adm) ? 'Telah Submit' : '' }}
+                                            {{ ucfirst($riwayatUser->status_adm) }}
+                                        </div>
+                                        <div class="h6 pt-2 mt-1 mr-2">Wawancara :</div>
+                                        <div
+                                            class="mr-5 h6 pt-2 mt-1 
+                                {{ !isset($riwayatUser->wawancara->status_wwn) ? 'text-secondary' : '' }}
+                            {{ isset($riwayatUser->wawancara->status_wwn) && $riwayatUser->wawancara->status_wwn == 'lolos' ? 'text-success' : '' }}
+                            {{ isset($riwayatUser->wawancara->status_wwn) && $riwayatUser->wawancara->status_wwn == 'gagal' ? 'text-danger' : '' }}">
+                                            {{ !isset($riwayatUser->wawancara->status_wwn) ? '-' : '' }}
+                                            {{ isset($riwayatUser->wawancara->status_wwn) && $riwayatUser->wawancara->status_wwn == 'lolos' ? 'Lolos' : '' }}
+                                            {{ isset($riwayatUser->wawancara->status_wwn) && $riwayatUser->wawancara->status_wwn == 'gagal' ? 'Gagal' : '' }}
+                                        </div>
+                                        <div class="h6 pt-2 mt-1 mr-2">Final :</div>
+                                        <div
+                                            class="mr-5 h6 pt-2 mt-1 
+                            {{ !isset($riwayatUser->wawancara->penugasan->status_png) ? 'text-secondary' : '' }}
+                            {{ isset($riwayatUser->wawancara->penugasan->status_png) && $riwayatUser->wawancara->penugasan->status_png == 'lolos' ? 'text-success' : '' }}
+                            {{ isset($riwayatUser->wawancara->penugasan->status_png) && $riwayatUser->wawancara->penugasan->status_png == 'gagal' ? 'text-danger' : '' }}">
+                                            {{ !isset($riwayatUser->wawancara->penugasan->status_png) ? '-' : '' }}
+                                            {{ isset($riwayatUser->wawancara->penugasan->status_png) && $riwayatUser->wawancara->penugasan->status_png == 'lolos' ? 'Lolos' : '' }}
+                                            {{ isset($riwayatUser->wawancara->penugasan->status_png) && $riwayatUser->wawancara->penugasan->status_png == 'gagal' ? 'Gagal' : '' }}
+                                        </div>
+                                        {{-- <a class="btn btn-primary btn-sm m-2 px-3 rounded" href="#">
+                            Detail
+                        </a>
+                        <a class="btn btn-info btn-sm m-2 px-3 rounded" href="#">
+                            Edit
+                        </a> --}}
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
         </div>
 
         <!-- Main content -->
@@ -128,7 +197,6 @@
                 </div>
                 <!-- /.card -->
             </div>
-
 
             <div class="col-lg-8">
                 <div class="alert alert-secondary rounded-md myshadow mb-3">
@@ -227,8 +295,8 @@
                                     <small>Maksimal ukuran file: <span class="font-weight-bold">512KB
                                         </span></small>
                                 </div>
-                                <img class="img-preview mb-3 d-flex mx-auto" alt="" width="210px" height="280px"
-                                    style="max-width: 210px; max-height:280px">
+                                <img class="img-preview mb-3 d-flex mx-auto" alt="" width="210px"
+                                    height="280px" style="max-width: 210px; max-height:280px">
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="Foto" name="Foto"
@@ -287,7 +355,6 @@
                                 @enderror
                             </div>
                         </div>
-
 
                         <div class="row mb-3">
                             <label for="nim"
@@ -409,7 +476,6 @@
             }
         }
     </script>
-
 
     <script>
         function univLainnya(that) {

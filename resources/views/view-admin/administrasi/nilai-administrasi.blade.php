@@ -43,7 +43,6 @@
                 <input id="periode_id" hidden type="text" class="form-control" periode_id="periode_id"
                     value="{{ $periodeOpenned->id_periode }}">
 
-
                 <div class="row d-flex justify-content-center my-5 mx-1">
                     <div class="col-md-9">
                         <div class="row mb-0">
@@ -302,7 +301,6 @@
                             </div>
                             <div class="card-body">
 
-
                                 <div class="row mb-3">
                                     <label for="no_wa"
                                         class="col-md-4 col-form-label text-md-right">{{ __('Nomor WhatsApp') }}<strong
@@ -388,17 +386,16 @@
                                                     value="{{ old(
                                                         'jadwal_wwn',
                                                         isset($admUser->wawancara->jadwal_wwn)
-                                                            ? $admUser->wawancara->jadwal_wwn->translatedFormat('d F Y') .
-                                                                $admUser->wawancara->jadwal_wwn->translatedFormat(' H:i')
+                                                            ? $admUser->wawancara->jadwal_wwn->format('d F Y') . $admUser->wawancara->jadwal_wwn->format(' H:i')
                                                             : '',
                                                     ) }}">
                                                 <div>
                                                     <p>Pilih waktu antara
-                                                        <span><strong
-                                                                class="text-info">{{ $periodeOpenned->tm_wwn->translatedFormat('d F Y H:i') }}</strong>
+                                                        <span><strong id="tglawal"
+                                                                class="text-info">{{ $periodeOpenned->tm_wwn->format('d F Y H:i') }}</strong>
                                                         </span> sampai
-                                                        <span><strong
-                                                                class="text-info">{{ $periodeOpenned->ta_wwn->translatedFormat('d F Y 23:59') }}</strong>
+                                                        <span><strong id="tglakhir"
+                                                                class="text-info">{{ $periodeOpenned->ta_wwn->format('d F Y 23:59') }}</strong>
                                                         </span>
                                                     </p>
                                                 </div>
@@ -418,7 +415,6 @@
                                             <textarea id="catatan" name="catatan" class="form-control selectpicker" title="Status Administrasi">{{ old('catatan', $admUser->catatan) }}</textarea>
                                             <p><small>Hanya Admin yang dapat melihat catatan.</small></p>
                                         </div>
-
 
                                         @error('catatan')
                                             <div class="small text-danger" role="alert">
@@ -455,7 +451,6 @@
     </div>
 
     <script>
-        var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
         $('.datepicker').datetimepicker({
             format: 'dd mmmm yyyy HH:MM',
             uiLibrary: 'bootstrap4',
@@ -464,10 +459,12 @@
             footer: true,
             autoclose: false,
             datepicker: {
-                disableDates: function(date) {
-                    const currentDate = new Date().setHours(0, 0, 0, 0);
-                    return date.setHours(0, 0, 0, 0) >= currentDate ? true : false;
-                }
+                minDate: function() {
+                    return $('#tglawal').text();
+                },
+                maxDate: function() {
+                    return $('#tglakhir').text();
+                },
             }
         });
     </script>

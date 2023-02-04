@@ -235,7 +235,6 @@
             </div>
         </div>
 
-
         {{-- Input Teknis Wawancara --}}
         <div class="row">
             <div id="accordion" class="col-lg-8 rounded-md">
@@ -718,8 +717,6 @@
             </div>
         </div>
 
-
-
         {{-- ======== MODAL UMUMKAN ADMINISTRASI ======== --}}
         <!-- Modal -->
         <div class="modal fade" id="umumkanAdm" tabindex="-1" role="dialog" aria-labelledby="umumkanAdmLabel"
@@ -1145,7 +1142,6 @@
             </div>
         </div>
 
-
         <script>
             $(document).ready(function() {
                 $('#summernote').summernote({
@@ -1168,15 +1164,171 @@
             });
         </script>
         <script>
-            $('.datepicker').each(function() {
-                $(this).datepicker({
-                    format: 'dd mmmm yyyy',
-                    uiLibrary: 'bootstrap4',
-                    iconsLibrary: 'fontawesome',
-                    showRightIcon: true,
-                    todayHighlight: true,
-                    autoclose: true,
-                });
+            $('#tm_adm').datepicker({
+                format: 'dd mmmm yyyy',
+                uiLibrary: 'bootstrap4',
+                iconsLibrary: 'fontawesome',
+                showRightIcon: true,
+                todayHighlight: true,
+                autoclose: true,
+                maxDate: function() {
+                    if ($('#ta_adm').val() != null) {
+                        const date = new Date($('#ta_adm').val());
+                        date.setDate(date.getDate() - 1);
+                        return date;
+                    }
+                }
+            });
+            $('#ta_adm').datepicker({
+                format: 'dd mmmm yyyy',
+                uiLibrary: 'bootstrap4',
+                iconsLibrary: 'fontawesome',
+                showRightIcon: true,
+                todayHighlight: true,
+                autoclose: true,
+                minDate: function() {
+                    const date = new Date($('#tm_adm').val());
+                    date.setDate(date.getDate() + 1);
+                    return date;
+                },
+                maxDate: function() {
+                    if ($('#tp_adm').val() != null) {
+                        const date = new Date($('#tp_adm').val());
+                        date.setDate(date.getDate() - 1);
+                        return date;
+                    }
+                }
+            });
+            $('#tp_adm').datepicker({
+                format: 'dd mmmm yyyy',
+                uiLibrary: 'bootstrap4',
+                iconsLibrary: 'fontawesome',
+                showRightIcon: true,
+                todayHighlight: true,
+                autoclose: true,
+                minDate: function() {
+                    const date = new Date($('#ta_adm').val());
+                    date.setDate(date.getDate() + 1);
+                    return date;
+                },
+                maxDate: function() {
+                    if ($('#tm_wwn').val() != null) {
+                        return $('#tm_wwn').val();
+                    }
+                }
+            });
+            $('#tm_wwn').datepicker({
+                format: 'dd mmmm yyyy',
+                uiLibrary: 'bootstrap4',
+                iconsLibrary: 'fontawesome',
+                showRightIcon: true,
+                todayHighlight: true,
+                autoclose: true,
+                minDate: function() {
+                    const date = new Date($('#tp_adm').val());
+                    date.setDate(date.getDate() + 1);
+                    return date;
+                },
+                maxDate: function() {
+                    if ($('#ta_wwn').val() != null) {
+                        const date = new Date($('#ta_wwn').val());
+                        date.setDate(date.getDate() - 1);
+                        return date;
+                    }
+                }
+            });
+            $('#ta_wwn').datepicker({
+                format: 'dd mmmm yyyy',
+                uiLibrary: 'bootstrap4',
+                iconsLibrary: 'fontawesome',
+                showRightIcon: true,
+                todayHighlight: true,
+                autoclose: true,
+                minDate: function() {
+                    const date = new Date($('#tm_wwn').val());
+                    date.setDate(date.getDate() + 1);
+                    return date;
+                },
+                maxDate: function() {
+                    if ($('#tp_wwn').val() != null) {
+                        const date = new Date($('#tp_wwn').val());
+                        date.setDate(date.getDate() - 1);
+                        return date;
+                    }
+                }
+            });
+            $('#tp_wwn').datepicker({
+                format: 'dd mmmm yyyy',
+                uiLibrary: 'bootstrap4',
+                iconsLibrary: 'fontawesome',
+                showRightIcon: true,
+                todayHighlight: true,
+                autoclose: true,
+                minDate: function() {
+                    const date = new Date($('#ta_wwn').val());
+                    date.setDate(date.getDate() + 1);
+                    return date;
+                },
+                maxDate: function() {
+                    if ($('#tm_png').val() != null) {
+                        const date = new Date($('#tm_png').val());
+                        date.setDate(date.getDate() - 1);
+                        return date;
+                    }
+                }
+            });
+            $('#tm_png').datepicker({
+                format: 'dd mmmm yyyy',
+                uiLibrary: 'bootstrap4',
+                iconsLibrary: 'fontawesome',
+                showRightIcon: true,
+                todayHighlight: true,
+                autoclose: true,
+                minDate: function() {
+                    const date = new Date($('#tp_wwn').val());
+                    date.setDate(date.getDate() + 1);
+                    return date;
+                },
+                maxDate: function() {
+                    if ($('#ta_png').val() != null) {
+                        const date = new Date($('#ta_png').val());
+                        date.setDate(date.getDate() - 1);
+                        return date;
+                    }
+                }
+            });
+            $('#ta_png').datepicker({
+                format: 'dd mmmm yyyy',
+                uiLibrary: 'bootstrap4',
+                iconsLibrary: 'fontawesome',
+                showRightIcon: true,
+                todayHighlight: true,
+                autoclose: true,
+                minDate: function() {
+                    const date = new Date($('#tm_png').val());
+                    date.setDate(date.getDate() + 1);
+                    return date;
+                },
+                maxDate: function() {
+                    if ($('#tp_png').val() != null) {
+                        const date = new Date($('#tp_png').val());
+                        date.setDate(date.getDate() - 1);
+                        return date;
+                    }
+                }
+            });
+            $('#tp_png').datepicker({
+                format: 'dd mmmm yyyy',
+                uiLibrary: 'bootstrap4',
+                iconsLibrary: 'fontawesome',
+                showRightIcon: true,
+                todayHighlight: true,
+                autoclose: true,
+                minDate: function() {
+                    const date = new Date($('#ta_png').val());
+                    date.setDate(date.getDate() + 1);
+                    return date;
+                },
             });
         </script>
         <!-- Page specific script -->

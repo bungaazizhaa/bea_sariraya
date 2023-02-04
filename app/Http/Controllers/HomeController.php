@@ -57,7 +57,8 @@ class HomeController extends Controller
             auth()->logout();
         }
         $getUserLoggedIn = Auth::user();
-        return view('view-mahasiswa.profil-mahasiswa', compact('getUserLoggedIn', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAdministrasiUser'));
+        $getRiwayatUser = Administrasi::where('user_id', '=', Auth::user()->id)->orderBy('id', 'desc')->get();
+        return view('view-mahasiswa.profil-mahasiswa', compact('getUserLoggedIn', 'getPeriodeAktif', 'getTanggalSekarang', 'getAllUniv', 'getAdministrasiUser', 'getRiwayatUser'));
     }
 
     //! === View Halaman Dashboard Admin ===
